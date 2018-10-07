@@ -1,0 +1,17 @@
+:root {
+	--white: rgb(255, 255, 255);
+	--almostWhiteGreen: rgb(250, 255, 250);
+	--ashGreen: rgb(220, 240, 240);
+	--normalGreen: rgb(140, 200, 180);
+	--darkGreen: rgb(20, 80, 60);
+	--lightBlueGreen: rgb(90, 220, 220);
+	--normalBlueGreen: rgb(60, 180, 180);
+	--normalRed: rgb(250, 20, 50);
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0px;
+}
