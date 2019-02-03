@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html lang="jp">
 <head>
-  <title>nijikon's nest</title>
+  <title>Nijicon's nest</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  
   <link rel="stylesheet" href="../static/css/style.css" type="text/css">
 </head>
 <body>
   <header>
-    <p class="headerText">Twitter ML filterer</p>
   </header>
-  <div class="tweetcontainer">
-    <div class="imgcontainer">
-    </div>
-    <button class="onTwitterButton" onClick="window.open({{$twt.URL}})">See on Twitter</button>
-  </div>
-<footer>
+  <div class="rollingMenu" @click="roll">
+    <h1 class="title">{{title}}</h1>
 
-</footer>
+    <div class="menuIcon accessories" v-bind:id="pos" v-pre>
+      <a href="under_construction.html">
+        <img src="../static/images/accessoriesicon.png">
+      </a>
+    </div>
+    <div class="menuIcon aboutme" v-bind:id="pos" v-pre>
+      <a href="under_construction.html">
+        <img src="../static/images/bioicon.png">
+      </a>
+    </div>
+    <div class="menuIcon assembly" v-bind:id="pos" v-pre>
+      <a href="under_construction.html">
+        <img src="../static/images/assembleicon.png">
+      </a>
+    </div>
+    <div class="menuIcon games" v-bind:id="pos" v-pre>
+      <a href="under_construction.html">
+        <img src="../static/images/gamesicon.png">
+      </a>
+    </div>
+    <div class="menuIcon programs" v-bind:id="pos" v-pre>
+      <a href="https://github.com/misonomi?utf8=%E2%9C%93&tab=repositories&type=source">
+        <img src="../static/images/programsicon.png">
+      </a>
+    </div>
+  </div><script src="../static/js/rollingMenu.js"></script>
+  <footer>
+  </footer>
 </body>
 </html>
