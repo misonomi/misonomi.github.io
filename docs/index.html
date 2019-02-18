@@ -7,15 +7,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   
   <link rel="stylesheet" href="../static/css/style.css" type="text/css">
+  <link rel="stylesheet" href="../static/css/rollingmenu.css" type="text/css">
 </head>
 <body>
-  <header>
-  </header>
   <div class="rollingMenu" @click="roll">
-    <h1 class="title">{{title}}</h1>
-
     <div class="menuIcon accessories" v-bind:id="pos" v-pre>
-      <a href="under_construction.html">
+      <a href="accessories.html">
         <img src="../static/images/accessoriesicon.png">
       </a>
     </div>
@@ -39,8 +36,9 @@
         <img src="../static/images/programsicon.png">
       </a>
     </div>
+
+    
+    <p class="roll_menu_title">{{title}}</p>
   </div><script src="../static/js/rollingMenu.js"></script>
-  <footer>
-  </footer>
 </body>
 </html>

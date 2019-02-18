@@ -4,7 +4,7 @@ const rollMenuModel = {
         "Programs",
         "Accessories",
         "Aboutme",
-        "Assembly",
+        "Assemble",
         "Games"
     ],
     title: ""
