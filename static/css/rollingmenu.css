@@ -1,0 +1,68 @@
+:root {
+	--icon_width: 360px;
+	--icon_width_half: var(--icon_width) / 2;
+	--icon_height: 320px;
+	--front_ratio: .6;
+	--back_ratio: .3;
+}
+.rollingMenu {
+	height: 80vh;
+	position: relative;
+}
+
+.roll_menu_title {
+	text-align: center;
+	color: white;
+	font-family: monospace;
+	font-size: 50px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
+
+.menuIcon {
+	position: absolute;
+	transition: all 300ms 0s ease;
+}
+a {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+img {
+	width: 100%;
+	height: 100%;
+}
+
+#front {
+	left: calc(50% - var(--icon_width_half));
+	top: 40%;
+	width: var(--icon_width);
+	height: var(--icon_height);
+}
+#right-front {
+	left: calc(80% - var(--icon_width_half) * var(--front_ratio));
+	top: 40%;
+	width: calc(var(--icon_width) * var(--front_ratio));
+	height: calc(var(--icon_height) * var(--front_ratio));
+}
+#left-front {
+	left: calc(20% - var(--icon_width_half) * var(--front_ratio));
+	top: 40%;
+	width: calc(var(--icon_width) * var(--front_ratio));
+	height: calc(var(--icon_height) * var(--front_ratio));
+}
+#right-back {
+	left: calc(60% - var(--icon_width_half) * var(--back_ratio));
+	top: 20%;
+	width: calc(var(--icon_width) * var(--back_ratio));
+	height: calc(var(--icon_height) * var(--back_ratio));
+}
+#left-back {
+	left: calc(40% - var(--icon_width_half) * var(--back_ratio));
+	top: 20%;
+	width: calc(var(--icon_width) * var(--back_ratio));
+	height: calc(var(--icon_height) * var(--back_ratio));
+}

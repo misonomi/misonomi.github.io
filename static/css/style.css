@@ -5,14 +5,11 @@
 	--normalGreen: rgb(140, 200, 180);
 	--darkGreen: rgb(20, 80, 60);
 	--lightBlueGreen: rgb(90, 220, 220);
+	--clearLightBlueGreen: rgba(90, 220, 220, .2);
 	--normalBlueGreen: rgb(60, 180, 180);
+	--lightBlue: rgb(160, 160, 255);
 	--normalRed: rgb(250, 20, 50);
-
-	--icon_width: 360px;
-	--icon_width_half: var(--icon_width) / 2;
-	--icon_height: 320px;
-	--front_ratio: .7;
-	--back_ratio: .5;
+	--black: rgb(0, 0, 0);
 } 
 
 * {
@@ -25,64 +22,53 @@ body {
 	background-image: url(../images/bgunit.png);
 	background-repeat: repeat;
 }
-
 header {
-	height: 20vh;
+	height: 224px;
+	border-bottom: solid 32px var(--black);
+	box-shadow: 0 0 1000px var(--lightBlueGreen);
+	margin-bottom: 300px;
 }
-.rollingMenu {
-	height: 80vh;
-}
-
-.title {
+.page_title {
 	text-align: center;
 	color: white;
 	font-family: monospace;
-	font-size: 50px;
-	left: 50vw;
-	top: 40vh;
+	font-size: 100px;
+}
+.container-outer {
+	height: 200px;
+	width: 60vw;
+	border: solid 1px var(--lightBlueGreen);
+	border-radius: 30px;
+	box-shadow: 0 0 50px var(--lightBlueGreen);
+	padding: 15px;
+	margin:auto;
 }
 
-.menuIcon {
+.container-inner {
+	height: 100%;
+	background-color: var(--clearLightBlueGreen);
+	border-radius: 20px;
+	box-shadow: 0 0 2px var(--normalGreen);
+	transition: all 300ms 0s ease;
+}
+.container-inner:hover {
+	box-shadow: 0 0 200px var(--white);
+}
+.container-title {
+	position: relative;
+	height: 30%;
+	border-bottom: solid 1px var(--black);
+}
+.container-disc {
+	position: relative;
+	height: 70%;
+}
+.container-text {
 	position: absolute;
-	transition: all 500ms 0s ease;
-}
-a {
-	width: 100%;
-	height: 100%;
-	display: inline-block;
-}
-img {
-	width: 100%;
-	height: 100%;
-}
-
-#front {
-	left: calc(50% - var(--icon_width_half));
-	top: 60%;
-	width: var(--icon_width);
-	height: var(--icon_height);
-}
-#right-front {
-	left: calc(80% - var(--icon_width_half) * var(--front_ratio));
-	top:50%;
-	width: calc(var(--icon_width) * var(--front_ratio));
-	height: calc(var(--icon_height) * var(--front_ratio));
-}
-#left-front {
-	left: calc(20% - var(--icon_width_half) * var(--front_ratio));
-	top:50%;
-	width: calc(var(--icon_width) * var(--front_ratio));
-	height: calc(var(--icon_height) * var(--front_ratio));
-}
-#right-back {
-	left: calc(60% - var(--icon_width_half) * var(--back_ratio));
-	top:30%;
-	width: calc(var(--icon_width) * var(--back_ratio));
-	height: calc(var(--icon_height) * var(--back_ratio));
-}
-#left-back {
-	left: calc(40% - var(--icon_width_half) * var(--back_ratio));
-	top:30%;
-	width: calc(var(--icon_width) * var(--back_ratio));
-	height: calc(var(--icon_height) * var(--back_ratio));
+	text-align: center;
+	color: var(--white);
+	bottom: 4px;
+	left: 0;
+	right: 0;
+	margin: auto;
 }
