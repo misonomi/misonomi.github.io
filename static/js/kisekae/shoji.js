@@ -1,13 +1,46 @@
+const shojix = 658;
+const globalx = 1920;
+const leftc = (globalx / 2) - shojix;
+const lefto = leftc - shojix; 
+const rightc = globalx / 2;
+const righto = rightc + shojix;
+
+const step = 20;
+
 export default class {
     constructor(image) {
         this.left = image;
         this.right = image;
-
-        this.leftx = 20;
-        this.rightx = 800;
+        this.init();
+    }
+    init() {
+        this.leftx = leftc;
+        this.rightx = rightc;
     }
     draw(ctx) {
-        ctx.drawImage(left, leftx, 0);
-        ctx.drawImage(right, rightx, 0);
+        ctx.drawImage(this.left, this.leftx, 0);
+        ctx.drawImage(this.right, this.rightx, 0);
+    }
+    open() {
+        if ((this.leftx > lefto) && (this.rightx < righto)) {
+            this.leftx -= step;
+            this.rightx += step;
+            return true;
+        } else {
+            this.leftx = lefto;
+            this.rightx = righto;
+            return false;
+        }
+    }
+    close() {
+        if ((this.leftx < leftc) && (this.rightx > rightc)) {
+            this.leftx += step;
+            this.rightx -= step;
+            return true;
+        } else {
+            this.leftx = leftc;
+            this.rightx = rightc;
+            return false;
+        }
     }
 }
