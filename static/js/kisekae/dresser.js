@@ -1,13 +1,16 @@
-const x = 10;
-const y = 800;
-const margin = 30;
+const width = 30;
+const height = 40;
 
 export default class {
-    constructor() {
-        this.text = "";
+    constructor(image, x, y) {
+        this.iamge = image;
+        this.x = x;
+        this.y = y;
     }
     draw(ctx) {
-        ctx.drawImage(this.left, x, y);
-        ctx.fillText(this.text, x + margin, y + margin);
+        ctx.drawImage(this.iamge, this.x, this.y);
+    }
+    isOn(x, y) {
+        return ((this.x <= x && x <= this.x + width) && (this.y <= y && y <= this.y + height));
     }
 }
