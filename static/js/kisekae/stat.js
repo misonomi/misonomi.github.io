@@ -9,3 +9,12 @@ export const STAT = {
 export const SEQUENCE = {
     
 }
+
+export const DRESS = {
+    blue: 0,
+    miko: 1,
+    maid: 2,
+    bikini: 3,
+    wasureta: 4,
+    sarashi: 5,
+}
