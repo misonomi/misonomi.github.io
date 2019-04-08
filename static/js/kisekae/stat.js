@@ -1,5 +1,5 @@
 export const STAT = {
-    init: 0,
+    ready: 0,
     talk: 1,
     game: 2,
     select: 3,

@@ -14,8 +14,8 @@ export default class {
         this.init();
     }
     init() {
-        this.leftx = leftc;
-        this.rightx = rightc;
+        this.leftx = lefto;
+        this.rightx = righto;
     }
     draw(ctx) {
         ctx.drawImage(this.left, this.leftx, 0);
