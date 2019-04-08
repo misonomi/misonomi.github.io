@@ -7,7 +7,7 @@ export default class {
     getStat() {
         return this.stat;
     }
-    click() {
+    click(e) {
         switch(this.stat) {
             case STAT.init:
                 this.stat = STAT.game;
