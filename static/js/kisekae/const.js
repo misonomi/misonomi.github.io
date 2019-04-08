@@ -1,4 +1,4 @@
 export default {
-    originalx = 1920,
-    originaly = 1080,
+    originalx: 1920,
+    originaly: 1080,
 };

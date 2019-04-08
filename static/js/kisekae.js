@@ -1,5 +1,4 @@
 import { STAT } from './kisekae/stat.js';
-import CONST from './kisekae/const.js';
 import Shoji from './kisekae/shoji.js';
 import CTS from './kisekae/cts.js';
 import Logo from './kisekae/logo.js';
@@ -48,10 +47,15 @@ function draw_ready() {
     shoji.draw(ctx);
     logo.draw(ctx);
     clicktostart.draw(ctx);
+    resize();
 }
 
 function draw() {
     ctx.drawImage(bg, 0, 0);
     shoji.draw(ctx);
-    canvas.css('transform', 'scale('+Math.min((CONST.originalx / window.innerWidth), (CONST.originaly / window.innerHeight), 1)+')');
+    resize();
+}
+
+function resize() {
+    // TODO resize
 }
