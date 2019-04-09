@@ -1,8 +1,8 @@
 import { STAT } from './stat.js';
-import Shoji from './kisekae/shoji.js';
-import CTS from './kisekae/cts.js';
-import Logo from './kisekae/logo.js';
-import Fukidashi from './kisekae/fukidashi.js';
+import Shoji from './shoji.js';
+import CTS from './cts.js';
+import Logo from './logo.js';
+import Fukidashi from './fukidashi.js';
 
 export default class {
     constructor() {

@@ -5,13 +5,15 @@ import Command from './kisekae/command.js';
 /////////////////// initialize canvas
 
 const display_canvas = document.getElementById('kisekae');
-const display_ctx = canvas.getContext('2d');
+const display_ctx = display_canvas.getContext('2d');
 let scale = 1;
 
 /////////////////// initialize buffered canvas
 
 const canvas = document.createElement('canvas');
-const ctx = _canvas.getContext('2d');
+canvas.width = CONST.originalx;
+canvas.height = CONST.originaly;
+const ctx = canvas.getContext('2d');
 ctx.font = 'bold 30px';
 
 /////////////////// instantiate classes and so on
@@ -60,5 +62,6 @@ function resize() {
 
     display_canvas.width = CONST.originalx * scale;
     display_canvas.height = CONST.originaly * scale;
-    display_ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, display_canvas.width, display_canvas.height);
+    display_ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 
+        (canvas.width - display_canvas.width) / 2, 0, display_canvas.width, display_canvas.height);
 }
