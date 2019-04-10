@@ -1,11 +1,11 @@
 export default {
     name: 'menu-icon',
-    props: [
-        'name',
-        'link',
-        'id',
-        'current',
-    ],
+    props: {
+        name: String,
+        link: String,
+        id: Number,
+        current: Number,
+    },
     data() {
         return {
             posList: [
@@ -18,19 +18,19 @@ export default {
         }
     },
     methods: {
-        link (event) {
-            console.log('link function start. name:' + name + ', link:' + link + ', id:' + id + ', current:' + current);
+        navigate (event) {
+            console.log('link function start. name:' + this.name + ', link:' + this.link + ', id:' + this.id + ', current:' + this.current);
             event.stopPropagation()
-            window.location.href = link
+            window.location.href = this.link
         },
         compute_pos() {
-            console.log('compute function start. id:' + id + ', current:' + current);
-            return this.positionList[((id - current + 5) % 5)]
+            console.log('compute function start. id:' + this.id + ', current:' + this.current);
+            return this.posList[((this.id - this.current + 5) % 5)]
         }
     },
     template: `
-        <div class="menuIcon" :id="compute_pos()" @click="link($event)">
-            <img :src="'../../images/' + name + 'icon.png'">
+        <div class="menuIcon" :id="compute_pos()" @click="navigate($event)">
+            <img :src="'./static/images/' + name + 'icon.png'">
         </div>
     `
 }
