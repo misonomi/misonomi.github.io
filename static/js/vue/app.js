@@ -39,9 +39,9 @@ export default {
     template: `
         <div class="rollingMenu" @click="roll($event)">
             <menu-icon 
-                :name="'accessories'" 
-                :link="'../../../accessories.html'"
-                :id="0"
+                name="accessories" 
+                link="../../../accessories.html"
+                id="0"
                 :current="this.current"
             ></menu-icon>
             <menu-icon 

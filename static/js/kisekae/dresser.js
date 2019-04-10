@@ -1,4 +1,4 @@
-import { DRESS } from './kisekae/stat.js';
+import { DRESS } from './stat.js';
 const width = 30;
 const height = 40;
 const pos = {
@@ -13,8 +13,8 @@ export default class {
         this.iamge = document.getElementById('dresser_' + dress);
         this.diabled_image = document.getElementById('dresser_' + dress + '_disabled');
         this.dress = DRESS[dress];
-        this.x = pos[dress].x;
-        this.y = pos[dress].y;
+        this.x = pos.miko.x;
+        this.y = pos.miko.y;
         this.active = true;
     }
     clicked(x, y) {

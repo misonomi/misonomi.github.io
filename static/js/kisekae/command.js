@@ -4,6 +4,8 @@ import CTS from './cts.js';
 import Logo from './logo.js';
 import Fukidashi from './fukidashi.js';
 import Dresser from './dresser.js';
+import Tablet from './tablet.js';
+import Casko from './casko.js';
 
 let cleared = 0;
 let stat = STAT.ready;
