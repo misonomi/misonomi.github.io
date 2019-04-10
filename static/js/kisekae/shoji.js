@@ -8,18 +8,11 @@ const righto = rightc + shojix;
 const step = 20;
 
 export default class {
-    constructor(image) {
-        this.left = image;
-        this.right = image;
-        this.init();
-    }
-    init() {
+    constructor() {
+        this.left = document.getElementById('shoji');
+        this.right = document.getElementById('shoji');
         this.leftx = lefto;
         this.rightx = righto;
-    }
-    draw(ctx) {
-        ctx.drawImage(this.left, this.leftx, 0);
-        ctx.drawImage(this.right, this.rightx, 0);
     }
     open() {
         if ((this.leftx > lefto) && (this.rightx < righto)) {
@@ -42,5 +35,9 @@ export default class {
             this.rightx = rightc;
             return false;
         }
+    }
+    draw(ctx) {
+        ctx.drawImage(this.left, this.leftx, 0);
+        ctx.drawImage(this.right, this.rightx, 0);
     }
 }

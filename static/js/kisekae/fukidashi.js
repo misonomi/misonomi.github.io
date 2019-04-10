@@ -4,31 +4,31 @@ const y = 800;
 const margin = 30;
 
 export default class {
-    constructor(image) {
-        this.image = image;
+    constructor() {
+        this.image = document.getElementById('fukidashi');
         this.sequence = [];
-        this.seqlen = 0;
         this.seqptr = 0;
         this.char = 0;
     }
     init(seq) {
-        this.sequence = WORDS.eval(seq);
-        this.seqlen = sequence.length;
+        this.sequence = WORDS[seq];
         this.seqptr = 0;
         this.char = 0;
     }
     next() {
         this.seqptr++;
         this.char = 0;
-        return this.seqptr <= this.seqlen;
+        if (this.seqptr <= this.sequence.lines.length) {
+            return this.sequence.next;
+        }
     }
     frame() {
-        if  (this.char < this.sequence[this.seqptr].length) {
+        if  (this.char < this.sequence.lines[this.seqptr].length) {
             this.char++;
         }
     }
     draw(ctx) {
         ctx.drawImage(image, x, y);
-        ctx.fillText(this.sequence[this.seqptr].substr(0, this.char), x + margin, y + margin);
+        ctx.fillText(this.sequence.lines[this.seqptr].substr(0, this.char), x + margin, y + margin);
     }
 }

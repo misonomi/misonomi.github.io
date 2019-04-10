@@ -6,15 +6,17 @@ export const STAT = {
     cg: 4,
 }
 
-export const SEQUENCE = {
-    
+export const DRESS = {
+    blue: 'blue',
+    miko: 'miko',
+    maid: 'maid',
+    bikini: 'bikini',
+    wasureta: 'wasureta',
+    sarashi: 'sarashi',
 }
 
-export const DRESS = {
-    blue: 0,
-    miko: 1,
-    maid: 2,
-    bikini: 3,
-    wasureta: 4,
-    sarashi: 5,
+export const FACE = {
+    normal: 'face_normal',
+    smile: 'face_smile',
+    screwed: 'face_screwed',
 }

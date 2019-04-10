@@ -33,14 +33,23 @@ function frame() {
         case STAT.ready:
             command.draw_ready(ctx);
             break;
-
-        case STAT.game:
-            command.draw(ctx);
-            break;
         
         case STAT.talk:
             command.proc_talk();
             command.draw_talk(ctx);
+            break;
+
+        case STAT.select:
+            command.proc_select();
+            command.draw_select(ctx);
+
+        case STAT.game:
+            command.proc_game();
+            command.draw_game(ctx);
+            break;
+
+        case STAT.cg:
+            command.draw_cg(ctx);
             break;
 
         default:
@@ -54,7 +63,31 @@ setInterval(frame, 10);
 
 function onClick(e) {
     let pos = getMousePos(canvas, e);
-    command.click(pos.x / scale, pos.y / scale);
+    let x = pos.x / scale;
+    let y = pos.y / scale;
+    switch(command.getStat()) {
+        case STAT.ready:
+            command.click_ready();
+            break;
+        
+        case STAT.talk:
+            command.click_talk();
+            break;
+
+        case STAT.select:
+            command.click_select(x, y);
+            break;
+
+        case STAT.game:
+            command.click_game(x, y);
+            break;
+
+        case STAT.cg:
+            command.click_cg();
+            break;
+
+        default:
+    }
 }
 
 function resize() {
@@ -63,5 +96,5 @@ function resize() {
     display_canvas.width = CONST.originalx * scale;
     display_canvas.height = CONST.originaly * scale;
     display_ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 
-        (canvas.width - display_canvas.width) / 2, 0, display_canvas.width, display_canvas.height);
+        (window.innerWidth - display_canvas.width) / 2, (window.innerHeight - display_canvas.height) / 2, display_canvas.width, display_canvas.height);
 }
