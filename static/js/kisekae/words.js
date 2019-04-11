@@ -8,6 +8,12 @@ const words = {
         ],
         next: STAT.select,
     },
+    select: {
+        lines: [
+            'aaaa',
+        ],
+        next: STAT.cg,
+    },
     choose_miko: {
         lines: [
             'aaaa',

@@ -9,6 +9,8 @@ import Casko from './casko.js';
 
 let cleared = 0;
 let stat = STAT.ready;
+const timelimit = 1000;
+const talk_interval = 12;
 
 export default class {
     constructor() {
@@ -22,7 +24,7 @@ export default class {
         this.dresser_miko = new Dresser(DRESS.miko);
         this.dresser_maid = new Dresser(DRESS.maid);
         this.dresser_bikini = new Dresser(DRESS.bikini);
-        this.dresser_wasureta = new Dresser(DRESS.wasureta);
+        this.dresser_gymsuit = new Dresser(DRESS.gymsuit);
         this.dresser_sarashi = new Dresser(DRESS.sarashi);
 
         this.tablet = [
@@ -41,41 +43,66 @@ export default class {
 
     talkinit(seq) {
         stat = STAT.talk;
+        this.talkframe = talk_interval;
         this.fukidashi.init(seq);
     }
     talkinit_choose(seq) {
-        talkinit('choose_' + seq);
+        this.talkinit('choose_' + seq);
+    }
+    selectinit() {
+        stat = STAT.select;
+        this.talkframe = talk_interval;
+        this.fukidashi.init('select');
+    }
+    gameinit() {
+        stat = STAT.game;
     }
 
 ///////////////////
 
     click_ready() {
-        talkinit('intro');
+        this.talkinit('intro');
     }
     click_talk() {
         let next = this.fukidashi.next();
-        if (next) { stat = next; }
+        if (!next) { return; }
+        switch (next) {
+            case STAT.init:
+                stat = STAT.init;
+                break;
+
+            case STAT.select:
+                this.selectinit();
+                break;
+
+            case STAT.game:
+                this.gameinit();
+                break;
+
+            default:
+                stat = STAT.talk;
+        }
     }
     click_select(x, y) {
-        if (this.dresser_miko.isOn(x, y)) {
+        if (this.dresser_miko.clicked(x, y)) {
             this.next_dress = DRESS.miko;
-            talkinit_choose(this.next_dress);
+            this.talkinit_choose(this.next_dress);
         }
-        if (this.dresser_maid.isOn(x, y)) {
+        if (this.dresser_maid.clicked(x, y)) {
             this.next_dress = DRESS.maid;
-            talkinit_choose(this.next_dress);
+            this.talkinit_choose(this.next_dress);
         }
-        if (this.dresser_bikini.isOn(x, y)) {
+        if (this.dresser_bikini.clicked(x, y)) {
             this.next_dress = DRESS.bikini;
-            talkinit_choose(this.next_dress);
+            this.talkinit_choose(this.next_dress);
         }
-        if (this.dresser_wasureta.isOn(x, y)) {
-            this.next_dress = DRESS.wasureta;
-            talkinit_choose(this.next_dress);
+        if (this.dresser_gymsuit.clicked(x, y)) {
+            this.next_dress = DRESS.gymsuit;
+            this.talkinit_choose(this.next_dress);
         }
-        if (this.dresser_sarashi.isOn(x, y)) {
+        if (this.dresser_sarashi.clicked(x, y)) {
             this.next_dress = DRESS.sarashi;
-            talkinit_choose(this.next_dress);
+            this.talkinit_choose(this.next_dress);
         }
     }
     click_game(x, y) {
@@ -83,34 +110,39 @@ export default class {
             if (this.tablet[this.tablet.length - 1].break()) {
                 cleared++;
                 this.tablet.pop();
-                talkinit(this.next_dress);
+                this.talkinit(this.next_dress);
             }
+            console.log('[HIT]')
         }
-        stat = STAT.ready;
     }
     click_cg() {
-        talkinit('outro');
+        this.talkinit('outro');
     }
 
 ///////////////////
 
     proc_talk() {
-        this.fukidashi.frame();
+        this.talkframe--;
+        if (this.talkframe < 0) {
+            this.fukidashi.frame();
+            this.talkframe = talk_interval;
+        }
     }
     proc_select() {
         if (this.tablet.length <= 0) {
-            talkinit('outro');
+            this.talkinit('outro');
         }
+        this.proc_talk();
     }
     proc_game() {
         if (this.tablet.length <= 0) {
-            talkinit('outro');
+            this.talkinit('outro');
         }
         this.tablet[this.tablet.length - 1].frame();
 
         this.timer++;
         if (this.timer > timelimit) {
-            talkinit(this.next);
+            this.talkinit(this.next);
         }
     }
 
@@ -131,7 +163,7 @@ export default class {
         this.dresser_miko.draw(ctx);
         this.dresser_maid.draw(ctx);
         this.dresser_bikini.draw(ctx);
-        this.dresser_wasureta.draw(ctx);
+        this.dresser_gymsuit.draw(ctx);
         this.dresser_sarashi.draw(ctx);
     }
     draw_game(ctx) {

@@ -1,5 +1,5 @@
-import ItemContainer from './generalComponents/itemContainer.js/index.js'
-import MyHeader from './generalComponents/myHeader.js/index.js'
+import ItemContainer from './generalComponents/itemContainer.js'
+import MyHeader from './generalComponents/myHeader.js'
 
 export default {
     name: 'accessories',

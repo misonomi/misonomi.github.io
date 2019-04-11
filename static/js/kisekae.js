@@ -14,7 +14,7 @@ const canvas = document.createElement('canvas');
 canvas.width = CONST.originalx;
 canvas.height = CONST.originaly;
 const ctx = canvas.getContext('2d');
-ctx.font = 'bold 30px';
+ctx.font = '100px Arial';
 
 /////////////////// instantiate classes and so on
 
@@ -23,7 +23,7 @@ let command = new Command();
 
 /////////////////// add event listener
 
-canvas.addEventListener('click', onClick, false);
+display_canvas.addEventListener('click', onClick, false);
 
 /////////////////// main loop
 
@@ -42,6 +42,7 @@ function frame() {
         case STAT.select:
             command.proc_select();
             command.draw_select(ctx);
+            break;
 
         case STAT.game:
             command.proc_game();
@@ -62,9 +63,9 @@ setInterval(frame, 10);
 /////////////////////////////////////// other functions
 
 function onClick(e) {
-    let pos = getMousePos(canvas, e);
-    let x = pos.x / scale;
-    let y = pos.y / scale;
+    let rect = e.target.getBoundingClientRect();
+    let x = (e.clientX - rect.left) / scale;
+    let y = (e.clientY - rect.top) / scale;
     switch(command.getStat()) {
         case STAT.ready:
             command.click_ready();
@@ -88,6 +89,8 @@ function onClick(e) {
 
         default:
     }
+    console.log(x +","+ y);
+    console.log(command.getStat());
 }
 
 function resize() {
@@ -95,8 +98,6 @@ function resize() {
 
     display_canvas.width = CONST.originalx * scale;
     display_canvas.height = CONST.originaly * scale;
-    const display_left = (window.innerWidth - display_canvas.width) / 2;
-    const display_top = (window.innerHeight - display_canvas.height) / 2;
     display_ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 
         0, 0, display_canvas.width, display_canvas.height);
 }

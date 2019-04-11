@@ -10,7 +10,7 @@ const pos = {
 
 export default class {
     constructor(dress) {
-        this.iamge = document.getElementById('dresser_' + dress);
+        this.image = document.getElementById('dresser_' + dress);
         this.diabled_image = document.getElementById('dresser_' + dress + '_disabled');
         this.dress = DRESS[dress];
         this.x = pos.miko.x;
@@ -25,6 +25,6 @@ export default class {
         this.image = this.diabled_image;
     }
     draw(ctx) {
-        ctx.drawImage(this.iamge, this.x, this.y);
+        ctx.drawImage(this.image, this.x, this.y);
     }
 }

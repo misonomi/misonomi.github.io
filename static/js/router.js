@@ -1,4 +1,6 @@
 import Menu from './vue/menu.js';
+import Assemble from './vue/assemble.js';
+import Accessories from './vue/accessories.js';
 
 export default new VueRouter({
     routes: [
@@ -10,12 +12,12 @@ export default new VueRouter({
         {
             path: '/assemble',
             name: 'assemble',
-            component: () => import('./vue/assemble.js')
+            component: Assemble
         },
         {
             path: '/accessories',
             name: 'accessories',
-            component: () => import('./vue/accessories.js')
+            component: Accessories
         },
     ]
 })

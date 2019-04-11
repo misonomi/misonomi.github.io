@@ -9,11 +9,11 @@ export default {
         return {
             current: 0,
             titles: [
-                "Programs",
                 "Accessories",
                 "Aboutme",
                 "Assemble",
-                "Games"
+                "Games",
+                "Programs",
             ],
         }
     },
@@ -30,10 +30,10 @@ export default {
             console.log('roll function end. current:' + this.current);
         },
         rollLeft () {
-            this.current = ((this.current >= this.itemList.length - 1) ? 0 : this.current + 1)
+            this.current = ((this.current >= this.titles.length - 1) ? 0 : this.current + 1)
         },
         rollRight () {
-            this.current = ((this.current <= 0) ? this.itemList.length - 1 : this.current - 1)
+            this.current = ((this.current <= 0) ? this.titles.length - 1 : this.current - 1)
         },
     },
     template: `
