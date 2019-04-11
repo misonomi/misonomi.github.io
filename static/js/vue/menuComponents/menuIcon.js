@@ -21,7 +21,7 @@ export default {
         navigate (event) {
             console.log('link function start. name:' + this.name + ', link:' + this.link + ', id:' + this.id + ', current:' + this.current);
             event.stopPropagation()
-            window.location.href = this.link
+            window.open(this.link)
         },
         compute_pos() {
             console.log('compute function start. id:' + this.id + ', current:' + this.current);

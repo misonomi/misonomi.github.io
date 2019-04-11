@@ -1,6 +1,6 @@
 import Menu from './vue/menu.js';
 
-const router = new VueRouter({
+export default new VueRouter({
     routes: [
         {
             path: '/',
@@ -12,7 +12,10 @@ const router = new VueRouter({
             name: 'assemble',
             component: () => import('./vue/assemble.js')
         },
+        {
+            path: '/accessories',
+            name: 'accessories',
+            component: () => import('./vue/accessories.js')
+        },
     ]
 })
-
-export default router
