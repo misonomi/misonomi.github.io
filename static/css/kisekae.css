@@ -3,10 +3,12 @@
 }
 
 body {
-    position: fixed;
+    position: relative;
 }
 
 canvas {
-    margin: 0 auto;
-    width: 100%;
+    position: absolute;
+    right: 0;
+    left: 0;
+    margin: auto;
 }

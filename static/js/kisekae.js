@@ -95,6 +95,8 @@ function resize() {
 
     display_canvas.width = CONST.originalx * scale;
     display_canvas.height = CONST.originaly * scale;
+    const display_left = (window.innerWidth - display_canvas.width) / 2;
+    const display_top = (window.innerHeight - display_canvas.height) / 2;
     display_ctx.drawImage(canvas, 0, 0, canvas.width, canvas.height, 
-        (window.innerWidth - display_canvas.width) / 2, (window.innerHeight - display_canvas.height) / 2, display_canvas.width, display_canvas.height);
+        0, 0, display_canvas.width, display_canvas.height);
 }
