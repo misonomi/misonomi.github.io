@@ -15,6 +15,7 @@ canvas.width = CONST.originalx;
 canvas.height = CONST.originaly;
 const ctx = canvas.getContext('2d');
 ctx.font = '100px Arial';
+ctx.textAlign = 'center';
 
 /////////////////// instantiate classes and so on
 
@@ -51,6 +52,18 @@ function frame() {
 
         case STAT.cg:
             command.draw_cg(ctx);
+            break;
+
+        ///////////
+        
+        case STAT.pre_game:
+            command.proc_pre_game();
+            command.draw_pre_game();
+            break;
+
+        case STAT.post_game:
+            command.proc_post_game();
+            command.draw_post_game();
             break;
 
         default:

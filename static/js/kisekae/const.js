@@ -21,8 +21,12 @@ export default {
         y: 700,
     },
     fukidashi: {
-        y: 100,
+        x: 100,
         y: 680,
         margin: 150,
     },
+    casko: {
+        x: 0,
+        y: 0, 
+    }
 };

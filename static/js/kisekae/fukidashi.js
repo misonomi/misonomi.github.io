@@ -31,6 +31,6 @@ export default class {
     }
     draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y);
-        ctx.fillText(this.sequence.lines[this.seqptr].substr(0, this.char), x + marginx, y + marginy);
+        ctx.fillText(this.sequence.lines[this.seqptr].substr(0, this.char), CONST.originalx / 2, this.y + CONST.fukidashi.margin);
     }
 }

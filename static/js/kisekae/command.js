@@ -28,7 +28,6 @@ export default class {
         this.dresser_sarashi = new Dresser(DRESS.sarashi);
 
         this.tablet = [
-            new Tablet(4),
             new Tablet(3),
             new Tablet(2),
             new Tablet(1),
@@ -55,7 +54,7 @@ export default class {
         this.fukidashi.init('select');
     }
     gameinit() {
-        stat = STAT.game;
+        stat = STAT.pre_game;
     }
 
 ///////////////////
@@ -131,33 +130,49 @@ export default class {
     proc_select() {
         if (this.tablet.length <= 0) {
             this.talkinit('outro');
+            return;
         }
         this.proc_talk();
     }
     proc_game() {
         if (this.tablet.length <= 0) {
             this.talkinit('outro');
+            return;
         }
+        
         this.tablet[this.tablet.length - 1].frame();
 
         this.timer++;
         if (this.timer > timelimit) {
-            this.talkinit(this.next);
+            stat = STAT.post_game;
+        }
+    }
+    proc_pre_game() {
+        if (!this.shoji.close()) {
+            stat = STAT.game;
+        }
+    }
+    proc_post_game() {
+        if (!this.shoji.close()) {
+            this.talkinit(this.next_dress);
         }
     }
 
 ///////////////////
 
     draw_ready(ctx) {
+        this.casko.draw(ctx);
         this.shoji.draw(ctx);
         this.logo.draw(ctx);
         this.clicktostart.draw(ctx);
     }
     draw_talk(ctx) {
+        this.casko.draw(ctx);
         this.shoji.draw(ctx);
         this.fukidashi.draw(ctx);
     }
     draw_select(ctx) {
+        this.casko.draw(ctx);
         this.shoji.draw(ctx);
         this.fukidashi.draw(ctx);
         this.dresser_miko.draw(ctx);
@@ -173,6 +188,14 @@ export default class {
         }
     }
     draw_cg(ctx) {
+        this.shoji.draw(ctx);
+    }
+    draw_pre_game(ctx) {
+        this.casko.draw(ctx);
+        this.shoji.draw(ctx);
+    }
+    draw_post_game(ctx) {
+        this.casko.draw(ctx);
         this.shoji.draw(ctx);
     }
 }
