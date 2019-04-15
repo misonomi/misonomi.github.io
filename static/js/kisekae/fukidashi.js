@@ -1,12 +1,11 @@
 import WORDS from './words.js';
-const x = 100;
-const y = 680;
-const marginx = 100;
-const marginy = 150;
+import CONST from './const.js';
 
 export default class {
     constructor() {
         this.image = document.getElementById('fukidashi');
+        this.x = CONST.fukidashi.x;
+        this.y = CONST.fukidashi.y;
         this.sequence = [];
         this.seqptr = 0;
         this.char = 0;
@@ -31,7 +30,7 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, x, y);
+        ctx.drawImage(this.image, this.x, this.y);
         ctx.fillText(this.sequence.lines[this.seqptr].substr(0, this.char), x + marginx, y + marginy);
     }
 }

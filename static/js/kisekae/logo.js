@@ -1,11 +1,10 @@
-const x = 1300;
-const y = 100;
+import CONST from './const.js';
 
 export default class {
     constructor() {
         this.image = document.getElementById('logo');
     }
     draw(ctx) {
-        ctx.drawImage(this.image, x, y);
+        ctx.drawImage(this.image, CONST.logo.x, CONST.logo.y);
     }
 }

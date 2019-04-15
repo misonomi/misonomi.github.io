@@ -1,9 +1,8 @@
 import CONST from './const.js';
-const shojix = 658;
-const leftc = (CONST.originalx / 2) - shojix;
-const lefto = leftc - shojix; 
+const leftc = (CONST.originalx / 2) - CONST.shoji.width;
+const lefto = leftc - CONST.shoji.width + CONST.shoji.margin; 
 const rightc = CONST.originalx / 2;
-const righto = rightc + shojix;
+const righto = rightc + CONST.shoji.width - CONST.shoji.margin;
 
 const step = 20;
 

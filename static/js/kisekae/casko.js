@@ -1,6 +1,4 @@
 import { DRESS, FACE } from './stat.js';
-const faceoffsetx = 10;
-const faceoffsety = 10;
 const x = 0;
 const y = 0;
 
@@ -11,11 +9,8 @@ export default class {
         this.x = x;
         this.y = y;
     }
-    kisekae(dress) {
-        this.image = document.getElementById(dress);
-    }
-    change_face(face) {
-        this.image = document.getElementById(face);
+    kisekae(image) {
+        this.image = document.getElementById(image);
     }
     draw(ctx) {
         ctx.drawImage(this.iamge, this.x, this.y);

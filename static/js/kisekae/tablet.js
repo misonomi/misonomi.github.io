@@ -1,19 +1,12 @@
 import CONST from './const.js';
-const x = CONST.originalx / 2;
-const y = 400;
-const width = 30;
-const height = 30;
-const intervaly = 100;
-const ap = 30;
-const interval = 30;
 
 export default class {
     constructor(id) {
         this.image = document.getElementById('tablet');
-        this.x = x;
-        this.y = y + (intervaly * id);
-        this.ap = ap;
-        this.interval = interval;
+        this.x = CONST.originalx / 2;
+        this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id);
+        this.ap = CONST.tablet.ap;
+        this.interval = CONST.tablet.intervalt;
     }
     clicked(x, y) {
         if (this.interval <= 0) {

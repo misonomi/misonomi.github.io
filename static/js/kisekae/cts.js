@@ -1,11 +1,12 @@
-const x = (1920 - 597) / 2;
-const y = 700;
+import CONST from './const.js';
 
 export default class {
     constructor() {
         this.image = document.getElementById('cts');
+        this.x = (CONST.originalx - image.width) / 2;
+        this.y = CONST.cts.y;
     }
     draw(ctx) {
-        ctx.drawImage(this.image, x, y);
+        ctx.drawImage(this.image, this.x, this.y);
     }
 }
