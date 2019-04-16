@@ -1,15 +1,24 @@
-import CONST from './const.js';
+import CONST from './const.js'
+import { DRESS, FACE } from './stat.js'
 
 export default class {
     constructor() {
-        this.iamge = document.getElementById("caasko_blue_normal");
-        this.x = CONST.casko.x;
-        this.y = CONST.casko.y;
+        this.dress = DRESS.blue
+        this.face = FACE.normal
+        this.image = document.getElementById('casko_' + this.dress + '_' + this.face)
+        this.x = CONST.casko.x
+        this.y = CONST.casko.y
     }
-    kisekae(image) {
-        this.image = document.getElementById(image);
+    kisekae(dress) {
+        this.dress = dress
+    }
+    update(face) {
+        if ((typeof face != 'undefined') && (this.face != face)) {
+            this.face = face
+            this.image = document.getElementById('casko_' + this.dress + '_' + this.face)
+        }
     }
     draw(ctx) {
-        ctx.drawImage(this.iamge, this.x, this.y);
+        ctx.drawImage(this.iamge, this.x, this.y)
     }
 }

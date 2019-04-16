@@ -1,36 +1,24 @@
-import WORDS from './words.js';
-import CONST from './const.js';
+import CONST from './const.js'
 
 export default class {
     constructor() {
-        this.image = document.getElementById('fukidashi');
-        this.x = CONST.fukidashi.x;
-        this.y = CONST.fukidashi.y;
-        this.sequence = [];
-        this.seqptr = 0;
-        this.char = 0;
+        this.image = document.getElementById('fukidashi')
+        this.x = CONST.fukidashi.x
+        this.y = CONST.fukidashi.y
+        this.line = ""
+        this.charseq = 0
     }
-    init(seq) {
-        this.sequence = WORDS[seq];
-        this.seqptr = 0;
-        this.char = 0;
-        console.log(this.sequence);
+    set(text) {
+        this.line = text
+        this.char = 0
     }
-    next() {
-        this.seqptr++;
-        this.char = 0;
-        console.log(this.seqptr +","+ this.sequence.lines.length);
-        if (this.seqptr >= this.sequence.lines.length) {
-            return this.sequence.next;
-        }
-    }
-    frame() {
-        if  (this.char < this.sequence.lines[this.seqptr].length) {
-            this.char++;
+    escapement() {
+        if  (this.char < this.line.length) {
+            this.char++
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x, this.y);
-        ctx.fillText(this.sequence.lines[this.seqptr].substr(0, this.char), CONST.originalx / 2, this.y + CONST.fukidashi.margin);
+        ctx.drawImage(this.image, this.x, this.y)
+        ctx.fillText(this.line.substr(0, this.char), CONST.originalx / 2, this.y + CONST.fukidashi.margin)
     }
 }

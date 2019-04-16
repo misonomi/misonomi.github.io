@@ -1,6 +1,8 @@
 export default {
     originalx: 1920,
     originaly: 1080,
+    timelimit: 1000,
+    talk_interval: 12,
     shoji: {
         width: 658,
         margin: 20,
@@ -29,4 +31,4 @@ export default {
         x: 0,
         y: 0, 
     }
-};
+}

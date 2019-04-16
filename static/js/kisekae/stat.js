@@ -18,7 +18,7 @@ export const DRESS = {
 }
 
 export const FACE = {
-    normal: 'face_normal',
-    smile: 'face_smile',
-    screwed: 'face_screwed',
+    normal: 'normal',
+    smile: 'smile',
+    screwed: 'screwed',
 }

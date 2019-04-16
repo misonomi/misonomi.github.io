@@ -19,12 +19,12 @@ export default {
     },
     methods: {
         navigate (event) {
-            console.log('link function start. name:' + this.name + ', link:' + this.link + ', id:' + this.id + ', current:' + this.current);
+            console.log('link function start. name:' + this.name + ', link:' + this.link + ', id:' + this.id + ', current:' + this.current)
             event.stopPropagation()
             window.open(this.link)
         },
         compute_pos() {
-            console.log('compute function start. id:' + this.id + ', current:' + this.current);
+            console.log('compute function start. id:' + this.id + ', current:' + this.current)
             return this.posList[((this.id - this.current + 5) % 5)]
         }
     },

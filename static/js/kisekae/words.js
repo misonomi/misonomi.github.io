@@ -1,96 +1,203 @@
-import { STAT } from './stat.js';
+import { STAT } from './stat.js'
 
 const words = {
     intro: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.select,
     },
     select: {
         lines: [
-            'aaaa',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.cg,
     },
     choose_miko: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.game,
     },
     choose_maid: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.game,
     },
     choose_bikini: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.game,
     },
     choose_wasureta: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.game,
     },
     choose_sarashi: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.game,
     },
     miko: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.select,
     },
     maid: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.select,
     },
     bikini: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.select,
     },
     wasureta: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.select,
     },
     sarashi: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.select,
     },
     outro: {
         lines: [
-            'aaaa',
-            'test',
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
         ],
         next: STAT.init,
     },
 }
 
-export default words;
+export default class {
+    constructor() {
+        this.sequence = []
+        this.seqptr = 0
+    }
+    init(seq) {
+        this.sequence = words[seq]
+        this.seqptr = 0
+        console.log('sequence: '+ this.sequence)
+    }
+    text() {
+        if (this.seqptr < this.sequence.lines.length) {
+            return this.sequence.lines[this.seqptr].word
+        } else {
+            console.log('talk index out of bounds')
+        }
+    }
+    emote() {
+        if (this.seqptr < this.sequence.lines.length) {
+            return this.sequence.lines[this.seqptr].emote
+        } else {
+            console.log('talk index out of bounds')
+        }
+    }
+    next() {
+        this.seqptr++
+        console.log('seqptr: '+ this.seqptr)
+        if (this.seqptr >= this.sequence.lines.length) {
+            return this.sequence.next
+        }
+    }
+
+}
