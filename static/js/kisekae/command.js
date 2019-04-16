@@ -7,9 +7,10 @@ import Fukidashi from './fukidashi.js'
 import Dresser from './dresser.js'
 import Tablet from './tablet.js'
 import Casko from './casko.js'
+import Cg from './cg.js'
 import Words from './words.js'
 
-let stage = 4
+let stage = 3
 let stat = STAT.ready
 
 export default class {
@@ -27,12 +28,10 @@ export default class {
         this.dresser_gymsuit = new Dresser(DRESS.gymsuit)
         this.dresser_sarashi = new Dresser(DRESS.sarashi)
 
-        this.tablet = [
-            new Tablet(3),
-            new Tablet(2),
-            new Tablet(1),
-            new Tablet(0),
-        ]
+        this.tablet = []
+        for (i = stage; i > 0; i--) {
+            this.tablet.push(new Tablet(i - 1))
+        }
 
         this.words = new Words()
 
@@ -46,6 +45,8 @@ export default class {
         stat = STAT.talk
         this.talkframe = CONST.talk_interval
         this.words.init(seq)
+        this.fukidashi.set(this.words.text())
+        this.casko.update(this.words.emote())
     }
     talkinit_choose(seq) {
         this.talkinit('choose_' + seq)
@@ -53,10 +54,18 @@ export default class {
     selectinit() {
         stat = STAT.select
         this.talkframe = CONST.talk_interval
-        this.fukidashi.init('select')
+        this.words.init('select')
+        this.fukidashi.set(this.words.text())
+        this.casko.update(this.words.emote())
     }
     gameinit() {
         stat = STAT.pre_game
+    }
+    cginit(name) {
+        this.cg = new Cg(name)
+        this.words.init(name)
+        this.fukidashi.set(this.words.text())
+        stat = STAT.pre_cg
     }
 
 ///////////////////
@@ -65,9 +74,7 @@ export default class {
         this.talkinit('intro')
     }
     click_talk() {
-        let next = this.words.next()
-        if (!next) { return }
-        switch (next) {
+        switch (this.words.next()) {
             case STAT.init:
                 stat = STAT.init
                 break
@@ -123,7 +130,14 @@ export default class {
         }
     }
     click_cg() {
-        this.talkinit('outro')
+        switch (this.words.next()) {
+            case null:
+                this.fukidashi.set(this.words.text())
+                this.casko.update(this.words.emote())
+            
+            default:
+                this.talkinit('outro')
+        }
     }
 
 ///////////////////
@@ -166,6 +180,11 @@ export default class {
             this.talkinit(this.next_dress)
         }
     }
+    proc_pre_cg() {
+        if (!this.cg.pan()) {
+            stat = STAT.cg
+        }
+    }
 
 ///////////////////
 
@@ -197,6 +216,7 @@ export default class {
         }
     }
     draw_cg(ctx) {
+        this.cg.draw(ctx)
         this.shoji.draw(ctx)
     }
     draw_pre_game(ctx) {

@@ -58,12 +58,17 @@ function frame() {
         
         case STAT.pre_game:
             command.proc_pre_game()
-            command.draw_pre_game()
+            command.draw_pre_game(ctx)
             break
 
         case STAT.post_game:
             command.proc_post_game()
-            command.draw_post_game()
+            command.draw_post_game(ctx)
+            break
+
+        case STAT.pre_cg:
+            command.proc_pre_cg()
+            command.draw_cg(ctx)
             break
 
         default:

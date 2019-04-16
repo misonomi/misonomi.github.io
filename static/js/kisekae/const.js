@@ -30,5 +30,23 @@ export default {
     casko: {
         x: 0,
         y: 0, 
+    },
+    cg: {
+        pan: [
+            {
+                startx: 100,
+                starty: 100,
+                stepx: 1,
+                stepy: 1,
+                duration: 100,
+            },
+            {
+                startx: 100,
+                starty: 100,
+                stepx: 1,
+                stepy: 1,
+                duration: 100,
+            },
+        ]
     }
 }

@@ -4,8 +4,11 @@ export const STAT = {
     select: 2,
     game: 3,
     cg: 4,
-    pre_game: 10,
-    post_game: 10,
+
+    pre_game: 13,
+    pre_cg: 14,
+    
+    post_game: 23,
 }
 
 export const DRESS = {
