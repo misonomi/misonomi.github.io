@@ -40,31 +40,31 @@ export default {
         <div class="rollingMenu" @click="roll($event)">
             <menu-icon 
                 name="accessories" 
-                link="../../../accessories.html"
+                link="/accessories"
                 :id="0"
                 :current="this.current"
             ></menu-icon>
             <menu-icon 
                 name="bio" 
-                link="../../../under_construction.html"
+                link="/under_construction"
                 :id="1"
                 :current="this.current"
             ></menu-icon>
             <menu-icon 
                 name="assemble" 
-                link="../../../under_construction.html"
+                link="/assemble"
                 :id="2"
                 :current="this.current"
             ></menu-icon>
             <menu-icon 
                 name="games" 
-                link="../../../under_construction.html"
+                link="/kisekae"
                 :id="3"
                 :current="this.current"
             ></menu-icon>
             <menu-icon 
                 name="programs" 
-                link="https://github.com/misonomi?utf8=%E2%9C%93&tab=repositories&type=source"
+                link="/programs"
                 :id="4"
                 :current="this.current"
             ></menu-icon>

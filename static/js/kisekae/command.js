@@ -30,8 +30,8 @@ export default class {
         this.dresser_sarashi = new Dresser(DRESS.sarashi)
 
         this.tablet = []
-        for (i = stage; i > 0; i--) {
-            this.tablet.push(new Tablet(i - 1))
+        for (i = stage - 1; i >= 0; i--) {
+            this.tablet.push(new Tablet(i))
         }
         this.inst = new Inst()
 

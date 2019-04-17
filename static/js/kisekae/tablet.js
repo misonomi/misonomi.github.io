@@ -19,7 +19,7 @@ export default class {
     break() {
         return --this.ap < 0
     }
-    frame() {
+    proc() {
         if (this.interval > 0) {
             this.interval--
         } 
