@@ -2,11 +2,10 @@ import CONST from './const.js'
 
 export default class {
     constructor() {
-        this.image = document.getElementById('fukidashi')
+        this.image = new Image(); this.image.src = '../../images/kisekae/fukidashi.png'
         this.x = CONST.fukidashi.x
         this.y = CONST.fukidashi.y
-        this.line = ""
-        this.charseq = 0
+        this.set("")
     }
     set(text) {
         this.line = text

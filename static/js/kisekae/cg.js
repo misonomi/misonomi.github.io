@@ -2,10 +2,10 @@ import CONST from './const.js'
 
 export default class {
     constructor(name) {
-        this.image = document.getElementById('cg_' + name)
+        this.image = new Image(); this.image.src = '../../images/kisekae/cg/' + name + '.png'
         this.x = 0
         this.y = 0
-        this.up = true
+        this.zoom = true
         this.clock = 0
         this.pan_id = 0
     }
@@ -18,12 +18,12 @@ export default class {
         if (this.pan_id < CONST.cg.pan.length) {
             return true
         } else {
-            this.up = false
+            this.zoom = false
             return false
         }
     }
     draw(ctx) {
-        if (up) {
+        if (zoom) {
             ctx.drawImage(this.image, 
                 CONST.cg.pan[this.pan_id].startx + CONST.cg.pan[this.pan_id].stepx * this.clock, 
                 CONST.cg.pan[this.pan_id].starty + CONST.cg.pan[this.pan_id].stepy * this.clock)

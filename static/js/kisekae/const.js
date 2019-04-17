@@ -7,6 +7,28 @@ export default {
         width: 658,
         margin: 20,
     },
+    dresser: {
+        miko: {
+            x: 300,
+            y: 300,
+        },
+        maid: {
+            x: 300,
+            y: 300,
+        },
+        bikini: {
+            x: 300,
+            y: 300,
+        },
+        gymsuit: {
+            x: 300,
+            y: 300,
+        },
+        sarashi: {
+            x: 300,
+            y: 300,
+        },
+    },
     tablet: {
         standardy: 200,
         intarvaly: 200,
@@ -14,6 +36,12 @@ export default {
         height: 30,
         ap: 30,
         intarvalt: 30,
+    },
+    inst: {
+        marginx: 200,
+        y: 200, // dependent to tablet.standardy
+        step: 1,
+        deflectiony: 30,
     },
     logo: {
         x: 1300,

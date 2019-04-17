@@ -1,28 +1,22 @@
 import { DRESS } from './stat.js'
-const width = 30
-const height = 40
-const pos = {
-    miko: {
-        x: 300,
-        y: 300,
-    },
-}
+import CONST from './const.js'
 
 export default class {
     constructor(dress) {
-        this.image = document.getElementById('dresser_' + dress)
-        this.diabled_image = document.getElementById('dresser_' + dress + '_disabled')
+        this.image = new Image(); this.image.src = '../../images/kisekae/dresser/' + dress + '.png'
         this.dress = DRESS[dress]
-        this.x = pos.miko.x
-        this.y = pos.miko.y
+        this.x = CONST.dresser[dress].x
+        this.y = CONST.dresser[dress].y
         this.active = true
     }
     clicked(x, y) {
-        return ((this.x <= x && x <= this.x + width) && (this.y <= y && y <= this.y + height) && this.active)
-    }
-    clear() {
-        this.active = false
-        this.image = this.diabled_image
+        if ((this.x <= x && x <= this.x + image.width) && (this.y <= y && y <= this.y + image.height) && this.active) {
+            this.active = false
+            this.image.src = '../../images/kisekae/dresser/' + dress + '_disabled.png'
+            return true
+        } else {
+            return false
+        }
     }
     draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y)

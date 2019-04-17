@@ -2,7 +2,7 @@ import CONST from './const.js'
 
 export default class {
     constructor(id) {
-        this.image = document.getElementById('tablet')
+        this.image = new Image(); this.image.src = "../../images/kisekae/tablet.png"
         this.x = CONST.originalx / 2
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
         this.ap = CONST.tablet.ap

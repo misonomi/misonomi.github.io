@@ -3,9 +3,9 @@ import { DRESS, FACE } from './stat.js'
 
 export default class {
     constructor() {
-        this.dress = DRESS.blue
-        this.face = FACE.normal
-        this.image = document.getElementById('casko_' + this.dress + '_' + this.face)
+        this.image = new Image();
+        this.kisekae(DRESS.blue)
+        this.update(FACE.normal)
         this.x = CONST.casko.x
         this.y = CONST.casko.y
     }
@@ -15,7 +15,7 @@ export default class {
     update(face) {
         if ((typeof face != 'undefined') && (this.face != face)) {
             this.face = face
-            this.image = document.getElementById('casko_' + this.dress + '_' + this.face)
+            this.image.src = '../../images/kisekae/casko/' + this.dress + '_' + this.face + '.png'
         }
     }
     draw(ctx) {

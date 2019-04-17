@@ -2,7 +2,7 @@ import CONST from './const.js'
 
 export default class {
     constructor() {
-        this.image = document.getElementById('cts')
+        this.image = new Image(); this.image.src = '../../images/kisekae/clicktostart.png'
         this.x = (CONST.originalx - image.width) / 2
         this.y = CONST.cts.y
     }

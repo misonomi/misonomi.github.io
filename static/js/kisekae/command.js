@@ -6,6 +6,7 @@ import Logo from './logo.js'
 import Fukidashi from './fukidashi.js'
 import Dresser from './dresser.js'
 import Tablet from './tablet.js'
+import Inst from './inst.js'
 import Casko from './casko.js'
 import Cg from './cg.js'
 import Words from './words.js'
@@ -32,6 +33,7 @@ export default class {
         for (i = stage; i > 0; i--) {
             this.tablet.push(new Tablet(i - 1))
         }
+        this.inst = new Inst()
 
         this.words = new Words()
 
