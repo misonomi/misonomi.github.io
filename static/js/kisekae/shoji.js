@@ -8,8 +8,8 @@ const step = 20
 
 export default class {
     constructor() {
-        this.left = new Image(); this.left.src = "../../images/kisekae/shoji.png"
-        this.right = new Image(); this.right.src = "../../images/kisekae/shoji.png"
+        this.left = new Image(); this.left.src = "./static/images/kisekae/shoji.png"
+        this.right = new Image(); this.right.src = "./static/images/kisekae/shoji.png"
         this.leftx = lefto
         this.rightx = righto
     }

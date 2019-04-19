@@ -4,11 +4,7 @@ const words = {
     intro: {
         lines: [
             {
-                word: 'aaaa',
-                emote: 'normal',
-            }, 
-            {
-                word: 'aaaa',
+                word: 'よし来た！\nじゃあ，いろいろ試してみましょ？',
                 emote: 'normal',
             }, 
         ],
@@ -17,7 +13,7 @@ const words = {
     select: {
         lines: [
             {
-                word: 'aaaa',
+                word: 'ご主人様が最強と思うコスチュームはどれですか？',
                 emote: 'normal',
             }, 
         ],
@@ -26,11 +22,19 @@ const words = {
     choose_miko: {
         lines: [
             {
-                word: 'aaaa',
+                word: 'おや...これは，',
                 emote: 'normal',
             }, 
             {
-                word: 'aaaa',
+                word: '特にひねりがないというか...',
+                emote: 'normal',
+            }, 
+            {
+                word: '霊験あらたかな狐耳としてはピッタリの衣装ですけどね',
+                emote: 'normal',
+            }, 
+            {
+                word: 'まいいや\n覗かないでくださいね♡',
                 emote: 'normal',
             }, 
         ],

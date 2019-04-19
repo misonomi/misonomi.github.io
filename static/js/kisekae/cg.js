@@ -2,7 +2,7 @@ import CONST from './const.js'
 
 export default class {
     constructor(name) {
-        this.image = new Image(); this.image.src = '../../images/kisekae/cg/' + name + '.png'
+        this.image = new Image(); this.image.src = './static/images/kisekae/cg/' + name + '.png'
         this.x = 0
         this.y = 0
         this.zoom = true

@@ -2,8 +2,8 @@ import CONST from './const.js'
 
 export default class {
     constructor() {
-        this.image = new Image(); this.image.src = '../../images/kisekae/fukidashi.png'
-        this.x = CONST.fukidashi.x
+        this.image = new Image(); this.image.src = './static/images/kisekae/fukidashi.png'
+        this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.fukidashi.y
         this.set("")
     }

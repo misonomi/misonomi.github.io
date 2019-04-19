@@ -1,6 +1,6 @@
-import { STAT } from './kisekae/stat.js'
-import CONST from './kisekae/const.js'
-import Command from './kisekae/command.js'
+import { STAT } from '../kisekae/stat.js'
+import CONST from '../kisekae/const.js'
+import Command from '../kisekae/command.js'
 
 export default {
     name: 'kisekae',

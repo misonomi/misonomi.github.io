@@ -30,7 +30,7 @@ export default class {
         this.dresser_sarashi = new Dresser(DRESS.sarashi)
 
         this.tablet = []
-        for (i = stage - 1; i >= 0; i--) {
+        for (let i = stage - 1; i >= 0; i--) {
             this.tablet.push(new Tablet(i))
         }
         this.inst = new Inst()
@@ -77,7 +77,7 @@ export default class {
     }
     click_talk() {
         switch (this.words.next()) {
-            case STAT.init:
+            case STAT.ready:
                 stat = STAT.init
                 break
 
@@ -125,7 +125,7 @@ export default class {
                 if (this.tablet.length <= 0) {
                     this.cginit(this.next_dress)
                 } else {
-                    this.talkinit(this.next_dress)
+                    stat = STAT.post_game
                 }
             }
             console.log('[HIT]')
@@ -164,7 +164,7 @@ export default class {
             return
         }
         
-        this.tablet[this.tablet.length - 1].frame()
+        this.tablet[this.tablet.length - 1].proc()
 
         this.timer++
         if (this.timer > CONST.timelimit) {

@@ -9,33 +9,33 @@ export default {
     },
     dresser: {
         miko: {
-            x: 300,
-            y: 300,
+            x: 800,
+            y: 100,
         },
         maid: {
-            x: 300,
-            y: 300,
+            x: 1200,
+            y: 100,
         },
         bikini: {
-            x: 300,
-            y: 300,
+            x: 800,
+            y: 600,
         },
         gymsuit: {
-            x: 300,
-            y: 300,
+            x: 1200,
+            y: 600,
         },
         sarashi: {
-            x: 300,
-            y: 300,
+            x: 900,
+            y: 350,
         },
     },
     tablet: {
         standardy: 200,
-        intarvaly: 200,
+        intervaly: 200,
         width: 30,
         height: 30,
         ap: 30,
-        intarvalt: 30,
+        intervalt: 30,
     },
     inst: {
         marginx: 200,
@@ -51,7 +51,6 @@ export default {
         y: 700,
     },
     fukidashi: {
-        x: 100,
         y: 680,
         margin: 150,
     },

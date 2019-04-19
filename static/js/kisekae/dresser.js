@@ -3,16 +3,16 @@ import CONST from './const.js'
 
 export default class {
     constructor(dress) {
-        this.image = new Image(); this.image.src = '../../images/kisekae/dresser/' + dress + '.png'
+        this.image = new Image(); this.image.src = './static/images/kisekae/dresser/' + dress + '.png'
         this.dress = DRESS[dress]
         this.x = CONST.dresser[dress].x
         this.y = CONST.dresser[dress].y
         this.active = true
     }
     clicked(x, y) {
-        if ((this.x <= x && x <= this.x + image.width) && (this.y <= y && y <= this.y + image.height) && this.active) {
+        if ((this.x <= x && x <= this.x + this.image.width) && (this.y <= y && y <= this.y + this.image.height) && this.active) {
             this.active = false
-            this.image.src = '../../images/kisekae/dresser/' + dress + '_disabled.png'
+            this.image.src = './static/images/kisekae/dresser/' + this.dress + '_disabled.png'
             return true
         } else {
             return false

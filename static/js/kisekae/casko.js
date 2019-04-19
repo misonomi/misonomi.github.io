@@ -3,7 +3,7 @@ import { DRESS, FACE } from './stat.js'
 
 export default class {
     constructor() {
-        this.image = new Image();
+        this.image = new Image(); this.image.src = './static/images/assembleicon.png'
         this.kisekae(DRESS.blue)
         this.update(FACE.normal)
         this.x = CONST.casko.x
@@ -15,10 +15,10 @@ export default class {
     update(face) {
         if ((typeof face != 'undefined') && (this.face != face)) {
             this.face = face
-            this.image.src = '../../images/kisekae/casko/' + this.dress + '_' + this.face + '.png'
+            this.image.src = './static/images/kisekae/casko/' + this.dress + '_' + this.face + '.png'
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.iamge, this.x, this.y)
+        ctx.drawImage(this.image, this.x, this.y)
     }
 }

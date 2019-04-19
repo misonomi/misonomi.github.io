@@ -14,12 +14,13 @@ const canvas = document.createElement('canvas')
 canvas.width = CONST.originalx
 canvas.height = CONST.originaly
 const ctx = canvas.getContext('2d')
-ctx.font = '100px Arial'
+ctx.font = "40px 'MS P明朝'"
+ctx.fillStyle = '#ffffff'
 ctx.textAlign = 'center'
 
 /////////////////// instantiate classes and so on
 
-const bg = document.getElementById('bg')
+let bg = new Image(); bg.src = './static/images/kisekae/background.png'
 let command = new Command()
 
 /////////////////// add event listener
