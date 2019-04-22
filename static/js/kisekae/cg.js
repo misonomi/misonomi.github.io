@@ -23,7 +23,7 @@ export default class {
         }
     }
     draw(ctx) {
-        if (zoom) {
+        if (this.zoom) {
             ctx.drawImage(this.image, 
                 CONST.cg.pan[this.pan_id].startx + CONST.cg.pan[this.pan_id].stepx * this.clock, 
                 CONST.cg.pan[this.pan_id].starty + CONST.cg.pan[this.pan_id].stepy * this.clock)

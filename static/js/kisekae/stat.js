@@ -15,7 +15,7 @@ export const DRESS = {
     blue: 'blue',
     miko: 'miko',
     maid: 'maid',
-    bikini: 'bikini',
+    mizugi: 'mizugi',
     gymsuit: 'gymsuit',
     sarashi: 'sarashi',
 }

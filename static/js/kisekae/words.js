@@ -53,7 +53,7 @@ const words = {
         ],
         next: STAT.game,
     },
-    choose_bikini: {
+    choose_mizugi: {
         lines: [
             {
                 word: 'aaaa',
@@ -66,7 +66,7 @@ const words = {
         ],
         next: STAT.game,
     },
-    choose_wasureta: {
+    choose_gymsuit: {
         lines: [
             {
                 word: 'aaaa',
@@ -118,7 +118,7 @@ const words = {
         ],
         next: STAT.select,
     },
-    bikini: {
+    mizugi: {
         lines: [
             {
                 word: 'aaaa',
@@ -131,7 +131,7 @@ const words = {
         ],
         next: STAT.select,
     },
-    wasureta: {
+    gymsuit: {
         lines: [
             {
                 word: 'aaaa',

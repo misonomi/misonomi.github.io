@@ -16,7 +16,7 @@ export default {
             x: 1200,
             y: 100,
         },
-        bikini: {
+        mizugi: {
             x: 800,
             y: 600,
         },
@@ -61,18 +61,18 @@ export default {
     cg: {
         pan: [
             {
-                startx: 100,
-                starty: 100,
+                startx: -100,
+                starty: -100,
                 stepx: 1,
                 stepy: 1,
-                duration: 100,
+                duration: 500,
             },
             {
-                startx: 100,
-                starty: 100,
+                startx: -200,
+                starty: -200,
                 stepx: 1,
                 stepy: 1,
-                duration: 100,
+                duration: 500,
             },
         ]
     }

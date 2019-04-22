@@ -25,7 +25,7 @@ export default class {
 
         this.dresser_miko = new Dresser(DRESS.miko)
         this.dresser_maid = new Dresser(DRESS.maid)
-        this.dresser_bikini = new Dresser(DRESS.bikini)
+        this.dresser_mizugi = new Dresser(DRESS.mizugi)
         this.dresser_gymsuit = new Dresser(DRESS.gymsuit)
         this.dresser_sarashi = new Dresser(DRESS.sarashi)
 
@@ -104,8 +104,8 @@ export default class {
             this.next_dress = DRESS.maid
             this.talkinit_choose(this.next_dress)
         }
-        if (this.dresser_bikini.clicked(x, y)) {
-            this.next_dress = DRESS.bikini
+        if (this.dresser_mizugi.clicked(x, y)) {
+            this.next_dress = DRESS.mizugi
             this.talkinit_choose(this.next_dress)
         }
         if (this.dresser_gymsuit.clicked(x, y)) {
@@ -207,7 +207,7 @@ export default class {
         this.fukidashi.draw(ctx)
         this.dresser_miko.draw(ctx)
         this.dresser_maid.draw(ctx)
-        this.dresser_bikini.draw(ctx)
+        this.dresser_mizugi.draw(ctx)
         this.dresser_gymsuit.draw(ctx)
         this.dresser_sarashi.draw(ctx)
     }
