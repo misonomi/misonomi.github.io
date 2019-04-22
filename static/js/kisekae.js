@@ -26,6 +26,7 @@ let command = new Command()
 /////////////////// add event listener
 
 display_canvas.addEventListener('click', onClick, false)
+display_canvas.addEventListener('ketdown', onKeydown, false)
 
 /////////////////// main loop
 
@@ -57,6 +58,16 @@ function frame() {
 
         ///////////
         
+        case STAT.pre_select:
+            command.proc_pre_select()
+            command.draw_pre_select(ctx)
+            break
+
+        case STAT.post_select:
+            command.proc_post_select()
+            command.draw_post_select(ctx)
+            break
+
         case STAT.pre_game:
             command.proc_pre_game()
             command.draw_pre_game(ctx)
@@ -110,6 +121,29 @@ function onClick(e) {
     }
     console.log(x +","+ y)
     console.log(command.get_stat())
+}
+
+function onKeydown(e) {
+    switch(e.keyCode) {
+        case 32:
+        switch(command.get_stat()) {
+            case STAT.ready:
+                command.click_ready()
+                break
+            
+            case STAT.talk:
+                command.click_talk()
+                break
+    
+            case STAT.cg:
+                command.click_cg()
+                break
+    
+            default:
+        }
+        break
+        default:
+    }
 }
 
 function resize() {

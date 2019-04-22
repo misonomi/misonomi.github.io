@@ -18,6 +18,24 @@ export default class {
             this.image.src = './static/images/kisekae/casko/' + this.dress + '_' + this.face + '.png'
         }
     }
+    dodge() {
+        if (this.x > CONST.casko.dodged_x) {
+            this.x -= CONST.casko.dodge_step
+            return false
+        } else {
+            this.x = CONST.casko.dodged_x
+            return true
+        }
+    }
+    dodge_back() {
+        if (this.x < CONST.casko.x) {
+            this.x += CONST.casko.dodge_step
+            return false
+        } else {
+            this.x = CONST.casko.x
+            return true
+        }
+    }
     draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y)
     }

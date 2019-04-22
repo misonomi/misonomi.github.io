@@ -1,6 +1,15 @@
 import { STAT } from './stat.js'
 
 const words = {
+    ready: {
+        lines: [
+            {
+                word: 'よし来た！\nじゃあ，いろいろ試してみましょ？',
+                emote: 'normal',
+            }, 
+        ],
+        next: STAT.select,
+    },
     intro: {
         lines: [
             {

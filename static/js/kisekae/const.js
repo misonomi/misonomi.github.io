@@ -57,23 +57,99 @@ export default {
     casko: {
         x: 0,
         y: 0, 
+        dodged_x: -200,
+        dodge_step: 10,
     },
     cg: {
-        pan: [
-            {
-                startx: -100,
-                starty: -100,
-                stepx: 1,
-                stepy: 1,
-                duration: 500,
-            },
-            {
-                startx: -200,
-                starty: -200,
-                stepx: 1,
-                stepy: 1,
-                duration: 500,
-            },
-        ]
+        miko: {
+            pan: [
+                {
+                    startx: -100,
+                    starty: -100,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+                {
+                    startx: -200,
+                    starty: -200,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+            ]
+        },
+        maid: {
+            pan: [
+                {
+                    startx: -100,
+                    starty: -100,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+                {
+                    startx: -200,
+                    starty: -200,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+            ]
+        },
+        mizugi: {
+            pan: [
+                {
+                    startx: -100,
+                    starty: -100,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+                {
+                    startx: -200,
+                    starty: -200,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+            ]
+        },
+        gymsuit: {
+            pan: [
+                {
+                    startx: -100,
+                    starty: -100,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+                {
+                    startx: -200,
+                    starty: -200,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+            ]
+        },
+        sarashi: {
+            pan: [
+                {
+                    startx: -100,
+                    starty: -100,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+                {
+                    startx: -200,
+                    starty: -200,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 500,
+                },
+            ]
+        },
     }
 }

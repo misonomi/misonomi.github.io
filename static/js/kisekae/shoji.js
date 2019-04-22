@@ -17,22 +17,22 @@ export default class {
         if ((this.leftx > lefto) && (this.rightx < righto)) {
             this.leftx -= step
             this.rightx += step
-            return true
+            return false
         } else {
             this.leftx = lefto
             this.rightx = righto
-            return false
+            return true
         }
     }
     close() {
         if ((this.leftx < leftc) && (this.rightx > rightc)) {
             this.leftx += step
             this.rightx -= step
-            return true
+            return false
         } else {
             this.leftx = leftc
             this.rightx = rightc
-            return false
+            return true
         }
     }
     draw(ctx) {
