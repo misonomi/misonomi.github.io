@@ -1,6 +1,6 @@
-import { STAT } from '../kisekae/stat.js'
-import CONST from '../kisekae/const.js'
-import Command from '../kisekae/command.js'
+import { STAT } from './kisekae/stat.js'
+import CONST from './kisekae/const.js'
+import Command from './kisekae/command.js'
 
 export default {
     name: 'kisekae',
@@ -124,8 +124,8 @@ export default {
         resize() {
             this.scale = Math.min((window.innerWidth / CONST.originalx), (window.innerHeight / CONST.originaly), 1)
         
-            this.display_canvas.width = CONST.originalx * scale
-            this.display_canvas.height = CONST.originaly * scale
+            this.display_canvas.width = CONST.originalx * this.scale
+            this.display_canvas.height = CONST.originaly * this.scale
             this.display_ctx.drawImage(this.canvas, 0, 0, this.canvas.width, this.canvas.height, 
                 0, 0, this.display_canvas.width, this.display_canvas.height)
         },

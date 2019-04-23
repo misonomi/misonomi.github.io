@@ -28,6 +28,7 @@ export default {
             x: 900,
             y: 350,
         },
+        step: 5,
     },
     tablet: {
         standardy: 200,

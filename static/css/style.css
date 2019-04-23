@@ -36,12 +36,14 @@ header {
 }
 .container-outer {
 	height: 200px;
-	width: 60vw;
+	width: 100%;
 	border: solid 1px var(--lightBlueGreen);
 	border-radius: 30px;
 	box-shadow: 0 0 50px var(--lightBlueGreen);
-	padding: 15px;
-	margin:auto;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: auto;
+	margin-bottom: auto;
 }
 
 .container-inner {

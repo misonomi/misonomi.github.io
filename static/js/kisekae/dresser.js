@@ -27,7 +27,7 @@ export default class {
             this.image.src = './static/images/kisekae/dresser/' + this.dress + '_disabled.png'
         }
         if (this.w < this.image.width) {
-            this.w += this.image.width
+            this.w += CONST.dresser.step
             return false
         } else {
             this.w = this.image.width
@@ -37,7 +37,7 @@ export default class {
     unready() {
         if (this.shining) {
         } else if (this.w > 0) {
-            this.w -= 0
+            this.w -= CONST.dresser.step
             return false
         } else {
             this.w = 0
@@ -46,6 +46,7 @@ export default class {
     }
     draw(ctx) {
         tab = this.image.width - this.w
-        ctx.drawImage(this.image, this.x + tab, this.y, this.image.width - tab, this.image.height)
+        // avoid draw area width to be 0 ---------------vvv
+        ctx.drawImage(this.image, this.x + tab, this.y, max(this.image.width - tab, 1), this.image.height)
     }
 }
