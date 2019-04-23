@@ -7,7 +7,7 @@ export default class {
         this.dress = DRESS[dress]
         this.x = CONST.dresser[dress].x
         this.y = CONST.dresser[dress].y
-        this.w = image.width
+        this.w = 0
         this.active = true
         this.shining = false
     }
@@ -23,6 +23,7 @@ export default class {
     }
     ready() {
         if (this.shining) { 
+            this.w = 0
             this.shining = false
             this.image.src = './static/images/kisekae/dresser/' + this.dress + '_disabled.png'
         }
@@ -45,8 +46,8 @@ export default class {
         }
     }
     draw(ctx) {
-        tab = this.image.width - this.w
+        const tab = this.image.width - this.w
         // avoid draw area width to be 0 ---------------vvv
-        ctx.drawImage(this.image, this.x + tab, this.y, max(this.image.width - tab, 1), this.image.height)
+        ctx.drawImage(this.image, this.x + tab, this.y, Math.max(this.image.width - tab, 1), this.image.height)
     }
 }

@@ -9,33 +9,33 @@ export default {
     },
     dresser: {
         miko: {
-            x: 800,
+            x: 900,
             y: 100,
         },
         maid: {
-            x: 1200,
+            x: 1400,
             y: 100,
         },
         mizugi: {
-            x: 800,
-            y: 600,
+            x: 900,
+            y: 500,
         },
         gymsuit: {
-            x: 1200,
-            y: 600,
+            x: 1400,
+            y: 500,
         },
         sarashi: {
-            x: 900,
-            y: 350,
+            x: 1150,
+            y: 300,
         },
-        step: 5,
+        step: 40,
     },
     tablet: {
         standardy: 200,
         intervaly: 200,
         width: 30,
         height: 30,
-        ap: 30,
+        ap: 1,
         intervalt: 30,
     },
     inst: {
@@ -49,7 +49,7 @@ export default {
         y: 100,
     },
     cts: {
-        y: 700,
+        y: 400,
     },
     fukidashi: {
         y: 680,
@@ -58,8 +58,8 @@ export default {
     casko: {
         x: 0,
         y: 0, 
-        dodged_x: -200,
-        dodge_step: 10,
+        dodged_x: -400,
+        dodge_step: 20,
     },
     cg: {
         miko: {

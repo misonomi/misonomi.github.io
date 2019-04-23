@@ -41,34 +41,45 @@ export default class {
 
         this.next_dress = DRESS.blue
 
-        readyinit()
+        this.readyinit()
     }
     get_stat() {
         return stat
     }
     set_word(seq) {
+        this.talkframe = CONST.talk_interval
         this.words.init(seq)
         this.fukidashi.set(this.words.text())
         this.casko.update(this.words.emote())
     }
 
     dresser_ready() {
-        return this.dresser_miko.ready() || this.dresser_maid.ready() || this.dresser_mizugi.ready() || this.dresser_gymsuit.ready() || this.dresser_sarashi.ready()
+        let a = this.dresser_miko.ready()
+        let b = this.dresser_maid.ready()
+        let c = this.dresser_mizugi.ready()
+        let d = this.dresser_gymsuit.ready()
+        let e = this.dresser_sarashi.ready()
+
+        return a || b || c || d || e
     }
     dresser_unready() {
-        return this.dresser_miko.unready() || this.dresser_maid.unready() || this.dresser_mizugi.unready() || this.dresser_gymsuit.unready() || this.dresser_sarashi.unready()
+        let a = this.dresser_miko.unready()
+        let b = this.dresser_maid.unready()
+        let c = this.dresser_mizugi.unready()
+        let d = this.dresser_gymsuit.unready()
+        let e = this.dresser_sarashi.unready()
+
+        return a || b || c || d || e
     }
 
 ///////////////////
 
     readyinit() {
         stat = STAT.ready
-        this.talkframe = CONST.talk_interval
         this.set_word('ready')
     }
     talkinit(seq) {
         stat = STAT.talk
-        this.talkframe = CONST.talk_interval
         this.set_word(seq)
     }
     talkinit_choose(seq) {
@@ -76,8 +87,7 @@ export default class {
     }
     selectinit() {
         stat = STAT.pre_select
-        this.talkframe = CONST.talk_interval
-        this.set_word(select)
+        this.set_word('select')
     }
     gameinit() {
         stat = STAT.pre_game
@@ -184,16 +194,21 @@ export default class {
     ///////////////
 
     proc_pre_select() {
-        if (this.stage <= 0) {
+        if (stage <= 0) {
             this.talkinit('outro')
             return
         }
-        if (this.casko.dodge() && this.dresser_unready()) {
+        const a = this.casko.dodge()
+        const b = this.dresser_ready()
+
+        if (a && b) {
             stat = STAT.select
         }
     }
     proc_post_select() {
-        if (this.casko.dodge_back() && this.dresser_unready()) {
+        const a = this.casko.dodge_back()
+        const b = this.dresser_unready()
+        if (a && b) {
             this.talkinit_choose(this.next_dress)
         }
     }

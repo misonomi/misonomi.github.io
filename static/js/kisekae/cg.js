@@ -14,7 +14,7 @@ export default class {
             this.clock = 0
             this.pan_id++
         }
-        if (this.pan_id < CONST.cg.pan.length) {
+        if (this.pan_id < CONST.cg[this.id].pan.length) {
             return false
         } else {
             this.zoom = false

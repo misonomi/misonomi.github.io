@@ -1,15 +1,15 @@
-import { STAT } from './kisekae/stat.js'
-import CONST from './kisekae/const.js'
-import Command from './kisekae/command.js'
+import { STAT } from '../kisekae/stat.js'
+import CONST from '../kisekae/const.js'
+import Command from '../kisekae/command.js'
 
 export default {
     name: 'kisekae',
     data() {
         return {
-            canvas: nil,
-            ctx: nil,
-            display_canvas: nil,
-            display_ctx: nil,
+            canvas: null,
+            ctx: null,
+            display_canvas: null,
+            display_ctx: null,
             scale: 1,
             bg: new Image(),
             command: new Command(),
@@ -27,12 +27,13 @@ export default {
         this.canvas.width = CONST.originalx
         this.canvas.height = CONST.originaly
         this.ctx = this.canvas.getContext('2d')
-        this.ctx.font = '100px Arial'
+        this.ctx.font = "40px 'MS P明朝'"
+        this.ctx.fillStyle = '#ffffff'
         this.ctx.textAlign = 'center'
 
         /////////////////// instantiate classes and so on
 
-        this.bg.src = '../../images/kisekae/bg.png'
+        this.bg.src = './static/images/kisekae/background.png'
 
         /////////////////// add event listener
 
@@ -40,13 +41,14 @@ export default {
         
         /////////////////// main loop
 
-        this.setInterval(this.frame, 10)
+        setInterval(this.frame, 10)
     },
     methods: {
         frame() {
             this.ctx.drawImage(this.bg, 0, 0)
             switch(this.command.get_stat()) {
                 case STAT.ready:
+                this.command.proc_ready()
                 this.command.draw_ready(this.ctx)
                     break
                 
@@ -70,6 +72,16 @@ export default {
                     break
         
                 ///////////
+        
+                case STAT.pre_select:
+                    this.command.proc_pre_select()
+                    this.command.draw_pre_select(this.ctx)
+                    break
+
+                case STAT.post_select:
+                    this.command.proc_post_select()
+                    this.command.draw_post_select(this.ctx)
+                    break
                 
                 case STAT.pre_game:
                 this.command.proc_pre_game()
