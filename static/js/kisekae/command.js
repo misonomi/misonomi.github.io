@@ -1,5 +1,4 @@
 import { STAT, DRESS } from './stat.js'
-import CONST from './const.js'
 import Shoji from './shoji.js'
 import CTS from './cts.js'
 import Logo from './logo.js'
@@ -7,17 +6,18 @@ import Fukidashi from './fukidashi.js'
 import Dresser from './dresser.js'
 import Tablet from './tablet.js'
 import Inst from './inst.js'
+import Timer from './timer.js'
 import Casko from './casko.js'
 import Cg from './cg.js'
 import Words from './words.js'
+import Kirakira from './kirakira.js'
 
 let stage = 3
 let stat = STAT.ready
+let next_dress = DRESS.blue
 
 export default class {
     constructor() {
-        this.kirakira = new Image(); this.kirakira.src = "./static/images/kisekae/kirakira.png"
-
         this.casko = new Casko()
 
         this.shoji = new Shoji()
@@ -36,10 +36,11 @@ export default class {
             this.tablet.push(new Tablet(i))
         }
         this.inst = new Inst()
+        this.timer = new Timer()
 
         this.words = new Words()
 
-        this.next_dress = DRESS.blue
+        this.kirakira = new Kirakira()
 
         this.readyinit()
     }
@@ -47,27 +48,26 @@ export default class {
         return stat
     }
     set_word(seq) {
-        this.talkframe = CONST.talk_interval
         this.words.init(seq)
         this.fukidashi.set(this.words.text())
         this.casko.update(this.words.emote())
     }
 
     dresser_ready() {
-        let a = this.dresser_miko.ready()
-        let b = this.dresser_maid.ready()
-        let c = this.dresser_mizugi.ready()
-        let d = this.dresser_gymsuit.ready()
-        let e = this.dresser_sarashi.ready()
+        const a = this.dresser_miko.ready()
+        const b = this.dresser_maid.ready()
+        const c = this.dresser_mizugi.ready()
+        const d = this.dresser_gymsuit.ready()
+        const e = this.dresser_sarashi.ready()
 
         return a || b || c || d || e
     }
     dresser_unready() {
-        let a = this.dresser_miko.unready()
-        let b = this.dresser_maid.unready()
-        let c = this.dresser_mizugi.unready()
-        let d = this.dresser_gymsuit.unready()
-        let e = this.dresser_sarashi.unready()
+        const a = this.dresser_miko.unready()
+        const b = this.dresser_maid.unready()
+        const c = this.dresser_mizugi.unready()
+        const d = this.dresser_gymsuit.unready()
+        const e = this.dresser_sarashi.unready()
 
         return a || b || c || d || e
     }
@@ -90,11 +90,13 @@ export default class {
         this.set_word('select')
     }
     gameinit() {
+        this.timer.init()
+        this.kirakira.init()
         stat = STAT.pre_game
     }
     cginit(name) {
         this.cg = new Cg(name)
-        this.set_word(name)
+        this.set_word('ed_'+ name)
         stat = STAT.pre_cg
     }
 
@@ -106,43 +108,52 @@ export default class {
     click_talk() {
         switch (this.words.next()) {
             case STAT.ready:
-                stat = STAT.init
-                break
+            this.readyinit()
+            break
 
             case STAT.select:
-                this.selectinit()
-                break
+            this.selectinit()
+            break
 
             case STAT.game:
-                this.gameinit()
-                break
+            this.gameinit()
+            break
+
+            case null:
+            this.fukidashi.set(this.words.text())
+            this.casko.update(this.words.emote())
 
             default:
-                stat = STAT.talk
-                this.fukidashi.set(this.words.text())
-                this.casko.update(this.words.emote())
+            console.log('unexpected stat:')
         }
     }
     click_select(x, y) {
         if (this.dresser_miko.clicked(x, y)) {
-            this.next_dress = DRESS.miko
+            next_dress = DRESS.miko
             stat = STAT.post_select
         }
         if (this.dresser_maid.clicked(x, y)) {
-            this.next_dress = DRESS.maid
+            next_dress = DRESS.maid
             stat = STAT.post_select
         }
         if (this.dresser_mizugi.clicked(x, y)) {
-            this.next_dress = DRESS.mizugi
+            next_dress = DRESS.mizugi
             stat = STAT.post_select
         }
         if (this.dresser_gymsuit.clicked(x, y)) {
-            this.next_dress = DRESS.gymsuit
+            next_dress = DRESS.gymsuit
             stat = STAT.post_select
         }
         if (this.dresser_sarashi.clicked(x, y)) {
-            this.next_dress = DRESS.sarashi
+            next_dress = DRESS.sarashi
             stat = STAT.post_select
+        }
+    }
+    click_wait_game(x, y) {
+        if (this.tablet[this.tablet.length - 1].clicked(x, y)) {
+            this.tablet[this.tablet.length - 1].break()
+            stat = STAT.game
+            console.log('[HIT]')
         }
     }
     click_game(x, y) {
@@ -157,35 +168,33 @@ export default class {
     }
     click_cg() {
         switch (this.words.next()) {
-            case null:
-                this.fukidashi.set(this.words.text())
-                this.casko.update(this.words.emote())
+            case STAT.talk:
+            this.talkinit('outro')
             
+            case null:
+            this.fukidashi.set(this.words.text())
+            this.casko.update(this.words.emote())
+
             default:
-                this.talkinit('outro')
+            console.log('unexpected stat:')
         }
     }
 
 ///////////////////
 
     proc_ready() {
-        this.proc_talk()
+        this.fukidashi.escapement()
     }
     proc_talk() {
-        this.talkframe--
-        if (this.talkframe < 0) {
-            this.fukidashi.escapement()
-            this.talkframe = CONST.talk_interval
-        }
+        this.fukidashi.escapement()
     }
     proc_select() {
-        this.proc_talk()
+        this.fukidashi.escapement()
     }
     proc_game() {
         this.tablet[this.tablet.length - 1].proc()
 
-        this.timer++
-        if (this.timer > CONST.timelimit) {
+        if (this.timer.tick()) {
             stage--
             stat = STAT.post_game
         }
@@ -209,21 +218,26 @@ export default class {
         const a = this.casko.dodge_back()
         const b = this.dresser_unready()
         if (a && b) {
-            this.talkinit_choose(this.next_dress)
+            this.talkinit_choose(next_dress)
         }
     }
     proc_pre_game() {
         if (this.shoji.close()) {
-            stat = STAT.game
+            stat = STAT.wait_game
         }
     }
+    proc_wait_game() {
+
+    }
     proc_post_game() {
-        if (this.shoji.open()) {
+        const a = this.shoji.open()
+        const b = this.kirakira.fadeout()
+        if (a && b) {
             // 鍵を壊し切った場合
-            if ((stage <= 0) && (this.tablet.length <= 0)) {
-                this.cginit(this.next_dress)
+            if (this.tablet.length <= 0) {
+                this.cginit(next_dress)
             } else {
-                this.talkinit(this.next_dress)
+                this.talkinit(next_dress)
             }
         }
     }
@@ -268,29 +282,24 @@ export default class {
         this.shoji.draw(ctx)
     }
     draw_pre_select(ctx) {
-        this.casko.draw(ctx)
-        this.shoji.draw(ctx)
-        this.dresser_miko.draw(ctx)
-        this.dresser_maid.draw(ctx)
-        this.dresser_mizugi.draw(ctx)
-        this.dresser_gymsuit.draw(ctx)
-        this.dresser_sarashi.draw(ctx)
+        draw_select(ctx)
     }
     draw_post_select(ctx) {
-        this.casko.draw(ctx)
-        this.shoji.draw(ctx)
-        this.dresser_miko.draw(ctx)
-        this.dresser_maid.draw(ctx)
-        this.dresser_mizugi.draw(ctx)
-        this.dresser_gymsuit.draw(ctx)
-        this.dresser_sarashi.draw(ctx)
+        draw_select(ctx)
     }
     draw_pre_game(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
     }
+    draw_wait_game(ctx) {
+        draw_game(ctx)
+        this.inst.draw(ctx)
+    }
     draw_post_game(ctx) {
-        ctx.drawImage(this.kirakira, 0, 0)
+        if (this.tablet.length <= 0) {
+            this.casko.draw(ctx)
+        }
+        this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
     }
 }

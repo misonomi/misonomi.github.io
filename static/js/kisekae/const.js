@@ -2,7 +2,6 @@ export default {
     originalx: 1920,
     originaly: 1080,
     timelimit: 1000,
-    talk_interval: 12,
     shoji: {
         width: 658,
         margin: 20,
@@ -44,6 +43,11 @@ export default {
         step: 1,
         deflectiony: 30,
     },
+    timer: {
+        x: 200,
+        y: 400,
+        timelimit: 10000.0,
+    },
     logo: {
         x: 1300,
         y: 100,
@@ -54,6 +58,7 @@ export default {
     fukidashi: {
         y: 680,
         margin: 150,
+        intervalt: 12,
     },
     casko: {
         x: 0,

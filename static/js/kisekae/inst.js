@@ -2,7 +2,7 @@ import CONST from './const.js'
 
 export default class {
     constructor() {
-        this.image = new Image(); this.image.src = "./static/images/kisekae/inst.png"
+        this.image = new Image(); this.image.src = './static/images/kisekae/inst.png'
         this.y = 0
         this.up = true
     }

@@ -38,6 +38,7 @@ export default {
         /////////////////// add event listener
 
         this.display_canvas.addEventListener('click', this.onClick, false)
+        this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
         
         /////////////////// main loop
 
@@ -50,53 +51,53 @@ export default {
                 case STAT.ready:
                 this.command.proc_ready()
                 this.command.draw_ready(this.ctx)
-                    break
+                break
                 
                 case STAT.talk:
                 this.command.proc_talk()
                 this.command.draw_talk(this.ctx)
-                    break
+                break
         
                 case STAT.select:
                 this.command.proc_select()
                 this.command.draw_select(this.ctx)
-                    break
+                break
         
                 case STAT.game:
                 this.command.proc_game()
                 this.command.draw_game(this.ctx)
-                    break
+                break
         
                 case STAT.cg:
                 this.command.draw_cg(this.ctx)
-                    break
+                break
         
                 ///////////
         
                 case STAT.pre_select:
-                    this.command.proc_pre_select()
-                    this.command.draw_pre_select(this.ctx)
-                    break
+                this.command.proc_pre_select()
+                this.command.draw_pre_select(this.ctx)
+                break
 
                 case STAT.post_select:
-                    this.command.proc_post_select()
-                    this.command.draw_post_select(this.ctx)
-                    break
+                this.command.proc_post_select()
+                this.command.draw_post_select(this.ctx)
+                break
                 
                 case STAT.pre_game:
                 this.command.proc_pre_game()
                 this.command.draw_pre_game(this.ctx)
-                    break
+                break
         
                 case STAT.post_game:
                 this.command.proc_post_game()
                 this.command.draw_post_game(this.ctx)
-                    break
+                break
         
                 case STAT.pre_cg:
                 this.command.proc_pre_cg()
                 this.command.draw_cg(this.ctx)
-                    break
+                break
         
                 default:
             }
@@ -104,33 +105,49 @@ export default {
         },
 
         onClick(e) {
-            let rect = e.target.getBoundingClientRect()
-            let x = (e.clientX - rect.left) / this.scale
-            let y = (e.clientY - rect.top) / this.scale
+            const rect = e.target.getBoundingClientRect()
+            this.clicked((e.clientX - rect.left) / this.scale, (e.clientY - rect.top) / this.scale)
+        },
+        onKeyDown(e) {
+            switch(e.keyCode) {
+                case 32:
+                clicked(0, 0)
+                break
+
+                default:
+            }
+        },
+
+        clicked(x, y) {
             switch(this.command.get_stat()) {
                 case STAT.ready:
                 this.command.click_ready()
-                    break
+                break
                 
                 case STAT.talk:
                 this.command.click_talk()
-                    break
+                break
         
                 case STAT.select:
                 this.command.click_select(x, y)
-                    break
+                break
         
                 case STAT.game:
                 this.command.click_game(x, y)
-                    break
+                break
         
                 case STAT.cg:
                 this.command.click_cg()
-                    break
+                break
+
+                case STAT.wait_game:
+                this.command.click_wait_game(x, y)
+                break
         
                 default:
             }
             console.log('clicked: ' + x + ', ' + y)
+
         },
 
         resize() {

@@ -166,6 +166,71 @@ const words = {
         ],
         next: STAT.select,
     },
+    ed_miko: {
+        lines: [
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+        ],
+        next: STAT.talk,
+    },
+    ed_maid: {
+        lines: [
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+        ],
+        next: STAT.talk,
+    },
+    ed_mizugi: {
+        lines: [
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+        ],
+        next: STAT.talk,
+    },
+    ed_gymsuit: {
+        lines: [
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+        ],
+        next: STAT.talk,
+    },
+    ed_sarashi: {
+        lines: [
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+            {
+                word: 'aaaa',
+                emote: 'normal',
+            }, 
+        ],
+        next: STAT.talk,
+    },
     outro: {
         lines: [
             {
@@ -210,6 +275,8 @@ export default class {
         console.log('seqptr: '+ this.seqptr)
         if (this.seqptr >= this.sequence.lines.length) {
             return this.sequence.next
+        } else {
+            return null
         }
     }
 
