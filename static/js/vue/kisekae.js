@@ -6,14 +6,20 @@ export default {
     name: 'kisekae',
     data() {
         return {
-            canvas: null,
-            ctx: null,
-            display_canvas: null,
-            display_ctx: null,
+            canvas,
+            ctx,
+            display_canvas,
+            display_ctx,
             scale: 1,
-            bg: new Image(),
-            command: new Command(),
+            bg,
+            command,
         }
+    },
+    created() {
+        /////////////////// instantiate classes and so on
+
+        this.bg = new Image(); this.bg.src = './static/images/kisekae/background.png'
+        this.command = await new Command()
     },
     mounted() {
         /////////////////// initialize canvas
@@ -30,10 +36,6 @@ export default {
         this.ctx.font = "40px 'MS P明朝'"
         this.ctx.fillStyle = '#ffffff'
         this.ctx.textAlign = 'center'
-
-        /////////////////// instantiate classes and so on
-
-        this.bg.src = './static/images/kisekae/background.png'
 
         /////////////////// add event listener
 
@@ -69,6 +71,7 @@ export default {
                 break
         
                 case STAT.cg:
+                this.command.proc_cg()
                 this.command.draw_cg(this.ctx)
                 break
         

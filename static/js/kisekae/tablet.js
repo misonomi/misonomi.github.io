@@ -21,10 +21,15 @@ export default class {
     }
     proc() {
         if (this.interval > 0) {
+            this.randx = Math.random() * CONST.tablet.agility
+            this.randy = Math.random() * CONST.tablet.agility
             this.interval--
-        } 
+        } else {
+            this.randx = 0
+            this.randy = 0
+        }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x, this.y)
+        ctx.drawImage(this.image, this.x + this.randx, this.y + this.randy)
     }
 }

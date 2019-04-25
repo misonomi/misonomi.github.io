@@ -47,7 +47,8 @@ export default class {
     }
     draw(ctx) {
         const tab = this.image.width - this.w
-        // avoid draw area width to be 0 ---------------vvv
-        ctx.drawImage(this.image, this.x + tab, this.y, Math.max(this.image.width - tab, 1), this.image.height)
+        ctx.drawImage(this.image, 0, 0, this.w, this.image.height, 
+        //avoid draw area width to be 0vvv
+            this.x + tab, this.y, Math.max(this.image.width - tab, 1), this.image.height)
     }
 }

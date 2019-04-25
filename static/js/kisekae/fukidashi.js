@@ -1,7 +1,8 @@
 import CONST from './const.js'
 
 export default class {
-    constructor() {
+    constructor(audio) {
+        this.audio = audio
         this.image = new Image(); this.image.src = './static/images/kisekae/fukidashi.png'
         this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.fukidashi.y
@@ -13,6 +14,7 @@ export default class {
     }
     escapement() {
         if  (parseInt(this.char) < this.line.length) {
+            this.audio.mi()
             this.char += 1 / CONST.fukidashi.intervalt
         }
     }
