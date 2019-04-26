@@ -1,4 +1,4 @@
-import MenuIcon from './menuComponents/menuIcon.js';
+import MenuIcon from './menuComponents/menuIcon.js.js';
 
 export default {
     name: 'menu',

@@ -1,6 +1,6 @@
-import { STAT } from '../kisekae/stat.js'
-import CONST from '../kisekae/const.js'
-import Command from '../kisekae/command.js'
+import { STAT } from '../kisekae/stat.js.js'
+import CONST from '../kisekae/const.js.js'
+import Command from '../kisekae/command.js.js'
 
 export default {
     name: 'kisekae',
@@ -18,7 +18,7 @@ export default {
     created() {
         /////////////////// instantiate classes and so on
 
-        this.bg = new Image(); this.bg.src = './static/images/kisekae/background.png'
+        this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
         // await construction
         this.command = await new Command()
     },

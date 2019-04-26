@@ -1,4 +1,4 @@
-import { STAT } from './stat.js'
+import { STAT } from './stat.js.js'
 
 const words = {
     ready: {

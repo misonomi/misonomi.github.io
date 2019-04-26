@@ -1,9 +1,9 @@
-import Menu from './vue/menu.js'
-import Assemble from './vue/assemble.js'
-import Accessories from './vue/accessories.js'
-import Games from './vue/kisekae.js'
-import Programs from './vue/programs.js'
-import UnderConstruction from './vue/under_construction.js'
+import Menu from './vue/menu.js.js'
+import Assemble from './vue/assemble.js.js'
+import Accessories from './vue/accessories.js.js'
+import Games from './vue/kisekae.js.js'
+import Programs from './vue/programs.js.js'
+import UnderConstruction from './vue/under_construction.js.js'
 
 export default new VueRouter({
     mode: 'history',

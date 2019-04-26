@@ -1,8 +1,8 @@
-import CONST from './const.js'
+import CONST from './const.js.js'
 
 export default class {
     constructor(id) {
-        this.image = new Image(); this.image.src = './static/images/kisekae/tablet.png'
+        this.image = new Image(); this.image.src = './images/kisekae/tablet.png'
         this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
         this.ap = CONST.tablet.ap

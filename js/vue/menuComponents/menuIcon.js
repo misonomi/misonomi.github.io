@@ -30,7 +30,7 @@ export default {
     },
     template: `
         <div class="menuIcon" :id="compute_pos()" @click="navigate($event)">
-            <img :src="'./static/images/' + name + 'icon.png'">
+            <img :src="'./images/' + name + 'icon.png'">
         </div>
     `
 }

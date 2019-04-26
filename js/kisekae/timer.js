@@ -1,8 +1,8 @@
-import CONST from './const.js'
+import CONST from './const.js.js'
 
 export default class {
     constructor() {
-        this.image = new Image(); this.image.src = './static/images/kisekae/timer.png'
+        this.image = new Image(); this.image.src = './images/kisekae/timer.png'
     }
     init() {
         this.clock = CONST.timer.timelimit
