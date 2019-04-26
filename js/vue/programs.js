@@ -13,6 +13,11 @@ export default {
                 title="Programs"
             >
             <item-container
+                title="github repo"
+                link="https://github.com/misonomi?utf8=%E2%9C%93&tab=repositories&type=source"
+                description="私のgithubリポジトリです"
+            >
+            <item-container
                 title="twitter image filterer"
                 link="https://github.com/misonomi?utf8=%E2%9C%93&tab=repositories&type=source"
                 description="自分用twitter検索アプリケーションです"

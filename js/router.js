@@ -6,7 +6,6 @@ import Programs from './vue/programs.js.js'
 import UnderConstruction from './vue/under_construction.js.js'
 
 export default new VueRouter({
-    mode: 'history',
     routes: [
         {
             path: '/',

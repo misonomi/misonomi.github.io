@@ -9,13 +9,17 @@ export default class {
         this.set('')
     }
     set(text) {
-        this.line = text
+        this.line = text.split('\n')
+        this.lineptr = 0
         this.char = 0.0
     }
     escapement() {
-        if  (parseInt(this.char) < this.line.length) {
-            this.audio.mi()
+        if (this.lineptr >= this.line.length) { return }
+        if  (parseInt(this.char) < this.line[lineptr].length) {
             this.char += 1 / CONST.fukidashi.intervalt
+        } else {
+            this.lineptr++
+            this.char = 0.0
         }
     }
     draw(ctx) {
