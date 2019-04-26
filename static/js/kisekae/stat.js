@@ -5,12 +5,14 @@ export const STAT = {
     game: 3,
     cg: 4,
 
+    pre_talk: 11,
     pre_select: 12,
     pre_game: 13,
     pre_cg: 14,
     
     post_select: 22,
     post_game: 23,
+    post_cg: 24,
 
     wait_game: 93,
 }

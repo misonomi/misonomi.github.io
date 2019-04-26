@@ -56,6 +56,9 @@ export default class {
     }
     set_word(seq) {
         this.words.init(seq)
+        update_word()
+    }
+    update_word() {
         this.fukidashi.set(this.words.text())
         this.casko.update(this.words.emote())
     }
@@ -79,7 +82,7 @@ export default class {
         return finish_mk || finish_md || finish_mz || finish_gs || finish_sr
     }
 
-///////////////////
+/////////////////// init methods
 
     readyinit() {
         stat = STAT.ready
@@ -107,7 +110,7 @@ export default class {
         stat = STAT.pre_cg
     }
 
-///////////////////
+/////////////////// click methods
 
     click_ready() {
         this.talkinit('intro')
@@ -127,8 +130,7 @@ export default class {
             break
 
             case null:
-            this.fukidashi.set(this.words.text())
-            this.casko.update(this.words.emote())
+            update_word()
 
             default:
             console.log('unexpected stat:')
@@ -172,42 +174,34 @@ export default class {
     click_cg() {
         switch (this.words.next()) {
             case STAT.talk:
-            this.talkinit('outro')
+            stat = STAT.post_cg
             
             case null:
-            this.fukidashi.set(this.words.text())
-            this.casko.update(this.words.emote())
+            update_word()
 
             default:
             console.log('unexpected stat:')
         }
     }
 
-///////////////////
+/////////////////// proc methods
 
     proc_ready() {
         this.fukidashi.escapement()
     }
+
+    ///////
+
+    proc_pre_talk() {
+        if (this.shoji.open()) {
+            stat = STAT.talk
+        }
+    }
     proc_talk() {
         this.fukidashi.escapement()
     }
-    proc_select() {
-        this.fukidashi.escapement()
-    }
-    proc_game() {
-        this.tablet[this.tablet.length - 1].proc()
 
-        if (this.timer.tick()) {
-            stage--
-            this.casko.kisekae(next_dress)
-            stat = STAT.post_game
-        }
-    }
-    proc_cg() {
-        this.fukidashi.escapement()
-    }
-
-    ///////////////
+    ///////
 
     proc_pre_select() {
         if (stage <= 0) {
@@ -221,6 +215,9 @@ export default class {
             stat = STAT.select
         }
     }
+    proc_select() {
+        this.fukidashi.escapement()
+    }
     proc_post_select() {
         const finish_c = this.casko.dodge_back()
         const finish_d = this.dresser_unready()
@@ -228,6 +225,9 @@ export default class {
             this.talkinit_choose(next_dress)
         }
     }
+
+    ///////
+
     proc_pre_game() {
         if (this.shoji.close()) {
             stat = STAT.wait_game
@@ -235,6 +235,15 @@ export default class {
     }
     proc_wait_game() {
         this.inst.proc()
+    }
+    proc_game() {
+        this.tablet[this.tablet.length - 1].proc()
+
+        if (this.timer.tick()) {
+            stage--
+            this.casko.kisekae(next_dress)
+            stat = STAT.post_game
+        }
     }
     proc_post_game() {
         const finish_s = this.shoji.open()
@@ -248,13 +257,24 @@ export default class {
             }
         }
     }
+
+    ///////
+
     proc_pre_cg() {
         if (this.cg.pan()) {
             stat = STAT.cg
         }
     }
+    proc_cg() {
+        this.fukidashi.escapement()
+    }
+    proc_post_cg() {
+        if (this.shoji.close()) {
+            this.talkinit('outro')
+        }
+    }
 
-///////////////////
+/////////////////// draw methods
 
     draw_ready(ctx) {
         this.casko.draw(ctx)
@@ -263,11 +283,17 @@ export default class {
         this.logo.draw(ctx)
         this.clicktostart.draw(ctx)
     }
+
+    ///////
+
     draw_talk(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
         this.fukidashi.draw(ctx)
     }
+
+    ///////
+
     draw_select(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
@@ -278,23 +304,9 @@ export default class {
         this.dresser_gymsuit.draw(ctx)
         this.dresser_sarashi.draw(ctx)
     }
-    draw_game(ctx) {
-        this.shoji.draw(ctx)
-        for (const t of this.tablet) {
-            t.draw(ctx)
-        }
-        this.timer.draw()
-    }
-    draw_cg(ctx) {
-        this.cg.draw(ctx)
-        this.shoji.draw(ctx)
-    }
-    draw_pre_select(ctx) {
-        draw_select(ctx)
-    }
-    draw_post_select(ctx) {
-        draw_select(ctx)
-    }
+
+    ///////
+
     draw_pre_game(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
@@ -303,6 +315,13 @@ export default class {
         draw_game(ctx)
         this.inst.draw(ctx)
     }
+    draw_game(ctx) {
+        this.shoji.draw(ctx)
+        for (const t of this.tablet) {
+            t.draw(ctx)
+        }
+        this.timer.draw()
+    }
     draw_post_game(ctx) {
         if (this.tablet.length <= 0) {
             this.casko.draw(ctx)
@@ -310,4 +329,19 @@ export default class {
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
     }
+
+    ///////
+
+    draw_cg_min(ctx) {
+        this.cg.draw(ctx)
+        this.shoji.draw(ctx)
+    }
+    draw_cg(ctx) {
+        this.cg.draw(ctx)
+        this.shoji.draw(ctx)
+        this.fukidashi.draw(ctx)
+    }
+
+    ///////
+    
 }

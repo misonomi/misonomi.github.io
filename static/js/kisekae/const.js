@@ -4,7 +4,6 @@ export default {
     timelimit: 1000,
     shoji: {
         width: 658,
-        margin: 20,
     },
     dresser: {
         miko: {
