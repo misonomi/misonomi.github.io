@@ -282,21 +282,21 @@ export default class {
         this.shoji.draw(ctx)
     }
     draw_pre_select(ctx) {
-        draw_select(ctx)
+        this.draw_select(ctx)
     }
     draw_post_select(ctx) {
-        draw_select(ctx)
+        this.draw_select(ctx)
     }
     draw_pre_game(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
     }
     draw_wait_game(ctx) {
-        draw_game(ctx)
+        this.draw_game(ctx)
         this.inst.draw(ctx)
     }
     draw_post_game(ctx) {
-        if (this.tablet.length <= 0) {
+        if (this.tablet.length > 0) {
             this.casko.draw(ctx)
         }
         this.kirakira.draw(ctx)

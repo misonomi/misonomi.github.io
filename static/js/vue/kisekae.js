@@ -88,6 +88,11 @@ export default {
                 this.command.proc_pre_game()
                 this.command.draw_pre_game(this.ctx)
                 break
+
+                case STAT.wait_game:
+                this.command.proc_wait_game()
+                this.command.draw_wait_game(this.ctx)
+                break
         
                 case STAT.post_game:
                 this.command.proc_post_game()

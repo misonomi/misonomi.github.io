@@ -6,10 +6,10 @@ import Programs from './vue/programs.js'
 import UnderConstruction from './vue/under_construction.js'
 
 export default new VueRouter({
-    mode: 'history',
     routes: [
         {
             path: '/',
+            name: 'rollmenu',
             component: Menu
         },
         {
@@ -32,5 +32,5 @@ export default new VueRouter({
             path: '/under_construction',
             component: UnderConstruction
         },
-    ]
+    ],
 })

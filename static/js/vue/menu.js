@@ -1,7 +1,7 @@
 import MenuIcon from './menuComponents/menuIcon.js';
 
 export default {
-    name: 'menu',
+    name: 'rollmenu',
     components: {
         MenuIcon,
     },

@@ -2,6 +2,9 @@ export default {
     originalx: 1920,
     originaly: 1080,
     timelimit: 1000,
+    kirakira: {
+        step: 0.01
+    },
     shoji: {
         width: 658,
         margin: 20,
