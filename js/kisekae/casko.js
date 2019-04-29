@@ -1,9 +1,9 @@
-import CONST from './const.js'
-import { DRESS, FACE } from './stat.js'
+import CONST from './const.js.js'
+import { DRESS, FACE } from './stat.js.js'
 
 export default class {
     constructor() {
-        this.image = new Image(); this.image.src = './static/images/assembleicon.png'
+        this.image = new Image(); this.image.src = './images/assembleicon.png'
         this.kisekae(DRESS.blue)
         this.update(FACE.normal)
         this.x = CONST.casko.x
@@ -15,7 +15,7 @@ export default class {
     update(face) {
         if ((typeof face != 'undefined') && (this.face != face)) {
             this.face = face
-            this.image.src = './static/images/kisekae/casko/' + this.dress + '_' + this.face + '.png'
+            this.image.src = './images/kisekae/casko/' + this.dress + '_' + this.face + '.png'
         }
     }
     dodge() {

@@ -7,7 +7,6 @@ export default {
     },
     shoji: {
         width: 658,
-        margin: 20,
     },
     dresser: {
         miko: {
@@ -39,6 +38,7 @@ export default {
         height: 30,
         ap: 1,
         intervalt: 30,
+        agility: 30,
     },
     inst: {
         marginx: 200,
@@ -57,6 +57,8 @@ export default {
     },
     cts: {
         y: 400,
+        alpha_min: 0.3,
+        alpha_step: 0.05,
     },
     fukidashi: {
         y: 680,

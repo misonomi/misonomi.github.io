@@ -1,9 +1,9 @@
-import { DRESS } from './stat.js'
-import CONST from './const.js'
+import { DRESS } from './stat.js.js'
+import CONST from './const.js.js'
 
 export default class {
     constructor(dress) {
-        this.image = new Image(); this.image.src = './static/images/kisekae/dresser/' + dress + '.png'
+        this.image = new Image(); this.image.src = './images/kisekae/dresser/' + dress + '.png'
         this.dress = DRESS[dress]
         this.x = CONST.dresser[dress].x
         this.y = CONST.dresser[dress].y
@@ -15,7 +15,7 @@ export default class {
         if ((this.x <= x && x <= this.x + this.image.width) && (this.y <= y && y <= this.y + this.image.height) && this.active) {
             this.shining = true
             this.active = false
-            this.image.src = './static/images/kisekae/dresser/' + this.dress + '_shining.png'
+            this.image.src = './images/kisekae/dresser/' + this.dress + '_shining.png'
             return true
         } else {
             return false
@@ -25,7 +25,7 @@ export default class {
         if (this.shining) { 
             this.w = 0
             this.shining = false
-            this.image.src = './static/images/kisekae/dresser/' + this.dress + '_disabled.png'
+            this.image.src = './images/kisekae/dresser/' + this.dress + '_disabled.png'
         }
         if (this.w < this.image.width) {
             this.w += CONST.dresser.step
@@ -47,7 +47,8 @@ export default class {
     }
     draw(ctx) {
         const tab = this.image.width - this.w
-        // avoid draw area width to be 0 ---------------vvv
-        ctx.drawImage(this.image, this.x + tab, this.y, Math.max(this.image.width - tab, 1), this.image.height)
+        ctx.drawImage(this.image, 0, 0, this.w, this.image.height, 
+        //avoid draw area width to be 0vvv
+            this.x + tab, this.y, Math.max(this.image.width - tab, 1), this.image.height)
     }
 }

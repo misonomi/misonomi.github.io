@@ -1,8 +1,8 @@
-import CONST from './const.js'
+import CONST from './const.js.js'
 
 export default class {
     constructor() {
-        this.image = new Image(); this.image.src = './static/images/kisekae/inst.png'
+        this.image = new Image(); this.image.src = './images/kisekae/inst.png'
         this.y = 0
         this.up = true
     }
@@ -20,6 +20,6 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, (CONST.originalx / 2) - CONST.inst.marginx, CONST.inst.y)
+        ctx.drawImage(this.image, 0, 0, (CONST.originalx / 2) - CONST.inst.marginx, CONST.inst.y + this.y)
     }
 }

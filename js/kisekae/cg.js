@@ -1,8 +1,8 @@
-import CONST from './const.js'
+import CONST from './const.js.js'
 
 export default class {
     constructor(name) {
-        this.image = new Image(); this.image.src = './static/images/kisekae/cg/' + name + '.png'
+        this.image = new Image(); this.image.src = './images/kisekae/cg/' + name + '.png'
         this.zoom = true
         this.clock = 0
         this.pan_id = 0

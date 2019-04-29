@@ -1,8 +1,8 @@
-import CONST from './const.js'
+import CONST from './const.js.js'
 
 export default class {
     constructor(id) {
-        this.image = new Image(); this.image.src = './static/images/kisekae/tablet.png'
+        this.image = new Image(); this.image.src = './images/kisekae/tablet.png'
         this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
         this.ap = CONST.tablet.ap
@@ -21,10 +21,15 @@ export default class {
     }
     proc() {
         if (this.interval > 0) {
+            this.randx = Math.random() * CONST.tablet.agility
+            this.randy = Math.random() * CONST.tablet.agility
             this.interval--
-        } 
+        } else {
+            this.randx = 0
+            this.randy = 0
+        }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x, this.y)
+        ctx.drawImage(this.image, this.x + this.randx, this.y + this.randy)
     }
 }

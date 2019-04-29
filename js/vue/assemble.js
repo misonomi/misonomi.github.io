@@ -1,5 +1,5 @@
-import MyHeader from './generalComponents/myHeader.js'
-import PartsSelector from './assembleComponents/partsSelector.js'
+import MyHeader from './generalComponents/myHeader.js.js'
+import PartsSelector from './assembleComponents/partsSelector.js.js'
 
 export default {
     name: 'assemble',

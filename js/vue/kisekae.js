@@ -1,19 +1,26 @@
-import { STAT } from '../kisekae/stat.js'
-import CONST from '../kisekae/const.js'
-import Command from '../kisekae/command.js'
+import { STAT } from '../kisekae/stat.js.js'
+import CONST from '../kisekae/const.js.js'
+import Command from '../kisekae/command.js.js'
 
 export default {
     name: 'kisekae',
     data() {
         return {
-            canvas: null,
-            ctx: null,
-            display_canvas: null,
-            display_ctx: null,
+            canvas,
+            ctx,
+            display_canvas,
+            display_ctx,
             scale: 1,
-            bg: new Image(),
-            command: new Command(),
+            bg,
+            command,
         }
+    },
+    created() {
+        /////////////////// instantiate classes and so on
+
+        this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
+        // await construction
+        this.command = await new Command()
     },
     mounted() {
         /////////////////// initialize canvas
@@ -31,10 +38,6 @@ export default {
         this.ctx.fillStyle = '#ffffff'
         this.ctx.textAlign = 'center'
 
-        /////////////////// instantiate classes and so on
-
-        this.bg.src = './static/images/kisekae/background.png'
-
         /////////////////// add event listener
 
         this.display_canvas.addEventListener('click', this.onClick, false)
@@ -49,44 +52,45 @@ export default {
             this.ctx.drawImage(this.bg, 0, 0)
             switch(this.command.get_stat()) {
                 case STAT.ready:
-                this.command.proc_ready()
-                this.command.draw_ready(this.ctx)
+                this.command.proc_ready(); this.command.draw_ready(this.ctx)
+                break
+
+                ///////
+                
+                case STAT.pre_talk:
+                this.command.proc_pre_talk(); this.command.draw_talk(this.ctx)
                 break
                 
                 case STAT.talk:
-                this.command.proc_talk()
-                this.command.draw_talk(this.ctx)
+                this.command.proc_talk(); this.command.draw_talk(this.ctx)
+                break
+
+                ///////
+        
+                case STAT.pre_select:
+                this.command.proc_pre_select(); this.command.draw_select(this.ctx)
                 break
         
                 case STAT.select:
-                this.command.proc_select()
-                this.command.draw_select(this.ctx)
-                break
-        
-                case STAT.game:
-                this.command.proc_game()
-                this.command.draw_game(this.ctx)
-                break
-        
-                case STAT.cg:
-                this.command.draw_cg(this.ctx)
-                break
-        
-                ///////////
-        
-                case STAT.pre_select:
-                this.command.proc_pre_select()
-                this.command.draw_pre_select(this.ctx)
+                this.command.proc_select(); this.command.draw_select(this.ctx)
                 break
 
                 case STAT.post_select:
-                this.command.proc_post_select()
-                this.command.draw_post_select(this.ctx)
+                this.command.proc_post_select(); this.command.draw_select(this.ctx)
                 break
+
+                ///////
                 
                 case STAT.pre_game:
-                this.command.proc_pre_game()
-                this.command.draw_pre_game(this.ctx)
+                this.command.proc_pre_game(); this.command.draw_pre_game(this.ctx)
+                break
+                
+                case STAT.wait_game:
+                this.command.proc_wait_game(); this.command.draw_wait_game(this.ctx)
+                break
+        
+                case STAT.game:
+                this.command.proc_game(); this.command.draw_game(this.ctx)
                 break
 
                 case STAT.wait_game:
@@ -95,13 +99,21 @@ export default {
                 break
         
                 case STAT.post_game:
-                this.command.proc_post_game()
-                this.command.draw_post_game(this.ctx)
+                this.command.proc_post_game(); this.command.draw_post_game(this.ctx)
                 break
+
+                ///////
         
                 case STAT.pre_cg:
-                this.command.proc_pre_cg()
-                this.command.draw_cg(this.ctx)
+                this.command.proc_pre_cg(); this.command.draw_cg_min(this.ctx)
+                break
+        
+                case STAT.cg:
+                this.command.proc_cg(); this.command.draw_cg(this.ctx)
+                break
+        
+                case STAT.post_cg:
+                this.command.proc_post_cg(); this.command.draw_cg_min(this.ctx)
                 break
         
                 default:

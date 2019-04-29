@@ -1,5 +1,5 @@
-import ItemContainer from './generalComponents/itemContainer.js'
-import MyHeader from './generalComponents/myHeader.js'
+import ItemContainer from './generalComponents/itemContainer.js.js'
+import MyHeader from './generalComponents/myHeader.js.js'
 
 export default {
     name: 'programs',
@@ -11,6 +11,11 @@ export default {
         <div>
             <my-header
                 title="Programs"
+            >
+            <item-container
+                title="github repo"
+                link="https://github.com/misonomi?utf8=%E2%9C%93&tab=repositories&type=source"
+                description="私のgithubリポジトリです"
             >
             <item-container
                 title="twitter image filterer"
