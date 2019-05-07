@@ -49,7 +49,7 @@ export default class {
             this.readyinit()
 
             return this
-        })
+        })();
     }
     get_stat() {
         return stat

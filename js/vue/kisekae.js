@@ -128,6 +128,7 @@ export default {
         onKeyDown(e) {
             switch(e.keyCode) {
                 case 32:
+                case 64:
                 clicked(0, 0)
                 break
 

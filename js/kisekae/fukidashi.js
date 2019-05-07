@@ -24,6 +24,12 @@ export default class {
     }
     draw(ctx) {
         ctx.drawImage(this.image, this.x, this.y)
-        ctx.fillText(this.line.substr(0, parseInt(this.char)), CONST.originalx / 2, this.y + CONST.fukidashi.margin)
+        for (let i = 0; i < this.line.length - 1; i++) {
+            if (i == this.lineptr) {
+                ctx.fillText(this.line[i].substr(0, parseInt(this.char)), CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
+            } else if (i < this.lineptr) {
+                ctx.fillText(this.line[i], CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
+            }
+        }
     }
 }
