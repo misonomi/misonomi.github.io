@@ -9,15 +9,16 @@ export default class {
         this.interval = CONST.tablet.intervalt
     }
     clicked(x, y) {
-        if (this.interval >= 0) {
+        if ((this.interval <= 0) && (this.x <= x && x <= this.x + this.image.width) && (this.y <= y && y <= this.y + this.image.height)) {
             this.interval = CONST.tablet.intervalt
-            return (this.x <= x && x <= this.x + this.image.width) && (this.y <= y && y <= this.y + this.image.height)
+            this.ap--
+            return true
         } else {
             return false
         }
     }
-    break() {
-        return --this.ap <= 0
+    is_broken() {
+        return this.ap <= 0
     }
     proc() {
         if (this.interval > 0) {

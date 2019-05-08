@@ -94,8 +94,7 @@ export default {
                 break
 
                 case STAT.wait_game:
-                this.command.proc_wait_game()
-                this.command.draw_wait_game(this.ctx)
+                this.command.proc_wait_game(); this.command.draw_wait_game(this.ctx)
                 break
         
                 case STAT.post_game:

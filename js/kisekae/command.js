@@ -27,7 +27,7 @@ export default class {
             this.shoji = new Shoji()
             this.clicktostart = new CTS()
             this.logo = new Logo()
-            this.fukidashi = new Fukidashi(this.audio)
+            this.fukidashi = new Fukidashi()
 
             this.dresser_miko = new Dresser(DRESS.miko)
             this.dresser_maid = new Dresser(DRESS.maid)
@@ -91,9 +91,6 @@ export default class {
     talkinit(seq) {
         stat = STAT.talk
         this.set_word(seq)
-    }
-    talkinit_choose(seq) {
-        this.talkinit('choose_' + seq)
     }
     selectinit() {
         stat = STAT.pre_select
@@ -164,7 +161,7 @@ export default class {
     }
     click_game(x, y) {
         if (this.tablet[this.tablet.length - 1].clicked(x, y)) {
-            if (this.tablet[this.tablet.length - 1].break()) {
+            if (this.tablet[this.tablet.length - 1].is_broken()) {
                 stage--
                 this.timer.end()
             }
@@ -187,7 +184,7 @@ export default class {
 /////////////////// proc methods
 
     proc_ready() {
-        this.fukidashi.escapement()
+        this.fukidashi.escapement(this.audio)
     }
 
     ///////
@@ -198,7 +195,7 @@ export default class {
         }
     }
     proc_talk() {
-        this.fukidashi.escapement()
+        this.fukidashi.escapement(this.audio)
     }
 
     ///////
@@ -216,13 +213,13 @@ export default class {
         }
     }
     proc_select() {
-        this.fukidashi.escapement()
+        this.fukidashi.escapement(this.audio)
     }
     proc_post_select() {
         const finish_c = this.casko.dodge_back()
         const finish_d = this.dresser_unready()
         if (finish_c && finish_d) {
-            this.talkinit_choose(next_dress)
+            this.talkinit('choose_' + next_dress)
         }
     }
 
