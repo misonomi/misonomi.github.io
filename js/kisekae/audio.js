@@ -1,11 +1,24 @@
 export default class {
     constructor() {
-        this.audioctx = new AudioContext();
-        this.mi_sound = await LoadSample(this.audioctx, './sounds/kisekae/mi.wav');
+        this.audioctx = new AudioContext()
+        this.mi_sound = new Audio('./sounds/kisekae/mi.wav')
+        this.audiolist = {}
+        for (const k of audiokey) {
+            this.audiolist[k] = new Audio('./sounds/kisekae/' + k + '.wav')
+        }
     }
     mi() {
-        const src = new AudioBufferSourceNode(this.audioctx, {buffer:this.mi_sound});
-        src.connect(audioctx.destination);
-        src.start();
+        let source = this.audioctx.createBufferSource()
+        source.buffer = this.mi_sound
+        source.connect(this.audioctx.destination)
+        source.start();
+    }
+    play(key) {
+        let source = this.audioctx.createBufferSource()
+        source.buffer = this.audiolist[key]
+        source.connect(this.audioctx.destination)
+        source.start();
     }
 }
+
+const audiokey = ['mi', 'crack', 'open', 'close', 'select']

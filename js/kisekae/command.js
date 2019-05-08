@@ -314,13 +314,14 @@ export default class {
     draw_wait_game(ctx) {
         this.draw_game(ctx)
         this.inst.draw(ctx)
+        this.timer.draw(ctx)
     }
     draw_game(ctx) {
         this.shoji.draw(ctx)
         for (const t of this.tablet) {
             t.draw(ctx)
         }
-        this.timer.draw()
+        this.timer.draw(ctx)
     }
     draw_post_game(ctx) {
         if (this.tablet.length > 0) {

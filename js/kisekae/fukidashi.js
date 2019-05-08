@@ -15,7 +15,7 @@ export default class {
     }
     escapement() {
         if (this.lineptr >= this.line.length) { return }
-        if  (parseInt(this.char) < this.line[lineptr].length) {
+        if (parseInt(this.char) < this.line[lineptr].length) {
             this.char += 1 / CONST.fukidashi.intervalt
         } else {
             this.lineptr++
@@ -26,7 +26,7 @@ export default class {
         ctx.drawImage(this.image, this.x, this.y)
         for (let i = 0; i < this.line.length - 1; i++) {
             if (i == this.lineptr) {
-                ctx.fillText(this.line[i].substr(0, parseInt(this.char)), CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
+                ctx.fillText(this.line[i].substr(0, Math.floor(this.char)), CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
             } else if (i < this.lineptr) {
                 ctx.fillText(this.line[i], CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
             }
