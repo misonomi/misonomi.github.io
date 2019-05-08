@@ -1,51 +1,58 @@
-import { STAT } from '../kisekae/stat.js.js'
-import CONST from '../kisekae/const.js.js'
-import Command from '../kisekae/command.js.js'
+import { STAT } from '../kisekae/stat.js'
+import CONST from '../kisekae/const.js'
+import Command from '../kisekae/command.js'
 
 export default {
     name: 'kisekae',
     data() {
         return {
-            canvas,
-            ctx,
-            display_canvas,
-            display_ctx,
+            canvas: null,
+            ctx: null,
+            display_canvas: null,
+            display_ctx: null,
             scale: 1,
-            bg,
-            command,
+            bg: null,
+            command: null,
         }
     },
-    created() {
-        /////////////////// instantiate classes and so on
-
-        this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
-        // await construction
-        this.command = await new Command()
-    },
     mounted() {
-        /////////////////// initialize canvas
+            /////////////////// instantiate classes and so on
 
-        this.display_canvas = document.getElementById('kisekae')
-        this.display_ctx = this.display_canvas.getContext('2d')
+            const ready = new Promise((resolve,reject) => {
+    
+                this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
+                this.command = new Command()
 
-        /////////////////// initialize buffered canvas
-
-        this.canvas = document.createElement('canvas')
-        this.canvas.width = CONST.originalx
-        this.canvas.height = CONST.originaly
-        this.ctx = this.canvas.getContext('2d')
-        this.ctx.font = "40px 'MS P明朝'"
-        this.ctx.fillStyle = '#ffffff'
-        this.ctx.textAlign = 'center'
-
-        /////////////////// add event listener
-
-        this.display_canvas.addEventListener('click', this.onClick, false)
-        this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
+                /////////////////// initialize canvas
         
-        /////////////////// main loop
+                this.display_canvas = document.getElementById('kisekae')
+                this.display_ctx = this.display_canvas.getContext('2d')
+        
+                /////////////////// initialize buffered canvas
+        
+                this.canvas = document.createElement('canvas')
+                this.canvas.width = CONST.originalx
+                this.canvas.height = CONST.originaly
+                this.ctx = this.canvas.getContext('2d')
+                this.ctx.font = "40px 'MS P明朝'"
+                this.ctx.fillStyle = '#ffffff'
+                this.ctx.textAlign = 'center'
+        
+                /////////////////// add event listener
+        
+                this.display_canvas.addEventListener('click', this.onClick, false)
+                this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
 
-        setInterval(this.frame, 10)
+                resolve('ready')
+
+            })
+            
+            ready.then(
+                
+                /////////////////// main loop
+        
+                setInterval(this.frame, 10)
+            )
     },
     methods: {
         frame() {

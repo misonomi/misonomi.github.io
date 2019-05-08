@@ -1,5 +1,5 @@
-import CONST from './const.js.js'
-import { DRESS, FACE } from './stat.js.js'
+import CONST from './const.js'
+import { DRESS, FACE } from './stat.js'
 
 export default class {
     constructor() {

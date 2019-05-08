@@ -1,4 +1,4 @@
-import CONST from './const.js.js'
+import CONST from './const.js'
 const leftc = (CONST.originalx / 2) - CONST.shoji.width
 const lefto = leftc - CONST.shoji.width
 const rightc = CONST.originalx / 2

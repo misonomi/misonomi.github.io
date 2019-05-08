@@ -1,4 +1,4 @@
-import CONST from './const.js.js'
+import CONST from './const.js'
 
 export default class {
     constructor() {

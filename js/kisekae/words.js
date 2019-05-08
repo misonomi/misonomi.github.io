@@ -1,10 +1,10 @@
-import { STAT } from './stat.js.js'
+import { STAT } from './stat.js'
 
 const words = {
     ready: {
         lines: [
             {
-                word: 'よし来た！\nじゃあ，いろいろ試してみましょ？',
+                word: 'ささご主人様\n聖杯戦争で勝つためのコスチューム，\n一緒に考えてみます？',
                 emote: 'normal',
             }, 
         ],

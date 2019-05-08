@@ -1,11 +1,13 @@
-import CONST from './const.js.js'
+import CONST from './const.js'
 
 export default class {
     constructor() {
         this.image = new Image(); this.image.src = './images/kisekae/fukidashi.png'
         this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.fukidashi.y
-        this.set('')
+        this.line = []
+        this.lineptr = 0
+        this.char = 0.0
     }
     set(text) {
         this.line = text.split('\n')

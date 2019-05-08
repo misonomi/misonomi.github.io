@@ -1,17 +1,17 @@
-import { STAT, DRESS } from './stat.js.js'
-import Shoji from './shoji.js.js'
-import CTS from './cts.js.js'
-import Logo from './logo.js.js'
-import Fukidashi from './fukidashi.js.js'
-import Dresser from './dresser.js.js'
-import Tablet from './tablet.js.js'
-import Inst from './inst.js.js'
-import Timer from './timer.js.js'
-import Casko from './casko.js.js'
-import Cg from './cg.js.js'
-import Words from './words.js.js'
-import Kirakira from './kirakira.js.js'
-import AudioManager from './audio.js.js'
+import { STAT, DRESS } from './stat.js'
+import Shoji from './shoji.js'
+import CTS from './cts.js'
+import Logo from './logo.js'
+import Fukidashi from './fukidashi.js'
+import Dresser from './dresser.js'
+import Tablet from './tablet.js'
+import Inst from './inst.js'
+import Timer from './timer.js'
+import Casko from './casko.js'
+import Cg from './cg.js'
+import Words from './words.js'
+import Kirakira from './kirakira.js'
+import AudioManager from './audio.js'
 
 let stage = 3
 let stat = STAT.ready
@@ -19,44 +19,40 @@ let next_dress = DRESS.blue
 
 export default class {
     constructor() {
-        return (async () => {
-            this.audio = new AudioManager()
+        this.audio = new AudioManager()
 
-            this.casko = new Casko()
+        this.casko = new Casko()
 
-            this.shoji = new Shoji()
-            this.clicktostart = new CTS()
-            this.logo = new Logo()
-            this.fukidashi = new Fukidashi()
+        this.shoji = new Shoji()
+        this.clicktostart = new CTS()
+        this.logo = new Logo()
+        this.fukidashi = new Fukidashi()
 
-            this.dresser_miko = new Dresser(DRESS.miko)
-            this.dresser_maid = new Dresser(DRESS.maid)
-            this.dresser_mizugi = new Dresser(DRESS.mizugi)
-            this.dresser_gymsuit = new Dresser(DRESS.gymsuit)
-            this.dresser_sarashi = new Dresser(DRESS.sarashi)
+        this.dresser_miko = new Dresser(DRESS.miko)
+        this.dresser_maid = new Dresser(DRESS.maid)
+        this.dresser_mizugi = new Dresser(DRESS.mizugi)
+        this.dresser_gymsuit = new Dresser(DRESS.gymsuit)
+        this.dresser_sarashi = new Dresser(DRESS.sarashi)
 
-            this.tablet = []
-            for (let i = stage - 1; i >= 0; i--) {
-                this.tablet.push(new Tablet(i))
-            }
-            this.inst = new Inst()
-            this.timer = new Timer()
+        this.tablet = []
+        for (let i = stage - 1; i >= 0; i--) {
+            this.tablet.push(new Tablet(i))
+        }
+        this.inst = new Inst()
+        this.timer = new Timer()
 
-            this.words = new Words()
+        this.words = new Words()
 
-            this.kirakira = new Kirakira()
+        this.kirakira = new Kirakira()
 
-            this.readyinit()
-
-            return this
-        })();
+        this.readyinit()
     }
     get_stat() {
         return stat
     }
     set_word(seq) {
         this.words.init(seq)
-        update_word()
+        this.update_word()
     }
     update_word() {
         this.fukidashi.set(this.words.text())
