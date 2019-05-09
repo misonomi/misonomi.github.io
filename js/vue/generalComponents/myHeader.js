@@ -5,7 +5,7 @@ export default {
     },
     template: `
         <header>
-            <p class="page_title">{{this.title}}}</p>
+            <p class="page_title">{{this.title}}</p>
         </header>
     `
 }

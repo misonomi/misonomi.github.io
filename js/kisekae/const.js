@@ -1,12 +1,11 @@
 export default {
     originalx: 1920,
     originaly: 1080,
-    timelimit: 1000,
     kirakira: {
         step: 0.01
     },
     shoji: {
-        width: 658,
+        step: 20,
     },
     dresser: {
         miko: {
@@ -30,6 +29,7 @@ export default {
             y: 300,
         },
         step: 40,
+        punirate: .5,
     },
     tablet: {
         standardy: 200,

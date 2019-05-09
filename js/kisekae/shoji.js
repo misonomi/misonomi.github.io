@@ -1,10 +1,10 @@
 import CONST from './const.js'
-const leftc = (CONST.originalx / 2) - CONST.shoji.width
-const lefto = leftc - CONST.shoji.width
-const rightc = CONST.originalx / 2
-const righto = rightc + CONST.shoji.width
+const width = 658
 
-const step = 20
+const leftc = (CONST.originalx / 2) - width
+const lefto = leftc - width
+const rightc = CONST.originalx / 2
+const righto = rightc + width
 
 export default class {
     constructor() {
@@ -19,8 +19,8 @@ export default class {
     }
     open() {
         if ((this.leftx > lefto) && (this.rightx < righto)) {
-            this.leftx -= step
-            this.rightx += step
+            this.leftx -= CONST.shoji.step
+            this.rightx += CONST.shoji.step
             return false
         } else {
             this.leftx = lefto
@@ -30,8 +30,8 @@ export default class {
     }
     close() {
         if ((this.leftx < leftc) && (this.rightx > rightc)) {
-            this.leftx += step
-            this.rightx -= step
+            this.leftx += CONST.shoji.step
+            this.rightx -= CONST.shoji.step
             return false
         } else {
             this.leftx = leftc

@@ -4,17 +4,17 @@ export default class {
     constructor() {
         this.image = new Image(); this.image.src = './images/kisekae/inst.png'
         this.y = 0
-        this.up = true
+        this.down = true
     }
     proc() {
-        if (this.up) {
+        if (this.down) {
             if (this.y > CONST.inst.deflectiony) {
-                this.up = false
+                this.down = false
             }
             this.y += CONST.inst.step
         } else {
             if (this.y < -1 * CONST.inst.deflectiony) {
-                this.up = true
+                this.down = true
             }
             this.y -= CONST.inst.step
         }
