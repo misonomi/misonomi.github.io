@@ -3,8 +3,6 @@ import CONST from './const.js'
 export default class {
     constructor() {
         this.image = new Image(); this.image.src = './images/kisekae/clicktostart.png'
-        this.x = (CONST.originalx - this.image.width) / 2
-        this.y = CONST.cts.y
         this.alpha = 1
         this.down = true
     }
@@ -27,7 +25,7 @@ export default class {
     }
     draw(ctx) {
         ctx.globalAlpha = this.alpha
-        ctx.drawImage(this.image, this.x, this.y)
+        ctx.drawImage(this.image, (CONST.originalx - this.image.width) / 2, CONST.cts.y)
         ctx.globalAlpha = 1
     }
 }

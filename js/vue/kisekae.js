@@ -18,7 +18,7 @@ export default {
     mounted() {
             /////////////////// instantiate classes and so on
 
-            const ready = new Promise((resolve,reject) => {
+            let ready = new Promise((resolve, _) => {
     
                 this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
                 this.command = new Command()
@@ -31,9 +31,14 @@ export default {
                 /////////////////// initialize buffered canvas
         
                 this.canvas = document.createElement('canvas')
+                this.ctx = this.canvas.getContext('2d')
+
+                resolve('ready')
+            })
+            ready.then(() => {
+
                 this.canvas.width = CONST.originalx
                 this.canvas.height = CONST.originaly
-                this.ctx = this.canvas.getContext('2d')
                 this.ctx.font = "40px 'MS P明朝'"
                 this.ctx.fillStyle = '#ffffff'
                 this.ctx.textAlign = 'center'
@@ -43,16 +48,13 @@ export default {
                 this.display_canvas.addEventListener('click', this.onClick, false)
                 this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
 
-                resolve('ready')
-
-            })
-            
-            ready.then(
+            }).then(() => {
                 
                 /////////////////// main loop
         
                 setInterval(this.frame, 10)
-            )
+
+            })
     },
     methods: {
         frame() {

@@ -3,8 +3,6 @@ import CONST from './const.js'
 export default class {
     constructor() {
         this.image = new Image(); this.image.src = './images/kisekae/fukidashi.png'
-        this.x = (CONST.originalx - this.image.width) / 2
-        this.y = CONST.fukidashi.y
         this.line = []
         this.lineptr = 0
         this.char = 0.0
@@ -24,7 +22,7 @@ export default class {
             this.char++
         } else { return }
 
-        if (this.char < this.line[lineptr].length) {
+        if (this.char < this.line[this.lineptr].length) {
             audio.play('mi')
         } else {
             this.lineptr++
@@ -32,12 +30,14 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x, this.y)
+        ctx.drawImage(this.image, (CONST.originalx - this.image.width) / 2, CONST.fukidashi.y)
         for (let i = 0; i < this.line.length - 1; i++) {
             if (i == this.lineptr) {
-                ctx.fillText(this.line[i].substr(0, this.char), CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
+                ctx.fillText(this.line[i].substr(0, this.char), 
+                    CONST.originalx / 2, CONST.fukidashi.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
             } else if (i < this.lineptr) {
-                ctx.fillText(this.line[i], CONST.originalx / 2, this.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
+                ctx.fillText(this.line[i], 
+                    CONST.originalx / 2, CONST.fukidashi.y + CONST.fukidashi.margin + (i * CONST.fukidashi.height))
             }
         }
     }

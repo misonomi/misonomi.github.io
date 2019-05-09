@@ -181,6 +181,7 @@ export default class {
 
     proc_ready() {
         this.fukidashi.escapement(this.audio)
+        this.clicktostart.proc()
     }
 
     ///////

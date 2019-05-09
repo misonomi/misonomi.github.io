@@ -58,12 +58,13 @@ export default {
     cts: {
         y: 400,
         alpha_min: 0.3,
-        alpha_step: 0.05,
+        alpha_step: 0.005,
     },
     fukidashi: {
         y: 680,
         margin: 150,
         intervalt: 12,
+        height: 40,
     },
     casko: {
         x: 0,

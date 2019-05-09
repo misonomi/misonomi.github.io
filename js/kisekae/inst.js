@@ -7,7 +7,7 @@ export default class {
         this.up = true
     }
     proc() {
-        if (up) {
+        if (this.up) {
             if (this.y > CONST.inst.deflectiony) {
                 this.up = false
             }
