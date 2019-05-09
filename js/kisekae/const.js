@@ -61,10 +61,20 @@ export default {
         alpha_step: 0.005,
     },
     fukidashi: {
+        width: 1600,
+        height: 200,
         y: 680,
-        margin: 150,
+        margin: 50,
         intervalt: 12,
-        height: 40,
+        textheight: 40,
+        bubble: {
+            xmin: 1000,
+            step: 2,
+            interval_average: 20,
+            interval_variance: 2,
+            radius_min: 2,
+            radius_variance: 8,
+        }
     },
     casko: {
         x: 0,
