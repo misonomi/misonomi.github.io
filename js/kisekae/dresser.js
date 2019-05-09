@@ -27,7 +27,7 @@ export default class {
     ready() {
         if (this.stat == stat.clicked) { 
             this.w = 0
-            this.stat = disabled
+            this.stat = stat.disabled
             this.image.src = './images/kisekae/dresser/' + this.dress + '_disabled.png'
         }
         if (this.w < this.image.width) {
@@ -53,7 +53,7 @@ export default class {
         const tab = this.image.width - this.w
         ctx.drawImage(this.image, 0, 0, Math.max(this.w, 1), this.image.height, 
         //avoid draw area width to be 0      ^^^
-            this.x + tab - (this.image.height * this.xscale / 2), this.y - (CONST.dresser.punirate * tab / 2), 
+            this.x + tab, this.y - (CONST.dresser.punirate * tab / 2), 
             Math.max(this.image.width - tab, 1), this.image.height + (CONST.dresser.punirate * tab))
     }
 }

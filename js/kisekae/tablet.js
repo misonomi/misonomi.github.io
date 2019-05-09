@@ -5,8 +5,10 @@ export default class {
         this.image = new Image(); this.image.src = './images/kisekae/tablet.png'
         this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
+        this.randx = 0
+        this.randy = 0
         this.ap = CONST.tablet.ap
-        this.interval = CONST.tablet.intervalt
+        this.interval = 0
     }
     clicked(x, y) {
         if ((this.interval <= 0) && (this.x <= x && x <= this.x + this.image.width) && (this.y <= y && y <= this.y + this.image.height)) {

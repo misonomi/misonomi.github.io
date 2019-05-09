@@ -125,7 +125,7 @@ export default class {
             break
 
             case null:
-            update_word()
+            this.update_word()
 
             default:
             console.log('unexpected stat:')
@@ -172,7 +172,7 @@ export default class {
             break
             
             case null:
-            update_word()
+            this.update_word()
             break
 
             default:

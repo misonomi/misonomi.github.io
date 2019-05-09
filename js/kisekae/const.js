@@ -28,8 +28,8 @@ export default {
             x: 1150,
             y: 300,
         },
-        step: 40,
-        punirate: .5,
+        step: 20,
+        punirate: .1,
     },
     tablet: {
         standardy: 200,
