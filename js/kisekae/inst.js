@@ -20,6 +20,6 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, 0, 0, (CONST.originalx / 2) - CONST.inst.marginx, CONST.inst.y + this.y)
+        ctx.drawImage(this.image, (CONST.originalx / 2) - CONST.inst.marginx, CONST.inst.y + this.y, this.image.width, this.image.height)
     }
 }

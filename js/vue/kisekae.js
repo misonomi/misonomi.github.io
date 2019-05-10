@@ -15,46 +15,36 @@ export default {
             command: null,
         }
     },
-    mounted() {
+    async mounted() {
             /////////////////// instantiate classes and so on
 
-            let ready = new Promise((resolve, _) => {
+            this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
+            this.command = await new Command()
+
+            /////////////////// initialize canvas
     
-                this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
-                this.command = new Command()
+            this.display_canvas = document.getElementById('kisekae')
+            this.display_ctx = this.display_canvas.getContext('2d')
+    
+            /////////////////// initialize buffered canvas
+    
+            this.canvas = document.createElement('canvas')
+            this.ctx = this.canvas.getContext('2d')
 
-                /////////////////// initialize canvas
-        
-                this.display_canvas = document.getElementById('kisekae')
-                this.display_ctx = this.display_canvas.getContext('2d')
-        
-                /////////////////// initialize buffered canvas
-        
-                this.canvas = document.createElement('canvas')
-                this.ctx = this.canvas.getContext('2d')
-
-                resolve('ready')
-            })
-            ready.then(() => {
-
-                this.canvas.width = CONST.originalx
-                this.canvas.height = CONST.originaly
-                this.ctx.font = "40px 'MS P明朝'"
-                this.ctx.fillStyle = '#ffffff'
-                this.ctx.textAlign = 'center'
-        
-                /////////////////// add event listener
-        
-                this.display_canvas.addEventListener('click', this.onClick, false)
-                this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
-
-            }).then(() => {
-                
-                /////////////////// main loop
-        
-                setInterval(this.frame, 10)
-
-            })
+            this.canvas.width = CONST.originalx
+            this.canvas.height = CONST.originaly
+            this.ctx.font = "40px 'MS P明朝'"
+            this.ctx.fillStyle = '#ffffff'
+            this.ctx.textAlign = 'center'
+    
+            /////////////////// add event listener
+    
+            this.display_canvas.addEventListener('click', this.onClick, false)
+            this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
+            
+            /////////////////// main loop
+    
+            setInterval(this.frame, 10)
     },
     methods: {
         frame() {

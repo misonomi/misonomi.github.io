@@ -20,34 +20,38 @@ let next_dress = DRESS.blue
 
 export default class {
     constructor() {
-        this.audio = new AudioManager()
+        return (async () => {
+            this.audio = new AudioManager()
+    
+            this.casko = new Casko()
+    
+            this.shoji = new Shoji()
+            this.clicktostart = new CTS()
+            this.logo = new Logo()
+            this.fukidashi = new Fukidashi()
+    
+            this.dresser_miko = new Dresser(DRESS.miko)
+            this.dresser_maid = new Dresser(DRESS.maid)
+            this.dresser_mizugi = new Dresser(DRESS.mizugi)
+            this.dresser_gymsuit = new Dresser(DRESS.gymsuit)
+            this.dresser_sarashi = new Dresser(DRESS.sarashi)
+    
+            this.tablet = []
+            for (let i = stage - 1; i >= 0; i--) {
+                this.tablet.push(new Tablet(i))
+            }
+            this.shock = new Shock()
+            this.inst = new Inst()
+            this.timer = new Timer()
+    
+            this.words = new Words()
+    
+            this.kirakira = new Kirakira()
+    
+            this.readyinit()
 
-        this.casko = new Casko()
-
-        this.shoji = new Shoji()
-        this.clicktostart = new CTS()
-        this.logo = new Logo()
-        this.fukidashi = new Fukidashi()
-
-        this.dresser_miko = new Dresser(DRESS.miko)
-        this.dresser_maid = new Dresser(DRESS.maid)
-        this.dresser_mizugi = new Dresser(DRESS.mizugi)
-        this.dresser_gymsuit = new Dresser(DRESS.gymsuit)
-        this.dresser_sarashi = new Dresser(DRESS.sarashi)
-
-        this.tablet = []
-        for (let i = stage - 1; i >= 0; i--) {
-            this.tablet.push(new Tablet(i))
-        }
-        this.shock = new Shock()
-        this.inst = new Inst()
-        this.timer = new Timer()
-
-        this.words = new Words()
-
-        this.kirakira = new Kirakira()
-
-        this.readyinit()
+            return this
+        })
     }
     get_stat() {
         return stat

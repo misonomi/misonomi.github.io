@@ -17,7 +17,6 @@ export default class {
     proc() {
     }
     draw(ctx) {
-        ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height,
-            this.x - this.image.width / 2, this.y - this.image.height / 2, this.x + this.image.width / 2, this.y + this.image.height / 2)
+        ctx.drawImage(this.image, this.x - this.image.width / 2, this.y - this.image.height / 2, this.x + this.image.width / 2, this.y + this.image.height / 2)
     }
 }

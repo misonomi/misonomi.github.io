@@ -2,21 +2,15 @@ import CONST from './const.js'
 
 export default class {
     constructor() {
-        let ready = new Promise((resolve, _) => {
-            this.image = new Image(); this.image.src = './images/kisekae/fukidashi.png'
-            this.canvas = document.createElement('canvas')
-            this.ctx = this.canvas.getContext('2d')
+        this.canvas = document.createElement('canvas')
+        this.ctx = this.canvas.getContext('2d')
 
-            this.bubbles = []
+        this.bubbles = []
 
-            resolve()
-        })
-        ready.then(() => {
-            this.canvas.width = CONST.fukidashi.width
-            this.canvas.height = CONST.fukidashi.height
+        this.canvas.width = CONST.fukidashi.width
+        this.canvas.height = CONST.fukidashi.height
 
-            this.set('')
-        })
+        this.set('')
     }
     set(text) {
         this.line = text.split('\n')
@@ -26,6 +20,17 @@ export default class {
     }
     proc(audio) {
         this.escapement(audio)
+
+        for (let i = bubbles.length - 1; i >= 0; i--) {
+            if (bubbles[i].is_bursted()) {
+                bubbles.splice(i, 1)
+            }
+            bubbles[i].proc()
+        }
+
+        if (Math.random() < CONST.fukidashi.bubble.generate_rate) {
+            this.bubbles.push(new Bubble())
+        }
 
     }
     escapement(audio) {
@@ -45,7 +50,7 @@ export default class {
     }
     draw(ctx) {
         this.make_fukidashi()
-        ctx.drawImage(this.image, (CONST.originalx - this.image.width) / 2, CONST.fukidashi.y)
+        ctx.drawImage(this.canvas, (CONST.originalx - this.canvas.width) / 2, CONST.fukidashi.y)
         for (let i = 0; i < this.line.length; i++) {
             if (i == this.lineptr) {
                 ctx.fillText(this.line[i].substr(0, this.char), 
@@ -61,6 +66,15 @@ export default class {
 
         this.ctx.fillStyle = 'rgb(0, 0, 0,)'
         for (const b in this.bubbles) {
+            const r = b.getr()
+            ctx.save()
+
+            ctx.translate(b.getx(), b.gety())
+            ctx.rotate(Math.PI / 4)
+            
+            this.ctx.fillRect(-1*r, -1*r, 2*r, 2*r)
+            
+            ctx.restore()
         }
 
         let gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height)
@@ -85,4 +99,10 @@ class Bubble {
     proc() {
         this.y -= CONST.fukidashi.bubble.step
     }
+    is_bursted() {
+        this.y + this.radius < 0
+    }
+    getr() { return this.radius }
+    getx() { return this.x }
+    gety() { return this.y }
 }

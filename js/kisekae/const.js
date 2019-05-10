@@ -70,6 +70,7 @@ export default {
         bubble: {
             xmin: 1000,
             step: 2,
+            generate_rate: .1,
             interval_average: 20,
             interval_variance: 2,
             radius_min: 2,
