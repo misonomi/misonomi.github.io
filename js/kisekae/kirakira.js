@@ -9,7 +9,7 @@ export default class {
         this.alpha = 1
     }
     fadeout() {
-        if (this.alpha > 0) {
+        if (this.alpha > CONST.kirakira.threshold) {
             this.alpha -= CONST.kirakira.step
             return false
         } else {
@@ -18,8 +18,9 @@ export default class {
         }
     }
     draw(ctx) {
+        ctx.save()
         ctx.globalAlpha = this.alpha
         ctx.drawImage(this.image, 0, 0)
-        ctx.globalAlpha = 1
+        ctx.restore()
     }
 }

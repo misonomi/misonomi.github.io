@@ -2,7 +2,8 @@ export default {
     originalx: 1920,
     originaly: 1080,
     kirakira: {
-        step: 0.01
+        step: .01,
+        threshold: .3
     },
     shoji: {
         step: 20,
@@ -28,7 +29,7 @@ export default {
             x: 1150,
             y: 300,
         },
-        step: 20,
+        step: .2,
         punirate: .1,
     },
     tablet: {
@@ -43,8 +44,8 @@ export default {
     inst: {
         marginx: 200,
         y: 200, // dependent to tablet.standardy
-        step: 1,
-        deflectiony: 30,
+        v0: 1.0,
+        k: .002,
     },
     timer: {
         x: 200,
@@ -56,9 +57,9 @@ export default {
         y: 100,
     },
     cts: {
-        y: 400,
-        alpha_min: 0.3,
-        alpha_step: 0.005,
+        y: 700,
+        alpha_min: .3,
+        alpha_step: .005,
     },
     fukidashi: {
         width: 1600,
@@ -68,11 +69,9 @@ export default {
         intervalt: 12,
         textheight: 60,
         bubble: {
-            xmin: 400,
+            xmin: 0,
             step: 1,
-            generate_rate: .1,
-            interval_average: 20,
-            interval_variance: 2,
+            generate_rate: .15,
             radius_min: 2,
             radius_variance: 30,
         }

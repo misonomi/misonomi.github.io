@@ -26,7 +26,6 @@ export default class {
         }
 
         if (this.bubbles.length > 0 && this.bubbles[0].is_bursted()) {
-            console.log('bursted _' + this.bubbles.length)
             this.bubbles.shift()
         }
 
@@ -51,10 +50,16 @@ export default class {
         }
     }
     draw(ctx) {
-        console.log(this.bubbles.length)
 
         this.make_fukidashi()
         ctx.drawImage(this.canvas, (CONST.originalx - this.canvas.width) / 2, CONST.fukidashi.y)
+
+        ctx.save()
+        ctx.fillStyle = 'rgb(255, 255, 255)'
+        ctx.shadowColor = 'rgb(255, 255, 255)'
+        ctx.shadowBlur = 5
+        ctx.font = "bold 40px Noto Sans JP"
+        ctx.textAlign = 'center'
         for (let i = 0; i < this.line.length; i++) {
             if (i == this.lineptr) {
                 ctx.fillText(this.line[i].substr(0, this.char), 
@@ -64,6 +69,7 @@ export default class {
                     CONST.originalx / 2, CONST.fukidashi.y + CONST.fukidashi.margin + (i * CONST.fukidashi.textheight))
             }
         }
+        ctx.restore()
     }
     make_fukidashi() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)

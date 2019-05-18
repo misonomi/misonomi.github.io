@@ -90,7 +90,7 @@ export default class {
         this.set_word('ready')
     }
     talkinit(seq) {
-        stat = STAT.talk
+        stat = STAT.pre_talk
         this.set_word(seq)
     }
     selectinit() {
@@ -282,7 +282,7 @@ export default class {
         stat = STAT.cg
     }
     proc_cg() {
-        this.fukidashi.escapement(this.audio)
+        this.fukidashi.proc(this.audio)
     }
     proc_post_cg() {
         if (!this.shoji.close()) { return }
@@ -294,8 +294,8 @@ export default class {
 
     draw_ready(ctx) {
         this.casko.draw(ctx)
-        this.shoji.draw(ctx)
         this.fukidashi.draw(ctx)
+        this.shoji.draw(ctx)
         this.logo.draw(ctx)
         this.clicktostart.draw(ctx)
     }
@@ -304,16 +304,16 @@ export default class {
 
     draw_talk(ctx) {
         this.casko.draw(ctx)
-        this.shoji.draw(ctx)
         this.fukidashi.draw(ctx)
+        this.shoji.draw(ctx)
     }
 
     ///////
 
     draw_select(ctx) {
         this.casko.draw(ctx)
-        this.shoji.draw(ctx)
         this.fukidashi.draw(ctx)
+        this.shoji.draw(ctx)
         this.dresser_miko.draw(ctx)
         this.dresser_maid.draw(ctx)
         this.dresser_mizugi.draw(ctx)
@@ -355,8 +355,9 @@ export default class {
         this.shoji.draw(ctx)
     }
     draw_cg(ctx) {
-        this.draw_cg_min(ctx)
+        this.cg.draw(ctx)
         this.fukidashi.draw(ctx)
+        this.shoji.draw(ctx)
     }
 
     ///////

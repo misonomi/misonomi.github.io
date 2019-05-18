@@ -33,9 +33,6 @@ export default {
 
             this.canvas.width = CONST.originalx
             this.canvas.height = CONST.originaly
-            this.ctx.font = "40px 'MS P明朝'"
-            this.ctx.fillStyle = '#ffffff'
-            this.ctx.textAlign = 'center'
     
             /////////////////// add event listener
     

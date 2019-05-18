@@ -4,22 +4,13 @@ export default class {
     constructor() {
         this.image = new Image(); this.image.src = './images/kisekae/inst.png'
         this.y = 0
-        this.down = true
+        this.spd = CONST.inst.v0
     }
     proc() {
-        if (this.down) {
-            if (this.y > CONST.inst.deflectiony) {
-                this.down = false
-            }
-            this.y += CONST.inst.step
-        } else {
-            if (this.y < -1 * CONST.inst.deflectiony) {
-                this.down = true
-            }
-            this.y -= CONST.inst.step
-        }
+        this.y += this.spd
+        this.spd -= CONST.inst.k * this.y
     }
     draw(ctx) {
-        ctx.drawImage(this.image, (CONST.originalx / 2) - CONST.inst.marginx, CONST.inst.y + this.y, this.image.width, this.image.height)
+        ctx.drawImage(this.image, (CONST.originalx / 2) + CONST.inst.marginx, CONST.inst.y + this.y, this.image.width, this.image.height)
     }
 }

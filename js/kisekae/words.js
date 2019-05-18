@@ -309,15 +309,19 @@ const words = {
     outro: {
         lines: [
             {
-                word: 'aaaa',
+                word: '遊んでくれてありがとうございました，ご主人様',
                 emote: 'normal',
-            }, 
+            },
             {
-                word: 'aaaa',
+                word: '願わくばこれからもずっと...',
                 emote: 'normal',
-            }, 
+            },
+            {
+                word: 'ずっと，忘れないでくださいね\n私の，たった一人のご主人様',
+                emote: 'normal',
+            },
         ],
-        next: STAT.init,
+        next: STAT.ready,
     },
 }
 

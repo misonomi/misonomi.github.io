@@ -13,7 +13,7 @@ export default class {
         this.dress = DRESS[dress]
         this.x = CONST.dresser[dress].x
         this.y = CONST.dresser[dress].y
-        this.w = 0
+        this.poe = 0.0
         this.stat = stat.active
     }
     clicked(x, y) {
@@ -26,34 +26,32 @@ export default class {
     }
     ready() {
         if (this.stat == stat.clicked) { 
-            this.w = 0
+            this.poe = 0.0
             this.stat = stat.disabled
             this.image.src = './images/kisekae/dresser/' + this.dress + '_disabled.png'
         }
-        if (this.w < this.image.width) {
-            this.w += CONST.dresser.step
+        if (this.poe < 1) {
+            this.poe += CONST.dresser.step
             return false
         } else {
-            this.w = this.image.width
+            this.poe = 1
             return true
         }
     }
     unready() {
         if (this.stat == stat.clicked) {
-            
-        } else if (this.w > 0) {
-            this.w -= CONST.dresser.step
+            // do nothing
+        } else if (this.poe > 0) {
+            this.poe -= CONST.dresser.step
             return false
         } else {
-            this.w = 0
+            this.poe = 0.0
             return true
         }
     }
     draw(ctx) {
-        const tab = this.image.width - this.w
-        ctx.drawImage(this.image, 0, 0, Math.max(this.w, 1), this.image.height, 
-        //avoid draw area width to be 0      ^^^
-            this.x + tab, this.y - (CONST.dresser.punirate * tab / 2), 
-            Math.max(this.image.width - tab, 1), this.image.height + (CONST.dresser.punirate * tab))
+        ctx.drawImage(this.image, 0, 0, this.image.width, this.image.height,
+            this.x, this.y + (1 - this.poe) * this.image.height / 2,
+            this.image.width, this.image.height * this.poe)
     }
 }

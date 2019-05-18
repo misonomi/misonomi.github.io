@@ -2,7 +2,6 @@ import CONST from './const.js'
 
 export default class {
     constructor() {
-        this.image = new Image(); this.image.src = './images/kisekae/clicktostart.png'
         this.alpha = 1
         this.down = true
     }
@@ -24,8 +23,13 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.globalAlpha = this.alpha
-        ctx.drawImage(this.image, (CONST.originalx - this.image.width) / 2, CONST.cts.y)
-        ctx.globalAlpha = 1
+        ctx.save()
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + this.alpha + ')'
+        ctx.shadowColor = 'rgb(255, 255, 255)'
+        ctx.shadowBlur = 50
+        ctx.font = "bold 100px Times"
+        ctx.textAlign = 'center'
+        ctx.fillText('Click to start', CONST.originalx / 2, CONST.cts.y)
+        ctx.restore()
     }
 }
