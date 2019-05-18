@@ -21,15 +21,17 @@ export default class {
     proc(audio) {
         this.escapement(audio)
 
-        for (let i = bubbles.length - 1; i >= 0; i--) {
-            if (bubbles[i].is_bursted()) {
-                bubbles.splice(i, 1)
-            }
-            bubbles[i].proc()
+        for (let i = this.bubbles.length - 1; i >= 0; i--) {
+            this.bubbles[i].proc()
+        }
+
+        if (this.bubbles.length > 0 && this.bubbles[0].is_bursted()) {
+            console.log('bursted _' + this.bubbles.length)
+            this.bubbles.shift()
         }
 
         if (Math.random() < CONST.fukidashi.bubble.generate_rate) {
-            this.bubbles.push(new Bubble())
+            this.bubbles.push(new Bubble(this.canvas.width, this.canvas.height))
         }
 
     }
@@ -49,6 +51,8 @@ export default class {
         }
     }
     draw(ctx) {
+        console.log(this.bubbles.length)
+
         this.make_fukidashi()
         ctx.drawImage(this.canvas, (CONST.originalx - this.canvas.width) / 2, CONST.fukidashi.y)
         for (let i = 0; i < this.line.length; i++) {
@@ -64,45 +68,43 @@ export default class {
     make_fukidashi() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.ctx.fillStyle = 'rgb(0, 0, 0,)'
-        for (const b in this.bubbles) {
-            const r = b.getr()
-            ctx.save()
+        this.ctx.fillStyle = 'rgb(0, 0, 0)'
+        for (let i = 0; i < this.bubbles.length; i++) {
+            const r = this.bubbles[i].radius
+            this.ctx.save()
 
-            ctx.translate(b.getx(), b.gety())
-            ctx.rotate(Math.PI / 4)
+            this.ctx.translate(this.bubbles[i].x, this.bubbles[i].y)
+            this.ctx.rotate(Math.PI / 4)
             
             this.ctx.fillRect(-1*r, -1*r, 2*r, 2*r)
             
-            ctx.restore()
+            this.ctx.restore()
         }
 
         let gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height)
-        gradient.addColorStop(0, 'rgba(0, 0, 0, 0)')
-        gradient.addColorStop(1, 'rgba(0, 0, 0, 1)')
-        this.ctx.globalCompositeOperation = 'destination-in';
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0.3)')
+        gradient.addColorStop(1, 'rgba(0, 0, 0, .7)')
+        this.ctx.globalCompositeOperation = 'xor';
         this.ctx.fillStyle = gradient
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
         this.ctx.globalCompositeOperation = 'xor';
-        this.ctx.fillStyle = 'rgba(2, 4, 16, 90)'
+        this.ctx.fillStyle = 'rgba(2, 20, 30, 90)'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
+        
     }
 }
 
 class Bubble {
-    constructor() {
+    constructor(width, height) {
         this.radius = CONST.fukidashi.bubble.radius_min + Math.random() * CONST.fukidashi.bubble.radius_variance
-        this.x = CONST.fukidashi.bubble.xmin + Math.random() * (this.canvas.width - CONST.fukidashi.bubble.xmin)
-        this.y = this.radius + this.canvas.height
+        this.x = CONST.fukidashi.bubble.xmin + Math.random() * (width - CONST.fukidashi.bubble.xmin)
+        this.y = this.radius + height
     }
     proc() {
         this.y -= CONST.fukidashi.bubble.step
     }
     is_bursted() {
-        this.y + this.radius < 0
+        return this.y + this.radius < 0
     }
-    getr() { return this.radius }
-    getx() { return this.x }
-    gety() { return this.y }
 }

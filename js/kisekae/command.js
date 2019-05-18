@@ -14,13 +14,15 @@ import Words from './words.js'
 import Kirakira from './kirakira.js'
 import AudioManager from './audio.js'
 
-let stage = 3
+let stage_normal = 3
+let stage_hard = 4
 let stat = STAT.ready
 let next_dress = DRESS.blue
 
 export default class {
     constructor() {
         return (async () => {
+
             this.audio = new AudioManager()
     
             this.casko = new Casko()
@@ -37,9 +39,6 @@ export default class {
             this.dresser_sarashi = new Dresser(DRESS.sarashi)
     
             this.tablet = []
-            for (let i = stage - 1; i >= 0; i--) {
-                this.tablet.push(new Tablet(i))
-            }
             this.shock = new Shock()
             this.inst = new Inst()
             this.timer = new Timer()
@@ -47,9 +46,9 @@ export default class {
             this.words = new Words()
     
             this.kirakira = new Kirakira()
-    
+            
             this.readyinit()
-
+    
             return this
         })()
     }
@@ -96,7 +95,7 @@ export default class {
     }
     selectinit() {
         stat = STAT.pre_select
-        this.set_word('select')
+        this.set_word('select' + (stage_hard - this.stage))
     }
     gameinit() {
         this.timer.init()
@@ -112,6 +111,12 @@ export default class {
 /////////////////// click methods
 
     click_ready() {
+        this.stage = stage_normal
+        
+        for (let i = this.stage - 1; i >= 0; i--) {
+            this.tablet.push(new Tablet(i))
+        }
+
         this.talkinit('intro')
     }
     click_talk() {
@@ -192,7 +197,7 @@ export default class {
 /////////////////// proc methods
 
     proc_ready() {
-        this.fukidashi.escapement(this.audio)
+        this.fukidashi.proc(this.audio)
         this.clicktostart.proc()
     }
 
@@ -204,13 +209,13 @@ export default class {
         stat = STAT.talk
     }
     proc_talk() {
-        this.fukidashi.escapement(this.audio)
+        this.fukidashi.proc(this.audio)
     }
 
     ///////
 
     proc_pre_select() {
-        if (stage <= 0) {
+        if (this.stage <= 0) {
             this.talkinit('outro')
             return
         }
@@ -221,7 +226,7 @@ export default class {
         stat = STAT.select
     }
     proc_select() {
-        this.fukidashi.escapement(this.audio)
+        this.fukidashi.proc(this.audio)
     }
     proc_post_select() {
         const finish_c = this.casko.dodge_back()
@@ -249,7 +254,7 @@ export default class {
 
         if (!this.timer.tick()) { return }
 
-        stage--
+        this.stage--
         console.log('kisekae to ' + next_dress)
         this.casko.kisekae(next_dress)
         stat = STAT.post_game

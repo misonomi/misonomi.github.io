@@ -63,18 +63,18 @@ export default {
     fukidashi: {
         width: 1600,
         height: 200,
-        y: 680,
+        y: 800,
         margin: 50,
         intervalt: 12,
-        textheight: 40,
+        textheight: 60,
         bubble: {
-            xmin: 1000,
-            step: 2,
+            xmin: 400,
+            step: 1,
             generate_rate: .1,
             interval_average: 20,
             interval_variance: 2,
             radius_min: 2,
-            radius_variance: 8,
+            radius_variance: 30,
         }
     },
     casko: {
