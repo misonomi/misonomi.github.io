@@ -11,6 +11,7 @@ export default class {
     }
     kisekae(dress) {
         this.dress = dress
+        this.image.src = './images/kisekae/casko/' + this.dress + '_' + FACE.normal + '.png'
     }
     update(face) {
         if ((typeof face != 'undefined') && (this.face != face)) {

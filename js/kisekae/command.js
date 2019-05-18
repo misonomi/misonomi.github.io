@@ -51,7 +51,7 @@ export default class {
             this.readyinit()
 
             return this
-        })
+        })()
     }
     get_stat() {
         return stat
@@ -130,6 +130,7 @@ export default class {
 
             case null:
             this.update_word()
+            break
 
             default:
             console.log('unexpected stat:')
@@ -173,6 +174,10 @@ export default class {
         switch (this.words.next()) {
             case STAT.talk:
             stat = STAT.post_cg
+            break
+
+            case STAT.ready:
+            this.readyinit()
             break
             
             case null:
@@ -237,12 +242,15 @@ export default class {
         this.inst.proc()
     }
     proc_game() {
-        this.tablet[this.tablet.length - 1].proc()
+        if (this.tablet.length > 0) {
+            this.tablet[this.tablet.length - 1].proc()
+        }
         this.shock.proc()
 
         if (!this.timer.tick()) { return }
 
         stage--
+        console.log('kisekae to ' + next_dress)
         this.casko.kisekae(next_dress)
         stat = STAT.post_game
     }
@@ -324,6 +332,7 @@ export default class {
             t.draw(ctx)
         }
         this.timer.draw(ctx)
+        this.shock.draw(ctx)
     }
     draw_post_game(ctx) {
         if (this.tablet.length > 0) {
@@ -331,6 +340,7 @@ export default class {
         }
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
+        this.shock.draw(ctx)
     }
 
     ///////
@@ -340,7 +350,7 @@ export default class {
         this.shoji.draw(ctx)
     }
     draw_cg(ctx) {
-        draw_cg_min(ctx)
+        this.draw_cg_min(ctx)
         this.fukidashi.draw(ctx)
     }
 

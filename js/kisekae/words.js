@@ -254,7 +254,6 @@ export default class {
     init(seq) {
         this.sequence = words[seq]
         this.seqptr = 0
-        console.log('sequence: '+ this.sequence)
     }
     text() {
         if (this.seqptr < this.sequence.lines.length) {
@@ -272,7 +271,6 @@ export default class {
     }
     next() {
         this.seqptr++
-        console.log('seqptr: '+ this.seqptr)
         if (this.seqptr >= this.sequence.lines.length) {
             return this.sequence.next
         } else {
