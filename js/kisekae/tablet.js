@@ -11,6 +11,11 @@ export default class {
         
         this.x = (CONST.originalx - this.image.width) / 2 // FIXME do last to wait image.width loaded
     }
+    calm() {
+        this.interval = 0
+        this.randx = 0
+        this.randy = 0
+    }
     clicked(x, y) {
         if ((this.interval <= 0) && 
                 (this.x <= x && x <= this.x + this.image.width) && 

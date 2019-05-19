@@ -73,6 +73,7 @@ export default class {
     }
     make_fukidashi() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+        this.ctx.globalCompositeOperation = 'xor'
 
         this.ctx.fillStyle = 'rgb(0, 0, 0)'
         for (let i = 0; i < this.bubbles.length; i++) {
@@ -90,11 +91,9 @@ export default class {
         let gradient = this.ctx.createLinearGradient(0, 0, 0, this.canvas.height)
         gradient.addColorStop(0, 'rgba(0, 0, 0, 0.3)')
         gradient.addColorStop(1, 'rgba(0, 0, 0, .7)')
-        this.ctx.globalCompositeOperation = 'xor';
         this.ctx.fillStyle = gradient
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.ctx.globalCompositeOperation = 'xor';
         this.ctx.fillStyle = 'rgba(2, 20, 30, 90)'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         

@@ -1,4 +1,4 @@
-import { STAT, DRESS } from './stat.js'
+import { STAT, DRESS, DIFFIC } from './stat.js'
 import Shoji from './shoji.js'
 import CTS from './cts.js'
 import Logo from './logo.js'
@@ -10,12 +10,11 @@ import Inst from './inst.js'
 import Timer from './timer.js'
 import Casko from './casko.js'
 import Cg from './cg.js'
+import TFP from './tfp.js'
 import Words from './words.js'
 import Kirakira from './kirakira.js'
 import AudioManager from './audio.js'
 
-let stage_normal = 3
-let stage_hard = 4
 let stat = STAT.ready
 let next_dress = DRESS.blue
 
@@ -46,7 +45,7 @@ export default class {
             this.words = new Words()
     
             this.kirakira = new Kirakira()
-            
+
             this.readyinit()
     
             return this
@@ -95,12 +94,13 @@ export default class {
     }
     selectinit() {
         stat = STAT.pre_select
-        this.set_word('select' + (stage_hard - this.stage))
+        this.diffic = 
+        this.set_word('select' + (this.stagenum - this.stage))
     }
     gameinit() {
         this.kirakira.init()
-        this.inst.next()
         this.timer.init()
+        if (this.tablet.length > 0) { this.tablet[this.tablet.length - 1].calm() }
         stat = STAT.pre_game
     }
     cginit(name) {
@@ -108,11 +108,18 @@ export default class {
         this.set_word('ed_'+ name)
         stat = STAT.pre_cg
     }
+    edinit() {
+        this.tfp = new TFP()
+        stat = STAT.pre_ed
+    }
 
 /////////////////// click methods
 
     click_ready() {
-        this.stage = stage_normal
+        // FIXME store difficulty data itself
+        this.stagenum = DIFFIC.normal.stagenum
+
+        this.stage = this.stagenum
         
         for (let i = this.stage - 1; i >= 0; i--) {
             this.tablet.push(new Tablet(i))
@@ -132,6 +139,10 @@ export default class {
 
             case STAT.game:
             this.gameinit()
+            break
+
+            case STAT.ed:
+            this.edinit()
             break
 
             case null:
@@ -168,6 +179,7 @@ export default class {
         if (this.tablet[this.tablet.length - 1].clicked(x, y)) {
             if (this.tablet[this.tablet.length - 1].is_broken()) {
                 this.tablet.pop()
+                this.inst.next()
                 this.timer.end()
             }
             console.log('[HIT]')
@@ -193,6 +205,9 @@ export default class {
             default:
             console.log('unexpected stat:')
         }
+    }
+    click_ed() {
+        stat = STAT.ready
     }
 
 /////////////////// proc methods
@@ -293,6 +308,17 @@ export default class {
         this.talkinit('outro')
     }
 
+    ///////
+
+    proc_pre_ed() {
+        if (!this.shoji.close()) { return }
+
+        stat = STAT.ed
+    }
+    proc_ed() {
+        this.tfp.proc()
+    }
+
 /////////////////// draw methods
 
     draw_ready(ctx) {
@@ -362,6 +388,17 @@ export default class {
         this.cg.draw(ctx)
         this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
+    }
+
+    ///////
+
+    draw_pre_ed(ctx) {
+        this.casko.draw(ctx)
+        this.shoji.draw(ctx)
+    }
+    draw_ed(ctx) {
+        this.shoji.draw(ctx)
+        this.tfp.draw(ctx)
     }
 
     ///////

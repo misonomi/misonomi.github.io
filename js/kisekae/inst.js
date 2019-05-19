@@ -3,7 +3,7 @@ import CONST from './const.js'
 export default class {
     constructor() {
         this.image = new Image(); this.image.src = './images/kisekae/inst.png'
-        this.basey = CONST.tablet.standardy - CONST.tablet.intervaly
+        this.basey = CONST.tablet.standardy
         this.y = 0
         this.spd = CONST.inst.v0
     }

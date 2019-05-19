@@ -321,7 +321,7 @@ const words = {
                 emote: 'normal',
             },
         ],
-        next: STAT.ready,
+        next: STAT.ed,
     },
 }
 

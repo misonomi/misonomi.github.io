@@ -2,8 +2,11 @@ export default {
     originalx: 1920,
     originaly: 1080,
     kirakira: {
-        step: .01,
-        threshold: .3
+        step: .02,
+        brightness: 50,
+        v0: .1,
+        rmin: 2,
+        rvariance: 100,
     },
     shoji: {
         step: 20,
@@ -37,7 +40,7 @@ export default {
         intervaly: 200,
         width: 30,
         height: 30,
-        ap: 10000,
+        ap: 1,
         intervalt: 30,
         agility: 30,
     },

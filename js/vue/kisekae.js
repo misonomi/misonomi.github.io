@@ -110,6 +110,18 @@ export default {
                 case STAT.post_cg:
                 this.command.proc_post_cg(); this.command.draw_cg_min(this.ctx)
                 break
+
+                ///////
+        
+                case STAT.pre_ed:
+                this.command.proc_pre_ed(); this.command.draw_pre_ed(this.ctx)
+                break
+        
+                case STAT.ed:
+                this.command.proc_ed(); this.command.draw_ed(this.ctx)
+                break
+
+                ///////
         
                 default:
             }
@@ -155,6 +167,10 @@ export default {
 
                 case STAT.wait_game:
                 this.command.click_wait_game(x, y)
+                break
+        
+                case STAT.ed:
+                this.command = new Command()
                 break
         
                 default:
