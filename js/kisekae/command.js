@@ -98,8 +98,9 @@ export default class {
         this.set_word('select' + (stage_hard - this.stage))
     }
     gameinit() {
-        this.timer.init()
         this.kirakira.init()
+        this.inst.next()
+        this.timer.init()
         stat = STAT.pre_game
     }
     cginit(name) {
@@ -240,6 +241,8 @@ export default class {
 
     proc_pre_game() {
         if (!this.shoji.close()) { return }
+        
+        if (!this.timer.ready()) { return }
 
         stat = STAT.wait_game
     }
@@ -326,6 +329,7 @@ export default class {
     draw_pre_game(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
+        this.timer.draw(ctx)
     }
     draw_wait_game(ctx) {
         this.draw_game(ctx)

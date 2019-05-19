@@ -3,15 +3,18 @@ import CONST from './const.js'
 export default class {
     constructor(id) {
         this.image = new Image(); this.image.src = './images/kisekae/tablet.png'
-        this.x = (CONST.originalx - this.image.width) / 2
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
         this.randx = 0
         this.randy = 0
         this.ap = CONST.tablet.ap
         this.interval = 0
+        
+        this.x = (CONST.originalx - this.image.width) / 2 // FIXME do last to wait image.width loaded
     }
     clicked(x, y) {
-        if ((this.interval <= 0) && (this.x <= x && x <= this.x + this.image.width) && (this.y <= y && y <= this.y + this.image.height)) {
+        if ((this.interval <= 0) && 
+                (this.x <= x && x <= this.x + this.image.width) && 
+                (this.y <= y && y <= this.y + this.image.height)) {
             this.interval = CONST.tablet.intervalt
             this.ap--
             return true

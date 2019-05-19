@@ -27,7 +27,7 @@ export default class {
         ctx.fillStyle = 'rgba(255, 255, 255, ' + this.alpha + ')'
         ctx.shadowColor = 'rgb(255, 255, 255)'
         ctx.shadowBlur = 50
-        ctx.font = "bold 100px Times"
+        ctx.font = "100px Geo"
         ctx.textAlign = 'center'
         ctx.fillText('Click to start', CONST.originalx / 2, CONST.cts.y)
         ctx.restore()

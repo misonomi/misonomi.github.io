@@ -37,20 +37,24 @@ export default {
         intervaly: 200,
         width: 30,
         height: 30,
-        ap: 1,
+        ap: 10000,
         intervalt: 30,
         agility: 30,
     },
     inst: {
-        marginx: 200,
-        y: 200, // dependent to tablet.standardy
+        marginx: 110,
         v0: 1.0,
         k: .002,
     },
     timer: {
         x: 200,
         y: 400,
-        timelimit: 10000.0,
+        timelimit: 1000.0,
+        radius: 500,
+        linew: 10,
+        margina: .07,
+        marginb: .01 * Math.PI,
+        textmarginy: 15,
     },
     logo: {
         x: 1300,
@@ -74,6 +78,16 @@ export default {
             generate_rate: .15,
             radius_min: 2,
             radius_variance: 30,
+        }
+    },
+    shock: {
+        radius: 300,
+        step: .1,
+        splash: {
+            nmin: 10,
+            nvariance: 20,
+            rmin: 10,
+            rvariance: 50,
         }
     },
     casko: {
