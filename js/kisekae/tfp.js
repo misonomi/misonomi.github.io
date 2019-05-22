@@ -1,5 +1,20 @@
 import CONST from './const.js'
 
+const TEXT = [
+    {
+        text: 'Thank you for playing!',
+        size: '100',
+        x: CONST.originalx / 2,
+        y: CONST.tfp.y,
+    },
+    {
+        text: 'click to play again',
+        size: '40',
+        x: CONST.originalx / 2,
+        y: CONST.tfp.y + 100,
+    },
+]
+
 export default class {
     constructor() {
         this.alpha = 1
@@ -12,11 +27,14 @@ export default class {
         if (this.cptr >= TEXT[this.txtptr].text.length) {
             this.txtptr++
             this.cptr = 0
-            if (this.txtptr >= TEXT.length) { return true }
+            if (this.txtptr >= TEXT.length) {
+                this.txtptr--
+                return true 
+            }
             this.currentText.push('')
         }
-        this.currentText[this.txtptr] = TEXT[this.txtptr].text.substr(0, cptr) + '_'
-        cptr++
+        this.currentText[this.txtptr] = TEXT[this.txtptr].text.substr(0, this.cptr) + '_'
+        this.cptr += .1
 
         return false
     }
@@ -50,18 +68,3 @@ export default class {
         ctx.restore()
     }
 }
-
-const TEXT = [
-    {
-        text: 'Thank you for playing!',
-        size: '100',
-        x: CONST.originalx / 2,
-        y: CONST.tfp.y,
-    },
-    {
-        text: 'click to play again',
-        size: '40',
-        x: CONST.originalx / 2,
-        y: CONST.tfp.y + 100,
-    },
-]

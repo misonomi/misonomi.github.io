@@ -316,7 +316,7 @@ export default class {
     proc_pre_ed() {
         if (!this.shoji.close()) { return }
 
-        if (!this.TFP.setup()) { return }
+        if (!this.tfp.setup()) { return }
 
         stat = STAT.ed
     }
@@ -378,7 +378,8 @@ export default class {
         if (this.tablet.length > 0) {
             this.casko.draw(ctx)
         } else {
-            ctx.clearRect(0, 0, CONST.originalx, CONST.originaly)
+            ctx.fillStyle = 'rgb(255, 255, 255)'
+            ctx.fillRect(0, 0, CONST.originalx, CONST.originaly)
         }
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
@@ -402,6 +403,7 @@ export default class {
     draw_pre_ed(ctx) {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
+        this.tfp.draw(ctx)
     }
     draw_ed(ctx) {
         this.shoji.draw(ctx)

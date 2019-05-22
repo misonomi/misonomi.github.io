@@ -143,7 +143,7 @@ export default {
             }
         },
 
-        clicked(x, y) {
+        async clicked(x, y) {
             switch(this.command.get_stat()) {
                 case STAT.ready:
                 this.command.click_ready()
@@ -170,7 +170,7 @@ export default {
                 break
         
                 case STAT.ed:
-                this.command = new Command()
+                this.command = await new Command()
                 break
         
                 default:

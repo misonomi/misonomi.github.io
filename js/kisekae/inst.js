@@ -11,7 +11,7 @@ export default class {
         this.basey += CONST.tablet.intervaly
     }
     proc() {
-        this.y += this.spd
+        this.y += this.v
         this.v -= CONST.inst.k * this.y
     }
     draw(ctx) {
