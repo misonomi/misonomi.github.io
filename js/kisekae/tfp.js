@@ -4,18 +4,33 @@ export default class {
     constructor() {
         this.alpha = 1
         this.down = true
+        this.currentText = ['']
+        this.txtptr = 0
+        this.cptr = 0
+    }
+    setup() {
+        if (this.cptr >= TEXT[this.txtptr].text.length) {
+            this.txtptr++
+            this.cptr = 0
+            if (this.txtptr >= TEXT.length) { return true }
+            this.currentText.push('')
+        }
+        this.currentText[this.txtptr] = TEXT[this.txtptr].text.substr(0, cptr) + '_'
+        cptr++
+
+        return false
     }
     proc() {
         if(this.down) {
-            if(this.alpha > CONST.cts.alpha_min) {
-                this.alpha -= CONST.cts.alpha_step
+            if(this.alpha > CONST.tfp.alpha_min) {
+                this.alpha -= CONST.tfp.alpha_step
             } else {
-                this.alpha = CONST.cts.alpha_min
+                this.alpha = CONST.tfp.alpha_min
                 this.down = false
             }
         } else {
             if(this.alpha < 1) {
-                this.alpha += CONST.cts.alpha_step
+                this.alpha += CONST.tfp.alpha_step
             } else {
                 this.alpha = 1
                 this.down = true
@@ -25,11 +40,28 @@ export default class {
     draw(ctx) {
         ctx.save()
         ctx.fillStyle = 'rgba(255, 255, 255, ' + this.alpha + ')'
-        ctx.shadowColor = 'rgb(255, 255, 255)'
+        ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.shadowBlur = 50
-        ctx.font = "100px Geo"
         ctx.textAlign = 'center'
-        ctx.fillText('Thank you for Playing!', CONST.originalx / 2, CONST.cts.y)
+        for (let i = 0; i <= this.txtptr; i++) {
+            ctx.font = TEXT[i].size + 'px Geo'
+            ctx.fillText(this.currentText[i], TEXT[i].x, TEXT[i].y)
+        }
         ctx.restore()
     }
 }
+
+const TEXT = [
+    {
+        text: 'Thank you for playing!',
+        size: '100',
+        x: CONST.originalx / 2,
+        y: CONST.tfp.y,
+    },
+    {
+        text: 'click to play again',
+        size: '40',
+        x: CONST.originalx / 2,
+        y: CONST.tfp.y + 100,
+    },
+]

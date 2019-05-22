@@ -8,10 +8,11 @@ const righto = rightc + width
 
 export default class {
     constructor() {
-        this.left = new Image(); this.left.src = './images/kisekae/shoji.png'
-        this.right = new Image(); this.right.src = './images/kisekae/shoji.png'
-        this.outer_left = new Image(); this.outer_left.src = './images/kisekae/shoji.png'
-        this.outer_right = new Image(); this.outer_right.src = './images/kisekae/shoji.png'
+        const src = './images/kisekae/shoji.png'
+        this.left = new Image();        this.left.src = src
+        this.right = new Image();       this.right.src = src
+        this.outer_left = new Image();  this.outer_left.src = src
+        this.outer_right = new Image(); this.outer_right.src = src
         this.leftx = lefto
         this.rightx = righto
         this.outer_leftx = lefto

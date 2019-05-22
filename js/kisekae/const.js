@@ -68,6 +68,11 @@ export default {
         alpha_min: .3,
         alpha_step: .005,
     },
+    tfp: {
+        y: 700,
+        alpha_min: .3,
+        alpha_step: .005,
+    },
     fukidashi: {
         width: 1600,
         height: 200,
@@ -100,6 +105,8 @@ export default {
         dodge_step: 20,
     },
     cg: {
+        wait: 1000,
+        mistiness: 1000,
         miko: {
             pan: [
                 {

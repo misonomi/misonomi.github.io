@@ -1,3 +1,5 @@
+"use strict"
+
 import App from './vue/app.js'
 import router from './router.js'
 

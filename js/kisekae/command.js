@@ -1,4 +1,5 @@
 import { STAT, DRESS, DIFFIC } from './stat.js'
+import CONST from './const.js'
 import Shoji from './shoji.js'
 import CTS from './cts.js'
 import Logo from './logo.js'
@@ -85,17 +86,16 @@ export default class {
 /////////////////// init methods
 
     readyinit() {
-        stat = STAT.ready
         this.set_word('ready')
+        stat = STAT.ready
     }
     talkinit(seq) {
-        stat = STAT.pre_talk
         this.set_word(seq)
+        stat = STAT.pre_talk
     }
     selectinit() {
-        stat = STAT.pre_select
-        this.diffic = 
         this.set_word('select' + (this.stagenum - this.stage))
+        stat = STAT.pre_select
     }
     gameinit() {
         this.kirakira.init()
@@ -304,14 +304,19 @@ export default class {
     }
     proc_post_cg() {
         if (!this.shoji.close()) { return }
-        
-        this.talkinit('outro')
+
+        new Promise((resolve) => setTimeout(resolve, CONST.cg.wait))
+        .then(() => {
+            this.talkinit('outro')
+        })
     }
 
     ///////
 
     proc_pre_ed() {
         if (!this.shoji.close()) { return }
+
+        if (!this.TFP.setup()) { return }
 
         stat = STAT.ed
     }
@@ -372,6 +377,8 @@ export default class {
     draw_post_game(ctx) {
         if (this.tablet.length > 0) {
             this.casko.draw(ctx)
+        } else {
+            ctx.clearRect(0, 0, CONST.originalx, CONST.originaly)
         }
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
