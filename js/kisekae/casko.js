@@ -10,6 +10,7 @@ export default class {
         this.y = CONST.casko.y
     }
     kisekae(dress) {
+        console.log('kisekae to ' + next_dress)
         this.dress = dress
         this.image.src = './images/kisekae/casko/' + this.dress + '_' + FACE.normal + '.png'
     }

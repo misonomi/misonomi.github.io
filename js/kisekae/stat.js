@@ -16,7 +16,9 @@ export const STAT = {
     post_game: 23,
     post_cg: 24,
 
-    wait_game: 93,
+    wait_game: 33,
+
+    monologue_game: 43,
 }
 
 export const DRESS = {

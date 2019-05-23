@@ -18,7 +18,7 @@ export default class {
     }
     ready() {
         if (this.clock < CONST.timer.timelimit) {
-            this.clock += 20
+            this.clock += CONST.timer.timelimit / 50
             return false
         } else {
             this.clock = CONST.timer.timelimit

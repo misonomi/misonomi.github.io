@@ -34,6 +34,10 @@ export default {
         },
         step: .2,
         punirate: .1,
+        width_b: 200,
+        height_b: 200,
+        width_t: 100,
+        height_t: 100,
     },
     tablet: {
         standardy: 200,

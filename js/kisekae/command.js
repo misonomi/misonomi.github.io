@@ -9,6 +9,7 @@ import Tablet from './tablet.js'
 import Shock from './shock.js'
 import Inst from './inst.js'
 import Timer from './timer.js'
+import Conscience from './conscience.js'
 import Casko from './casko.js'
 import Cg from './cg.js'
 import TFP from './tfp.js'
@@ -42,6 +43,7 @@ export default class {
             this.shock = new Shock()
             this.inst = new Inst()
             this.timer = new Timer()
+            this.conscience = new Conscience()
     
             this.words = new Words()
     
@@ -62,6 +64,11 @@ export default class {
     update_word() {
         this.fukidashi.set(this.words.text())
         this.casko.update(this.words.emote())
+    }
+    end_game() {
+        this.stage--
+        this.casko.kisekae(next_dress)
+        stat = STAT.post_game
     }
 
     dresser_ready() {
@@ -173,6 +180,9 @@ export default class {
             stat = STAT.game
             console.log('[HIT]')
             this.shock.ignite(x, y)
+        } else if (this.conscience.clicked(x, y)) {
+            this.set_word(this.next_dress)
+            stat = STAT.monologue_game
         }
     }
     click_game(x, y) {
@@ -180,12 +190,19 @@ export default class {
             if (this.tablet[this.tablet.length - 1].is_broken()) {
                 this.tablet.pop()
                 this.inst.next()
-                this.timer.end()
+                if (this.tablet.length === 0) { this.timer.end() }
             }
             console.log('[HIT]')
             this.shock.ignite(x, y)
         } else {
             this.shock.smallignite(x, y)
+        }
+    }
+    click_mono_game() {
+        if (this.words.next() == null) {
+            this.update_word()
+        } else {
+            this.end_game()
         }
     }
     click_cg() {
@@ -205,9 +222,6 @@ export default class {
             default:
             console.log('unexpected stat:')
         }
-    }
-    click_ed() {
-        stat = STAT.ready
     }
 
 /////////////////// proc methods
@@ -272,10 +286,10 @@ export default class {
 
         if (!this.timer.tick()) { return }
 
-        this.stage--
-        console.log('kisekae to ' + next_dress)
-        this.casko.kisekae(next_dress)
-        stat = STAT.post_game
+        this.end_game()
+    }
+    proc_mono_game() {
+        this.fukidashi.proc(this.audio)
     }
     proc_post_game() {
         this.shock.proc()
@@ -305,10 +319,7 @@ export default class {
     proc_post_cg() {
         if (!this.shoji.close()) { return }
 
-        new Promise((resolve) => setTimeout(resolve, CONST.cg.wait))
-        .then(() => {
-            this.talkinit('outro')
-        })
+        this.edinit()
     }
 
     ///////
@@ -365,6 +376,7 @@ export default class {
     draw_wait_game(ctx) {
         this.draw_game(ctx)
         this.inst.draw(ctx)
+        this.conscience.draw(ctx)
     }
     draw_game(ctx) {
         this.shoji.draw(ctx)
@@ -373,6 +385,13 @@ export default class {
         }
         this.timer.draw(ctx)
         this.shock.draw(ctx)
+    }
+    draw_mono_game(ctx) {
+        this.shoji.draw(ctx)
+        for (const t of this.tablet) {
+            t.draw(ctx)
+        }
+        this.fukidashi.draw(ctx)
     }
     draw_post_game(ctx) {
         if (this.tablet.length > 0) {
