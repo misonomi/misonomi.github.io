@@ -63,6 +63,9 @@ export default {
         marginb: .01 * Math.PI,
         textmarginy: 15,
     },
+    break: {
+        height: 200,
+    },
     logo: {
         x: 1300,
         y: 100,

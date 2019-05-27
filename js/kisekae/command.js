@@ -10,6 +10,7 @@ import Shock from './shock.js'
 import Inst from './inst.js'
 import Timer from './timer.js'
 import Conscience from './conscience.js'
+import Break from './break.js'
 import Casko from './casko.js'
 import Cg from './cg.js'
 import TFP from './tfp.js'
@@ -46,8 +47,6 @@ export default class {
             this.conscience = new Conscience()
     
             this.words = new Words()
-    
-            this.kirakira = new Kirakira()
 
             this.readyinit()
     
@@ -72,22 +71,22 @@ export default class {
     }
 
     dresser_ready() {
-        const finish_mk = this.dresser_miko.ready()
-        const finish_md = this.dresser_maid.ready()
-        const finish_mz = this.dresser_mizugi.ready()
-        const finish_gs = this.dresser_gymsuit.ready()
-        const finish_sr = this.dresser_sarashi.ready()
+        const done_mk = this.dresser_miko.ready()
+        const done_md = this.dresser_maid.ready()
+        const done_mz = this.dresser_mizugi.ready()
+        const done_gs = this.dresser_gymsuit.ready()
+        const done_sr = this.dresser_sarashi.ready()
 
-        return finish_mk || finish_md || finish_mz || finish_gs || finish_sr
+        return done_mk || done_md || done_mz || done_gs || done_sr
     }
     dresser_unready() {
-        const finish_md = this.dresser_miko.unready()
-        const finish_mk = this.dresser_maid.unready()
-        const finish_mz = this.dresser_mizugi.unready()
-        const finish_gs = this.dresser_gymsuit.unready()
-        const finish_sr = this.dresser_sarashi.unready()
+        const done_md = this.dresser_miko.unready()
+        const done_mk = this.dresser_maid.unready()
+        const done_mz = this.dresser_mizugi.unready()
+        const done_gs = this.dresser_gymsuit.unready()
+        const done_sr = this.dresser_sarashi.unready()
 
-        return finish_mk || finish_md || finish_mz || finish_gs || finish_sr
+        return done_mk || done_md || done_mz || done_gs || done_sr
     }
 
 /////////////////// init methods
@@ -105,7 +104,9 @@ export default class {
         stat = STAT.pre_select
     }
     gameinit() {
-        this.kirakira.init()
+        this.break = new Break()
+        this.kirakira = new Kirakira()
+
         this.timer.init()
         if (this.tablet.length > 0) { this.tablet[this.tablet.length - 1].calm() }
         stat = STAT.pre_game
@@ -190,7 +191,11 @@ export default class {
             if (this.tablet[this.tablet.length - 1].is_broken()) {
                 this.tablet.pop()
                 this.inst.next()
-                if (this.tablet.length === 0) { this.timer.end() }
+                if (this.tablet.length === 0) { 
+                    this.timer.end()
+                } else {
+                    stat = STAT.break_game
+                }
             }
             console.log('[HIT]')
             this.shock.ignite(x, y)
@@ -249,9 +254,9 @@ export default class {
             this.talkinit('outro')
             return
         }
-        const finish_c = this.casko.dodge()
-        const finish_d = this.dresser_ready()
-        if (!(finish_c && finish_d)) { return }
+        const done_c = this.casko.dodge()
+        const done_d = this.dresser_ready()
+        if (!(done_c && done_d)) { return }
         
         stat = STAT.select
     }
@@ -259,9 +264,9 @@ export default class {
         this.fukidashi.proc(this.audio)
     }
     proc_post_select() {
-        const finish_c = this.casko.dodge_back()
-        const finish_d = this.dresser_unready()
-        if (!(finish_c && finish_d)) { return }
+        const done_c = this.casko.dodge_back()
+        const done_d = this.dresser_unready()
+        if (!(done_c && done_d)) { return }
         
         this.talkinit('choose_' + next_dress)
     }
@@ -291,12 +296,21 @@ export default class {
     proc_mono_game() {
         this.fukidashi.proc(this.audio)
     }
+    proc_break_game() {
+        this.shock.proc()
+
+        done_t = this.timer.tick()
+        done_b = this.break.proc()
+        if (!done_t || !done_b) { return }
+
+        this.end_game()
+    }
     proc_post_game() {
         this.shock.proc()
 
-        const finish_s = this.shoji.open()
-        const finish_k = this.kirakira.fadeout()
-        if (!(finish_s && finish_k)) { return }
+        const done_s = this.shoji.open()
+        const done_k = this.kirakira.fadeout()
+        if (!(done_s && done_k)) { return }
 
         // 鍵を壊し切った場合
         if (this.tablet.length <= 0) {
@@ -392,6 +406,10 @@ export default class {
             t.draw(ctx)
         }
         this.fukidashi.draw(ctx)
+    }
+    draw_break_game(ctx) {
+        this.draw_game(ctx)
+        this.break.draw(ctx)
     }
     draw_post_game(ctx) {
         if (this.tablet.length > 0) {

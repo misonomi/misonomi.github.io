@@ -105,6 +105,10 @@ export default {
                 case STAT.monologue_game:
                 this.command.proc_mono_game(); this.command.draw_mono_game(this.ctx)
                 break
+
+                case STAT.break_game:
+                this.command.proc_break_game(); this.command.draw_break_game(this.ctx)
+                break
         
                 case STAT.post_game:
                 this.command.proc_post_game(); this.command.draw_post_game(this.ctx)
