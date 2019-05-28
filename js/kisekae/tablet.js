@@ -3,9 +3,14 @@ import CONST from './const.js'
 export default class {
     constructor(id) {
         this.image = new Image()
-        this.image.onload = () => { super.x = (CONST.originalx - this.width) / 2 }
+        let aaa = 0
+        this.image.onload = function() {
+            aaa = (CONST.originalx - this.width) / 2
+            return
+        }
         this.image.src = './images/kisekae/tablet.png'
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
+        this.x = aaa
         this.randx = 0
         this.randy = 0
         this.ap = CONST.tablet.ap

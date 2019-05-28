@@ -3,15 +3,15 @@ import CONST from './const.js'
 const TEXT = [
     {
         text: 'Thank you for playing!',
-        size: '100',
+        size: '160',
         x: CONST.originalx / 2,
-        y: CONST.tfp.y,
+        y: CONST.originaly / 3,
     },
     {
         text: 'click to play again',
         size: '40',
         x: CONST.originalx / 2,
-        y: CONST.tfp.y + 100,
+        y: CONST.originaly / 2 + 100,
     },
 ]
 
@@ -25,6 +25,7 @@ export default class {
     }
     setup() {
         if (this.cptr >= TEXT[this.txtptr].text.length) {
+            this.currentText[this.txtptr] = TEXT[this.txtptr].text
             this.txtptr++
             this.cptr = 0
             if (this.txtptr >= TEXT.length) {
@@ -33,8 +34,8 @@ export default class {
             }
             this.currentText.push('')
         }
-        this.currentText[this.txtptr] = TEXT[this.txtptr].text.substr(0, this.cptr) + '_'
-        this.cptr += .1
+        this.currentText[this.txtptr] = TEXT[this.txtptr].text.substr(0, this.cptr) + '█'
+        this.cptr += .2
 
         return false
     }
@@ -57,8 +58,8 @@ export default class {
     }
     draw(ctx) {
         ctx.save()
-        ctx.fillStyle = 'rgba(255, 255, 255, ' + this.alpha + ')'
-        ctx.shadowColor = 'rgb(0, 255, 255)'
+        ctx.fillStyle = 'rgb(255, 255, 255)'
+        ctx.shadowColor = 'rgba(0, 200, 200, ' + this.alpha + ')'
         ctx.shadowBlur = 50
         ctx.textAlign = 'center'
         for (let i = 0; i <= this.txtptr; i++) {

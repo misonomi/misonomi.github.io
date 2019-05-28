@@ -16,45 +16,35 @@ export default {
         }
     },
     async mounted() {
-            /////////////////// instantiate classes and so on
 
-            this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
-            this.command = await new Command()
+        this.funcSetup()
+        
+        /////////////////// instantiate classes and so on
 
-            /////////////////// initialize canvas
-    
-            this.display_canvas = document.getElementById('kisekae')
-            this.display_ctx = this.display_canvas.getContext('2d')
-    
-            /////////////////// initialize buffered canvas
-    
-            this.canvas = document.createElement('canvas')
-            this.ctx = this.canvas.getContext('2d')
+        this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
+        this.command = await new Command()
 
-            this.canvas.width = CONST.originalx
-            this.canvas.height = CONST.originaly
+        /////////////////// initialize canvas
 
-            CanvasRenderingContext2D.prototype.fillRoundRect = function (x, y, w, h, r) {
-                if (w < 2 * r) { r = w / 2 }
-                if (h < 2 * r) { r = h / 2 }
-                this.beginPath()
-                this.moveTo(x+r, y)
-                this.arcTo(x+w, y,   x+w, y+h, r)
-                this.arcTo(x+w, y+h, x,   y+h, r)
-                this.arcTo(x,   y+h, x,   y,   r)
-                this.arcTo(x,   y,   x+w, y,   r)
-                this.closePath()
-                this.fill()
-              }
-    
-            /////////////////// add event listener
-    
-            this.display_canvas.addEventListener('click', this.onClick, false)
-            this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
-            
-            /////////////////// main loop
-    
-            setInterval(this.frame, 10)
+        this.display_canvas = document.getElementById('kisekae')
+        this.display_ctx = this.display_canvas.getContext('2d')
+
+        /////////////////// initialize buffered canvas
+
+        this.canvas = document.createElement('canvas')
+        this.ctx = this.canvas.getContext('2d')
+
+        this.canvas.width = CONST.originalx
+        this.canvas.height = CONST.originaly
+
+        /////////////////// add event listener
+
+        this.display_canvas.addEventListener('click', this.onClick, false)
+        this.display_canvas.addEventListener('keydown', this.onKeyDown, false)
+        
+        /////////////////// main loop
+
+        setInterval(this.frame, 10)
     },
     methods: {
         frame() {
@@ -206,6 +196,31 @@ export default {
             this.display_ctx.drawImage(this.canvas, 0, 0, this.canvas.width, this.canvas.height, 
                 0, 0, this.display_canvas.width, this.display_canvas.height)
         },
+        funcSetup() {
+            CanvasRenderingContext2D.prototype.fillRoundRect = function (x, y, w, h, r) {
+                if (w < 2 * r) { r = w / 2 }
+                if (h < 2 * r) { r = h / 2 }
+                this.beginPath()
+                this.moveTo(x+r, y)
+                this.arcTo(x+w, y,   x+w, y+h, r)
+                this.arcTo(x+w, y+h, x,   y+h, r)
+                this.arcTo(x,   y+h, x,   y,   r)
+                this.arcTo(x,   y,   x+w, y,   r)
+                this.closePath()
+                this.fill()
+            }
+            CanvasRenderingContext2D.prototype.strokeArc = function (w, x, y, r, start, end) {
+                this.lineWidth = w
+                this.beginPath()
+                this.arc(x, y, r, start, end)
+                this.stroke()
+            }
+            CanvasRenderingContext2D.prototype.strokeArc4 = function (w, x, y, r, start, end) {
+                for (let i = 0; i < 2 * Math.PI; i += .5 * Math.PI) {
+                    this.strokeArc(w, x, y, r, start + i, end + i)
+                }
+            }
+        }
     },
     template: `<canvas id="kisekae"></canvas>`
 }

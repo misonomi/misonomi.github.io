@@ -4,11 +4,10 @@ export default class {
     constructor() {
         this.canvas = document.createElement('canvas')
         this.ctx = this.canvas.getContext('2d')
-
-        this.bubbles = []
-
         this.canvas.width = CONST.fukidashi.width
         this.canvas.height = CONST.fukidashi.height
+        
+        this.bubbles = []
 
         this.set('')
     }
@@ -58,7 +57,7 @@ export default class {
         ctx.fillStyle = 'rgb(255, 255, 255)'
         ctx.shadowColor = 'rgb(255, 255, 255)'
         ctx.shadowBlur = 5
-        ctx.font = "bold 40px Noto Sans JP"
+        ctx.font = 'normal 40px Noto Sans JP'
         ctx.textAlign = 'center'
         for (let i = 0; i < this.line.length; i++) {
             if (i == this.lineptr) {

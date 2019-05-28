@@ -8,8 +8,33 @@ export default class {
         this.canvas.width = CONST.timer.radius * 2
         this.canvas.height = CONST.timer.radius * 2
 
-        this.anglemin = (0.5 + CONST.timer.margina) * Math.PI
-        this.anglemax = (2.5 - CONST.timer.margina) * Math.PI
+        this.anglemin = (0.5 + CONST.timer.margin) * Math.PI
+        this.anglemax = (2.5 - CONST.timer.margin) * Math.PI
+
+        this.ctx.strokeStyle = 'rgba(0, 0, 0, .5)'
+        this.ctx.strokeArc(CONST.timer.linew * 2, this.canvas.width / 2, this.canvas.width / 2, 
+            CONST.timer.radius - CONST.timer.linew * 3, 
+            0, 2 * Math.PI)
+
+        this.ctx.strokeArc(CONST.timer.linew, this.canvas.width / 2, this.canvas.width / 2, 
+            CONST.timer.radius - CONST.timer.linew, 
+            Math.PI - CONST.timer.margin * 3, Math.PI + CONST.timer.margin * 3)
+        this.ctx.strokeArc(CONST.timer.linew, this.canvas.width / 2, this.canvas.width / 2, 
+            CONST.timer.radius - CONST.timer.linew, 
+            - CONST.timer.margin * 3, CONST.timer.margin * 3)
+
+        this.ctx.strokeArc4(CONST.timer.linew, this.canvas.width / 2, this.canvas.width / 2, 
+            CONST.timer.radius - CONST.timer.linew * 6, 
+            CONST.timer.margin * 2, Math.PI * .5 - CONST.timer.margin * 2)
+        
+        this.ctx.strokeArc4(CONST.timer.linew * 3, this.canvas.width / 2, this.canvas.width / 2, 
+            CONST.timer.radius - CONST.timer.linew * 7, 
+            Math.PI * .25, Math.PI * .25 + .01)
+
+        this.ctx.strokeStyle = 'rgba(255, 255, 255, .2)'
+        this.ctx.strokeArc(CONST.timer.linew * 2, this.canvas.width / 2, this.canvas.width / 2, 
+            CONST.timer.radius - CONST.timer.linew * 12, 
+            0, 2 * Math.PI)
 
         this.init()
     }
@@ -32,35 +57,24 @@ export default class {
         this.clock = 0
     }
     draw(ctx) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
-
-        this.ctx.save()
-
-        this.ctx.strokeStyle = 'rgba(0, 0, 0, .5)'
-        this.ctx.lineWidth = CONST.timer.linew * 2
-        this.ctx.beginPath()
-        this.ctx.arc(this.canvas.width / 2, this.canvas.width / 2, CONST.timer.radius - CONST.timer.linew, 
-            this.anglemin - CONST.timer.marginb, this.anglemax + CONST.timer.marginb)
-        this.ctx.stroke()
-        
-        this.ctx.strokeStyle = 'rgb(200, 255, 255)'
-        this.ctx.lineWidth = CONST.timer.linew * .5
-        this.ctx.shadowColor = 'rgb(0, 255, 255)'
-        this.ctx.shadowBlur = 10
-        this.ctx.beginPath()
-        this.ctx.arc(this.canvas.width / 2, this.canvas.width / 2, CONST.timer.radius - CONST.timer.linew, 
-            this.anglemin, this.anglemin + ((this.anglemax - this.anglemin) * this.clock / CONST.timer.timelimit))
-        this.ctx.stroke()
-
-        this.ctx.fillStyle = 'rgb(200, 255, 255)'
-        this.ctx.shadowColor = 'rgb(0, 255, 255)'
-        this.ctx.shadowBlur = 50
-        this.ctx.font = '40px Geo'
-        this.ctx.textAlign = 'center'
-        this.ctx.fillText('[ timer ]', this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy)
-
-        this.ctx.restore()
+        ctx.save()
 
         ctx.drawImage(this.canvas, (CONST.originalx - this.canvas.width) / 2, (CONST.originaly - this.canvas.height) / 2)
+
+        ctx.strokeStyle = 'rgb(200, 255, 255)'
+        ctx.shadowColor = 'rgb(0, 255, 255)'
+        ctx.shadowBlur = 10
+        ctx.strokeArc(CONST.timer.linew * .5, CONST.originalx / 2, CONST.originaly / 2, 
+            CONST.timer.radius - CONST.timer.linew * 3, 
+            this.anglemin, this.anglemin + ((this.anglemax - this.anglemin) * this.clock / CONST.timer.timelimit))
+
+        ctx.fillStyle = 'rgb(200, 255, 255)'
+        ctx.shadowColor = 'rgb(0, 255, 255)'
+        ctx.shadowBlur = 50
+        ctx.font = '40px Geo'
+        ctx.textAlign = 'center'
+        ctx.fillText('timer', CONST.originalx / 2, (this.canvas.height + CONST.originaly) / 2 - CONST.timer.textmarginy)
+
+        ctx.restore()
     }
 }

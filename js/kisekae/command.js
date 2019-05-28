@@ -108,6 +108,7 @@ export default class {
         this.kirakira = new Kirakira()
 
         this.timer.init()
+        this.conscience.init()
         if (this.tablet.length > 0) { this.tablet[this.tablet.length - 1].calm() }
         stat = STAT.pre_game
     }
@@ -182,7 +183,7 @@ export default class {
             console.log('[HIT]')
             this.shock.ignite(x, y)
         } else if (this.conscience.clicked(x, y)) {
-            this.set_word(this.next_dress)
+            this.set_word(next_dress)
             stat = STAT.monologue_game
         }
     }
@@ -276,7 +277,9 @@ export default class {
     proc_pre_game() {
         if (!this.shoji.close()) { return }
         
-        if (!this.timer.ready()) { return }
+        const done_t = this.timer.ready()
+        const done_c = this.conscience.ready()
+        if (!done_t || !done_c) { return }
 
         stat = STAT.wait_game
     }
@@ -386,6 +389,7 @@ export default class {
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
         this.timer.draw(ctx)
+        this.conscience.draw(ctx)
     }
     draw_wait_game(ctx) {
         this.draw_game(ctx)
