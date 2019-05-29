@@ -80,7 +80,7 @@ export default {
         step1: .05,
     },
     break: {
-        height: 200,
+        height: 400,
     },
     logo: {
         x: 1300,

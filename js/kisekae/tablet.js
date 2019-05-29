@@ -1,16 +1,15 @@
 import CONST from './const.js'
 
+let thisx = 0
+
 export default class {
     constructor(id) {
         this.image = new Image()
-        let aaa = 0
         this.image.onload = function() {
-            aaa = (CONST.originalx - this.width) / 2
-            return
+            thisx = (CONST.originalx - this.width) / 2
         }
         this.image.src = './images/kisekae/tablet.png'
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
-        this.x = aaa
         this.randx = 0
         this.randy = 0
         this.ap = CONST.tablet.ap
@@ -23,7 +22,7 @@ export default class {
     }
     clicked(x, y) {
         if ((this.interval <= 0) && 
-                (this.x <= x && x <= this.x + this.image.width) && 
+                (thisx <= x && x <= thisx + this.image.width) && 
                 (this.y <= y && y <= this.y + this.image.height)) {
             this.interval = CONST.tablet.intervalt
             this.ap--
@@ -46,6 +45,6 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.image, this.x + this.randx, this.y + this.randy)
+        ctx.drawImage(this.image, thisx + this.randx, this.y + this.randy)
     }
 }

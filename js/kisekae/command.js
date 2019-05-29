@@ -302,8 +302,8 @@ export default class {
     proc_break_game() {
         this.shock.proc()
 
-        done_t = this.timer.tick()
-        done_b = this.break.proc()
+        const done_t = this.timer.tick()
+        const done_b = this.break.proc()
         if (!done_t || !done_b) { return }
 
         this.end_game()

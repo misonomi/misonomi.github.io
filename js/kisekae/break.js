@@ -19,15 +19,15 @@ export default class {
         this.poe_end = 0.0
     }
     proc() {
+        this.poe_start += .01
         if (this.poe_start < 1) {
-            this.poe_start += .01
             return false
         } else {
             this.poe_start = 1
         }
         
+        this.poe_end += .01
         if (this.poe_end < 1) {
-            this.poe_end += .01
             return false
         } else {
             this.poe_end = 1
@@ -38,24 +38,25 @@ export default class {
     draw(ctx) {
         ctx.save()
 
-        ctx.drawImage(this.canvas, this.canvas.width * this.poe_start, 0, this.canvas.width * (1 - this.poe_start), this.canvas.height,
-            0, (CONST.originaly - this.canvas.height) / 2, this.canvas.width * this.poe_start, this.canvas.height)
+        const halfprogress = this.poe_start * .5
 
-        this.ctx.fillStyle = 'rgb(200, 255, 255)'
-        this.ctx.shadowColor = 'rgb(0, 255, 255)'
-        this.ctx.shadowBlur = 50
-        this.ctx.fillRect(0, (CONST.originaly - this.canvas.height) / 2 + this.canvas.height * .2, 
-            CONST.originalx * this.poe_start, (CONST.originaly - this.canvas.height) / 2 + this.canvas.height * .2 + 2)
-        this.ctx.fillRect(0, (CONST.originaly - this.canvas.height) / 2 - this.canvas.height * .2, 
-            CONST.originalx * this.poe_start, (CONST.originaly - this.canvas.height) / 2 - this.canvas.height * .2 - 2)
+        ctx.drawImage(this.canvas, this.canvas.width * (.5 - halfprogress), 0, this.canvas.width * halfprogress * 2, this.canvas.height,
+            CONST.originalx * (.5 - halfprogress), (CONST.originaly - this.canvas.height) / 2, CONST.originalx * halfprogress * 2, this.canvas.height)
 
-        this.ctx.fillStyle = 'rgb(200, 255, 255)'
-        this.ctx.shadowColor = 'rgb(0, 255, 255)'
-        this.ctx.shadowBlur = 50
-        this.ctx.font = '100px Geo'
-        this.ctx.textAlign = 'center'
-        this.ctx.fillText(BASE_TEXT.substr(0, Math.floor((BASE_TEXT.length - 1) * this.poe_start)) + generate_alphabet(Math.ceil((BASE_TEXT.length - 1) * (1. - this.poe_start))),
-            CONST.originalx / 2, CONST.originaly / 2)
+        ctx.fillStyle = 'rgb(200, 255, 255)'
+        ctx.shadowColor = 'rgb(0, 255, 255)'
+        ctx.shadowBlur = 50
+        ctx.fillRect(0, CONST.originaly / 2 + (this.canvas.height * .2), CONST.originalx * this.poe_start, 2)
+        ctx.fillRect(0, CONST.originaly / 2 - (this.canvas.height * .2), CONST.originalx * this.poe_start, 2)
+        ctx.fillRect(0, CONST.originaly / 2 - (this.canvas.height * .2), CONST.originalx * this.poe_start, 2)
+
+        ctx.fillStyle = 'rgb(200, 255, 255)'
+        ctx.shadowColor = 'rgb(0, 255, 255)'
+        ctx.shadowBlur = 50
+        ctx.font = '120px Geo'
+        ctx.textAlign = 'center'
+        ctx.fillText(BASE_TEXT.substr(0, Math.floor(BASE_TEXT.length * this.poe_start)) + generate_alphabet(Math.ceil(BASE_TEXT.length * (1. - this.poe_start))),
+            CONST.originalx / 2, CONST.originaly / 2 + 30)
 
         ctx.restore()
     }
