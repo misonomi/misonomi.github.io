@@ -1,5 +1,7 @@
 import CONST from './const.js'
 
+const BASE_TEXT = 'BREAK DOWN'
+
 export default class {
     constructor() {
         this.canvas = document.createElement('canvas')
@@ -42,19 +44,28 @@ export default class {
         this.ctx.fillStyle = 'rgb(200, 255, 255)'
         this.ctx.shadowColor = 'rgb(0, 255, 255)'
         this.ctx.shadowBlur = 50
-        this.ctx.lineWidth = CONST.timer.linew
-        this.ctx.beginPath()
-        this.ctx.moveTo(0, (CONST.originaly - this.canvas.height) / 2 + this.canvas.height * .2)
-        this.ctx.lineTo(CONST.originalx * this.poe_start, (CONST.originaly - this.canvas.height) / 2 + this.canvas.height * .2)
-        this.ctx.stroke()
+        this.ctx.fillRect(0, (CONST.originaly - this.canvas.height) / 2 + this.canvas.height * .2, 
+            CONST.originalx * this.poe_start, (CONST.originaly - this.canvas.height) / 2 + this.canvas.height * .2 + 2)
+        this.ctx.fillRect(0, (CONST.originaly - this.canvas.height) / 2 - this.canvas.height * .2, 
+            CONST.originalx * this.poe_start, (CONST.originaly - this.canvas.height) / 2 - this.canvas.height * .2 - 2)
 
         this.ctx.fillStyle = 'rgb(200, 255, 255)'
         this.ctx.shadowColor = 'rgb(0, 255, 255)'
         this.ctx.shadowBlur = 50
         this.ctx.font = '100px Geo'
         this.ctx.textAlign = 'center'
-        this.ctx.fillText('BREAK DOWN', CONST.originalx / 2, CONST.originaly / 2)
+        this.ctx.fillText(BASE_TEXT.substr(0, Math.floor((BASE_TEXT.length - 1) * this.poe_start)) + generate_alphabet(Math.ceil((BASE_TEXT.length - 1) * (1. - this.poe_start))),
+            CONST.originalx / 2, CONST.originaly / 2)
 
         ctx.restore()
     }
+}
+
+function generate_alphabet(len) {
+    let res = ''
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    for ( var i = 0; i < len; i++ ) {
+        res += chars.charAt(Math.floor(Math.random() * chars.length));
+    }
+    return res
 }
