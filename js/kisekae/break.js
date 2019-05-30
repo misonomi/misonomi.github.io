@@ -3,9 +3,9 @@ import CONST from './const.js'
 const BASE_TEXT = 'BREAK DOWN'
 
 const TWEAK = {
-    height_outer = .12,
-    height_inner = .1,
-    width_inner = .3,
+    height_outer: .12,
+    height_inner: .05,
+    width_inner: .3,
 }
 
 export default class {
@@ -21,30 +21,32 @@ export default class {
         this.ctx.fillStyle = 'rgba(0, 0, 0, .5)'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height * TWEAK.height_outer)
         this.ctx.fillRect(this.canvas.width * TWEAK.width_inner, this.canvas.height * TWEAK.height_outer, 
-            this.canvas.width * (1- 2 * TWEAK.width_inner), this.canvas.height * TWEAK.height_inner)
+            this.canvas.width * (1 - 2 * TWEAK.width_inner), this.canvas.height * TWEAK.height_inner)
 
         this.ctx.fillRect(0, this.canvas.height * (1 - TWEAK.height_outer), this.canvas.width, this.canvas.height * TWEAK.height_outer)
-        side_rect(this.ctx, this.canvas.height * (1 - TWEAK.height_outer - TWEAK.height_inner), TWEAK.height_inner, width_inner)
+        side_rect(this.ctx, this.canvas.height * (1 - TWEAK.height_outer - TWEAK.height_inner), TWEAK.height_inner, TWEAK.width_inner)
 
         this.poe_start = 0.0
-        this.poe_end = 0.0
+        this.pause = CONST.break.pause
+        this.poe_end = 1.0
     }
     proc() {
-        this.poe_start += .01
+        this.poe_start += CONST.break.startstep
         if (this.poe_start < 1) {
             return false
         } else {
             this.poe_start = 1
         }
+
+        if (--this.pause > 0) { return false }
         
-        this.poe_end += .01
-        if (this.poe_end < 1) {
+        this.poe_end -= CONST.break.endstep
+        if (this.poe_end > 0) {
             return false
         } else {
-            this.poe_end = 1
+            this.poe_end = 0
+            return true
         }
-
-        return true
     }
     draw(ctx) {
         ctx.save()
@@ -52,7 +54,7 @@ export default class {
         const halfprogress = this.poe_start * .5
 
         ctx.drawImage(this.canvas, this.canvas.width * (.5 - halfprogress), 0, this.canvas.width * halfprogress * 2, this.canvas.height,
-            CONST.originalx * (.5 - halfprogress), (CONST.originaly - this.canvas.height) / 2, CONST.originalx * halfprogress * 2, this.canvas.height)
+            CONST.originalx * (.5 - halfprogress), (CONST.originaly - this.canvas.height) / 2, CONST.originalx * halfprogress * 2, this.canvas.height * this.poe_end)
 
         ctx.fillStyle = 'rgb(200, 255, 255)'
         ctx.shadowColor = 'rgb(0, 255, 255)'
@@ -60,13 +62,13 @@ export default class {
         side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .2), 2, this.poe_start)
         side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .2), 2, this.poe_start)
 
-        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .4), 4, Math.max(1, this.poe_start * 2))
-        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .4), 4, Math.max(1, this.poe_start * 2))
+        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .4), 4, Math.min(1, this.poe_start * 2))
+        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .4), 4, Math.min(1, this.poe_start * 2))
 
-        ctx.fillStyle = 'rgb(200, 255, 255)'
+        ctx.fillStyle = 'rgba(200, 255, 255, '+(Math.random() * this.poe_end * (1 - this.poe_end) + this.poe_end)+')'
         ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.shadowBlur = 50
-        ctx.font = '120px Geo'
+        ctx.font = '120px Sarpanch'
         ctx.textAlign = 'center'
         ctx.fillText(BASE_TEXT.substr(0, Math.floor(BASE_TEXT.length * this.poe_start)) + generate_alphabet(Math.ceil(BASE_TEXT.length * (1. - this.poe_start))),
             CONST.originalx / 2, CONST.originaly / 2 + 30)

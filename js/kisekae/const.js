@@ -81,6 +81,9 @@ export default {
     },
     break: {
         height: 400,
+        startstep: .03,
+        pause: 300,
+        endstep: .03,
     },
     logo: {
         x: 1300,
