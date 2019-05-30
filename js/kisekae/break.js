@@ -2,6 +2,12 @@ import CONST from './const.js'
 
 const BASE_TEXT = 'BREAK DOWN'
 
+const TWEAK = {
+    height_outer = .12,
+    height_inner = .1,
+    width_inner = .3,
+}
+
 export default class {
     constructor() {
         this.canvas = document.createElement('canvas')
@@ -12,8 +18,13 @@ export default class {
 
         this.ctx.fillStyle = 'rgba(0, 0, 0, .3)'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
-        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height / 5)
-        this.ctx.fillRect(0, this.canvas.height * 4 / 5, this.canvas.width, this.canvas.height / 5)
+        this.ctx.fillStyle = 'rgba(0, 0, 0, .5)'
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height * TWEAK.height_outer)
+        this.ctx.fillRect(this.canvas.width * TWEAK.width_inner, this.canvas.height * TWEAK.height_outer, 
+            this.canvas.width * (1- 2 * TWEAK.width_inner), this.canvas.height * TWEAK.height_inner)
+
+        this.ctx.fillRect(0, this.canvas.height * (1 - TWEAK.height_outer), this.canvas.width, this.canvas.height * TWEAK.height_outer)
+        side_rect(this.ctx, this.canvas.height * (1 - TWEAK.height_outer - TWEAK.height_inner), TWEAK.height_inner, width_inner)
 
         this.poe_start = 0.0
         this.poe_end = 0.0
@@ -46,9 +57,11 @@ export default class {
         ctx.fillStyle = 'rgb(200, 255, 255)'
         ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.shadowBlur = 50
-        ctx.fillRect(0, CONST.originaly / 2 + (this.canvas.height * .2), CONST.originalx * this.poe_start, 2)
-        ctx.fillRect(0, CONST.originaly / 2 - (this.canvas.height * .2), CONST.originalx * this.poe_start, 2)
-        ctx.fillRect(0, CONST.originaly / 2 - (this.canvas.height * .2), CONST.originalx * this.poe_start, 2)
+        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .2), 2, this.poe_start)
+        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .2), 2, this.poe_start)
+
+        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .4), 4, Math.max(1, this.poe_start * 2))
+        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .4), 4, Math.max(1, this.poe_start * 2))
 
         ctx.fillStyle = 'rgb(200, 255, 255)'
         ctx.shadowColor = 'rgb(0, 255, 255)'
@@ -69,4 +82,9 @@ function generate_alphabet(len) {
         res += chars.charAt(Math.floor(Math.random() * chars.length));
     }
     return res
+}
+
+function side_rect(ctx, alt, thickness, progress) {
+    ctx.fillRect(0, alt, CONST.originalx / 2 * progress, thickness)
+    ctx.fillRect(CONST.originalx, alt, - 1 * (CONST.originalx / 2 * progress), thickness)
 }
