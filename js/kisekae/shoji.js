@@ -1,18 +1,21 @@
 import CONST from './const.js'
-const width = 658
 
-const leftc = (CONST.originalx / 2) - width
-const lefto = leftc - width
+const leftc = (CONST.originalx / 2) - CONST.shoji.width
+const lefto = leftc - CONST.shoji.width
 const rightc = CONST.originalx / 2
-const righto = rightc + width
+const righto = rightc + CONST.shoji.width
 
-export default class {
+let Shoji = class {
     constructor() {
-        const src = './images/kisekae/shoji.png'
-        this.left = new Image();        this.left.src = src
-        this.right = new Image();       this.right.src = src
-        this.outer_left = new Image();  this.outer_left.src = src
-        this.outer_right = new Image(); this.outer_right.src = src
+        let image = new Image(); image.src = './images/kisekae/shoji.png'
+
+        this.canvas = document.createElement('canvas')
+        let ctx = this.canvas.getContext('2d')
+        this.canvas.width = CONST.shoji.width
+        this.canvas.height = CONST.originaly
+
+        ctx.drawImage(image, 0, 0)
+
         this.leftx = lefto
         this.rightx = righto
         this.outer_leftx = lefto
@@ -41,9 +44,11 @@ export default class {
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.left, this.leftx, 0)
-        ctx.drawImage(this.right, this.rightx, 0)
-        ctx.drawImage(this.outer_left, this.outer_leftx, 0)
-        ctx.drawImage(this.outer_right, this.outer_rightx, 0)
+        ctx.drawImage(this.canvas, this.leftx, 0)
+        ctx.drawImage(this.canvas, this.rightx, 0)
+        ctx.drawImage(this.canvas, this.outer_leftx, 0)
+        ctx.drawImage(this.canvas, this.outer_rightx, 0)
     }
 }
+
+export default Shoji

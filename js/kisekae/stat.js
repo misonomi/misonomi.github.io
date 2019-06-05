@@ -4,13 +4,16 @@ export const STAT = {
     select: 2,
     game: 3,
     cg: 4,
-    ed: 5,
+    show: 5,
+    ed: 6,
+    extracg: 9,
 
     pre_talk: 11,
     pre_select: 12,
     pre_game: 13,
     pre_cg: 14,
-    pre_ed: 15,
+    pre_ed: 16,
+    pre_extracg: 19,
     
     post_select: 22,
     post_game: 23,

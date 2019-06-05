@@ -120,6 +120,9 @@ export default class {
         this.tfp = new TFP()
         stat = STAT.pre_ed
     }
+    extracginit() {
+        stat - STAT.extracg
+    }
 
 /////////////////// click methods
 
@@ -191,8 +194,12 @@ export default class {
             if (this.tablet[this.tablet.length - 1].is_broken()) {
                 this.tablet.pop()
                 this.inst.next()
-                if (this.tablet.length === 0) { 
-                    this.timer.end()
+                if (this.tablet.length === 0) {
+                    if (next_dress === DRESS.sarashi) {
+                        this.extracginit()
+                    } else {
+                        this.cginit(next_dress)
+                    }
                 } else {
                     stat = STAT.break_game
                 }
@@ -221,7 +228,7 @@ export default class {
             break
 
             default:
-            console.log('unexpected stat:')
+            console.error('unexpected stat:')
         }
     }
 
@@ -291,7 +298,7 @@ export default class {
 
         if (!this.timer.tick()) { return }
 
-        this.end_game()
+        stat = STAT.show
     }
     proc_mono_game() {
         this.fukidashi.proc(this.audio)
@@ -303,27 +310,26 @@ export default class {
         const done_b = this.break.proc()
         if (!done_t || !done_b) { return }
 
-        this.end_game()
+        stat = STAT.show
     }
-    proc_post_game() {
-        this.shock.proc()
 
-        const done_s = this.shoji.open()
+    ///////
+
+    proc_show() {
         const done_k = this.kirakira.fadeout()
-        if (!(done_s && done_k)) { return }
+        const done_s = this.shoji.open()
+        if (!done_k || !done_s) { return }
 
-        // 鍵を壊し切った場合
-        if (this.tablet.length <= 0) {
-            this.cginit(next_dress)
-        } else {
-            this.talkinit(next_dress)
-        }
+        this.talkinit(next_dress)
     }
 
     ///////
 
     proc_pre_cg() {
-        if (!this.cg.pan()) { return }
+        const done_c = this.cg.pan()
+        const done_k = this.kirakira.fadeout()
+        const done_s = this.shoji.open()
+        if (!done_c || !done_k || !done_s) { return }
 
         stat = STAT.cg
     }
@@ -333,7 +339,21 @@ export default class {
     proc_post_cg() {
         if (!this.shoji.close()) { return }
 
-        this.edinit()
+        
+    }
+
+    ///////
+
+    proc_pre_extracg() {
+        const done_c = this.cg.pan()
+        const done_k = this.kirakira.fadeout()
+        const done_s = this.shoji.open()
+        if (!done_c || !done_k || !done_s) { return }
+
+        stat = STAT.cg
+    }
+    proc_extracg() {
+        this.fukidashi.proc(this.audio)
     }
 
     ///////
@@ -412,28 +432,39 @@ export default class {
         this.draw_game(ctx)
         this.break.draw(ctx)
     }
-    draw_post_game(ctx) {
-        if (this.tablet.length > 0) {
-            this.casko.draw(ctx)
-        } else {
-            ctx.fillStyle = 'rgb(255, 255, 255)'
-            ctx.fillRect(0, 0, CONST.originalx, CONST.originaly)
-        }
+
+    ///////
+
+    draw_show(ctx) {
+        this.casko.draw(ctx)
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
-        this.shock.draw(ctx)
     }
 
     ///////
 
-    draw_cg_min(ctx) {
+    draw_pre_cg(ctx) {
         this.cg.draw(ctx)
+        this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
     }
     draw_cg(ctx) {
         this.cg.draw(ctx)
         this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
+    }
+    draw_post_cg(ctx) {
+        this.cg.draw(ctx)
+        this.shoji.draw(ctx)
+    }
+
+    //////
+    
+    draw_pre_extracg(ctx) {
+
+    }
+    draw_extracg(ctx) {
+
     }
 
     ///////

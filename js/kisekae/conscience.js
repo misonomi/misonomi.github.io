@@ -1,5 +1,11 @@
 import CONST from './const.js'
 
+KANJI = [
+    '??',
+    '??',
+    '??',
+]
+
 export default class {
     constructor() {
         this.canvas = document.createElement('canvas')
@@ -8,6 +14,7 @@ export default class {
         this.canvas.height = CONST.conscience.height + CONST.conscience.blur
 
         this.text = 'just wait'
+        this.kanjiptr = 0
         this.init()
     }
     init() {
@@ -28,8 +35,13 @@ export default class {
         return true
     }
     clicked(x, y) {
-        return (CONST.originalx - CONST.conscience.width <= x && x <= CONST.originalx) && 
-            (CONST.originaly - CONST.conscience.height <= y && y <= CONST.originaly)
+        if ((CONST.originalx - CONST.conscience.width <= x && x <= CONST.originalx) && 
+        (CONST.originaly - CONST.conscience.height <= y && y <= CONST.originaly)) {
+            this.kanjiptr++
+            return true
+        } else {
+            return false
+        }
     }
     draw(ctx) {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
@@ -52,8 +64,8 @@ export default class {
         this.ctx.fillText(this.text.substr(0, this.text.length * this.poe[1]), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy)
         if(this.poe[1] == 1){
             this.ctx.font = '60px Sawarabi Mincho'
-            this.ctx.fillText('待', this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - 2 * CONST.conscience.textmargin)
-            this.ctx.fillText('つ', this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - CONST.conscience.textmargin)
+            this.ctx.fillText(KANJI[textptr].charAt(0), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - 2 * CONST.conscience.textmargin)
+            this.ctx.fillText(KANJI[textptr].charAt(1), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - CONST.conscience.textmargin)
         }
 
         this.ctx.restore()

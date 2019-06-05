@@ -101,14 +101,16 @@ export default {
                 this.command.proc_break_game(); this.command.draw_break_game(this.ctx)
                 break
         
-                case STAT.post_game:
-                this.command.proc_post_game(); this.command.draw_post_game(this.ctx)
+                ///////
+
+                case STAT.show:
+                this.command.proc_show(); this.command.draw_show(this.ctx)
                 break
 
                 ///////
         
                 case STAT.pre_cg:
-                this.command.proc_pre_cg(); this.command.draw_cg_min(this.ctx)
+                this.command.proc_pre_cg(); this.command.draw_pre_cg(this.ctx)
                 break
         
                 case STAT.cg:
@@ -116,9 +118,19 @@ export default {
                 break
         
                 case STAT.post_cg:
-                this.command.proc_post_cg(); this.command.draw_cg_min(this.ctx)
+                this.command.proc_post_cg(); this.command.draw_post_cg(this.ctx)
                 break
 
+                ///////
+        
+                case STAT.pre_extracg:
+                this.command.proc_pre_extracg(); this.command.draw_pre_extracg(this.ctx)
+                break
+        
+                case STAT.extracg:
+                this.command.proc_extracg(); this.command.draw_extracg(this.ctx)
+                break
+    
                 ///////
         
                 case STAT.pre_ed:

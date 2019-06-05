@@ -9,6 +9,7 @@ export default {
         rvariance: 100,
     },
     shoji: {
+        width: 658,
         step: 20,
     },
     dresser: {
