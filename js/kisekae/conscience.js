@@ -1,9 +1,9 @@
 import CONST from './const.js'
 
 KANJI = [
-    '??',
-    '??',
-    '??',
+    '待機',
+    '望待',
+    '不動',
 ]
 
 export default class {

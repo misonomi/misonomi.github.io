@@ -1,10 +1,10 @@
 import CONST from './const.js'
 
-let Tablet = class {
+let tablet = class {
     constructor(id) {
         this.image = new Image()
         this.image.onload = function() {
-            Tablet.x = (CONST.originalx - this.width) / 2
+            tablet.x = (CONST.originalx - this.width) / 2
         }
         this.image.src = './images/kisekae/tablet.png'
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
@@ -47,4 +47,4 @@ let Tablet = class {
     }
 }
 
-export default Tablet
+export default tablet
