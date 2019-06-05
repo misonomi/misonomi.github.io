@@ -66,7 +66,6 @@ export default class {
     }
     end_game() {
         this.stage--
-        this.casko.kisekae(next_dress)
         stat = STAT.post_game
     }
 
@@ -114,7 +113,7 @@ export default class {
     }
     cginit(name) {
         this.cg = new Cg(name)
-        this.set_word('ed_'+ name)
+        this.set_word('cg_'+ name)
         stat = STAT.pre_cg
     }
     edinit() {
@@ -213,12 +212,8 @@ export default class {
     }
     click_cg() {
         switch (this.words.next()) {
-            case STAT.talk:
+            case STAT.ed:
             stat = STAT.post_cg
-            break
-
-            case STAT.ready:
-            this.readyinit()
             break
             
             case null:
@@ -281,6 +276,8 @@ export default class {
         const done_c = this.conscience.ready()
         if (!done_t || !done_c) { return }
 
+        // post_gameだと間に合わない（着替えるのが見えてしまう）
+        this.casko.kisekae(next_dress)
         stat = STAT.wait_game
     }
     proc_wait_game() {

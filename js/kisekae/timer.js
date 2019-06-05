@@ -51,7 +51,13 @@ export default class {
         }
     }
     tick() {
-        return --this.clock <= 0
+        --this.clock
+        if (this.clock > 0) {
+            return false
+        } else {
+            this.clock = 0
+            return true
+        }
     }
     end() {
         this.clock = 0

@@ -16,6 +16,7 @@ export default {
         }
     },
     async mounted() {
+        document.title = 'Generic Kisekae Shichihenge'
 
         this.funcSetup()
         

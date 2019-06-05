@@ -47,9 +47,14 @@ export default class {
         this.ctx.fillStyle = 'rgb(255, 200, 200)'
         this.ctx.shadowColor = 'rgb(255, 0, 0)'
         this.ctx.shadowBlur = 50
-        this.ctx.font = '40px Geo'
+        this.ctx.font = '20px Geo'
         this.ctx.textAlign = 'center'
         this.ctx.fillText(this.text.substr(0, this.text.length * this.poe[1]), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy)
+        if(this.poe[1] == 1){
+            this.ctx.font = '60px Sawarabi Mincho'
+            this.ctx.fillText('待', this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - 2 * CONST.conscience.textmargin)
+            this.ctx.fillText('つ', this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - CONST.conscience.textmargin)
+        }
 
         this.ctx.restore()
 

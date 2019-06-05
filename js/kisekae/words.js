@@ -62,15 +62,15 @@ const words = {
                 emote: 'normal',
             }, 
             {
-                word: '特にひねりがないというか...',
+                word: '特にひねりがないというか...\nド直球ってやつですね',
                 emote: 'normal',
             }, 
             {
-                word: '霊験あらたかな狐耳としてはピッタリの衣装ですけどね',
+                word: 'まあ私としては着慣れてて落ち着く服なので',
                 emote: 'normal',
             }, 
             {
-                word: 'まいいや\n覗かないでくださいね♡',
+                word: 'まいいや\n覗かないでくださいね❤',
                 emote: 'normal',
             }, 
         ],
@@ -83,11 +83,11 @@ const words = {
                 emote: 'normal',
             },
             {
-                word: 'いーぃですよ～，いいですとも❤',
+                word: 'もちろんいいですよ❤\nお望みなら毎日でも言って差し上げますとも！',
                 emote: 'normal',
             },
             {
-                word: 'でーも，覗きはご法度ですからねっ',
+                word: 'じゃ着替えますね\nちょっとお待ちくださいな',
                 emote: 'normal',
             },
         ],
@@ -100,7 +100,7 @@ const words = {
                 emote: 'normal',
             },
             {
-                word: 'まあ...見たいってのなら仕方ないですねっ\nもう...ご主人さまったらっ',
+                word: 'まあ...見たいってのなら仕方ないですね\nもう...ご主人さまったらっ',
                 emote: 'normal',
             },
             {
@@ -113,7 +113,7 @@ const words = {
     choose_gymsuit: {
         lines: [
             {
-                word: 'もしかしてご主人様，スポーティなのが好みですか？',
+                word: 'あら，もしかしてご主人様，スポーティなのが好みですか？',
                 emote: 'normal',
             }, 
             {
@@ -130,7 +130,11 @@ const words = {
                 emote: 'normal',
             },
             {
-                word: '「聖杯戦争に勝つためのこすちゅーむー！！！」ですよ！',
+                word: 'ご主人様，ご自分が何を言ってるかほんとに分かってます！？',
+                emote: 'normal',
+            },
+            {
+                word: 'これ着て戦えってんですか！？このトランクスを！',
                 emote: 'normal',
             },
             {
@@ -138,7 +142,7 @@ const words = {
                 emote: 'normal',
             },
             {
-                word: 'のぞかないでくださいね...',
+                word: 'せめてのぞかないでくださいね...',
                 emote: 'normal',
             },
         ],
@@ -181,7 +185,7 @@ const words = {
     mizugi: {
         lines: [
             {
-                word: '...っていうか，誰ですかこれ用意したのは！？',
+                word: '...誰ですかこれ用意したのは！？',
                 emote: 'normal',
             },
             {
@@ -193,7 +197,7 @@ const words = {
                 emote: 'normal',
             },
             {
-                word: 'えっ？...\nご主人様...が，用意した，...んですか',
+                word: 'えっ？...\nご主人様...が，用意した ...んですか',
                 emote: 'normal',
             },
             {
@@ -241,46 +245,78 @@ const words = {
         ],
         next: STAT.select,
     },
-    ed_miko: {
+    cg_miko: {
         lines: [
             {
-                word: 'aaaa',
+                word: 'き，\nきゃああああああああ！？',
                 emote: 'normal',
-            }, 
+            },
             {
-                word: 'aaaa',
+                word: 'ご主人様...！？\nご主人様といえどやっていいことと悪いことがありますよ...',
                 emote: 'normal',
-            }, 
+            },
+            {
+                word: 'やや心が痛みますが\nおイタが過ぎるご主人様には\nきっついお仕置きが必要ですね...行きますよっ',
+                emote: 'normal',
+            },
+            {
+                word: 'まずは金的！\n次も金的！\nそしてこれがとどめの金的だぁーー！！！',
+                emote: 'normal',
+            },
         ],
-        next: STAT.talk,
+        next: STAT.ed,
     },
-    ed_maid: {
+    cg_maid: {
         lines: [
             {
-                word: 'aaaa',
+                word: 'おや',
                 emote: 'normal',
-            }, 
+            },
             {
-                word: 'aaaa',
+                word: 'なにやらガンガン騒がしいと思ったら...\nそんなに私の着替えが見たかったんですか？\nふふっ',
                 emote: 'normal',
-            }, 
+            },
+            {
+                word: 'でもざーんねんでしたっ\nもう',
+                emote: 'normal',
+            },
         ],
-        next: STAT.talk,
+        next: STAT.ed,
     },
-    ed_mizugi: {
+    cg_mizugi: {
         lines: [
             {
-                word: 'aaaa',
+                word: 'ちょっ，うわぁ！？\n何してるんですかご主人様！？',
                 emote: 'normal',
-            }, 
+            },
             {
-                word: 'aaaa',
+                word: 'あっぶねー...\n巻きタオル持ってきてよかったです',
                 emote: 'normal',
-            }, 
+            },
+            {
+                word: 'いや，私はまんざらでもないですけどね\nこの，ぎっと...なんとかってとこはそういうの厳しいので',
+                emote: 'normal',
+            },
+            {
+                word: '...',
+                emote: 'normal',
+            },
+            {
+                word: 'あのー，ご主人様？まんざらでもないとは言いましたけど...\nさすがにー，見られたまま着替えを続けるのはー\nその，まだ私はそのレベルまで達してないかなーって',
+                emote: 'normal',
+            },
+            {
+                word: '思いますのでー\nちょーっとだけ障子の向こうで待ってていただけます？',
+                emote: 'normal',
+            },
+            {
+                word: 'はい，ご理解ありがとうございます！\n着替え終わったら私のかわいい水着姿，好っきなだけ見せてあげますね！\n震えて眠っちゃってくださいな',
+                emote: 'normal',
+            },
         ],
-        next: STAT.talk,
+        next: STAT.ed,
     },
-    ed_gymsuit: {
+    cg_gymsuit: {
         lines: [
             {
                 word: 'aaaa',
@@ -291,9 +327,18 @@ const words = {
                 emote: 'normal',
             }, 
         ],
-        next: STAT.talk,
+        next: STAT.ed,
     },
-    ed_sarashi: {
+    cg_sarashi: {
+        lines: [
+            {
+                word: 'DEBUG: このメッセージは見れちゃダメですっ',
+                emote: 'normal',
+            },
+        ],
+        next: STAT.ed,
+    },
+    cg_sarashi: {
         lines: [
             {
                 word: 'aaaa',
@@ -304,7 +349,7 @@ const words = {
                 emote: 'normal',
             }, 
         ],
-        next: STAT.talk,
+        next: STAT.ed,
     },
     outro: {
         lines: [

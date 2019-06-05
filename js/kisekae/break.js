@@ -6,6 +6,7 @@ const TWEAK = {
     height_outer: .12,
     height_inner: .05,
     width_inner: .3,
+    blink: 10,
 }
 
 export default class {
@@ -54,18 +55,18 @@ export default class {
         const halfprogress = this.poe_start * .5
 
         ctx.drawImage(this.canvas, this.canvas.width * (.5 - halfprogress), 0, this.canvas.width * halfprogress * 2, this.canvas.height,
-            CONST.originalx * (.5 - halfprogress), (CONST.originaly - this.canvas.height) / 2, CONST.originalx * halfprogress * 2, this.canvas.height * this.poe_end)
+            CONST.originalx * (.5 - halfprogress), (CONST.originaly - (this.canvas.height * this.poe_end)) / 2, CONST.originalx * halfprogress * 2, this.canvas.height * this.poe_end)
 
         ctx.fillStyle = 'rgb(200, 255, 255)'
         ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.shadowBlur = 50
-        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .2), 2, this.poe_start)
-        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .2), 2, this.poe_start)
+        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .2), 2 * this.poe_end, this.poe_start)
+        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .2), 2 * this.poe_end, this.poe_start)
 
-        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .4), 4, Math.min(1, this.poe_start * 2))
-        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .4), 4, Math.min(1, this.poe_start * 2))
+        side_rect(ctx, CONST.originaly / 2 + (this.canvas.height * .4), 6 * this.poe_end, Math.min(1, this.poe_start * 2))
+        side_rect(ctx, CONST.originaly / 2 - (this.canvas.height * .4), 6 * this.poe_end, Math.min(1, this.poe_start * 2))
 
-        ctx.fillStyle = 'rgba(200, 255, 255, '+(Math.random() * this.poe_end * (1 - this.poe_end) + this.poe_end)+')'
+        ctx.fillStyle = 'rgba(200, 255, 255, '+(TWEAK.blink * Math.random() * this.poe_end * (1 - this.poe_end) + this.poe_end)+')'
         ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.shadowBlur = 50
         ctx.font = '120px Sarpanch'
