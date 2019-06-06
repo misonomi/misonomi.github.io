@@ -1,6 +1,6 @@
 import CONST from './const.js'
 
-KANJI = [
+const KANJI = [
     '待機',
     '望待',
     '不動',
@@ -64,8 +64,8 @@ export default class {
         this.ctx.fillText(this.text.substr(0, this.text.length * this.poe[1]), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy)
         if(this.poe[1] == 1){
             this.ctx.font = '60px Sawarabi Mincho'
-            this.ctx.fillText(KANJI[textptr].charAt(0), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - 2 * CONST.conscience.textmargin)
-            this.ctx.fillText(KANJI[textptr].charAt(1), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - CONST.conscience.textmargin)
+            this.ctx.fillText(KANJI[this.kanjiptr].charAt(0), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - 2 * CONST.conscience.textmargin)
+            this.ctx.fillText(KANJI[this.kanjiptr].charAt(1), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - CONST.conscience.textmargin)
         }
 
         this.ctx.restore()
