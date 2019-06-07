@@ -1,12 +1,11 @@
 import CONST from './const.js'
+import ImageLorder from './image.js'
 
 let tablet = class {
     constructor(id) {
-        this.image = new Image()
-        this.image.onload = function() {
-            tablet.x = (CONST.originalx - this.width) / 2
-        }
-        this.image.src = './images/kisekae/tablet.png'
+        ImageLorder('./images/kisekae/tablet.png').then(image => {
+            this.x = image.width
+        }) 
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
         this.randx = 0
         this.randy = 0

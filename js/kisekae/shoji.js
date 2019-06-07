@@ -7,14 +7,18 @@ const righto = rightc + CONST.shoji.width
 
 let shoji = class {
     constructor() {
-        let image = new Image()
-        image.src = './images/kisekae/shoji.png'
-        this.canvas = document.createElement('canvas')
-        let ctx = this.canvas.getContext('2d')
-        this.canvas.width = CONST.shoji.width
-        this.canvas.height = CONST.originaly
-
-        ctx.drawImage(image, 0, 0)
+        new Promise(resolve => {
+            let image = new Image()
+            image.src = './images/kisekae/shoji.png'
+            image.onload = () => resolve(image)
+        }).then(image => {
+            this.canvas = document.createElement('canvas')
+            let ctx = this.canvas.getContext('2d')
+            this.canvas.width = CONST.shoji.width
+            this.canvas.height = CONST.originaly
+    
+            ctx.drawImage(image, 0, 0)
+        })
 
         this.leftx = lefto
         this.rightx = righto
