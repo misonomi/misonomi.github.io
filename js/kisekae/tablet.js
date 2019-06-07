@@ -4,6 +4,7 @@ import ImageLorder from './image.js'
 let tablet = class {
     constructor(id) {
         ImageLorder('./images/kisekae/tablet.png').then(image => {
+            this.image = image
             this.x = image.width
         }) 
         this.y = CONST.tablet.standardy + (CONST.tablet.intervaly * id)
