@@ -41,9 +41,10 @@ let tablet = class {
             this.interval = CONST.tablet.intervalt
             this.ap--
             return true
-        } else {
-            return false
+        } else if (this.interval > 0) {
+            this.interval = CONST.tablet.intervalt
         }
+        return false
     }
     is_broken() {
         return this.ap <= 0
