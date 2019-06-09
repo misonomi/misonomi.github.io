@@ -1,0 +1,76 @@
+:root {
+	--white: rgb(255, 255, 255);
+	--almostWhiteGreen: rgb(250, 255, 250);
+	--ashGreen: rgb(220, 240, 240);
+	--normalGreen: rgb(140, 200, 180);
+	--darkGreen: rgb(20, 80, 60);
+	--lightBlueGreen: rgb(90, 220, 220);
+	--clearLightBlueGreen: rgba(90, 220, 220, .2);
+	--normalBlueGreen: rgb(60, 180, 180);
+	--lightBlue: rgb(160, 160, 255);
+	--normalRed: rgb(250, 20, 50);
+	--black: rgb(0, 0, 0);
+} 
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	margin: 0px;
+}
+body {
+	background-image: url(../images/bgunit.png);
+	background-repeat: repeat;
+}
+header {
+	height: 224px;
+	border-bottom: solid 32px var(--black);
+	box-shadow: 0 0 1000px var(--lightBlueGreen);
+	margin-bottom: 300px;
+}
+.page_title {
+	text-align: center;
+	color: white;
+	font-family: monospace;
+	font-size: 100px;
+}
+.container-outer {
+	height: 200px;
+	width: 100%;
+	border: solid 1px var(--lightBlueGreen);
+	border-radius: 30px;
+	box-shadow: 0 0 50px var(--lightBlueGreen);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.container-inner {
+	height: 100%;
+	background-color: var(--clearLightBlueGreen);
+	border-radius: 20px;
+	box-shadow: 0 0 2px var(--normalGreen);
+	transition: all 300ms 0s ease;
+}
+.container-inner:hover {
+	box-shadow: 0 0 200px var(--white);
+}
+.container-title {
+	position: relative;
+	height: 30%;
+	border-bottom: solid 1px var(--black);
+}
+.container-disc {
+	position: relative;
+	height: 70%;
+}
+.container-text {
+	position: absolute;
+	text-align: center;
+	color: var(--white);
+	bottom: 4px;
+	left: 0;
+	right: 0;
+	margin: auto;
+}
