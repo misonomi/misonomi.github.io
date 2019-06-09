@@ -188,6 +188,7 @@ export default {
                 break
         
                 case STAT.cg:
+                case STAT.extracg:
                 this.command.click_cg()
                 break
         

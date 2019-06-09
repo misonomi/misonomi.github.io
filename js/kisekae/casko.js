@@ -39,6 +39,10 @@ export default class {
         }
     }
     draw(ctx) {
+        ctx.save()
+        ctx.shadowColor = 'rgb(0, 0, 0)'
+        ctx.shadowBlur = 4
         ctx.drawImage(this.image, this.x, this.y)
+        ctx.restore()
     }
 }

@@ -16,7 +16,6 @@ export const STAT = {
     pre_extracg: 19,
     
     post_select: 22,
-    post_game: 23,
     post_cg: 24,
 
     wait_game: 33,

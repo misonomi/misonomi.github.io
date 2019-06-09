@@ -61,11 +61,11 @@ export default class {
         this.ctx.shadowBlur = 50
         this.ctx.font = '20px Geo'
         this.ctx.textAlign = 'center'
-        this.ctx.fillText(this.text.substr(0, this.text.length * this.poe[1]), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy)
+        this.ctx.fillText(this.text.substr(0, this.text.length * this.poe[1]), this.canvas.width / 2, this.canvas.height - CONST.conscience.basemargin * 3)
         if(this.poe[1] == 1){
             this.ctx.font = '60px Sawarabi Mincho'
-            this.ctx.fillText(KANJI[this.kanjiptr].charAt(0), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - 2 * CONST.conscience.textmargin)
-            this.ctx.fillText(KANJI[this.kanjiptr].charAt(1), this.canvas.width / 2, this.canvas.height - CONST.timer.textmarginy - CONST.conscience.textmargin)
+            this.ctx.fillText(KANJI[this.kanjiptr].charAt(0), this.canvas.width / 2, this.canvas.height - CONST.conscience.basemargin - 2 * CONST.conscience.charmargin)
+            this.ctx.fillText(KANJI[this.kanjiptr].charAt(1), this.canvas.width / 2, this.canvas.height - CONST.conscience.basemargin - CONST.conscience.charmargin)
         }
 
         this.ctx.restore()

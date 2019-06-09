@@ -25,7 +25,7 @@ export default class {
             source.connect(this.audioctx.destination)
             source.start()
         } else {
-            console.log('unknown audio key')
+            console.error('unknown audio key')
         }
     }
 }

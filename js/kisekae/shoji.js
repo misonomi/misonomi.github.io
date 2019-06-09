@@ -1,58 +1,70 @@
 import CONST from './const.js'
+import ImageLorder from './image.js'
 
-const leftc = (CONST.originalx / 2) - CONST.shoji.width
-const lefto = leftc - CONST.shoji.width
-const rightc = CONST.originalx / 2
-const righto = rightc + CONST.shoji.width
+const TWEAK = {
+    extrastep: .002,
+    speed: 15,
+    delay: [0, .3, .5, .7, .8, .9, .95]
+}
 
 let shoji = class {
     constructor() {
-        new Promise(resolve => {
-            let image = new Image()
-            image.src = './images/kisekae/shoji.png'
-            image.onload = () => resolve(image)
-        }).then(image => {
-            this.canvas = document.createElement('canvas')
-            let ctx = this.canvas.getContext('2d')
-            this.canvas.width = CONST.shoji.width
-            this.canvas.height = CONST.originaly
+        let _this = this
+        ImageLorder('./images/kisekae/shoji.png').then(image => {
+            _this.canvas = document.createElement('canvas')
+            let ctx = _this.canvas.getContext('2d')
+            _this.canvas.width = image.width
+            _this.canvas.height = image.height
     
             ctx.drawImage(image, 0, 0)
         })
-
-        this.leftx = lefto
-        this.rightx = righto
-        this.outer_leftx = lefto
-        this.outer_rightx = righto
+        this.open_cond = 1.
+        this.extraopen_cond = 0.
     }
     open() {
-        if ((this.leftx > lefto) && (this.rightx < righto)) {
-            this.leftx -= CONST.shoji.step
-            this.rightx += CONST.shoji.step
+        if (this.open_cond < 1) {
+            this.open_cond += CONST.shoji.step
             return false
         } else {
-            this.leftx = lefto
-            this.rightx = righto
+            this.open_cond = 1.
+            return true
+        }
+    }
+    extraopen() {
+        if (this.extraopen_cond < 1) {
+            this.extraopen_cond += TWEAK.extrastep
+            return false
+        } else {
+            this.extraopen_cond = 1.
             return true
         }
     }
     close() {
-        if ((this.leftx < leftc) && (this.rightx > rightc)) {
-            this.leftx += CONST.shoji.step
-            this.rightx -= CONST.shoji.step
+        if (this.open_cond > 0) {
+            this.open_cond -= CONST.shoji.step
             return false
         } else {
-            this.leftx = leftc
-            this.rightx = rightc
+            this.open_cond = 0.
             return true
         }
     }
     draw(ctx) {
-        ctx.drawImage(this.canvas, this.leftx, 0)
-        ctx.drawImage(this.canvas, this.rightx, 0)
-        ctx.drawImage(this.canvas, this.outer_leftx, 0)
-        ctx.drawImage(this.canvas, this.outer_rightx, 0)
+        draw_symmetric(ctx, this.canvas, this.open_cond)
+        draw_symmetric(ctx, this.canvas, 1)
     }
+    extradraw(ctx) {
+        draw_symmetric(ctx, this.canvas, 0)
+        for(let i = TWEAK.delay.length - 1; i >= 0; i--) {
+            let d = Math.min(1, Math.max(0, this.extraopen_cond - TWEAK.delay[i]) * TWEAK.speed)
+            draw_symmetric(ctx, this.canvas, d)
+        }
+        draw_symmetric(ctx, this.canvas, 1)
+    }
+}
+
+function draw_symmetric(ctx, canvas, seq) {
+    ctx.drawImage(canvas, (CONST.originalx / 2) + seq * canvas.width, 0)
+    ctx.drawImage(canvas, (CONST.originalx / 2) - (1 + seq) * canvas.width, 0)
 }
 
 export default shoji

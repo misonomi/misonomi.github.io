@@ -42,21 +42,21 @@ export default class {
         this.interval = CONST.fukidashi.intervalt
         this.char++
         if (this.char < this.line[this.lineptr].length) {
-            audio.play('mi')
+            //audio.play('mi')
         } else {
             this.lineptr++
             this.char = 0
         }
     }
     draw(ctx) {
+        ctx.save()
 
         this.make_fukidashi()
+        ctx.shadowColor = 'rgb(0, 0, 0)'
+        ctx.shadowBlur = 5
         ctx.drawImage(this.canvas, (CONST.originalx - this.canvas.width) / 2, CONST.fukidashi.y)
 
-        ctx.save()
         ctx.fillStyle = 'rgb(255, 255, 255)'
-        ctx.shadowColor = 'rgb(255, 255, 255)'
-        ctx.shadowBlur = 5
         ctx.font = 'normal 40px Noto Sans JP'
         ctx.textAlign = 'center'
         for (let i = 0; i < this.line.length; i++) {
@@ -93,7 +93,7 @@ export default class {
         this.ctx.fillStyle = gradient
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
 
-        this.ctx.fillStyle = 'rgba(2, 20, 30, 90)'
+        this.ctx.fillStyle = 'rgb(0, 10, 30)'
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height)
         
     }

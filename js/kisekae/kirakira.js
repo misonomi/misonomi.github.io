@@ -9,10 +9,6 @@ export default class {
         this.canvas.height = CONST.originaly
 
         this.splashes = []
-        this.poe = 0.
-    }
-    init() {
-        this.splashes = []
         this.poe = 1.
         for (let i = 0; i < CONST.kirakira.brightness; i++) {
             this.splashes.push(new Splash())
@@ -68,7 +64,7 @@ export default class {
         this.ctx.strokeStyle = 'rgb(255, 255, 255)'
         this.ctx.lineWidth = 2
         this.ctx.beginPath()
-        this.ctx.arc(this.canvas.width / 2, this.canvas.height / 2, 800 * progress, 0, 2 * Math.PI)
+        this.ctx.arc(this.canvas.width / 2, this.canvas.height / 2, 850 * progress, 0, 2 * Math.PI)
         this.ctx.stroke()
 
         this.ctx.restore()
