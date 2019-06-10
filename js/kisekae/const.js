@@ -10,6 +10,7 @@ export default {
     },
     shoji: {
         step: .02,
+        shakeinterval: 300,
     },
     dresser: {
         step: .2,

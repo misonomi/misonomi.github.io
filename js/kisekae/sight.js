@@ -42,29 +42,22 @@ export default class {
         this.ctx.strokeStyle = 'rgba(255, 255, 255, .2)'
         this.ctx.strokeArc(CONST.sight.linew * 2, halfr, halfr, CONST.sight.radius - CONST.sight.linew * 12, 
             0, 2 * Math.PI)
+        
+        // ---
 
-        this.init()
+        this.poe_start = 0.
+        
     }
     init() {
-        this.clock = 0
+        this.clock = CONST.sight.timelimit
     }
     ready() {
-        if (this.clock < CONST.sight.timelimit) {
-            this.clock += CONST.sight.timelimit / 50
-            return false
-        } else {
-            this.clock = CONST.sight.timelimit
-            return true
-        }
+        this.poe_start = (this.poe_start < 1) ? this.poe_start + CONST.sight.readystep : 1
+        return this.poe_start === 1
     }
     tick() {
-        --this.clock
-        if (this.clock > 0) {
-            return false
-        } else {
-            this.clock = 0
-            return true
-        }
+        this.clock = (this.clock > 0) ? this.clock - 1 : 0
+        return this.clock === 0
     }
     end() {
         this.clock = 0
@@ -79,13 +72,13 @@ export default class {
         ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.strokeArc(CONST.sight.linew * .5, CONST.originalx / 2, CONST.originaly / 2, 
             CONST.sight.radius - CONST.sight.linew * 3, 
-            this.timeranglemin, this.timeranglemin + ((this.timeranglemax - this.timeranglemin) * this.clock / CONST.sight.timelimit))
+            this.timeranglemin, this.timeranglemin + ((this.timeranglemax - this.timeranglemin) * (this.clock / CONST.sight.timelimit) * this.poe_start))
         
         ctx.strokeStyle = 'rgb(255, 200, 200)'
         ctx.shadowColor = 'rgb(255, 0, 0)'
         ctx.strokeArc(CONST.sight.linew * .5, CONST.originalx / 2, CONST.originaly / 2, 
             CONST.sight.radius - CONST.sight.linew * 7, 
-            this.apanglemin, this.apanglemin + ((this.apanglemax - this.apanglemin) * ap.current / ap.full))
+            this.apanglemin, this.apanglemin + ((this.apanglemax - this.apanglemin) * (ap.current / ap.full) * this.poe_start))
 
         ctx.shadowBlur = 50
         ctx.font = '40px Geo'

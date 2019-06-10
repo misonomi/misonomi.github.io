@@ -123,12 +123,12 @@ export default {
 
                 ///////
         
-                case STAT.pre_extracg:
-                this.command.proc_pre_extracg(); this.command.draw_pre_extracg(this.ctx)
+                case STAT.pre_extragame:
+                this.command.proc_pre_extragame(); this.command.draw_pre_extragame(this.ctx)
                 break
         
-                case STAT.extracg:
-                this.command.proc_extracg(); this.command.draw_extracg(this.ctx)
+                case STAT.extragame:
+                this.command.proc_extragame(); this.command.draw_extragame(this.ctx)
                 break
     
                 ///////
@@ -186,9 +186,12 @@ export default {
                 case STAT.monologue_game:
                 this.command.click_mono_game()
                 break
+
+                case STAT.extragame:
+                this.command.click_extragame()
+                break
         
                 case STAT.cg:
-                case STAT.extracg:
                 this.command.click_cg()
                 break
         

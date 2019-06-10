@@ -24,12 +24,11 @@ let next_dress = DRESS.blue
 export default class {
     constructor() {
         return (async () => {
-
             this.audio = new AudioManager()
     
             this.casko = new Casko()
     
-            this.shoji = new Shoji()
+            this.shoji = await new Shoji()
             this.clicktostart = new CTS()
             this.logo = new Logo()
             this.fukidashi = new Fukidashi()
@@ -111,6 +110,12 @@ export default class {
         if (this.tablet.length > 0) { this.tablet[this.tablet.length - 1].calm() }
         stat = STAT.pre_game
     }
+    extragameinit() {
+        this.kirakira = new Kirakira()
+
+        this.sight.extrainit()
+        stat = stat.pre_extragame
+    }
     cginit(name) {
         this.cg = new Cg(name)
         this.set_word('cg_'+ name)
@@ -119,10 +124,6 @@ export default class {
     edinit() {
         this.tfp = new TFP()
         stat = STAT.pre_ed
-    }
-    extracginit() {
-        this.set_word('extracg')
-        stat = STAT.pre_extracg
     }
 
 /////////////////// click methods
@@ -197,7 +198,7 @@ export default class {
                 this.inst.next()
                 if (this.tablet.length === 0) {
                     if (next_dress === DRESS.sarashi) {
-                        this.extracginit()
+                        this.extragameinit()
                     } else {
                         this.cginit(next_dress)
                     }
@@ -320,6 +321,15 @@ export default class {
 
     ///////
 
+    proc_pre_extragame() {
+
+    }
+    proc_extragame() {
+
+    }
+
+    ///////
+
     proc_show() {
         const done_k = this.kirakira.fadeout()
         const done_s = this.shoji.open()
@@ -345,17 +355,6 @@ export default class {
         if (!this.shoji.close()) { return }
 
         this.edinit()
-    }
-
-    ///////
-
-    proc_pre_extracg() {
-        if (!this.shoji.extraopen()) { return }
-
-        stat = STAT.extracg
-    }
-    proc_extracg() {
-        this.fukidashi.proc(this.audio)
     }
 
     ///////
@@ -441,6 +440,17 @@ export default class {
     }
 
     ///////
+    
+    draw_pre_extragame(ctx) {
+        this.shoji.extradraw(ctx)
+
+    }
+    draw_extragame(ctx) {
+        this.shoji.draw(ctx)
+        this.fukidashi.draw(ctx)
+    }
+
+    ///////
 
     draw_show(ctx) {
         this.casko.draw(ctx)
@@ -466,17 +476,6 @@ export default class {
     }
 
     //////
-    
-    draw_pre_extracg(ctx) {
-        this.shoji.extradraw(ctx)
-
-    }
-    draw_extracg(ctx) {
-        this.shoji.draw(ctx)
-        this.fukidashi.draw(ctx)
-    }
-
-    ///////
 
     draw_pre_ed(ctx) {
         this.casko.draw(ctx)
