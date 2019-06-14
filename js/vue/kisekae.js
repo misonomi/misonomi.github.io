@@ -22,7 +22,6 @@ export default {
         
         /////////////////// instantiate classes and so on
 
-        this.bg = new Image(); this.bg.src = './images/kisekae/background.png'
         this.command = await new Command()
 
         /////////////////// initialize canvas
@@ -49,7 +48,6 @@ export default {
     },
     methods: {
         frame() {
-            this.ctx.drawImage(this.bg, 0, 0)
             switch(this.command.get_stat()) {
                 case STAT.ready:
                 this.command.proc_ready(); this.command.draw_ready(this.ctx)
@@ -102,6 +100,26 @@ export default {
                 break
         
                 ///////
+        
+                case STAT.pre_extragame:
+                this.command.proc_pre_extragame(); this.command.draw_pre_extragame(this.ctx)
+                break
+            
+                case STAT.wait_extragame:
+                this.command.proc_wait_extragame(); this.command.draw_wait_extragame(this.ctx)
+                break
+            
+                case STAT.extragame:
+                this.command.proc_extragame(); this.command.draw_extragame(this.ctx)
+                break
+    
+                ///////
+            
+                case STAT.shake:
+                this.command.proc_shake(); this.command.draw_shake(this.ctx)
+                break
+    
+                ///////
 
                 case STAT.show:
                 this.command.proc_show(); this.command.draw_show(this.ctx)
@@ -121,16 +139,6 @@ export default {
                 this.command.proc_post_cg(); this.command.draw_post_cg(this.ctx)
                 break
 
-                ///////
-        
-                case STAT.pre_extragame:
-                this.command.proc_pre_extragame(); this.command.draw_pre_extragame(this.ctx)
-                break
-        
-                case STAT.extragame:
-                this.command.proc_extragame(); this.command.draw_extragame(this.ctx)
-                break
-    
                 ///////
         
                 case STAT.pre_ed:
@@ -187,6 +195,9 @@ export default {
                 this.command.click_mono_game()
                 break
 
+                case STAT.wait_extragame:
+                this.command.click_wait_extragame()
+                break
                 case STAT.extragame:
                 this.command.click_extragame()
                 break

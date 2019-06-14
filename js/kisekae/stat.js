@@ -6,6 +6,7 @@ export const STAT = {
     cg: 4,
     show: 5,
     ed: 6,
+    shake: 7,
     extragame: 9,
 
     pre_talk: 11,
@@ -19,6 +20,7 @@ export const STAT = {
     post_cg: 24,
 
     wait_game: 33,
+    wait_extragame: 93,
 
     monologue_game: 43,
 

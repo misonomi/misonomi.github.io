@@ -1,6 +1,11 @@
 import CONST from './const.js'
 import ImageLorder from './image.js'
 
+const TWEAK = {
+    ignitepoint: [0, 3000, 4000],
+    shakeseqend: 5000
+}
+
 export default class {
     constructor() {
         return (async () => {
@@ -12,39 +17,36 @@ export default class {
         
             ctx.drawImage(image, 0, 0)
             this.open_cond = 1.
-            this.extraopen_cond = 0.
             this.shaking = 0.
+            this.shake_seq = 0
 
             return this
         })()
     }
     open() {
-        if (this.open_cond < 1) {
-            this.open_cond += CONST.shoji.step
-            return false
-        } else {
-            this.open_cond = 1.
-            return true
-        }
+        this.open_cond = (this.open_cond < 1) ? this.open_cond + CONST.shoji.step : 1
+        return this.open_cond === 1
     }
     close() {
-        if (this.open_cond > 0) {
-            this.open_cond -= CONST.shoji.step
-            return false
-        } else {
-            this.open_cond = 0.
-            return true
-        }
+        ithis.open_cond =  (this.open_cond > 0) ? this.open_cond - CONST.shoji.step : 0
+        return this.open_cond === 0
     }
     ignite() {
         this.shaking = CONST.shoji.shakeinterval
     }
-    shake() {
+    shake_proc() {
         this.shaking = (this.shaking > 0) ? this.shaking - 1 : 0
+    }
+    shake_seq() {
+        if(TWEAK.ignitepoint.includes(this.shake_seq)) {
+            this.ignite
+        }
+        this.shake_proc()
+        return ++this.shake_seq > TWEAK.shakeseqend
     }
     draw(ctx) {
         draw_symmetric(ctx, this.canvas, this.open_cond, this.shaking > 0)
-        draw_symmetric(ctx, this.canvas, 1, false)
+        draw_symmetric(ctx, this.canvas, .99, false)
     }
 }
 

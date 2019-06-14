@@ -1,5 +1,6 @@
 import { STAT, DRESS, DIFFIC } from './stat.js'
 import CONST from './const.js'
+import BG from './bg.js'
 import Shoji from './shoji.js'
 import CTS from './cts.js'
 import Logo from './logo.js'
@@ -28,6 +29,7 @@ export default class {
     
             this.casko = new Casko()
     
+            this.bg = await new BG()
             this.shoji = await new Shoji()
             this.clicktostart = new CTS()
             this.logo = new Logo()
@@ -95,7 +97,7 @@ export default class {
     }
     talkinit(seq) {
         this.set_word(seq)
-        stat = STAT.pre_talk
+        stat = STAT.talk
     }
     selectinit() {
         this.set_word('select' + (this.stagenum - this.stage))
@@ -154,6 +156,10 @@ export default class {
             this.gameinit()
             break
 
+            case STAT.extragame:
+            this.extragameinit()
+            break
+
             case STAT.ed:
             this.edinit()
             break
@@ -183,8 +189,14 @@ export default class {
     }
     click_wait_game(x, y) {
         if (this.tablet[this.tablet.length - 1].clicked(x, y)) {
-            stat = STAT.game
             console.log('[HIT]')
+            if (this.tablet[this.tablet.length - 1].is_broken()) {
+                this.tablet.pop()
+                this.inst.next()
+                stat = STAT.break_game
+            } else {
+                stat = STAT.game
+            }
             this.shock.ignite(x, y)
         } else if (this.conscience.clicked(x, y)) {
             this.set_word('changing_' + next_dress)
@@ -193,6 +205,7 @@ export default class {
     }
     click_game(x, y) {
         if (this.tablet[this.tablet.length - 1].clicked(x, y)) {
+            console.log('[HIT]')
             if (this.tablet[this.tablet.length - 1].is_broken()) {
                 this.tablet.pop()
                 this.inst.next()
@@ -206,11 +219,23 @@ export default class {
                     stat = STAT.break_game
                 }
             }
-            console.log('[HIT]')
             this.shock.ignite(x, y)
         } else {
             this.shock.smallignite(x, y)
         }
+    }
+    click_wait_extragame(x, y) {
+        this.shoji.clicked()
+        this.shock.ignite(x, y)
+        stat = STAT.extragame
+    }
+    click_extragame(x, y) {
+        this.shoji.clicked()
+        console.log('[HIT]')
+        if(this.shoji.is_broken()) {
+            this.cginit(DRESS.sarashi)
+        }
+        this.shock.ignite(x, y)
     }
     click_mono_game() {
         if (this.words.next() == null) {
@@ -243,11 +268,6 @@ export default class {
 
     ///////
 
-    proc_pre_talk() {
-        if (!this.shoji.open()) { return }
-        
-        stat = STAT.talk
-    }
     proc_talk() {
         this.fukidashi.proc(this.audio)
     }
@@ -322,10 +342,27 @@ export default class {
     ///////
 
     proc_pre_extragame() {
-
+        if(!this.sight.ready()) { return }
+    
+        stat = STAT.wait_extragame
+    }
+    proc_wait_extragame() {
     }
     proc_extragame() {
+        this.shock.proc()
+        this.shoji.shake_proc()
 
+        if (!this.sight.tick()) { return }
+
+        this.end_game()
+    }
+
+    ///////
+
+    proc_shake() {
+        if(!this.shoji.shake_seq()) { return }
+
+        this.talkinit('extragameintro')
     }
 
     ///////
@@ -373,6 +410,7 @@ export default class {
 /////////////////// draw methods
 
     draw_ready(ctx) {
+        this.bg.draw(ctx)
         this.casko.draw(ctx)
         this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
@@ -383,6 +421,7 @@ export default class {
     ///////
 
     draw_talk(ctx) {
+        this.bg.draw(ctx)
         this.casko.draw(ctx)
         this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
@@ -391,6 +430,7 @@ export default class {
     ///////
 
     draw_select(ctx) {
+        this.bg.draw(ctx)
         this.casko.draw(ctx)
         this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
@@ -404,6 +444,7 @@ export default class {
     ///////
 
     draw_pre_game(ctx) {
+        this.bg.draw(ctx)
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
         this.sight.draw(ctx, this.tablet[this.tablet.length - 1].get_ap())
@@ -442,17 +483,30 @@ export default class {
     ///////
     
     draw_pre_extragame(ctx) {
-        this.shoji.extradraw(ctx)
-
+        this.bg.draw(ctx)
+        this.shoji.draw(ctx)
+    }
+    draw_wait_extragame(ctx) {
+        this.shoji.draw(ctx)
+        this.sight.draw(ctx, this.shoji.get_ap())
     }
     draw_extragame(ctx) {
         this.shoji.draw(ctx)
-        this.fukidashi.draw(ctx)
+        this.sight.draw(ctx, this.shoji.get_ap())
+        this.shock.draw(ctx)
+    }
+
+    ///////
+
+    draw_shake(ctx) {
+        this.bg.draw(ctx)
+        this.shoji.draw(ctx)
     }
 
     ///////
 
     draw_show(ctx) {
+        this.bg.draw(ctx)
         this.casko.draw(ctx)
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
@@ -461,6 +515,7 @@ export default class {
     ///////
 
     draw_pre_cg(ctx) {
+        this.bg.blanc(ctx)
         this.cg.draw(ctx)
         this.kirakira.draw(ctx)
         this.shoji.draw(ctx)
@@ -478,6 +533,7 @@ export default class {
     //////
 
     draw_pre_ed(ctx) {
+        this.bg.draw(ctx)
         this.casko.draw(ctx)
         this.shoji.draw(ctx)
         this.tfp.draw(ctx)
