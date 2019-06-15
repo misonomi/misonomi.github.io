@@ -10,7 +10,9 @@ export default {
     },
     shoji: {
         step: .02,
-        shakeinterval: 300,
+        shakeinterval: 30,
+        agility: 20,
+        ap: 20,
     },
     dresser: {
         step: .2,
@@ -55,7 +57,7 @@ export default {
         intervaly: 200,
         width: 30,
         height: 30,
-        ap: 8,
+        ap: 2,//8,
         intervalt: 30,
         agility: 30,
     },
@@ -67,12 +69,14 @@ export default {
     sight: {
         x: 200,
         y: 400,
-        timelimit: 500.0,
+        timelimit: 500,
+        extratimelimit: 2000,
         radius: 500,
         linew: 12,
         margin: .07,
         textmargin_tl: 30,
         textmargin_ap: 80,
+        readystep: .03,
     },
     conscience: {
         width: 200,
@@ -210,7 +214,22 @@ export default {
             ]
         },
         sarashi: {
-            pan: []
+            pan: [
+                {
+                    startx: -1200,
+                    starty: -1000,
+                    stepx: 1,
+                    stepy: 1,
+                    duration: 200,
+                },
+                {
+                    startx: -200,
+                    starty: -200,
+                    stepx: -1,
+                    stepy: 1,
+                    duration: 200,
+                },
+            ]
         },
     }
 }

@@ -1,32 +1,39 @@
-import { STAT } from '../kisekae/stat.js'
-import CONST from '../kisekae/const.js'
-import Command from '../kisekae/command.js'
+import { STAT } from './kisekae/stat.js'
+import CONST from './kisekae/const.js'
+import Command from './kisekae/command.js'
 
-funcSetup()
-        
-/////////////////// instantiate classes and so on
+let command
+let canvas
+let ctx
+let display_canvas
+let display_ctx
+let scale
 
-command = await new Command()
+window.onload = async () => {
 
-/////////////////// initialize canvas
-
-display_canvas = document.getElementById('kisekae')
-display_ctx = display_canvas.getContext('2d')
-
-/////////////////// initialize buffered canvas
-
-canvas = document.createElement('canvas')
-ctx = canvas.getContext('2d')
-
-canvas.width = CONST.originalx
-canvas.height = CONST.originaly
-
-/////////////////// add event listener
-
-display_canvas.addEventListener('click', onClick, false)
-display_canvas.addEventListener('keydown', onKeyDown, false)
-
-window.onload = () => {
+  funcSetup()
+          
+  /////////////////// instantiate classes and so on
+  
+  command = await new Command()
+  
+  /////////////////// initialize canvas
+  
+  display_canvas = document.getElementById('kisekae')
+  display_ctx = display_canvas.getContext('2d')
+  
+  /////////////////// initialize buffered canvas
+  
+  canvas = document.createElement('canvas')
+  ctx = canvas.getContext('2d')
+  
+  canvas.width = CONST.originalx
+  canvas.height = CONST.originaly
+  
+  /////////////////// add event listener
+  
+  display_canvas.addEventListener('click', onClick, false)
+  display_canvas.addEventListener('keydown', onKeyDown, false)
   setInterval(frame, 10)
 }
 
@@ -180,10 +187,10 @@ async function clicked(x, y) {
     break
 
     case STAT.wait_extragame:
-    command.click_wait_extragame()
+    command.click_wait_extragame(x, y)
     break
     case STAT.extragame:
-    command.click_extragame()
+    command.click_extragame(x, y)
     break
 
     case STAT.cg:
@@ -212,24 +219,24 @@ function funcSetup() {
   CanvasRenderingContext2D.prototype.fillRoundRect = function (x, y, w, h, r) {
     if (w < 2 * r) { r = w / 2 }
     if (h < 2 * r) { r = h / 2 }
-    beginPath()
-    moveTo(x+r, y)
-    arcTo(x+w, y,   x+w, y+h, r)
-    arcTo(x+w, y+h, x,   y+h, r)
-    arcTo(x,   y+h, x,   y,   r)
-    arcTo(x,   y,   x+w, y,   r)
-    closePath()
-    fill()
+    this.beginPath()
+    this.moveTo(x+r, y)
+    this.arcTo(x+w, y,   x+w, y+h, r)
+    this.arcTo(x+w, y+h, x,   y+h, r)
+    this.arcTo(x,   y+h, x,   y,   r)
+    this.arcTo(x,   y,   x+w, y,   r)
+    this.closePath()
+    this.fill()
   }
   CanvasRenderingContext2D.prototype.strokeArc = function (w, x, y, r, start, end) {
-    lineWidth = w
-    beginPath()
-    arc(x, y, r, start, end)
-    stroke()
+    this.lineWidth = w
+    this.beginPath()
+    this.arc(x, y, r, start, end)
+    this.stroke()
   }
   CanvasRenderingContext2D.prototype.strokeArc4 = function (w, x, y, r, start, end) {
     for (let i = 0; i < 2 * Math.PI; i += .5 * Math.PI) {
-        strokeArc(w, x, y, r, start + i, end + i)
+        this.strokeArc(w, x, y, r, start + i, end + i)
     }
   }
 }

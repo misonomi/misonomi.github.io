@@ -116,7 +116,7 @@ export default class {
         this.kirakira = new Kirakira()
 
         this.sight.extrainit()
-        stat = stat.pre_extragame
+        stat = STAT.pre_extragame
     }
     cginit(name) {
         this.cg = new Cg(name)
@@ -130,14 +130,14 @@ export default class {
 
 /////////////////// click methods
 
-    click_ready() {
+    async click_ready() {
         // FIXME store difficulty data itself
         this.stagenum = DIFFIC.normal.stagenum
 
         this.stage = this.stagenum
         
         for (let i = this.stage - 1; i >= 0; i--) {
-            this.tablet.push(new Tablet(i))
+            this.tablet.push(await new Tablet(i))
         }
 
         this.talkinit('intro')
@@ -211,7 +211,7 @@ export default class {
                 this.inst.next()
                 if (this.tablet.length === 0) {
                     if (next_dress === DRESS.sarashi) {
-                        this.extragameinit()
+                        stat = STAT.shake
                     } else {
                         this.cginit(next_dress)
                     }
@@ -225,17 +225,20 @@ export default class {
         }
     }
     click_wait_extragame(x, y) {
-        this.shoji.clicked()
+        this.shoji.clicked_and_is_broken()
         this.shock.ignite(x, y)
+        this.shoji.ignite()
         stat = STAT.extragame
     }
     click_extragame(x, y) {
-        this.shoji.clicked()
         console.log('[HIT]')
-        if(this.shoji.is_broken()) {
+        if(this.shoji.clicked_and_is_broken()) {
+            this.shoji.calm()
             this.cginit(DRESS.sarashi)
+            return
         }
         this.shock.ignite(x, y)
+        this.shoji.ignite()
     }
     click_mono_game() {
         if (this.words.next() == null) {
@@ -360,7 +363,7 @@ export default class {
     ///////
 
     proc_shake() {
-        if(!this.shoji.shake_seq()) { return }
+        if(!this.shoji.shake()) { return }
 
         this.talkinit('extragameintro')
     }
@@ -380,7 +383,7 @@ export default class {
     proc_pre_cg() {
         const done_c = this.cg.pan()
         const done_k = this.kirakira.fadeout()
-        const done_s = this.shoji.open()
+        const done_s = next_dress === DRESS.sarashi ? this.shoji.fullopen() : this.shoji.open()
         if (!done_c || !done_k || !done_s) { return }
 
         stat = STAT.cg
@@ -423,8 +426,8 @@ export default class {
     draw_talk(ctx) {
         this.bg.draw(ctx)
         this.casko.draw(ctx)
-        this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
+        this.fukidashi.draw(ctx)
     }
 
     ///////
@@ -485,6 +488,7 @@ export default class {
     draw_pre_extragame(ctx) {
         this.bg.draw(ctx)
         this.shoji.draw(ctx)
+        this.sight.draw(ctx, this.shoji.get_ap())
     }
     draw_wait_extragame(ctx) {
         this.shoji.draw(ctx)

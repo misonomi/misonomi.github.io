@@ -42,14 +42,16 @@ export default class {
         this.ctx.strokeStyle = 'rgba(255, 255, 255, .2)'
         this.ctx.strokeArc(CONST.sight.linew * 2, halfr, halfr, CONST.sight.radius - CONST.sight.linew * 12, 
             0, 2 * Math.PI)
-        
-        // ---
-
-        this.poe_start = 0.
-        
     }
     init() {
+        this.poe_start = 0.
+        this.max_time = CONST.sight.timelimit
         this.clock = CONST.sight.timelimit
+    }
+    extrainit() {
+        this.poe_start = 0.
+        this.max_time = CONST.sight.extratimelimit
+        this.clock = CONST.sight.extratimelimit
     }
     ready() {
         this.poe_start = (this.poe_start < 1) ? this.poe_start + CONST.sight.readystep : 1
@@ -72,7 +74,7 @@ export default class {
         ctx.shadowColor = 'rgb(0, 255, 255)'
         ctx.strokeArc(CONST.sight.linew * .5, CONST.originalx / 2, CONST.originaly / 2, 
             CONST.sight.radius - CONST.sight.linew * 3, 
-            this.timeranglemin, this.timeranglemin + ((this.timeranglemax - this.timeranglemin) * (this.clock / CONST.sight.timelimit) * this.poe_start))
+            this.timeranglemin, this.timeranglemin + ((this.timeranglemax - this.timeranglemin) * (this.clock / this.max_time) * this.poe_start))
         
         ctx.strokeStyle = 'rgb(255, 200, 200)'
         ctx.shadowColor = 'rgb(255, 0, 0)'

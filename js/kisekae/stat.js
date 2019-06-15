@@ -44,7 +44,7 @@ export const FACE = {
 
 export const DIFFIC = {
     normal: {
-        stagenum: 3,
+        stagenum: 1,
     },
     hard:  {
         stagenum: 4,

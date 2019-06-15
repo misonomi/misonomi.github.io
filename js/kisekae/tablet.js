@@ -1,7 +1,7 @@
 import CONST from './const.js'
 import ImageLorder from './image.js'
 
-let tablet = class {
+export default class {
     constructor(id) {
         return (async () => {
             let image = await ImageLorder('./images/kisekae/tablet.png')
@@ -38,10 +38,11 @@ let tablet = class {
     }
     clicked(x, y) {
         if ((this.x <= x && x <= this.x + this.canvas.width) && (this.y <= y && y <= this.y + this.canvas.height)) {
-            this.interval = CONST.tablet.intervalt
             if (this.interval > 0) {
+                this.interval = CONST.tablet.intervalt
                 return false
             } else {
+                this.interval = CONST.tablet.intervalt
                 this.ap--
                 return true
             }
@@ -68,5 +69,3 @@ let tablet = class {
         ctx.drawImage((this.interval > 0) ? this.canvas_white : this.canvas, this.x + this.randx, this.y + this.randy)
     }
 }
-
-export default tablet

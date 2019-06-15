@@ -6,7 +6,7 @@ export default class {
         return (async () => {
             let image = await ImageLorder('./images/kisekae/background.png')
             this.canvas = document.createElement('canvas')
-            let ctx = _this.canvas.getContext('2d')
+            let ctx = this.canvas.getContext('2d')
             this.canvas.width = image.width
             this.canvas.height = image.height
         
