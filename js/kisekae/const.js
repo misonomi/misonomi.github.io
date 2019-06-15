@@ -9,7 +9,7 @@ export default {
         rvariance: 100,
     },
     shoji: {
-        step: .02,
+        step: .03,
         shakeinterval: 30,
         agility: 20,
         ap: 20,
