@@ -1,5 +1,4 @@
 import { STAT, DRESS, DIFFIC } from './stat.js'
-import CONST from './const.js'
 import BG from './bg.js'
 import Shoji from './shoji.js'
 import CTS from './cts.js'
@@ -34,7 +33,7 @@ export default class {
             this.clicktostart = new CTS()
             this.logo = new Logo()
             this.fukidashi = new Fukidashi()
-    
+
             this.dresser_miko = new Dresser(DRESS.miko)
             this.dresser_maid = new Dresser(DRESS.maid)
             this.dresser_mizugi = new Dresser(DRESS.mizugi)

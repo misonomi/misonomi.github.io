@@ -7,6 +7,10 @@ const stat = {
     disabled: 2,
 }
 
+const TWEAK = {
+    fsize: 40,
+}
+
 export default class {
     constructor(dress) {
         this.canvas_top = document.createElement('canvas')
@@ -20,7 +24,7 @@ export default class {
         this.canvas_base.height = CONST.dresser.height_b
 
         draw_top(this.ctx_top, this.canvas_top.width, this.canvas_top.height, CONST.dresser[dress].color)
-        draw_base(this.ctx_base, this.canvas_base.width, this.canvas_base.height, this.canvas_top, this.canvas_top.width, this.canvas_top.height, CONST.dresser[dress].text)
+        draw_base(this.ctx_base, this.canvas_base.width, this.canvas_base.height, this.canvas_top, this.canvas_top.width, this.canvas_top.height)
 
         //---------
 
@@ -42,8 +46,8 @@ export default class {
         if (this.stat == stat.clicked) { 
             this.poe = 0.0
             this.stat = stat.disabled
-            draw_top(this.ctx_top, this.canvas_top.width, this.canvas_top.height, 'rgb(64, 64, 64)')
-            draw_base(this.ctx_base, this.canvas_base.width, this.canvas_base.height, this.canvas_top, this.canvas_top.width, this.canvas_top.height, '****')
+            this.ctx_top.clearRect(0, 0, this.canvas_top.width, this.canvas_top.height)
+            draw_base(this.ctx_base, this.canvas_base.width, this.canvas_base.height, this.canvas_top, this.canvas_top.width, this.canvas_top.height)
         }
         if (this.poe < 1) {
             this.poe += CONST.dresser.step
@@ -66,9 +70,22 @@ export default class {
     }
     draw(ctx) {
 
+        ctx.save()
+
         ctx.drawImage(this.canvas_base, 0, 0, this.canvas_base.width, this.canvas_base.height,
             this.x, this.y + (1 - this.poe) * this.canvas_base.height / 2,
             this.canvas_base.width, this.canvas_base.height * this.poe)
+        
+        ctx.font = 'bold ' + TWEAK.fsize * this.poe + 'px "Noto Sans JP"'
+        ctx.textAlign = 'center'
+        ctx.fillStyle = (this.stat === stat.clicked) ? 'rgb(96, 96, 96)' : 'rgb(32, 32, 32)'
+        ctx.shadowColor = (this.stat === stat.clicked) ? 'rgb(255, 255, 255)' : 'rgb(128, 168, 168)'
+        ctx.shadowBlur = 10
+        ctx.fillText(CONST.dresser[this.dress].text, 
+            this.x + this.canvas_base.width / 2, 
+            this.y + this.canvas_base.height / 2 + TWEAK.fsize * .4)
+
+        ctx.restore()
     }
 }
 
@@ -91,8 +108,7 @@ function draw_top(ctx, width, height, color) {
     ctx.fillRoundRect(0, 0, width, height, 10)
 }
 
-function draw_base(ctx, width, height, icanvas, iwidth, iheight, text) {
-    const fsize = 40
+function draw_base(ctx, width, height, icanvas, iwidth, iheight) {
     ctx.clearRect(0, 0, width, height)
 
     let grad = ctx.createLinearGradient(0, 0, 0, height)
@@ -103,16 +119,4 @@ function draw_base(ctx, width, height, icanvas, iwidth, iheight, text) {
     ctx.fillRoundRect(0, 0, width, height, 10)
     
     ctx.drawImage(icanvas, (width - iwidth) / 2, (height - iheight) / 2)
-
-    return new Promise(resolve => {
-        ctx.font = fsize + 'px "Noto Sans JP"'
-        ctx.fillStyle = 'rgb(32, 32, 32)'
-        ctx.shadowColor = 'rgb(128, 168, 168)'
-        ctx.shadowBlur = 10
-        ctx.textAlign = 'center'
-
-        resolve()
-    }).then(() => {
-        ctx.fillText(text, width / 2, height / 2 + fsize * .4)
-    })
 }
