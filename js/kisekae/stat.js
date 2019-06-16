@@ -6,19 +6,21 @@ export const STAT = {
     cg: 4,
     show: 5,
     ed: 6,
-    extracg: 9,
+    shake: 7,
+    extragame: 9,
 
     pre_talk: 11,
     pre_select: 12,
     pre_game: 13,
     pre_cg: 14,
     pre_ed: 16,
-    pre_extracg: 19,
+    pre_extragame: 19,
     
     post_select: 22,
     post_cg: 24,
 
     wait_game: 33,
+    wait_extragame: 93,
 
     monologue_game: 43,
 

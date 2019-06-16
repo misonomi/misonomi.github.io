@@ -35,7 +35,7 @@ export default class {
         this.ctx.shadowColor = 'rgb(255, 255, 255)'
         this.ctx.shadowBlur = 10
 
-        let grad = this.ctx.createRadialGradient(centerx, centery, 0, centerx, centery, this.canvas.width / 2)
+        let grad = this.ctx.createRadialGradient(centerx, centery, 0, centerx, centery, this.canvas.width * .8)
         // -----
         grad.addColorStop(0, 'rgba(0, 0, 0, 0)')
         grad.addColorStop(Math.max(0, -.3 + progress * 1.3), 'rgba(0, 0, 0, ' + this.poe + ')')
@@ -59,13 +59,6 @@ export default class {
             
             this.ctx.restore()
         }
-
-        this.ctx.globalCompositeOperation = 'overlay'
-        this.ctx.strokeStyle = 'rgb(255, 255, 255)'
-        this.ctx.lineWidth = 2
-        this.ctx.beginPath()
-        this.ctx.arc(this.canvas.width / 2, this.canvas.height / 2, 850 * progress, 0, 2 * Math.PI)
-        this.ctx.stroke()
 
         this.ctx.restore()
 

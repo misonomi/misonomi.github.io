@@ -12,12 +12,12 @@ export default {
     },
     template: `
         <div class="container-outer">
-            <div class="container-inner" @click="this.navigate()">
+            <div class="container-inner" @click="navigate()">
                 <div class="container-title">
-                    <p class="container-text">{{this.title}}</p>
+                    <p class="container-text">{{title}}</p>
                 </div>
                 <div class="container-disc">
-                    <p class="container-text">{{this.description}}</p>
+                    <p class="container-text">{{description}}</p>
                 </div>
             </div>
         </div>

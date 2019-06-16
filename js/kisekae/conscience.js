@@ -59,7 +59,7 @@ export default class {
         this.ctx.fillStyle = 'rgb(255, 200, 200)'
         this.ctx.shadowColor = 'rgb(255, 0, 0)'
         this.ctx.shadowBlur = 50
-        this.ctx.font = '20px Geo'
+        this.ctx.font = '20px Sarpanch'
         this.ctx.textAlign = 'center'
         this.ctx.fillText(this.text.substr(0, this.text.length * this.poe[1]), this.canvas.width / 2, this.canvas.height - CONST.conscience.basemargin * 3)
         if(this.poe[1] == 1){

@@ -92,22 +92,27 @@ function draw_top(ctx, width, height, color) {
 }
 
 function draw_base(ctx, width, height, icanvas, iwidth, iheight, text) {
+    const fsize = 40
     ctx.clearRect(0, 0, width, height)
-    ctx.save()
 
-    ctx.fillStyle = 'rgba(0, 0, 0, .5)'
+    let grad = ctx.createLinearGradient(0, 0, 0, height)
+    grad.addColorStop(0, 'rgb(64, 64, 64)')
+    grad.addColorStop(.5, 'rgba(0, 0, 0, .7)')
+    grad.addColorStop(1, 'rgb(64, 64, 64)')
+    ctx.fillStyle = grad
     ctx.fillRoundRect(0, 0, width, height, 10)
     
     ctx.drawImage(icanvas, (width - iwidth) / 2, (height - iheight) / 2)
-    
-    const fsize = 40
-    ctx.font = fsize + 'px Meiryo'
-    let grad = ctx.createLinearGradient(0, 0, 0, 100)
-    grad.addColorStop(.5, 'rgb(128, 128, 128)')
-    grad.addColorStop(1, 'rgb(0, 0, 0)')
-    ctx.fillStyle = grad
-    ctx.shadowColor = 'rgb(255, 255, 255)'
-    ctx.shadowBlur = 2
-    ctx.textAlign = 'center'
-    ctx.fillText(text, width / 2, height / 2 + fsize * .4)
+
+    return new Promise(resolve => {
+        ctx.font = fsize + 'px "Noto Sans JP"'
+        ctx.fillStyle = 'rgb(32, 32, 32)'
+        ctx.shadowColor = 'rgb(128, 168, 168)'
+        ctx.shadowBlur = 10
+        ctx.textAlign = 'center'
+
+        resolve()
+    }).then(() => {
+        ctx.fillText(text, width / 2, height / 2 + fsize * .4)
+    })
 }
