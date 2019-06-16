@@ -357,7 +357,7 @@ export default class {
 
         if (!this.sight.tick()) { return }
 
-        this.end_game()
+        this.talkinit('baded')
     }
 
     ///////
@@ -415,8 +415,8 @@ export default class {
     draw_ready(ctx) {
         this.bg.draw(ctx)
         this.casko.draw(ctx)
-        this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
+        this.fukidashi.draw(ctx)
         this.logo.draw(ctx)
         this.clicktostart.draw(ctx)
     }
@@ -435,8 +435,8 @@ export default class {
     draw_select(ctx) {
         this.bg.draw(ctx)
         this.casko.draw(ctx)
-        this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
+        this.fukidashi.draw(ctx)
         this.dresser_miko.draw(ctx)
         this.dresser_maid.draw(ctx)
         this.dresser_mizugi.draw(ctx)
@@ -526,8 +526,8 @@ export default class {
     }
     draw_cg(ctx) {
         this.cg.draw(ctx)
-        this.fukidashi.draw(ctx)
         this.shoji.draw(ctx)
+        this.fukidashi.draw(ctx)
     }
     draw_post_cg(ctx) {
         this.cg.draw(ctx)

@@ -83,7 +83,7 @@ export default class {
             this.apanglemin, this.apanglemin + ((this.apanglemax - this.apanglemin) * (ap.current / ap.full) * this.poe_start))
 
         ctx.shadowBlur = 50
-        ctx.font = '40px Geo'
+        ctx.font = '40px Sarpanch'
         ctx.textAlign = 'center'
         ctx.fillStyle = 'rgb(200, 255, 255)'
         ctx.shadowColor = 'rgb(0, 255, 255)'

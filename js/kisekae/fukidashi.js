@@ -57,7 +57,7 @@ export default class {
         ctx.drawImage(this.canvas, (CONST.originalx - this.canvas.width) / 2, CONST.fukidashi.y)
 
         ctx.fillStyle = 'rgb(255, 255, 255)'
-        ctx.font = 'normal 40px Noto Sans JP'
+        ctx.font = 'bold 40px "Noto Sans JP"'
         ctx.textAlign = 'center'
         for (let i = 0; i < this.line.length; i++) {
             if (i == this.lineptr) {

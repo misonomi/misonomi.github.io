@@ -4,7 +4,7 @@ const TEXT = [
     {
         text: 'Thank you for playing!',
         size: '160',
-        font: 'Geo',
+        font: 'Sarpanch',
         x: CONST.originalx / 2,
         y: CONST.originaly / 3,
     },
@@ -12,13 +12,13 @@ const TEXT = [
         text: 'this is a fungame for Fate/EXTRA. ',
         size: '10',
         font: '"Libre Barcode 39 Extended Text"',
-        x: CONST.originalx / 2,
+        x: CONST.originalx / 8,
         y: CONST.originaly - 20,
     },
     {
         text: 'click to play again',
         size: '60',
-        font: 'Geo',
+        font: 'Sarpanch',
         x: CONST.originalx / 2,
         y: CONST.originaly / 2 + 100,
     },
@@ -68,8 +68,8 @@ export default class {
     draw(ctx) {
         ctx.save()
         ctx.fillStyle = 'rgb(255, 255, 255)'
-        ctx.shadowColor = 'rgba(0, 200, 200, ' + this.alpha + ')'
-        ctx.shadowBlur = 50
+        ctx.shadowColor = 'rgba(0, 128, 128, ' + this.alpha + ')'
+        ctx.shadowBlur = 20
         ctx.textAlign = 'center'
         for (let i = 0; i <= this.txtptr; i++) {
             ctx.font = TEXT[i].size + 'px ' + TEXT[i].font
