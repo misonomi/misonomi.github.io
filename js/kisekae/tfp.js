@@ -3,7 +3,7 @@ import CONST from './const.js'
 const TEXT = [
     {
         text: 'Thank you for playing!',
-        size: '160',
+        size: '140',
         font: 'Sarpanch',
         x: CONST.originalx / 2,
         y: CONST.originaly / 3,
