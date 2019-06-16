@@ -2,7 +2,7 @@ import CONST from './const.js'
 
 const KANJI = [
     '待機',
-    '望待',
+    '堅忍',
     '不動',
 ]
 
