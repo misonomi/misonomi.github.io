@@ -3,7 +3,7 @@ name: hp-deploy
 
 on:
   push:
-    branches: [ master ]
+    branches: [ dev ]
 
 jobs:
   build-deploy:
@@ -21,5 +21,5 @@ jobs:
     - uses: peaceiris/actions-gh-pages@v2.4.0
       env:
         PERSONAL_TOKEN: ${{ secrets.TOKEN_REPO }}
-        PUBLISH_BRANCH: gh-pages
+        PUBLISH_BRANCH: master
         PUBLISH_DIR: ./target/deploy
