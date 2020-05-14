@@ -9,16 +9,31 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions-rs/cargo@v1
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Restore Cache
+      uses: actions/cache@v1
+      with:
+        path: ~/.cargo
+        key: cargo-${{ hashFiles(Cargo.toml) }}
+        restore-keys: |
+          cargo-
+
+    - name: Install cargo-web
+      uses: actions-rs/cargo@v1
       with:
         command: install
-        args: --force cargo-web
-    - uses: actions-rs/cargo@v1
+        args: cargo-web
+
+    - name: Build
+      uses: actions-rs/cargo@v1
       with:
         command: web
         args: deploy
-    - uses: peaceiris/actions-gh-pages@v2.4.0
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.4.0
       env:
         PERSONAL_TOKEN: ${{ secrets.TOKEN_REPO }}
         PUBLISH_BRANCH: master
