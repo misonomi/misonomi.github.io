@@ -1,8 +1,0 @@
-[package]
-name = "misonomi-hp"
-version = "0.1.0"
-authors = ["misonomi <misonomi0612@gmail.com>"]
-edition = "2018"
-
-[dependencies]
-yew = "0.10.0"
