@@ -1,1 +1,3 @@
-images/*.gfie
+*.gfie
+
+/target
