@@ -22,6 +22,16 @@ impl IconType {
             IconType::Programs => "programs",
         }
     }
+
+    fn link(&self) -> &str {
+        match self {
+            IconType::Accessories => "accessories.html",
+            IconType::ANRecruit => "arknights-recruiter.html",
+            IconType::Assemble => "assemble.html",
+            IconType::Kisekae => "kisekae.html",
+            IconType::Programs => "https://github.com/misonomi",
+        }
+    }
 }
 
 #[derive(Clone)]
@@ -85,12 +95,18 @@ impl Component for RollingMenu {
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        self.current = match msg {
+        let target = match msg {
             Msg::Jump(n) => n,
             Msg::Right => if self.current == 0 { ITEM_NUM - 1 } else { self.current - 1 },
             Msg::Left => if self.current == ITEM_NUM - 1 { 0 } else { self.current + 1 },
         };
-        true
+        if target == self.current {
+            web_sys::window().unwrap().open_with_url(self.icons[target as usize].itype.link()).unwrap();
+            false
+        } else {
+            self.current = target;
+            true
+        }
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
