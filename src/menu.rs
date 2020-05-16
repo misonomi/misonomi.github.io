@@ -115,7 +115,7 @@ impl Component for RollingMenu {
 
     fn view(&self) -> Html {
         html! {
-            <div id="rolling-menu">
+            <main>
                 <div id="menu-left" onclick=self.link.callback(|_| Msg::Left)/>
                 <div id="menu-right" onclick=self.link.callback(|_| Msg::Right)/>
                 { self.icons.iter().cloned().map(|e| html!{
@@ -124,7 +124,7 @@ impl Component for RollingMenu {
                     </div>
                 }).collect::<Html>() }
                 <h2 id="menu-title">{ format!("{}", self.icons[self.current as usize]) }</h2>
-            </div>
+            </main>
         }
     }
 }

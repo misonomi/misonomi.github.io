@@ -6,8 +6,8 @@
 	--back_ratio: .3;
 }
 
-#menu-root {
-	height: 80vh;
+main {
+	height: 100vh;
 	position: relative;
 }
 
