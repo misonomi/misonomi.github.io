@@ -29,7 +29,10 @@ jobs:
 
     - name: Build
       run: |
-        wasm-pack build --target web --out-name index --out-dir ./static/index -- --features index
+        wasm-pack build --release --target web --out-name index --out-dir static/index -- --features index
+
+    - name: Remove unnecessary files
+      run: find static -name '.gitignore' -o -name 'README.md' -o -name 'package.json' -delete
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
