@@ -17,8 +17,9 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.cargo
-        key: cargo-${{ hashFiles(Cargo.lock) }}
-        restore-keys: [ cargo- ]
+        key: cargo-${{ hashFiles('Cargo.lock') }}
+        restore-keys: |
+          cargo-
 
     - name: Install wasm-pack
       uses: actions-rs/cargo@v1
