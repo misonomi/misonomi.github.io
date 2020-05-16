@@ -16,9 +16,9 @@ impl IconType {
     fn name(&self) -> &str {
         match self {
             IconType::Accessories => "accessories",
-            IconType::ANRecruit => "bio",
+            IconType::ANRecruit => "recruiter",
             IconType::Assemble => "assemble",
-            IconType::Kisekae => "games",
+            IconType::Kisekae => "kisekae",
             IconType::Programs => "programs",
         }
     }
