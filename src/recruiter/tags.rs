@@ -1,9 +1,9 @@
+use std::collections::HashSet;
 use yew::{ prelude::* };
 
-use super::tag_selector::{ TagSelector, Msg };
-use super::language::*;
+use super::{ Recruiter, language::*, tag_selector::{ TagSelector, Msg } };
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Tag {
     Starter,
     Senior,
@@ -35,6 +35,18 @@ pub enum Tag {
     Survival,
 }
 
+macro_rules! tags {
+    ($($x:expr),+ $(,)?) => {
+        {
+            let mut hash = HashSet::new();
+            $(
+                hash.insert($x);
+            )*
+            hash
+        }
+    };
+}
+
 pub fn qualifications() -> Vec<Tag> {
     vec!(Tag::Starter, Tag::Senior, Tag::Top)
 }
@@ -49,6 +61,14 @@ pub fn affix() -> Vec<Tag> {
 }
 
 impl Tag {
+    pub fn bundle(tags: Vec<Tag>) -> HashSet<Tag> {
+        let mut hash = HashSet::with_capacity(tags.capacity());
+        for t in tags {
+            hash.insert(t);
+        }
+        hash
+    } 
+
     pub fn name(&self) -> Multilingual {
         match self {
             Tag::Starter => Multilingual::new("", "初期", ""),
@@ -88,6 +108,17 @@ impl Tag {
                 true => "checked",
                 _ => "",
             }) onclick=link.callback(move |_| Msg::Toggle(self))>
+                { self.name().select(lng) }
+            </button>
+        }
+    }
+
+    pub fn view(self, lng: &Language, checked: bool, link: &ComponentLink<Recruiter>) -> Html {
+        html! {
+            <button class=("tag-button", match checked {
+                true => "checked",
+                _ => "",
+            }) onclick=link.callback(move |_| super::Msg::Toggle(self))>
                 { self.name().select(lng) }
             </button>
         }

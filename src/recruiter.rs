@@ -1,5 +1,7 @@
+use std::collections::HashSet;
 use yew::{ prelude::* };
 
+#[macro_use]
 mod tags;
 mod operators;
 mod language;
@@ -39,7 +41,7 @@ pub struct Recruiter {
     link: ComponentLink<Self>,
     language: Language,
     text: Text,
-    selected_tags: Vec<Tag>,
+    selected_tags: HashSet<Tag>,
     candidates: Vec<Operator>,
     all_oeprators: Vec<Operator>,
 }
@@ -52,7 +54,7 @@ impl Component for Recruiter {
             link,
             language: Language::Japanese,
             text: Text::new(),
-            selected_tags: Vec::with_capacity(TAG_N as usize),
+            selected_tags: HashSet::with_capacity(TAG_N as usize),
             candidates: vec!(),
             all_oeprators: Operator::all(),
         }
@@ -61,17 +63,25 @@ impl Component for Recruiter {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::Toggle(tag) => {
-                match self.selected_tags.iter().position(|e| e == &tag) {
-                    Some(i) => { self.selected_tags.remove(i); },
-                    None => self.selected_tags.push(tag),
+                let render = match self.selected_tags.contains(&tag) {
+                    true => self.selected_tags.remove(&tag),
+                    false => self.selected_tags.insert(tag),
                 };
-                self.candidates = Operator::find(&self.all_oeprators, &self.selected_tags);
+                if render {
+                    self.candidates = Operator::find(&self.all_oeprators, &self.selected_tags);
+                }
+                render
             },
-            Msg::Clear => self.selected_tags = Vec::with_capacity(TAG_N as usize),
-            Msg::Submit => {},
-            Msg::ChangeLanguage(lng) => self.language = lng,
-        };
-        true
+            Msg::Clear => {
+                self.selected_tags = HashSet::with_capacity(TAG_N as usize);
+                true
+            },
+            Msg::Submit => false,
+            Msg::ChangeLanguage(lng) => {
+                self.language = lng;
+                true
+            }
+        }
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
@@ -86,7 +96,7 @@ impl Component for Recruiter {
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Japanese))>{ "日本語" }</button>
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::English))>{ "English" }</button>
                 </div>
-                <TagSelector selected_tags=&self.selected_tags language=&self.language ontoggle=self.link.callback(Msg::Toggle) />
+                { TagSelector::view(&self.selected_tags, &self.language, &self.link) }
                 <div id="ctrl-button-area">
                     <button onclick=self.link.callback(|_| Msg::Submit)>{ self.text.submit.select(&self.language) }</button>
                     <button onclick=self.link.callback(|_| Msg::Clear)>{ self.text.clear.select(&self.language) }</button>
