@@ -69,27 +69,23 @@ impl Component for TagSelector {
 }
 
 impl TagSelector {
-    fn has(&self, tag: &Tag) -> bool {
-        self.selected_tags.iter().any(|t| t == tag)
-    }
-
     pub fn view(selected_tags: &HashSet<Tag>, lng: &Language, link: &ComponentLink<Recruiter>) -> Html {
         html! {
             <div id="tag-area">
                 <div class="tag-container">
-                { for qualifications().into_iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for qualifications().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for positions().into_iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for positions().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for classes().into_iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for classes().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for affix().into_iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for affix().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
                 </div>
             </div>
         }

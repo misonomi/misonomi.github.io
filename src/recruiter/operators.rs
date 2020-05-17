@@ -1,5 +1,4 @@
 use std::collections::HashSet;
-use std::iter::FromIterator;
 use yew::prelude::*;
 
 use super::language::*;

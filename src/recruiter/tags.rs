@@ -47,28 +47,20 @@ macro_rules! tags {
     };
 }
 
-pub fn qualifications() -> Vec<Tag> {
-    vec!(Tag::Starter, Tag::Senior, Tag::Top)
+pub fn qualifications() -> HashSet<Tag> {
+    tags!(Tag::Starter, Tag::Senior, Tag::Top)
 }
-pub fn positions() -> Vec<Tag> {
-    vec!(Tag::Melee, Tag::Ranged)
+pub fn positions() -> HashSet<Tag> {
+    tags!(Tag::Melee, Tag::Ranged)
 }
-pub fn classes() -> Vec<Tag> {
-    vec!(Tag::Caster, Tag::Defender, Tag::Guard, Tag::Medic, Tag::Sniper, Tag::Specialist, Tag::Supporter, Tag::Vanguard)
+pub fn classes() -> HashSet<Tag> {
+    tags!(Tag::Caster, Tag::Defender, Tag::Guard, Tag::Medic, Tag::Sniper, Tag::Specialist, Tag::Supporter, Tag::Vanguard)
 }
-pub fn affix() -> Vec<Tag> {
-    vec!(Tag::AoE, Tag::CC, Tag::DPS, Tag::DPR, Tag::Debuff, Tag::FastRedeploy, Tag::Defence, Tag::Heal, Tag::Nuker, Tag::Robot, Tag::Shift, Tag::Slow, Tag::Summon, Tag::Support, Tag::Survival)
+pub fn affix() -> HashSet<Tag> {
+    tags!(Tag::AoE, Tag::CC, Tag::DPS, Tag::DPR, Tag::Debuff, Tag::FastRedeploy, Tag::Defence, Tag::Heal, Tag::Nuker, Tag::Robot, Tag::Shift, Tag::Slow, Tag::Summon, Tag::Support, Tag::Survival)
 }
 
 impl Tag {
-    pub fn bundle(tags: Vec<Tag>) -> HashSet<Tag> {
-        let mut hash = HashSet::with_capacity(tags.capacity());
-        for t in tags {
-            hash.insert(t);
-        }
-        hash
-    } 
-
     pub fn name(&self) -> Multilingual {
         match self {
             Tag::Starter => Multilingual::new("", "初期", ""),
