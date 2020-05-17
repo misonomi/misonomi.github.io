@@ -29,13 +29,16 @@ impl Operator {
     }
 
     pub fn find(population: &Vec<Operator>, tags: &HashSet<Tag>) -> Vec<Operator> {
-        population.iter()
-            .map(|p| {
-                let mut new_candidate = p.clone();
-                new_candidate.tags = new_candidate.tags.intersection(tags).cloned().collect();
-                new_candidate
-            })
-            .filter(|n| !n.tags.is_empty())
-            .collect()
+        let mut candidates: Vec<Operator> = Vec::new();
+        for p in population {
+            let intersection: HashSet<Tag> = p.tags.intersection(tags).cloned().collect();
+            if intersection.is_empty() {
+                continue
+            }
+            let mut new_candidate = p.clone();
+            new_candidate.tags = intersection;
+            candidates.push(new_candidate);
+        }
+        candidates
     }
 }
