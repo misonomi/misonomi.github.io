@@ -1,0 +1,50 @@
+:root {
+}
+
+main {
+    display: grid;
+    width: 100%; height:100%;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows: 3em auto 2em auto;
+    grid-template-areas:
+        ". lng-button . "
+        ". tag . "
+        ". ctrl-button . "
+        ". result . ";
+    gap: 1em;
+}
+
+#lng-button-area {
+    grid-area: lng-button;
+}
+
+.lng-button {
+    float: right;
+    margin: .25em;
+    height: 2em;
+    background-color: rgb(255, 255, 255);
+    border: none;
+}
+
+#tag-area {
+    grid-area: tag;
+}
+
+.tag-button {
+    display: inline-block;
+    margin: .25em;
+    height: em;
+    background-color: rgb(255, 255, 255);
+}
+
+.tag-button.checked {
+    background-color: rgb(255, 128, 128);
+}
+
+#ctrl-button-area {
+    grid-area: ctrl-button;
+}
+
+#result-area {
+    grid-area: result;
+}
