@@ -1,22 +1,47 @@
-use std::fmt;
 use yew::{ prelude::* };
 
 mod tags;
-use tags::{Tag};
-
 mod operators;
+mod language;
+mod tag_selector;
+mod result_display;
 
-const TAG_N: usize = 6;
+use tags::*;
+use operators::*;
+use language::*;
+use tag_selector::*;
+use result_display::*;
+
+const TAG_N: u8 = 6;
 
 pub enum Msg {
     Toggle(Tag),
     Clear,
     Submit,
+    ChangeLanguage(Language),
+}
+
+struct Text {
+    submit: Multilingual,
+    clear: Multilingual,
+}
+
+impl Text {
+    fn new() -> Text {
+        Text{
+            submit: Multilingual::new("", "決定", "Submit"),
+            clear: Multilingual::new("", "選択解除", "Clear Selection"),
+        }
+    }
 }
 
 pub struct Recruiter {
     link: ComponentLink<Self>,
-    selected: [Option<Tag>; TAG_N],
+    language: Language,
+    text: Text,
+    selected_tags: Vec<Tag>,
+    candidates: Vec<Operator>,
+    all_oeprators: Vec<Operator>,
 }
 
 impl Component for Recruiter {
@@ -25,23 +50,28 @@ impl Component for Recruiter {
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
             link,
-            selected: [None; TAG_N],
+            language: Language::Japanese,
+            text: Text::new(),
+            selected_tags: Vec::with_capacity(TAG_N as usize),
+            candidates: vec!(),
+            all_oeprators: Operator::all(),
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::Toggle(tag) => {},
-            Msg::Clear => self.selected = [None; TAG_N],
+            Msg::Toggle(tag) => {
+                match self.selected_tags.iter().position(|e| e == &tag) {
+                    Some(i) => { self.selected_tags.remove(i); },
+                    None => self.selected_tags.push(tag),
+                };
+                self.candidates = Operator::find(&self.all_oeprators, &self.selected_tags);
+            },
+            Msg::Clear => self.selected_tags = Vec::with_capacity(TAG_N as usize),
             Msg::Submit => {},
+            Msg::ChangeLanguage(lng) => self.language = lng,
         };
-        if target == self.current {
-            web_sys::window().unwrap().open_with_url(self.icons[target as usize].itype.link()).unwrap();
-            false
-        } else {
-            self.current = target;
-            true
-        }
+        true
     }
 
     fn change(&mut self, _props: Self::Properties) -> ShouldRender {
@@ -50,16 +80,19 @@ impl Component for Recruiter {
 
     fn view(&self) -> Html {
         html! {
-            <div id="rolling-menu">
-                <div id="menu-left" onclick=self.link.callback(|_| Msg::Left)/>
-                <div id="menu-right" onclick=self.link.callback(|_| Msg::Right)/>
-                { self.icons.iter().cloned().map(|e| html!{
-                    <div class="menu-icon" id=e.compute_pos(self.current)>
-                        <img src=format!("./images/icon-{}.png", e.itype.name()) onclick=self.link.callback(move |_| Msg::Jump(e.id))/>
-                    </div>
-                }).collect::<Html>() }
-                <h2 id="menu-title">{ format!("{}", self.icons[self.current as usize]) }</h2>
-            </div>
+            <main>
+                <div id="lng-button-area">
+                    <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Chinese))>{ "中文" }</button>
+                    <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Japanese))>{ "日本語" }</button>
+                    <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::English))>{ "English" }</button>
+                </div>
+                <TagSelector selected_tags=&self.selected_tags language=&self.language ontoggle=self.link.callback(Msg::Toggle) />
+                <div id="ctrl-button-area">
+                    <button onclick=self.link.callback(|_| Msg::Submit)>{ self.text.submit.select(&self.language) }</button>
+                    <button onclick=self.link.callback(|_| Msg::Clear)>{ self.text.clear.select(&self.language) }</button>
+                </div>
+                { ResultDisplay::view(&self.candidates, &self.language) }
+            </main>
         }
     }
 }
