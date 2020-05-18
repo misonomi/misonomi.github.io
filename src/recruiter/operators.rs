@@ -119,7 +119,7 @@ impl Operator {
                 tags!(Tag::Top, Tag::Melee, Tag::Caster, Tag::AoE, Tag::Debuff),
             ),
             Operator::new(
-                "能天使t",
+                "能天使",
                 "エクシア",
                 "Exusiai",
                 6,
