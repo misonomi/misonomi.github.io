@@ -19,19 +19,16 @@ const TAG_N: u8 = 6;
 pub enum Msg {
     Toggle(Tag),
     Clear,
-    Submit,
     ChangeLanguage(Language),
 }
 
 struct Text {
-    submit: Multilingual,
     clear: Multilingual,
 }
 
 impl Text {
     fn new() -> Text {
         Text {
-            submit: Multilingual::new("", "決定", "Submit"),
             clear: Multilingual::new("", "選択解除", "Clear Selection"),
         }
     }
@@ -76,7 +73,6 @@ impl Component for Recruiter {
                 self.selected_tags = HashSet::with_capacity(TAG_N as usize);
                 true
             }
-            Msg::Submit => false,
             Msg::ChangeLanguage(lng) => {
                 self.language = lng;
                 true
@@ -98,7 +94,6 @@ impl Component for Recruiter {
                 </div>
                 { TagSelector::view(&self.selected_tags, &self.language, &self.link) }
                 <div id="ctrl-button-area">
-                    <button onclick=self.link.callback(|_| Msg::Submit)>{ self.text.submit.select(&self.language) }</button>
                     <button onclick=self.link.callback(|_| Msg::Clear)>{ self.text.clear.select(&self.language) }</button>
                 </div>
                 { ResultDisplay::view(&self.candidates, &self.language) }
