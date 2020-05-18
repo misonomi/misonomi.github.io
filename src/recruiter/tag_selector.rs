@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use yew::prelude::*;
 
-use super::{ Recruiter, tags::*, language::* };
+use super::{language::*, tags::*, Recruiter};
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -34,13 +34,15 @@ impl Component for TagSelector {
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg { Msg::Toggle(tag) => self.ontoggle.emit(tag) };
+        match msg {
+            Msg::Toggle(tag) => self.ontoggle.emit(tag),
+        };
         true
     }
 
     fn change(&mut self, props: Self::Properties) -> ShouldRender {
         self.selected_tags = props.selected_tags;
-        self.language =  props.language;
+        self.language = props.language;
         self.ontoggle = props.ontoggle;
         true
     }
@@ -69,7 +71,11 @@ impl Component for TagSelector {
 }
 
 impl TagSelector {
-    pub fn view(selected_tags: &HashSet<Tag>, lng: &Language, link: &ComponentLink<Recruiter>) -> Html {
+    pub fn view(
+        selected_tags: &HashSet<Tag>,
+        lng: &Language,
+        link: &ComponentLink<Recruiter>,
+    ) -> Html {
         html! {
             <div id="tag-area">
                 <div class="tag-container">

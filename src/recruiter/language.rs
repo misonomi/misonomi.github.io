@@ -14,7 +14,11 @@ pub struct Multilingual {
 
 impl Multilingual {
     pub fn new(cn: &str, ja: &str, en: &str) -> Multilingual {
-        Multilingual{chinese: cn.to_string(), japanese: ja.to_string(), english: en.to_string()}
+        Multilingual {
+            chinese: cn.to_string(),
+            japanese: ja.to_string(),
+            english: en.to_string(),
+        }
     }
 
     pub fn select(&self, your_language: &Language) -> String {

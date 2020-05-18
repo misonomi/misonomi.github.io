@@ -1,5 +1,5 @@
 use std::fmt;
-use yew::{ prelude::* };
+use yew::prelude::*;
 
 const ITEM_NUM: u8 = 5;
 
@@ -55,13 +55,17 @@ impl MenuIcon {
 
 impl fmt::Display for MenuIcon {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}", match self.itype {
-            IconType::Accessories => "Accessories",
-            IconType::ANRecruit => "Arknights Recruiter",
-            IconType::Assemble => "Assemble",
-            IconType::Kisekae => "Generic Kisekae Shichihenge",
-            IconType::Programs => "Programs",
-        })
+        write!(
+            f,
+            "{}",
+            match self.itype {
+                IconType::Accessories => "Accessories",
+                IconType::ANRecruit => "Arknights Recruiter",
+                IconType::Assemble => "Assemble",
+                IconType::Kisekae => "Generic Kisekae Shichihenge",
+                IconType::Programs => "Programs",
+            }
+        )
     }
 }
 
@@ -84,11 +88,26 @@ impl Component for RollingMenu {
         Self {
             link,
             icons: [
-                MenuIcon{itype: IconType::Accessories, id: 0},
-                MenuIcon{itype: IconType::ANRecruit, id: 1},
-                MenuIcon{itype: IconType::Assemble, id: 2},
-                MenuIcon{itype: IconType::Kisekae, id: 3},
-                MenuIcon{itype: IconType::Programs, id: 4},
+                MenuIcon {
+                    itype: IconType::Accessories,
+                    id: 0,
+                },
+                MenuIcon {
+                    itype: IconType::ANRecruit,
+                    id: 1,
+                },
+                MenuIcon {
+                    itype: IconType::Assemble,
+                    id: 2,
+                },
+                MenuIcon {
+                    itype: IconType::Kisekae,
+                    id: 3,
+                },
+                MenuIcon {
+                    itype: IconType::Programs,
+                    id: 4,
+                },
             ],
             current: 0,
         }
@@ -97,11 +116,26 @@ impl Component for RollingMenu {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         let target = match msg {
             Msg::Jump(n) => n,
-            Msg::Right => if self.current == 0 { ITEM_NUM - 1 } else { self.current - 1 },
-            Msg::Left => if self.current == ITEM_NUM - 1 { 0 } else { self.current + 1 },
+            Msg::Right => {
+                if self.current == 0 {
+                    ITEM_NUM - 1
+                } else {
+                    self.current - 1
+                }
+            }
+            Msg::Left => {
+                if self.current == ITEM_NUM - 1 {
+                    0
+                } else {
+                    self.current + 1
+                }
+            }
         };
         if target == self.current {
-            web_sys::window().unwrap().open_with_url(self.icons[target as usize].itype.link()).unwrap();
+            web_sys::window()
+                .unwrap()
+                .open_with_url(self.icons[target as usize].itype.link())
+                .unwrap();
             false
         } else {
             self.current = target;

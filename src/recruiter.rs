@@ -1,18 +1,18 @@
 use std::collections::HashSet;
-use yew::{ prelude::* };
+use yew::prelude::*;
 
 #[macro_use]
 mod tags;
-mod operators;
 mod language;
-mod tag_selector;
+mod operators;
 mod result_display;
+mod tag_selector;
 
-use tags::*;
-use operators::*;
 use language::*;
-use tag_selector::*;
+use operators::*;
 use result_display::*;
+use tag_selector::*;
+use tags::*;
 
 const TAG_N: u8 = 6;
 
@@ -30,7 +30,7 @@ struct Text {
 
 impl Text {
     fn new() -> Text {
-        Text{
+        Text {
             submit: Multilingual::new("", "決定", "Submit"),
             clear: Multilingual::new("", "選択解除", "Clear Selection"),
         }
@@ -55,7 +55,7 @@ impl Component for Recruiter {
             language: Language::Japanese,
             text: Text::new(),
             selected_tags: HashSet::with_capacity(TAG_N as usize),
-            candidates: vec!(),
+            candidates: vec![],
             all_oeprators: Operator::all(),
         }
     }
@@ -71,11 +71,11 @@ impl Component for Recruiter {
                     self.candidates = Operator::find(&self.all_oeprators, &self.selected_tags);
                 }
                 render
-            },
+            }
             Msg::Clear => {
                 self.selected_tags = HashSet::with_capacity(TAG_N as usize);
                 true
-            },
+            }
             Msg::Submit => false,
             Msg::ChangeLanguage(lng) => {
                 self.language = lng;

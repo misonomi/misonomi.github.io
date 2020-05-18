@@ -1,7 +1,11 @@
 use std::collections::HashSet;
-use yew::{ prelude::* };
+use yew::prelude::*;
 
-use super::{ Recruiter, language::*, tag_selector::{ TagSelector, Msg } };
+use super::{
+    language::*,
+    tag_selector::{Msg, TagSelector},
+    Recruiter,
+};
 
 #[derive(Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Tag {
@@ -54,10 +58,35 @@ pub fn positions() -> HashSet<Tag> {
     tags!(Tag::Melee, Tag::Ranged)
 }
 pub fn classes() -> HashSet<Tag> {
-    tags!(Tag::Caster, Tag::Defender, Tag::Guard, Tag::Medic, Tag::Sniper, Tag::Specialist, Tag::Supporter, Tag::Vanguard)
+    tags!(
+        Tag::Caster,
+        Tag::Defender,
+        Tag::Guard,
+        Tag::Medic,
+        Tag::Sniper,
+        Tag::Specialist,
+        Tag::Supporter,
+        Tag::Vanguard
+    )
 }
 pub fn affix() -> HashSet<Tag> {
-    tags!(Tag::AoE, Tag::CC, Tag::DPS, Tag::DPR, Tag::Debuff, Tag::FastRedeploy, Tag::Defence, Tag::Heal, Tag::Nuker, Tag::Robot, Tag::Shift, Tag::Slow, Tag::Summon, Tag::Support, Tag::Survival)
+    tags!(
+        Tag::AoE,
+        Tag::CC,
+        Tag::DPS,
+        Tag::DPR,
+        Tag::Debuff,
+        Tag::FastRedeploy,
+        Tag::Defence,
+        Tag::Heal,
+        Tag::Nuker,
+        Tag::Robot,
+        Tag::Shift,
+        Tag::Slow,
+        Tag::Summon,
+        Tag::Support,
+        Tag::Survival
+    )
 }
 
 impl Tag {
@@ -94,7 +123,12 @@ impl Tag {
         }
     }
 
-    pub fn button_view(self, lng: &Language, checked: bool, link: &ComponentLink<TagSelector>) -> Html {
+    pub fn button_view(
+        self,
+        lng: &Language,
+        checked: bool,
+        link: &ComponentLink<TagSelector>,
+    ) -> Html {
         html! {
             <button class=("tag-button", match checked {
                 true => "checked",

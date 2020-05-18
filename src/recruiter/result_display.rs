@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-use super::{ language::*, operators::* };
+use super::{language::*, operators::*};
 
 #[derive(Properties, Clone)]
 pub struct Props {
@@ -15,9 +15,13 @@ struct Text {
 
 impl Text {
     fn new() -> Text {
-        Text{
+        Text {
             good_candidates: Multilingual::new("", "出そうなオペーレーター", "Good Candidates"),
-            challenging_candidates: Multilingual::new("", "出なそうなオペレーター", "Challenging Candidates"),
+            challenging_candidates: Multilingual::new(
+                "",
+                "出なそうなオペレーター",
+                "Challenging Candidates",
+            ),
         }
     }
 }
@@ -45,7 +49,7 @@ impl Component for ResultDisplay {
 
     fn change(&mut self, props: Self::Properties) -> ShouldRender {
         self.candidates = props.candidates;
-        self.language =  props.language;
+        self.language = props.language;
         true
     }
 
@@ -65,14 +69,30 @@ impl ResultDisplay {
     pub fn view(candidates: &Vec<Operator>, lng: &Language) -> Html {
         let text = Text::new();
 
+        let (good, challenging) = sort(candidates);
+
         html! {
             <div id="result-area">
                 <h2 class="candidate-title">{ text.good_candidates.select(lng) }</h2>
                 <hr />
-                { for candidates.iter().map(|c| c.view(lng)) }
+                { for good.iter().map(|c| c.view(lng)) }
                 <h2 class="candidate-title">{ text.challenging_candidates.select(lng) }</h2>
                 <hr />
+                { for challenging.iter().map(|c| c.view(lng)) }
             </div>
         }
     }
+}
+
+fn sort(candidates: &Vec<Operator>) -> (Vec<Operator>, Vec<Operator>) {
+    let mut good: Vec<Operator> = Vec::new();
+    let mut challenging: Vec<Operator> = Vec::new();
+    for candidate in candidates {
+        if candidates.iter().any(|c| candidate.is_behind(c)) {
+            challenging.push(candidate.clone())
+        } else {
+            good.push(candidate.clone())
+        }
+    }
+    (good, challenging)
 }
