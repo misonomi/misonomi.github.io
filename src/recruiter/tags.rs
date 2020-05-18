@@ -51,14 +51,14 @@ macro_rules! tags {
     };
 }
 
-pub fn qualifications() -> HashSet<Tag> {
-    tags!(Tag::Starter, Tag::Senior, Tag::Top)
+pub fn qualifications() -> Vec<Tag> {
+    vec!(Tag::Starter, Tag::Senior, Tag::Top)
 }
-pub fn positions() -> HashSet<Tag> {
-    tags!(Tag::Melee, Tag::Ranged)
+pub fn positions() -> Vec<Tag> {
+    vec!(Tag::Melee, Tag::Ranged)
 }
-pub fn classes() -> HashSet<Tag> {
-    tags!(
+pub fn classes() -> Vec<Tag> {
+    vec!(
         Tag::Caster,
         Tag::Defender,
         Tag::Guard,
@@ -69,8 +69,8 @@ pub fn classes() -> HashSet<Tag> {
         Tag::Vanguard
     )
 }
-pub fn affix() -> HashSet<Tag> {
-    tags!(
+pub fn affix() -> Vec<Tag> {
+    vec!(
         Tag::AoE,
         Tag::CC,
         Tag::DPS,
