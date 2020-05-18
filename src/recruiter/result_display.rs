@@ -88,7 +88,7 @@ fn sort(candidates: &Vec<Operator>) -> (Vec<Operator>, Vec<Operator>) {
     let mut good: Vec<Operator> = Vec::new();
     let mut challenging: Vec<Operator> = Vec::new();
     for candidate in candidates {
-        if candidates.iter().any(|c| candidate.is_behind(c)) {
+        if candidate.is_high_tier() && candidates.iter().any(|c| candidate.is_behind(c)) {
             challenging.push(candidate.clone())
         } else {
             good.push(candidate.clone())
