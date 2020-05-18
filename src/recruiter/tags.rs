@@ -52,13 +52,13 @@ macro_rules! tags {
 }
 
 pub fn qualifications() -> Vec<Tag> {
-    vec!(Tag::Starter, Tag::Senior, Tag::Top)
+    vec![Tag::Starter, Tag::Senior, Tag::Top]
 }
 pub fn positions() -> Vec<Tag> {
-    vec!(Tag::Melee, Tag::Ranged)
+    vec![Tag::Melee, Tag::Ranged]
 }
 pub fn classes() -> Vec<Tag> {
-    vec!(
+    vec![
         Tag::Caster,
         Tag::Defender,
         Tag::Guard,
@@ -66,11 +66,11 @@ pub fn classes() -> Vec<Tag> {
         Tag::Sniper,
         Tag::Specialist,
         Tag::Supporter,
-        Tag::Vanguard
-    )
+        Tag::Vanguard,
+    ]
 }
 pub fn affix() -> Vec<Tag> {
-    vec!(
+    vec![
         Tag::AoE,
         Tag::CC,
         Tag::DPS,
@@ -85,8 +85,8 @@ pub fn affix() -> Vec<Tag> {
         Tag::Slow,
         Tag::Summon,
         Tag::Support,
-        Tag::Survival
-    )
+        Tag::Survival,
+    ]
 }
 
 impl Tag {

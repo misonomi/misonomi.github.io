@@ -29,7 +29,7 @@ struct Text {
 impl Text {
     fn new() -> Text {
         Text {
-            clear: Multilingual::new("", "選択解除", "Clear Selection"),
+            clear: Multilingual::new("退选", "選択解除", "Clear Selection"),
         }
     }
 }
