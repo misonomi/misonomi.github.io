@@ -1,17 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Oxanium&display=swap');
+
 :root {
+    font-family: 'Oxanium', 'Kosugi Maru', cursive;
 }
 
 main {
     display: grid;
     width: 100%; height:100%;
-    grid-template-columns: 20% auto 20%;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: 3em auto 2em auto;
     grid-template-areas:
-        ". lng-button . "
-        ". tag . "
-        ". ctrl-button . "
-        ". result . ";
+        "lng-button lng-button lng-button"
+        ". tag ."
+        ". ctrl-button ."
+        ". result .";
     gap: 1em;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+}
+
+hr {
+    margin: .5em;
 }
 
 #lng-button-area {
@@ -32,8 +44,8 @@ main {
 
 .tag-button {
     display: inline-block;
-    margin: .25em;
-    height: em;
+    width: 8.5em; height: 2.5em;
+    margin: .4em;
     background-color: rgb(255, 255, 255);
 }
 
@@ -45,6 +57,43 @@ main {
     grid-area: ctrl-button;
 }
 
-#result-area {
+#ctrl-button-area > button {
+    width: 100%;
+}
+
+#result-area, #inst-area {
     grid-area: result;
+}
+
+.operator-pool {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.operator-container {
+    padding: 1em;
+}
+
+.operator-card {
+    display: grid;
+    grid-template-columns: 3fr 1fr 3fr;
+    grid-template-areas: "name . tags";
+    gap: 1em;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(255, 255, 255);
+    height: 6em;
+    width: 20em;
+    padding: 1em;
+}
+
+.operator-card > .name {
+    grid-area: name;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.operator-card > .tags {
+    grid-area: tags;
 }

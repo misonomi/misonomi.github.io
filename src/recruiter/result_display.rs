@@ -79,10 +79,14 @@ impl ResultDisplay {
             <div id="result-area">
                 <h2 class="candidate-title">{ text.good_candidates.select(lng) }</h2>
                 <hr />
+                <div class="operator-pool">
                 { for good.iter().map(|c| c.view(lng)) }
+                </div>
                 <h2 class="candidate-title">{ text.challenging_candidates.select(lng) }</h2>
                 <hr />
+                <div class="operator-pool">
                 { for challenging.iter().map(|c| c.view(lng)) }
+                </div>
             </div>
         }
     }
