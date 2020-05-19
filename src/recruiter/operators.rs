@@ -53,7 +53,7 @@ impl Operator {
     pub fn view(&self, lng: &Language) -> Html {
         html! {
             <div class="operator-container">
-                <div class=("operator-card", format!("{}", self.rarity))>
+                <div class=("operator-card", format!("rarity-{}", self.rarity))>
                     <span class="name">{ self.name.select(lng) }</span>
                     <div class="tags">
                     { for self.tags.iter().map(|t| html! { <div>{ t.name().select(lng) }</div> }) }
