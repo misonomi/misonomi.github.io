@@ -3,11 +3,13 @@ use yew::prelude::*;
 
 #[macro_use]
 mod tags;
+mod instruction;
 mod language;
 mod operators;
 mod result_display;
 mod tag_selector;
 
+use instruction::*;
 use language::*;
 use operators::*;
 use result_display::*;
@@ -71,6 +73,7 @@ impl Component for Recruiter {
             }
             Msg::Clear => {
                 self.selected_tags = HashSet::with_capacity(TAG_N as usize);
+                self.candidates = vec![];
                 true
             }
             Msg::ChangeLanguage(lng) => {
@@ -96,7 +99,13 @@ impl Component for Recruiter {
                 <div id="ctrl-button-area">
                     <button onclick=self.link.callback(|_| Msg::Clear)>{ self.text.clear.select(&self.language) }</button>
                 </div>
-                { ResultDisplay::view(&self.candidates, &self.language) }
+                {
+                    if self.selected_tags.is_empty() {
+                        Instruction::view(&self.language)
+                    } else {
+                        ResultDisplay::view(&self.candidates, &self.language)
+                    }
+                }
             </main>
         }
     }
