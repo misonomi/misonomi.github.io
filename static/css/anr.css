@@ -135,7 +135,7 @@ hr {
 }
 
 .operator-card:hover {
-    animation: pico 0.1s ease-out;
+    animation: pico 0.3s ease-out;
     transform: scale(1.1);
     box-shadow: 0 1em 2em rgb(96, 124, 124);
 }
