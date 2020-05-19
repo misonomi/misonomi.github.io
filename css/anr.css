@@ -1,17 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Oxanium&family=Material+Icons&display=swap');
+
 :root {
+    font-family: 'Oxanium', 'Kosugi Maru', cursive;
+    --gray: rgb(128, 128, 128);
+    --carbon: rgb(48, 64, 64);
+    --card-flare: 0 0 3em;
 }
 
 main {
     display: grid;
     width: 100%; height:100%;
-    grid-template-columns: 20% auto 20%;
-    grid-template-rows: 3em auto 2em auto;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 3em auto auto;
     grid-template-areas:
-        ". lng-button . "
-        ". tag . "
-        ". ctrl-button . "
-        ". result . ";
+        "clear-l lng-button clear-r"
+        "clear-l tag clear-r"
+        "clear-l result clear-r";
     gap: 1em;
+}
+
+.clear-area {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--gray);
+}
+
+.clear-area:hover {
+    color: black;
+}
+
+.clear-area > i {
+    font-size: 44pt;
+}
+
+.clear-area.left { grid-area: clear-l; }
+.clear-area.right { grid-area: clear-r; }
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+hr {
+    margin: .5em;
 }
 
 #lng-button-area {
@@ -28,23 +63,105 @@ main {
 
 #tag-area {
     grid-area: tag;
+    margin-bottom: 2em;
 }
 
 .tag-button {
     display: inline-block;
-    margin: .25em;
-    height: em;
-    background-color: rgb(255, 255, 255);
+    width: 8.5em; height: 2.5em;
+    margin: .4em;
+    background-color: var(--gray);
+    color: white;
+    border-radius: .2em;
+    font-size: 1rem;
 }
 
 .tag-button.checked {
-    background-color: rgb(255, 128, 128);
+    animation: example 0.2s ease-in-out;
+    background-color: white;
+    box-shadow: 0 0 2em white;
+    color: black;
 }
 
-#ctrl-button-area {
-    grid-area: ctrl-button;
+@keyframes example {
+    0% {transform: none;}
+    25% {transform: scale(1.1);}
+    75% {transform: scale(0.9);}
+    100% {transform: none;}
 }
 
-#result-area {
+#result-area, #inst-area {
     grid-area: result;
+}
+
+.operator-pool {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em;
+}
+
+.operator-container {
+    padding: 1em;
+}
+
+.operator-card {
+    display: grid;
+    position: relative;
+    overflow: hidden;
+    grid-template-columns: 3fr 1fr 3fr;
+    grid-template-areas: "name . tags";
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--carbon);
+    height: 6em; width: 20em;
+    padding: 1em;
+    box-shadow: 0 1em 1em rgb(96, 124, 124);
+    border-radius: .5em;
+}
+
+.operator-card:before {
+    content: '';
+    position: absolute;
+    width: 60%; height: 100%;
+    top: 0; left: -1em;
+
+    background: rgb(230, 230, 230);
+    transform: skewX(20deg);
+    z-index: 1;
+    box-shadow: 0 0 2em;
+}
+
+.operator-card.rarity-6:before {
+    box-shadow: var(--card-flare) red;
+}
+.operator-card.rarity-5:before {
+    box-shadow: var(--card-flare) rgb(255, 200, 10);
+}
+.operator-card.rarity-4:before {
+    box-shadow: var(--card-flare) white;
+}
+.operator-card.rarity-3:before {
+    box-shadow: var(--card-flare) rgb(48, 128, 255);
+}
+.operator-card.rarity-2:before {
+    box-shadow: var(--card-flare) rgb(200, 255, 80);
+}
+.operator-card.rarity-1:before {
+    box-shadow: var(--card-flare) black;
+}
+
+.operator-card > .name {
+    grid-area: name;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: black;
+    z-index: 1;
+}
+
+.operator-card > .tags {
+    grid-area: tags;
+    justify-self: end;
+    z-index: 2;
+    color: white;
 }
