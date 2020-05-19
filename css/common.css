@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Oxanium&family=Material+Icons&display=swap');
+
 :root {
+    font-family: 'Oxanium', 'Kosugi Maru', cursive;
 	--white: rgb(255, 255, 255);
 	--almostWhiteGreen: rgb(250, 255, 250);
 	--ashGreen: rgb(220, 240, 240);
@@ -17,8 +20,13 @@
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	margin: 0px;
+	margin: 0;
+	outline: 0;
 }
+input::-moz-focus-inner, button::-moz-focus-inner {
+	border: 0;
+}
+
 body {
 	background: rgb(200, 200, 200) url('../images/bgstain.jpg') fixed no-repeat bottom right;
 }
@@ -35,7 +43,6 @@ header {
 }
 .page_title {
 	color: white;
-	font-family: monospace;
 	font-size: 100px;
 }
 
