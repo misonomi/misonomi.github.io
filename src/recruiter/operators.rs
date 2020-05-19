@@ -21,17 +21,17 @@ impl Operator {
     }
 
     pub fn find(population: &Vec<Operator>, tags: &HashSet<Tag>) -> Vec<Operator> {
-        let mut candidates: Vec<Operator> = Vec::new();
-        for p in population {
-            let intersection: HashSet<Tag> = p.tags.intersection(tags).cloned().collect();
-            if intersection.is_empty() {
-                continue;
+        let find_top = tags.contains(&Tag::Top);
+        population.iter().skip_while(|p| !find_top && p.is_top()).filter_map(|p| {
+            match p.tags.intersection(tags).cloned().collect::<HashSet<Tag>>() {
+                i if i.is_empty() => None,
+                i => {
+                    let mut new = p.clone();
+                    new.tags = i;
+                    Some(new)
+                }
             }
-            let mut new_candidate = p.clone();
-            new_candidate.tags = intersection;
-            candidates.push(new_candidate);
-        }
-        candidates
+        }).collect()
     }
 
     pub fn is_behind(&self, other: &Operator) -> bool {
@@ -42,11 +42,19 @@ impl Operator {
         self.rarity > 3
     }
 
+    pub fn is_top(&self) -> bool {
+        self.rarity > 5
+    }
+
     pub fn view(&self, lng: &Language) -> Html {
         html! {
-            <div class=("operator_card", format!("{}", self.rarity))>
-                <span class="name">{ self.name.select(lng) }</span>
-                { for self.tags.iter().map(|t| html! { <div class="tags">{ t.name().select(lng) }</div> }) }
+            <div class="operator-container">
+                <div class=("operator-card", format!("{}", self.rarity))>
+                    <span class="name">{ self.name.select(lng) }</span>
+                    <div class="tags">
+                    { for self.tags.iter().map(|t| html! { <div>{ t.name().select(lng) }</div> }) }
+                    </div>
+                </div>
             </div>
         }
     }
