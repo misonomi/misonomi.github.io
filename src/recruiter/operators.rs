@@ -22,16 +22,20 @@ impl Operator {
 
     pub fn find(population: &Vec<Operator>, tags: &HashSet<Tag>) -> Vec<Operator> {
         let find_top = tags.contains(&Tag::Top);
-        population.iter().skip_while(|p| !find_top && p.is_top()).filter_map(|p| {
-            match p.tags.intersection(tags).cloned().collect::<HashSet<Tag>>() {
-                i if i.is_empty() => None,
-                i => {
-                    let mut new = p.clone();
-                    new.tags = i;
-                    Some(new)
-                }
-            }
-        }).collect()
+        population
+            .iter()
+            .skip_while(|p| !find_top && p.is_top())
+            .filter_map(
+                |p| match p.tags.intersection(tags).cloned().collect::<HashSet<Tag>>() {
+                    i if i.is_empty() => None,
+                    i => {
+                        let mut new = p.clone();
+                        new.tags = i;
+                        Some(new)
+                    }
+                },
+            )
+            .collect()
     }
 
     pub fn is_behind(&self, other: &Operator) -> bool {
