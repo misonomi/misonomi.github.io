@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kosugi+Maru&family=Oxanium&family=Material+Icons&display=swap');
-
 :root {
-    font-family: 'Oxanium', 'Kosugi Maru', cursive;
     --gray: rgb(128, 128, 128);
     --carbon: rgb(48, 64, 64);
     --card-flare: 0 0 3em;
@@ -74,16 +71,21 @@ hr {
     color: white;
     border-radius: .2em;
     font-size: 1rem;
+    box-shadow: 0 0 1em rgb(64, 64, 64) inset;
+}
+
+.tag-button:hover {
+    box-shadow: none;
 }
 
 .tag-button.checked {
-    animation: example 0.2s ease-in-out;
+    animation: puni 0.2s ease-in-out;
     background-color: white;
     box-shadow: 0 0 2em white;
     color: black;
 }
 
-@keyframes example {
+@keyframes puni {
     0% {transform: none;}
     25% {transform: scale(1.1);}
     75% {transform: scale(0.9);}
@@ -130,6 +132,17 @@ hr {
     transform: skewX(20deg);
     z-index: 1;
     box-shadow: 0 0 2em;
+}
+
+.operator-card:hover {
+    animation: pico 0.1s ease-out;
+    transform: scale(1.1);
+    box-shadow: 0 1em 2em rgb(96, 124, 124);
+}
+
+@keyframes pico {
+    from {transform: none;}
+    to {transform: scale(1.1);}
 }
 
 .operator-card.rarity-6:before {
