@@ -26,7 +26,7 @@ impl IconType {
     fn link(&self) -> &str {
         match self {
             IconType::Accessories => "accessories.html",
-            IconType::ANRecruit => "arknights-recruiter.html",
+            IconType::ANRecruit => "recruitment-helper.html",
             IconType::Assemble => "assemble.html",
             IconType::Kisekae => "kisekae.html",
             IconType::Programs => "https://github.com/misonomi",
