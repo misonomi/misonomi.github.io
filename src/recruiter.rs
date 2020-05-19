@@ -90,15 +90,13 @@ impl Component for Recruiter {
     fn view(&self) -> Html {
         html! {
             <main>
+                { self.clear_view("left") }
                 <div id="lng-button-area">
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Chinese))>{ "中文" }</button>
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Japanese))>{ "日本語" }</button>
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::English))>{ "English" }</button>
                 </div>
                 { TagSelector::view(&self.selected_tags, &self.language, &self.link) }
-                <div id="ctrl-button-area">
-                    <button onclick=self.link.callback(|_| Msg::Clear)>{ self.text.clear.select(&self.language) }</button>
-                </div>
                 {
                     if self.selected_tags.is_empty() {
                         Instruction::view(&self.language)
@@ -106,7 +104,19 @@ impl Component for Recruiter {
                         ResultDisplay::view(&self.candidates, &self.language)
                     }
                 }
+                { self.clear_view("right") }
             </main>
+        }
+    }
+}
+
+impl Recruiter {
+    fn clear_view(&self, class: &str) -> Html {
+        html! {
+            <div class=("clear-area", class) onclick=self.link.callback(|_| Msg::Clear)>
+                <i class="material-icons">{ "delete_outline" }</i>
+                <span>{ self.text.clear.select(&self.language) }</span>
+            </div>
         }
     }
 }
