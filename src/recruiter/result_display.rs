@@ -23,7 +23,7 @@ impl Text {
             ),
             challenging_candidates: Multilingual::new(
                 "有挑战性的干员",
-                "出なそうなオペレーター",
+                "運が良くないと出なそうなオペレーター",
                 "Challenging Candidates",
             ),
         }
