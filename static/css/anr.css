@@ -87,8 +87,8 @@ hr {
 
 @keyframes puni {
     0% {transform: none;}
-    25% {transform: scale(1.1);}
-    75% {transform: scale(0.9);}
+    25% {transform: scale(0.9);}
+    75% {transform: scale(1.1);}
     100% {transform: none;}
 }
 
@@ -137,12 +137,18 @@ hr {
 .operator-card:hover {
     animation: pico 0.3s ease-out;
     transform: scale(1.1);
-    box-shadow: 0 1em 2em rgb(96, 124, 124);
+    box-shadow: 0 3em 2em -1em rgb(96, 124, 124);
 }
 
 @keyframes pico {
-    from {transform: none;}
-    to {transform: scale(1.1);}
+    from {
+        transform: none;
+        box-shadow: 0 1em 1em rgb(96, 124, 124);
+    }
+    to {
+        transform: scale(1.1);
+        box-shadow: 0 3em 2em -1em rgb(96, 124, 124);
+    }
 }
 
 .operator-card.rarity-6:before {
