@@ -57,7 +57,9 @@ impl Component for Accessories {
     fn view(&self) -> Html {
         html! {
             <main>
-                { self.items.iter().map(|i| self.container_view(&i) ).collect::<Html>() }
+                <div id="item-list">
+                    { self.items.iter().map(|i| self.container_view(&i) ).collect::<Html>() }
+                </div>
             </main>
         }
     }
@@ -67,14 +69,12 @@ impl Accessories {
     fn container_view(&self, item: &'static AccessoryItem) -> Html {
         let link =item.link;
         html! {
-            <div class="container-outer">
-                <div class="container-inner" onclick=self.link.callback(move |_| Msg::Go(link))>
-                    <div class="container-title">
-                        <p class="container-text">{ item.name }</p>
-                    </div>
-                    <div class="container-disc">
-                        <p class="container-text">{ item.desc }</p>
-                    </div>
+            <div class="item-container" onclick=self.link.callback(move |_| Msg::Go(link))>
+                <div class="title">
+                    <p>{ item.name }</p>
+                </div>
+                <div class="disc">
+                    <p>{ item.desc }</p>
                 </div>
             </div>
         }
