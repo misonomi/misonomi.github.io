@@ -1,5 +1,7 @@
 use yew::prelude::*;
 
+const ISIZE: usize = 2;
+
 #[derive(Clone)]
 pub struct AccessoryItem <'a>{
     name: &'a str,
@@ -7,7 +9,7 @@ pub struct AccessoryItem <'a>{
     desc: &'a str,
 }
 
-const ITEMS: &'static Vec<AccessoryItem> = vec!(
+static ITEMS: [AccessoryItem; ISIZE] = [
     AccessoryItem{
         name: "キャス狐カーソル",
         link: "https://1drv.ms/u/s!Ah596hbE_QbKgwMPLJ6z6X3-X7O5",
@@ -18,7 +20,7 @@ const ITEMS: &'static Vec<AccessoryItem> = vec!(
         link: "https://1drv.ms/u/s!Ah596hbE_QbKgznFGjc2WdbTTjtV?e=l9lgL8",
         desc: "『怒首領蜂最大往生』の戦闘機，Bomber Cradleをフィーチャーしたマウスカーソルです",
     },
-);
+];
 
 pub enum Msg <'a> {
     Go(&'a str),
@@ -26,14 +28,14 @@ pub enum Msg <'a> {
 
 pub struct Accessories {
     link: ComponentLink<Self>,
-    items: &'static Vec<AccessoryItem<'static>>
+    items: &'static [AccessoryItem<'static>; ISIZE]
 }
 
 impl Component for Accessories {
     type Message = Msg<'static>;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self { link, items: ITEMS}
+        Self { link, items: &ITEMS}
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
