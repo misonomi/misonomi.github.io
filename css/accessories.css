@@ -1,0 +1,37 @@
+
+main {
+    display: grid;
+    width: 100%; height:100%;
+    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". items .";
+    gap: 1em;
+}
+
+#item-list {
+	grid-area: items;
+}
+
+.item-container {
+	cursor: pointer;
+	height: 8em;
+	margin: 2em; padding: 1em;
+	border-width: 1px 5px;
+	border-color:black;
+	border-style: solid;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
+	grid-template-areas:
+		"title"
+		"desc";
+	gap: 1em;
+	align-items: center;
+	justify-items: center;
+}
+
+.title {
+	font-weight: 900;
+	font-size: 1.5em;
+}
