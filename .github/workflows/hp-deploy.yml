@@ -31,6 +31,7 @@ jobs:
       run: |
         wasm-pack build --release --target web --out-name wasm --out-dir static/top -- --features index
         wasm-pack build --release --target web --out-name wasm --out-dir static/anr -- --features an-recruiter
+        wasm-pack build --release --target web --out-name wasm --out-dir static/acc -- --features accessories
 
     - name: Remove unnecessary files
       run: find static \( -name '.gitignore' -o -name 'README.md' -o -name 'package.json' \) -delete

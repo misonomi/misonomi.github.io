@@ -5,6 +5,7 @@ use yew::prelude::App;
 
 mod menu;
 mod recruiter;
+mod accessories;
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
@@ -12,4 +13,6 @@ pub fn run_app() {
     App::<menu::RollingMenu>::new().mount_to_body();
     #[cfg(feature = "an-recruiter")]
     App::<recruiter::Recruiter>::new().mount_to_body();
+    #[cfg(feature = "accessories")]
+    App::<accessories::Accessories>::new().mount_to_body();
 }

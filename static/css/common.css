@@ -28,7 +28,7 @@ input::-moz-focus-inner, button::-moz-focus-inner {
 }
 
 body {
-	background: rgb(200, 200, 200) url('../images/bgstain.jpg') fixed no-repeat bottom right;
+	background: rgb(203, 203, 203) url('../images/bgstain.jpg') fixed no-repeat bottom right;
 }
 header {
 	display: flex;
