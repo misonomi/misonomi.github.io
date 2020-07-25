@@ -698,7 +698,7 @@ impl Operator {
                 "Castle-3",
                 "Castle-3",
                 1,
-                tags!(Tag::Melee, Tag::Vanguard, Tag::Support, Tag::Robot),
+                tags!(Tag::Melee, Tag::Guard, Tag::Support, Tag::Robot),
             ),
         ]
     }
