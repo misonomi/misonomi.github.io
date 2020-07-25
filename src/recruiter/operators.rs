@@ -39,7 +39,8 @@ impl Operator {
     }
 
     pub fn is_behind(&self, other: &Operator) -> bool {
-        self.rarity > other.rarity && self.tags.is_subset(&other.tags) && other.rarity > 2
+        ((self.rarity > other.rarity && other.rarity > 2) || self.rarity == 1)
+            && self.tags.is_subset(&other.tags)
     }
 
     pub fn is_high_tier(&self) -> bool {
