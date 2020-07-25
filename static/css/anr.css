@@ -96,6 +96,10 @@ hr {
     grid-area: result;
 }
 
+.inst {
+    margin: 2em;
+}
+
 .operator-pool {
     display: flex;
     flex-wrap: wrap;
