@@ -80,12 +80,12 @@ impl ResultDisplay {
                 <h2 class="candidate-title">{ text.good_candidates.select(lng) }</h2>
                 <hr />
                 <div class="operator-pool">
-                { for good.iter().map(|c| c.view(lng)) }
+                { for good.iter().map(|c| c.view(lng, good.iter().all(|e| c == e || c.is_ahead(e)))) }
                 </div>
                 <h2 class="candidate-title">{ text.challenging_candidates.select(lng) }</h2>
                 <hr />
                 <div class="operator-pool">
-                { for challenging.iter().map(|c| c.view(lng)) }
+                { for challenging.iter().map(|c| c.view(lng, false)) }
                 </div>
             </div>
         }
@@ -102,5 +102,6 @@ fn sort(candidates: &[Operator]) -> (Vec<Operator>, Vec<Operator>) {
             good.push(candidate.clone())
         }
     }
+
     (good, challenging)
 }

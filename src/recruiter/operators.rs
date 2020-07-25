@@ -11,6 +11,12 @@ pub struct Operator {
     tags: HashSet<Tag>,
 }
 
+impl PartialEq for Operator {
+    fn eq(&self, other: &Self) -> bool {
+        self.name == other.name
+    }
+}
+
 impl Operator {
     fn new(cn: &str, ja: &str, en: &str, rarity: u8, tags: HashSet<Tag>) -> Operator {
         Operator {
@@ -43,6 +49,10 @@ impl Operator {
             && self.tags.is_subset(&other.tags)
     }
 
+    pub fn is_ahead(&self, other: &Operator) -> bool {
+        !self.tags.is_subset(&other.tags)
+    }
+
     pub fn is_rare(&self) -> bool {
         self.rarity > 3 || self.rarity == 1
     }
@@ -51,10 +61,10 @@ impl Operator {
         self.rarity > 5
     }
 
-    pub fn view(&self, lng: &Language) -> Html {
+    pub fn view(&self, lng: &Language, shine: bool) -> Html {
         html! {
             <div class="operator-container">
-                <div class=("operator-card", format!("rarity-{}", self.rarity))>
+                <div class=("operator-card", format!("rarity-{}", self.rarity), if shine {"shine"} else {""})>
                     <span class="name">{ self.name.select(lng) }</span>
                     <div class="tags">
                     { for self.tags.iter().map(|t| html! { <div>{ t.name().select(lng) }</div> }) }
