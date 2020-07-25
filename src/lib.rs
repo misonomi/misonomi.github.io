@@ -6,6 +6,7 @@ use yew::prelude::App;
 mod menu;
 mod recruiter;
 mod accessories;
+mod under_construction;
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
@@ -15,4 +16,6 @@ pub fn run_app() {
     App::<recruiter::Recruiter>::new().mount_to_body();
     #[cfg(feature = "accessories")]
     App::<accessories::Accessories>::new().mount_to_body();
+    #[cfg(feature = "assemble")]
+    App::<under_construction::UnderConstruction>::new().mount_to_body();
 }
