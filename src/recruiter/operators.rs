@@ -43,8 +43,8 @@ impl Operator {
             && self.tags.is_subset(&other.tags)
     }
 
-    pub fn is_high_tier(&self) -> bool {
-        self.rarity > 3
+    pub fn is_rare(&self) -> bool {
+        self.rarity > 3 || self.rarity == 1
     }
 
     pub fn is_top(&self) -> bool {
