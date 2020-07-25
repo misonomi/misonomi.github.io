@@ -188,3 +188,8 @@ hr {
     z-index: 2;
     color: white;
 }
+
+.shine > .tags {
+    font-weight: 700;
+    color: rgb(255, 250, 160)
+}
