@@ -1,11 +1,12 @@
 #![recursion_limit = "1024"]
 
 use wasm_bindgen::prelude::*;
+#[allow(unused_imports)]
 use yew::prelude::App;
 
+mod accessories;
 mod menu;
 mod recruiter;
-mod accessories;
 mod under_construction;
 
 #[wasm_bindgen(start)]

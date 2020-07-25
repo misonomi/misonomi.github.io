@@ -3,48 +3,48 @@ use yew::prelude::*;
 const ISIZE: usize = 2;
 
 #[derive(Clone)]
-pub struct AccessoryItem <'a>{
+pub struct AccessoryItem<'a> {
     name: &'a str,
     link: &'a str,
     desc: &'a str,
 }
 
 static ITEMS: [AccessoryItem; ISIZE] = [
-    AccessoryItem{
+    AccessoryItem {
         name: "キャス狐カーソル",
         link: "https://1drv.ms/u/s!Ah596hbE_QbKgwMPLJ6z6X3-X7O5",
         desc: "FATE/EXTRAのキャラクター，キャス狐をフィーチャーしたマウスカーソルです",
     },
-    AccessoryItem{
+    AccessoryItem {
         name: "Bomber Cradleカーソル",
         link: "https://1drv.ms/u/s!Ah596hbE_QbKgznFGjc2WdbTTjtV?e=l9lgL8",
         desc: "『怒首領蜂最大往生』の戦闘機，Bomber Cradleをフィーチャーしたマウスカーソルです",
     },
 ];
 
-pub enum Msg <'a> {
+pub enum Msg<'a> {
     Go(&'a str),
 }
 
 pub struct Accessories {
     link: ComponentLink<Self>,
-    items: &'static [AccessoryItem<'static>; ISIZE]
+    items: &'static [AccessoryItem<'static>; ISIZE],
 }
 
 impl Component for Accessories {
     type Message = Msg<'static>;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self { link, items: &ITEMS}
+        Self {
+            link,
+            items: &ITEMS,
+        }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::Go(link) => {
-                web_sys::window()
-                .unwrap()
-                .open_with_url(&link)
-                .unwrap();
+                web_sys::window().unwrap().open_with_url(&link).unwrap();
             }
         };
         false
@@ -67,7 +67,7 @@ impl Component for Accessories {
 
 impl Accessories {
     fn container_view(&self, item: &'static AccessoryItem) -> Html {
-        let link =item.link;
+        let link = item.link;
         html! {
             <div class="item-container" onclick=self.link.callback(move |_| Msg::Go(link))>
                 <div class="title">

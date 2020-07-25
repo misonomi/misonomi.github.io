@@ -70,7 +70,7 @@ impl Component for ResultDisplay {
 }
 
 impl ResultDisplay {
-    pub fn view(candidates: &Vec<Operator>, lng: &Language) -> Html {
+    pub fn view(candidates: &[Operator], lng: &Language) -> Html {
         let text = Text::new();
 
         let (good, challenging) = sort(candidates);
@@ -92,7 +92,7 @@ impl ResultDisplay {
     }
 }
 
-fn sort(candidates: &Vec<Operator>) -> (Vec<Operator>, Vec<Operator>) {
+fn sort(candidates: &[Operator]) -> (Vec<Operator>, Vec<Operator>) {
     let mut good: Vec<Operator> = Vec::new();
     let mut challenging: Vec<Operator> = Vec::new();
     for candidate in candidates {

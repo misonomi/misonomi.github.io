@@ -16,11 +16,11 @@ impl Operator {
         Operator {
             name: Multilingual::new(cn, ja, en),
             rarity,
-            tags: tags,
+            tags,
         }
     }
 
-    pub fn find(population: &Vec<Operator>, tags: &HashSet<Tag>) -> Vec<Operator> {
+    pub fn find(population: &[Operator], tags: &HashSet<Tag>) -> Vec<Operator> {
         let find_top = tags.contains(&Tag::Top);
         population
             .iter()
