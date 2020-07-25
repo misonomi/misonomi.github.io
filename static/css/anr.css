@@ -67,11 +67,11 @@ hr {
     display: inline-block;
     width: 8.5em; height: 2.5em;
     margin: .4em;
-    background-color: var(--gray);
+    background-color: var(--carbon);
     color: white;
-    border-radius: .2em;
+    border-radius: .3em;
     font-size: 1rem;
-    box-shadow: 0 0 1em rgb(64, 64, 64) inset;
+    box-shadow: 0 0 1em black inset;
 }
 
 .tag-button:hover {
@@ -87,8 +87,8 @@ hr {
 
 @keyframes puni {
     0% {transform: none;}
-    25% {transform: scale(0.9);}
-    75% {transform: scale(1.1);}
+    15% {transform: scale(1.1);}
+    75% {transform: scale(0.9);}
     100% {transform: none;}
 }
 
