@@ -5,6 +5,7 @@
 }
 
 main {
+    font-size: 1rem;
     display: grid;
     width: 100%; height:100%;
     grid-template-columns: 1fr 3fr 1fr;
@@ -71,7 +72,6 @@ hr {
     background-color: var(--carbon);
     color: white;
     border-radius: .3em;
-    font-size: 1rem;
     box-shadow: 0 0 1em black inset;
 }
 
@@ -182,6 +182,7 @@ hr {
     white-space: nowrap;
     color: black;
     z-index: 1;
+    text-shadow: 2px 2px 8px white;
 }
 
 .operator-card > .tags {
@@ -198,6 +199,7 @@ hr {
 
 @media (max-width: 800px) {
     main {
+        font-size: 0.7rem;
         grid-template-columns: 1fr;
         grid-template-rows: 3em auto auto auto auto;
         grid-template-areas:
@@ -215,5 +217,9 @@ hr {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+    }
+
+    .operator-container {
+        padding: .3em;
     }
 }
