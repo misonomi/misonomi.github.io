@@ -5,6 +5,7 @@
 }
 
 main {
+    font-size: 1rem;
     display: grid;
     width: 100%; height:100%;
     grid-template-columns: 1fr 3fr 1fr;
@@ -65,13 +66,14 @@ hr {
 }
 
 .tag-button {
+    font-size: 1rem;
+
     display: inline-block;
-    width: 8.5em; height: 2.5em;
+    width: 8em; height: 2.5em;
     margin: .4em;
     background-color: var(--carbon);
     color: white;
     border-radius: .3em;
-    font-size: 1rem;
     box-shadow: 0 0 1em black inset;
 }
 
@@ -104,6 +106,7 @@ hr {
 .operator-pool {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin: 1em;
 }
 
@@ -121,7 +124,7 @@ hr {
     justify-content: center;
 
     background-color: var(--carbon);
-    height: 6em; width: 20em;
+    height: 6em; width: 18em;
     padding: 1em;
     box-shadow: 0 1em 1em rgb(96, 124, 124);
     border-radius: .5em;
@@ -181,6 +184,7 @@ hr {
     white-space: nowrap;
     color: black;
     z-index: 1;
+    text-shadow: 2px 2px 8px white;
 }
 
 .operator-card > .tags {
@@ -193,4 +197,34 @@ hr {
 .shine > .tags {
     font-weight: 700;
     color: rgb(255, 250, 160)
+}
+
+@media (max-width: 800px) {
+    main {
+        font-size: 0.7rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: 3em auto auto auto auto;
+        grid-template-areas:
+            "lng-button"
+            "clear-l"
+            "tag"
+            "result"
+            "clear-r";
+    }
+    .clear-area {
+        padding-top: 0;
+    }
+
+    .tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .tag-button {
+        font-size: inherit;
+    }
+
+    .operator-container {
+        padding: .3em;
+    }
 }
