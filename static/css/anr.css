@@ -66,7 +66,7 @@ hr {
 
 .tag-button {
     display: inline-block;
-    width: 8.5em; height: 2.5em;
+    width: 8em; height: 2.5em;
     margin: .4em;
     background-color: var(--carbon);
     color: white;
@@ -104,6 +104,7 @@ hr {
 .operator-pool {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin: 1em;
 }
 
@@ -121,7 +122,7 @@ hr {
     justify-content: center;
 
     background-color: var(--carbon);
-    height: 6em; width: 20em;
+    height: 6em; width: 18em;
     padding: 1em;
     box-shadow: 0 1em 1em rgb(96, 124, 124);
     border-radius: .5em;
@@ -193,4 +194,26 @@ hr {
 .shine > .tags {
     font-weight: 700;
     color: rgb(255, 250, 160)
+}
+
+@media (max-width: 800px) {
+    main {
+        grid-template-columns: 1fr;
+        grid-template-rows: 3em auto auto auto auto;
+        grid-template-areas:
+            "lng-button"
+            "clear-l"
+            "tag"
+            "result"
+            "clear-r";
+    }
+    .clear-area {
+        padding-top: 0;
+    }
+
+    .tag-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
