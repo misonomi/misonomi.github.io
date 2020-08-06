@@ -225,6 +225,25 @@ hr {
     }
 
     .operator-container {
+        width: 90vw;
         padding: .3em;
+    }
+
+    .operator-card {
+        width: auto;
+        height: 3em;
+    }
+    .operator-card:before {
+        width: 50%;
+    }
+    .tags {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 1em;
+    }
+    .tags > div {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 }
