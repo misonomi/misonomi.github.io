@@ -1,6 +1,7 @@
 :root {
     --gray: rgb(128, 128, 128);
     --carbon: rgb(48, 64, 64);
+    --azure: rgb(56, 159, 255);
     --card-flare: 0 0 3em;
 }
 
@@ -74,7 +75,6 @@ hr {
     background-color: var(--carbon);
     color: white;
     border-radius: .3em;
-    box-shadow: 0 0 1em black inset;
 }
 
 .tag-button:hover {
@@ -83,15 +83,14 @@ hr {
 
 .tag-button.checked {
     animation: puni 0.2s ease-in-out;
-    background-color: white;
-    box-shadow: 0 0 2em white;
-    color: black;
+    background-color: var(--azure);
+    box-shadow: 0 -2px 0 white;
 }
 
 @keyframes puni {
     0% {transform: none;}
-    15% {transform: scale(1.1);}
-    75% {transform: scale(0.9);}
+    5% {transform: scale(1.1);}
+    60% {transform: scale(0.95);}
     100% {transform: none;}
 }
 
