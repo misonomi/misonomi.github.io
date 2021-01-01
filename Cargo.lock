@@ -287,7 +287,7 @@ checksum = "3728d817d99e5ac407411fa471ff9800a778d88a24685968b36824eaf4bee400"
 
 [[package]]
 name = "misonomi-hp"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "wasm-bindgen",
  "web-sys",
@@ -514,9 +514,9 @@ dependencies = [
 
 [[package]]
 name = "yew"
-version = "0.17.2"
+version = "0.17.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f0d82d3fb2ab53913967b0a50a5a693ab75e1465cb091a24519a9441246c2627"
+checksum = "2d8703eb5b883e816cd74c65e2f6dd4144eeedb77c1b3e0284e8f3f593b80ab1"
 dependencies = [
  "anyhow",
  "anymap",
