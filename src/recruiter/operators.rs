@@ -149,7 +149,6 @@ impl Operator {
                 6,
                 tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Support),
             ),
-            /*
             Operator::new(
                 "斯卡蒂",
                 "スカジ",
@@ -157,7 +156,14 @@ impl Operator {
                 6,
                 tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival),
             ),
-            */
+            Operator::new(
+                "陈",
+                "チェン",
+                "Ch'en",
+                6,
+                tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Nuker),
+            ),
+            ///////////////////
             Operator::new(
                 "因陀罗",
                 "インドラ",
@@ -398,7 +404,6 @@ impl Operator {
                     Tag::Slow
                 ),
             ),
-            /*
             Operator::new(
                 "夜魔",
                 "ナイトメア",
@@ -413,7 +418,20 @@ impl Operator {
                     Tag::Slow
                 ),
             ),
-            */
+            Operator::new(
+                "诗怀雅",
+                "スワイヤー",
+                "Swire",
+                5,
+                tags!(
+                    Tag::Senior,
+                    Tag::Melee,
+                    Tag::Guard,
+                    Tag::DPS,
+                    Tag::Support,
+                ),
+            ),
+            ///////////////////
             Operator::new(
                 "艾丝黛尔",
                 "エステル",
@@ -561,7 +579,6 @@ impl Operator {
                 4,
                 tags!(Tag::Melee, Tag::Specialist, Tag::Shift),
             ),
-            /*
             Operator::new(
                 "猎蜂",
                 "ビーハンター",
@@ -569,7 +586,14 @@ impl Operator {
                 4,
                 tags!(Tag::Melee, Tag::Guard, Tag::DPS),
             ),
-            */
+            Operator::new(
+                "格雷伊",
+                "グレイ",
+                "Greyy",
+                4,
+                tags!(Tag::Ranged, Tag::Caster, Tag::AoE, Tag::Slow),
+            ),
+            ///////////////////
             Operator::new(
                 "安德切尔",
                 "アドナキエル",
@@ -654,7 +678,13 @@ impl Operator {
                 3,
                 tags!(Tag::Ranged, Tag::Supporter, Tag::Slow),
             ),
-            /*
+            Operator::new(
+                "空爆",
+                "カタパルト",
+                "Catapult",
+                3,
+                tags!(Tag::Ranged, Tag::Sniper, Tag::AoE),
+            ),
             Operator::new(
                 "月见夜",
                 "ミッドナイト",
@@ -663,13 +693,20 @@ impl Operator {
                 tags!(Tag::Melee, Tag::Guard, Tag::DPS),
             ),
             Operator::new(
-                "空爆",
-                "カタパルト",
-                "Catapult",
+                "泡普卡",
+                "ポプカル",
+                "Popukar",
                 3,
-                tags!(Tag::Ranged, Tag::Sniper, Tag::AoE),
+                tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival),
             ),
-            */
+            Operator::new(
+                "斑点",
+                "スポット",
+                "Spot",
+                3,
+                tags!(Tag::Melee, Tag::Defender, Tag::Defence, Tag::Heal),
+            ),
+            ///////////////////
             Operator::new(
                 "夜刀",
                 "ヤトウ",
@@ -705,6 +742,7 @@ impl Operator {
                 2,
                 tags!(Tag::Starter, Tag::Ranged, Tag::Caster),
             ),
+            ///////////////////
             Operator::new(
                 "Lancet-2",
                 "Lancet-2",
@@ -718,6 +756,13 @@ impl Operator {
                 "Castle-3",
                 1,
                 tags!(Tag::Melee, Tag::Guard, Tag::Support, Tag::Robot),
+            ),
+            Operator::new(
+                "THRM-EX",
+                "THRM-EX",
+                "THRM-EX",
+                1,
+                tags!(Tag::Melee, Tag::Specialist, Tag::Robot),
             ),
         ]
     }
