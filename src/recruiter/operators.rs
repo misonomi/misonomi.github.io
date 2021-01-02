@@ -63,9 +63,18 @@ impl Operator {
     }
 
     pub fn view(&self, lng: &Language, shine: bool) -> Html {
+        let wikiurl = format!(
+            "https://google.com/search?q={}+アークナイツ+かわいい",
+            self.name.select(&Language::Japanese),
+        );
         html! {
             <div class="operator-container">
-                <div class=("operator-card", format!("rarity-{}", self.rarity), if shine {"shine"} else {""})>
+                <div class=("operator-card", format!("rarity-{}", self.rarity), if shine {"shine"} else {""}) onclick=Callback::from(move |_: MouseEvent| {
+                    web_sys::window()
+                        .unwrap()
+                        .open_with_url(&wikiurl)
+                        .unwrap();
+                })>
                     <span class="name">{ self.name.select(lng) }</span>
                     <div class="tags">
                     { for self.tags.iter().map(|t| html! { <div>{ t.name().select(lng) }</div> }) }

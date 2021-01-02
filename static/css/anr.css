@@ -114,6 +114,7 @@ hr {
 }
 
 .operator-card {
+    cursor: pointer;
     display: grid;
     position: relative;
     overflow: hidden;
