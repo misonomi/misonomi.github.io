@@ -80,6 +80,9 @@ hr {
 
 .tag-button {
     font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
     display: inline-block;
     width: 8em; height: 2.5em;
@@ -99,10 +102,43 @@ hr {
     box-shadow: 0 -2px 0 white;
 }
 
+i.tagico {
+    font-family: 'anjobico';
+    font-style: normal;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+i.vanguard:before {
+    content: "\e900";
+}
+i.guard:before {
+    content: "\e901";
+}
+i.defender:before {
+    content: "\e902";
+}
+i.sniper:before {
+    content: "\e903";
+}
+i.caster:before {
+    content: "\e904";
+}
+i.medic:before {
+    content: "\e905";
+}
+i.supporter:before {
+    content: "\e906";
+}
+i.specialist:before {
+    content: "\e907";
+}
+
 @keyframes puni {
     0% {transform: none;}
-    5% {transform: scale(1.1);}
-    60% {transform: scale(0.95);}
+    5% {transform: scale(0.95);}
+    45% {transform: scale(1.1);}
     100% {transform: none;}
 }
 
@@ -258,37 +294,4 @@ hr {
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-}
-
-i.tagico {
-    font-family: 'anjobico';
-    font-style: normal;
-  
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-  
-i.vanguard:before {
-    content: "\e900";
-}
-i.guard:before {
-    content: "\e901";
-}
-i.defender:before {
-    content: "\e902";
-}
-i.sniper:before {
-    content: "\e903";
-}
-i.caster:before {
-    content: "\e904";
-}
-i.medic:before {
-    content: "\e905";
-}
-i.supporter:before {
-    content: "\e906";
-}
-i.specialist:before {
-    content: "\e907";
 }
