@@ -122,6 +122,20 @@ impl Tag {
         }
     }
 
+    fn iconname(&self) -> &str {
+        match self {
+            Tag::Caster => "caster",
+            Tag::Defender => "defender",
+            Tag::Guard => "guard",
+            Tag::Medic => "medic",
+            Tag::Sniper => "sniper",
+            Tag::Specialist => "specialist",
+            Tag::Supporter => "supporter",
+            Tag::Vanguard => "vanguard",
+            _ => "none",
+        }
+    }
+
     pub fn button_view(
         self,
         lng: &Language,
@@ -133,6 +147,7 @@ impl Tag {
                 true => "checked",
                 _ => "",
             }) onclick=link.callback(move |_| Msg::Toggle(self))>
+                <i class=("tagico", self.iconname()) />
                 { self.name().select(lng) }
             </button>
         }
@@ -144,6 +159,7 @@ impl Tag {
                 true => "checked",
                 _ => "",
             }) onclick=link.callback(move |_| super::Msg::Toggle(self))>
+                <i class=("tagico", self.iconname()) />
                 { self.name().select(lng) }
             </button>
         }
