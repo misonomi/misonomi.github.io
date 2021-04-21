@@ -1,6 +1,6 @@
 use yew::prelude::*;
 
-const ISIZE: usize = 2;
+const ISIZE: usize = 5;
 
 #[derive(Clone)]
 pub struct AccessoryItem<'a> {
@@ -13,12 +13,27 @@ static ITEMS: [AccessoryItem; ISIZE] = [
     AccessoryItem {
         name: "キャス狐カーソル",
         link: "https://1drv.ms/u/s!Ah596hbE_QbKgwMPLJ6z6X3-X7O5",
-        desc: "FATE/EXTRAのキャラクター，キャス狐をフィーチャーしたマウスカーソルです",
+        desc: "『Fate/EXTRA』のキャラクター，キャス狐をフィーチャーしたマウスカーソルです",
     },
     AccessoryItem {
         name: "Bomber Cradleカーソル",
         link: "https://1drv.ms/u/s!Ah596hbE_QbKgznFGjc2WdbTTjtV?e=l9lgL8",
         desc: "『怒首領蜂最大往生』の戦闘機，Bomber Cradleをフィーチャーしたマウスカーソルです",
+    },
+    AccessoryItem {
+        name: "Strains of Ascension",
+        link: "https://steamcommunity.com/sharedfiles/filedetails/?id=2393284802",
+        desc: "『Noita』向けの上昇負荷を追加するmodです",
+    },
+    AccessoryItem {
+        name: "Mod Hairs Only",
+        link: "https://steamcommunity.com/sharedfiles/filedetails/?id=2383581550",
+        desc: "『RimWorld』向けの髪型modです",
+    },
+    AccessoryItem {
+        name: "Twitter No Text",
+        link: "https://addons.mozilla.org/en-US/firefox/addon/twitter-no-text",
+        desc: "twitterから文字を全部消すfirefoxアドオンです",
     },
 ];
 
