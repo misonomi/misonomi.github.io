@@ -27,9 +27,6 @@ input::-moz-focus-inner, button::-moz-focus-inner {
 	border: 0;
 }
 
-body {
-	background: rgb(203, 203, 203) url('../images/bgstain.jpg') fixed no-repeat bottom right;
-}
 header {
 	display: flex;
 	align-items: center;
