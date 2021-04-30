@@ -126,7 +126,7 @@ impl Operator {
                 "ホシグマ",
                 "Hoshiguma",
                 6,
-                tags!(Tag::Top, Tag::Melee, Tag::Defender, Tag::DPS, Tag::Defence),
+                tags!(Tag::Top, Tag::Melee, Tag::Defender, Tag::DPS, Tag::Defense),
             ),
             Operator::new(
                 "塞雷娅",
@@ -137,7 +137,7 @@ impl Operator {
                     Tag::Top,
                     Tag::Melee,
                     Tag::Defender,
-                    Tag::Defence,
+                    Tag::Defense,
                     Tag::Heal,
                     Tag::Support
                 ),
@@ -163,7 +163,21 @@ impl Operator {
                 6,
                 tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Nuker),
             ),
-            ///////////////////
+            Operator::new(
+                "黑",
+                "シュヴァルツ",
+                "Schwarz",
+                6,
+                tags!(Tag::Top, Tag::Ranged, Tag::Sniper, Tag::DPS),
+            ),
+            Operator::new(
+                "赫拉格",
+                "ヘラグ",
+                "Hellagur",
+                6,
+                tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival),
+            ),
+            /////////////////// 6-stars
             Operator::new(
                 "因陀罗",
                 "インドラ",
@@ -180,7 +194,7 @@ impl Operator {
                     Tag::Senior,
                     Tag::Melee,
                     Tag::Defender,
-                    Tag::Defence,
+                    Tag::Defense,
                     Tag::DPS,
                     Tag::Survival
                 ),
@@ -288,7 +302,7 @@ impl Operator {
                     Tag::Senior,
                     Tag::Melee,
                     Tag::Defender,
-                    Tag::Defence,
+                    Tag::Defense,
                     Tag::Heal
                 ),
             ),
@@ -314,7 +328,7 @@ impl Operator {
                     Tag::Senior,
                     Tag::Melee,
                     Tag::Defender,
-                    Tag::Defence,
+                    Tag::Defense,
                     Tag::DPS
                 ),
             ),
@@ -327,7 +341,7 @@ impl Operator {
                     Tag::Senior,
                     Tag::Melee,
                     Tag::Defender,
-                    Tag::Defence,
+                    Tag::Defense,
                     Tag::Shift
                 ),
             ),
@@ -423,15 +437,23 @@ impl Operator {
                 "スワイヤー",
                 "Swire",
                 5,
-                tags!(
-                    Tag::Senior,
-                    Tag::Melee,
-                    Tag::Guard,
-                    Tag::DPS,
-                    Tag::Support,
-                ),
+                tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Support),
             ),
-            ///////////////////
+            Operator::new(
+                "格劳克斯",
+                "グラウコス",
+                "Glaucus",
+                5,
+                tags!(Tag::Senior, Tag::Ranged, Tag::Supporter, Tag::CC, Tag::Slow),
+            ),
+            Operator::new(
+                "星极",
+                "アステシア",
+                "Astesia",
+                5,
+                tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::Defense, Tag::DPS),
+            ),
+            /////////////////// 5-stars
             Operator::new(
                 "艾丝黛尔",
                 "エステル",
@@ -521,7 +543,7 @@ impl Operator {
                 "グラベル",
                 "Gravel",
                 4,
-                tags!(Tag::Melee, Tag::Specialist, Tag::Defence, Tag::FastRedeploy),
+                tags!(Tag::Melee, Tag::Specialist, Tag::Defense, Tag::FastRedeploy),
             ),
             Operator::new(
                 "暗索",
@@ -549,21 +571,21 @@ impl Operator {
                 "マッターホルン",
                 "Matterhorn",
                 4,
-                tags!(Tag::Melee, Tag::Defender, Tag::Defence),
+                tags!(Tag::Melee, Tag::Defender, Tag::Defense),
             ),
             Operator::new(
                 "蛇屠箱",
                 "クオーラ",
                 "Cuora",
                 4,
-                tags!(Tag::Melee, Tag::Defender, Tag::Defence),
+                tags!(Tag::Melee, Tag::Defender, Tag::Defense),
             ),
             Operator::new(
                 "古米",
                 "グム",
                 "Gum",
                 4,
-                tags!(Tag::Melee, Tag::Defender, Tag::Defence, Tag::Heal),
+                tags!(Tag::Melee, Tag::Defender, Tag::Defense, Tag::Heal),
             ),
             Operator::new(
                 "地灵",
@@ -593,7 +615,21 @@ impl Operator {
                 4,
                 tags!(Tag::Ranged, Tag::Caster, Tag::AoE, Tag::Slow),
             ),
-            ///////////////////
+            Operator::new(
+                "苏苏洛",
+                "ススーロ",
+                "Sussurro",
+                4,
+                tags!(Tag::Ranged, Tag::Medic, Tag::Heal),
+            ),
+            Operator::new(
+                "桃金娘",
+                "テンニンカ",
+                "Myrtle",
+                4,
+                tags!(Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::Heal),
+            ),
+            /////////////////// 4-stars
             Operator::new(
                 "安德切尔",
                 "アドナキエル",
@@ -634,7 +670,7 @@ impl Operator {
                 "ビーグル",
                 "Beagle",
                 3,
-                tags!(Tag::Melee, Tag::Defender, Tag::Defence),
+                tags!(Tag::Melee, Tag::Defender, Tag::Defense),
             ),
             Operator::new(
                 "克洛丝",
@@ -704,9 +740,9 @@ impl Operator {
                 "スポット",
                 "Spot",
                 3,
-                tags!(Tag::Melee, Tag::Defender, Tag::Defence, Tag::Heal),
+                tags!(Tag::Melee, Tag::Defender, Tag::Defense, Tag::Heal),
             ),
-            ///////////////////
+            /////////////////// 3-stars
             Operator::new(
                 "夜刀",
                 "ヤトウ",
@@ -742,7 +778,7 @@ impl Operator {
                 2,
                 tags!(Tag::Starter, Tag::Ranged, Tag::Caster),
             ),
-            ///////////////////
+            /////////////////// 2-stars
             Operator::new(
                 "Lancet-2",
                 "Lancet-2",
