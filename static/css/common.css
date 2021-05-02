@@ -39,8 +39,6 @@ header {
 	margin-bottom: 100px;
 }
 
-@media (max-width: 800px) {
-	body {
-		background: rgb(203, 203, 203);
-	}
+body {
+	background: rgb(203, 203, 203);
 }
