@@ -99,9 +99,9 @@ impl Component for Recruiter {
                 { TagSelector::view(&self.selected_tags, &self.language, &self.link) }
                 {
                     if self.selected_tags.is_empty() {
-                        Instruction::view(&self.language)
+                        html!{ <Instruction language=&self.language></Instruction> }
                     } else {
-                        ResultDisplay::view(&self.candidates, &self.language)
+                        html!{ <ResultDisplay candidates=&self.candidates language=&self.language></ResultDisplay> }
                     }
                 }
                 { self.clear_view("right") }

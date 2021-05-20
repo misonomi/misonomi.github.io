@@ -58,34 +58,19 @@ impl Component for ResultDisplay {
     }
 
     fn view(&self) -> Html {
+        let (good, challenging) = sort(&self.candidates);
+    
         html! {
             <div id="result-area">
                 <h2 class="candidate-title">{ self.text.good_candidates.select(&self.language) }</h2>
                 <hr />
+                <div class="operator-pool">
+                { for good.iter().map(|c| c.view(&self.language, good.iter().all(|e| c == e || c.is_ahead(e)))) }
+                </div>
                 <h2 class="candidate-title">{ self.text.challenging_candidates.select(&self.language) }</h2>
                 <hr />
-            </div>
-        }
-    }
-}
-
-impl ResultDisplay {
-    pub fn view(candidates: &[Operator], lng: &Language) -> Html {
-        let text = Text::new();
-
-        let (good, challenging) = sort(candidates);
-
-        html! {
-            <div id="result-area">
-                <h2 class="candidate-title">{ text.good_candidates.select(lng) }</h2>
-                <hr />
                 <div class="operator-pool">
-                { for good.iter().map(|c| c.view(lng, good.iter().all(|e| c == e || c.is_ahead(e)))) }
-                </div>
-                <h2 class="candidate-title">{ text.challenging_candidates.select(lng) }</h2>
-                <hr />
-                <div class="operator-pool">
-                { for challenging.iter().map(|c| c.view(lng, false)) }
+                { for challenging.iter().map(|c| c.view(&self.language, false)) }
                 </div>
             </div>
         }

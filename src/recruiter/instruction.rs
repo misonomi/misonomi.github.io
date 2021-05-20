@@ -1,5 +1,10 @@
+use yew::prelude::*;
 use super::language::*;
-use yew::prelude::{html, Html};
+
+#[derive(Properties, Clone)]
+pub struct Props {
+    pub language: Language,
+}
 
 struct Text {
     title: Multilingual,
@@ -60,21 +65,40 @@ impl Text {
     }
 }
 
-pub struct Instruction {}
+pub struct Instruction {
+    language: Language,
+    text: Vec<Text>,
+}
 
-impl Instruction {
-    pub fn view(lng: &Language) -> Html {
-        let texts = Text::new();
+impl Component for Instruction {
+    type Message = ();
+    type Properties = Props;
+    fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
+        Self {
+            language: props.language,
+            text: Text::new(),
+        }
+    }
 
+    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
+        false
+    }
+
+    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+        self.language = props.language;
+        true
+    }
+
+    fn view(&self) -> Html {
         html! {
             <div id="inst-area">
             {
-                for texts.iter().map(|txs| html!{
+                for self.text.iter().map(|txs| html!{
                     <div class="inst">
-                        <h2 class="inst-title">{ txs.title.select(lng) }</h2>
+                        <h2 class="inst-title">{ txs.title.select(&self.language) }</h2>
                         <hr />
                         <ul>
-                        { for txs.sequence.iter().map(|e| html! { <li>{ e.select(lng) }</li> }) }
+                        { for txs.sequence.iter().map(|e| html! { <li>{ e.select(&self.language) }</li> }) }
                         </ul>
                     </div>
                 })
