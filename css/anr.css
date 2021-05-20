@@ -209,23 +209,50 @@ i.specialist:before {
     }
 }
 
+.operator-card:after {
+    bottom: 1px;
+    left: 10em;
+    position: absolute;
+    color: var(--carbon);
+    z-index: 100;
+    font-size: .5rem;
+}
+
 .operator-card.rarity-6:before {
     box-shadow: var(--card-flare) red;
+}
+.operator-card.rarity-6:after {
+    content: '★★★★★★';
 }
 .operator-card.rarity-5:before {
     box-shadow: var(--card-flare) rgb(255, 200, 10);
 }
+.operator-card.rarity-5:after {
+    content: '★★★★★';
+}
 .operator-card.rarity-4:before {
     box-shadow: var(--card-flare) white;
+}
+.operator-card.rarity-4:after {
+    content: '★★★★';
 }
 .operator-card.rarity-3:before {
     box-shadow: var(--card-flare) rgb(48, 128, 255);
 }
+.operator-card.rarity-3:after {
+    content: '★★★';
+}
 .operator-card.rarity-2:before {
     box-shadow: var(--card-flare) rgb(200, 255, 80);
 }
+.operator-card.rarity-2:after {
+    content: '★★';
+}
 .operator-card.rarity-1:before {
     box-shadow: var(--card-flare) black;
+}
+.operator-card.rarity-1:after {
+    content: '★';
 }
 
 .operator-card > .name {
@@ -285,6 +312,9 @@ i.specialist:before {
     }
     .operator-card:before {
         width: 50%;
+    }
+    .operator-card:after {
+        left: 15em;
     }
     .tags {
         display: flex;
