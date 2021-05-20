@@ -60,7 +60,7 @@ impl fmt::Display for MenuIcon {
             "{}",
             match self.itype {
                 IconType::Accessories => "Accessories",
-                IconType::ANRecruit => "Arknights Recruiter",
+                IconType::ANRecruit => "Arknights Recruitment Helper",
                 IconType::Assemble => "Assemble",
                 IconType::Kisekae => "Generic Kisekae Shichihenge",
                 IconType::Programs => "Programs",
