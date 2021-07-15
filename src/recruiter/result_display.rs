@@ -59,7 +59,7 @@ impl Component for ResultDisplay {
 
     fn view(&self) -> Html {
         let (good, challenging) = sort(&self.candidates);
-    
+
         html! {
             <div id="result-area">
                 <h2 class="candidate-title">{ self.text.good_candidates.select(&self.language) }</h2>

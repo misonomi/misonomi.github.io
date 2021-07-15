@@ -177,6 +177,20 @@ impl Operator {
                 6,
                 tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival),
             ),
+            Operator::new(
+                "麦哲伦",
+                "マゼラン",
+                "Magallan",
+                6,
+                tags!(
+                    Tag::Top,
+                    Tag::Ranged,
+                    Tag::Support,
+                    Tag::Slow,
+                    Tag::DPS,
+                    Tag::Survival
+                ),
+            ),
             /////////////////// 6-stars
             Operator::new(
                 "因陀罗",
@@ -453,6 +467,13 @@ impl Operator {
                 5,
                 tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::Defense, Tag::DPS),
             ),
+            Operator::new(
+                "送葬人",
+                "イグゼキュター",
+                "Executor",
+                5,
+                tags!(Tag::Senior, Tag::Ranged, Tag::Sniper, Tag::AoE),
+            ),
             /////////////////// 5-stars
             Operator::new(
                 "艾丝黛尔",
@@ -628,6 +649,13 @@ impl Operator {
                 "Myrtle",
                 4,
                 tags!(Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::Heal),
+            ),
+            Operator::new(
+                "红云",
+                "ヴァーミル",
+                "Vermeil",
+                4,
+                tags!(Tag::Ranged, Tag::Sniper, Tag::DPS),
             ),
             /////////////////// 4-stars
             Operator::new(
