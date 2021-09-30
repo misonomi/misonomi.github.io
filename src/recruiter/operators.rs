@@ -191,6 +191,20 @@ impl Operator {
                     Tag::Survival
                 ),
             ),
+            Operator::new(
+                "莫斯提马",
+                "モスティマ",
+                "Mostima",
+                6,
+                tags!(
+                    Tag::Top,
+                    Tag::Ranged,
+                    Tag::Caster,
+                    Tag::AoE,
+                    Tag::Support,
+                    Tag::CC
+                ),
+            ),
             /////////////////// 6-stars
             Operator::new(
                 "因陀罗",
@@ -474,6 +488,19 @@ impl Operator {
                 5,
                 tags!(Tag::Senior, Tag::Ranged, Tag::Sniper, Tag::AoE),
             ),
+            Operator::new(
+                "槐琥",
+                "ワイフー",
+                "Waai Fu",
+                5,
+                tags!(
+                    Tag::Senior,
+                    Tag::Melee,
+                    Tag::Specialist,
+                    Tag::FastRedeploy,
+                    Tag::Debuff
+                ),
+            ),
             /////////////////// 5-stars
             Operator::new(
                 "艾丝黛尔",
@@ -656,6 +683,13 @@ impl Operator {
                 "Vermeil",
                 4,
                 tags!(Tag::Ranged, Tag::Sniper, Tag::DPS),
+            ),
+            Operator::new(
+                "梅",
+                "メイ",
+                "May",
+                4,
+                tags!(Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::Slow),
             ),
             /////////////////// 4-stars
             Operator::new(
