@@ -3,12 +3,14 @@ use yew::prelude::*;
 
 #[macro_use]
 mod tags;
+mod clearer;
 mod instruction;
 mod language;
 mod operators;
 mod result_display;
 mod tag_selector;
 
+use clearer::*;
 use instruction::*;
 use language::*;
 use operators::*;
@@ -24,22 +26,9 @@ pub enum Msg {
     ChangeLanguage(Language),
 }
 
-struct Text {
-    clear: Multilingual,
-}
-
-impl Text {
-    fn new() -> Text {
-        Text {
-            clear: Multilingual::new("退选", "選択解除", "Clear Selection"),
-        }
-    }
-}
-
 pub struct Recruiter {
     link: ComponentLink<Self>,
     language: Language,
-    text: Text,
     selected_tags: HashSet<Tag>,
     candidates: Vec<Operator>,
     all_oeprators: Vec<Operator>,
@@ -52,7 +41,6 @@ impl Component for Recruiter {
         Self {
             link,
             language: Language::Japanese,
-            text: Text::new(),
             selected_tags: HashSet::with_capacity(TAG_N as usize),
             candidates: vec![],
             all_oeprators: Operator::all(),
@@ -95,7 +83,7 @@ impl Component for Recruiter {
         } = *self;
         html! {
             <main>
-                { self.clear_view("left".to_string()) }
+                <Clearer class="left" language=self.language.clone()></Clearer>
                 <div id="lng-button-area">
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Chinese))>{ "中文" }</button>
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Japanese))>{ "日本語" }</button>
@@ -109,19 +97,8 @@ impl Component for Recruiter {
                         html!{ <ResultDisplay candidates=candidates.clone() language=language.clone()></ResultDisplay> }
                     }
                 }
-                { self.clear_view("right".to_string()) }
+                <Clearer class="right" language=self.language.clone()></Clearer>
             </main>
-        }
-    }
-}
-
-impl Recruiter {
-    fn clear_view(&self, class: String) -> Html {
-        html! {
-            <div class=classes!("clear-area", class) onclick=self.link.callback(|_| Msg::Clear)>
-                <i class="material-icons">{ "delete_outline" }</i>
-                <span>{ self.text.clear.select(&self.language) }</span>
-            </div>
         }
     }
 }
