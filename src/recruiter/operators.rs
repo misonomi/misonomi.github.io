@@ -69,7 +69,7 @@ impl Operator {
         );
         html! {
             <div class="operator-container">
-                <div class=("operator-card", format!("rarity-{}", self.rarity), if shine {"shine"} else {""}) onclick=Callback::from(move |_: MouseEvent| {
+                <div class=classes!("operator-card", format!("rarity-{}", self.rarity), if shine {"shine"} else {""}) onclick=Callback::from(move |_: MouseEvent| {
                     web_sys::window()
                         .unwrap()
                         .open_with_url(&wikiurl)

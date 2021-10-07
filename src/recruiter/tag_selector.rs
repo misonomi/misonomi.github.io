@@ -79,19 +79,19 @@ impl TagSelector {
         html! {
             <div id="tag-area">
                 <div class="tag-container">
-                { for classes().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for classes().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for positions().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for positions().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for qualifications().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for qualifications().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for affix().iter().map(|t| t.view(lng, selected_tags.contains(&t), link)) }
+                { for affix().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
                 </div>
             </div>
         }

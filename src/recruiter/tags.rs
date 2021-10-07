@@ -143,11 +143,11 @@ impl Tag {
         link: &ComponentLink<TagSelector>,
     ) -> Html {
         html! {
-            <button class=("tag-button", match checked {
+            <button class=classes!("tag-button", match checked {
                 true => "checked",
                 _ => "",
             }) onclick=link.callback(move |_| Msg::Toggle(self))>
-                <i class=("tagico", self.iconname()) />
+                <i class=classes!("tagico", self.iconname().to_string()) />
                 { self.name().select(lng) }
             </button>
         }
@@ -155,11 +155,11 @@ impl Tag {
 
     pub fn view(self, lng: &Language, checked: bool, link: &ComponentLink<Recruiter>) -> Html {
         html! {
-            <button class=("tag-button", match checked {
+            <button class=classes!("tag-button", match checked {
                 true => "checked",
                 _ => "",
             }) onclick=link.callback(move |_| super::Msg::Toggle(self))>
-                <i class=("tagico", self.iconname()) />
+                <i class=classes!("tagico", self.iconname().to_string()) />
                 { self.name().select(lng) }
             </button>
         }

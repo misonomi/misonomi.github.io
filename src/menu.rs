@@ -153,7 +153,7 @@ impl Component for RollingMenu {
                 <div id="menu-left" onclick=self.link.callback(|_| Msg::Left)/>
                 <div id="menu-right" onclick=self.link.callback(|_| Msg::Right)/>
                 { self.icons.iter().cloned().map(|e| html!{
-                    <div class="menu-icon" id=e.compute_pos(self.current)>
+                    <div class="menu-icon" id=e.compute_pos(self.current).to_string()>
                         <img src=format!("./images/icon-{}.png", e.itype.name()) onclick=self.link.callback(move |_| Msg::Jump(e.id))/>
                     </div>
                 }).collect::<Html>() }

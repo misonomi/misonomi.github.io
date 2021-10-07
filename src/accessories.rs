@@ -59,7 +59,7 @@ impl Component for Accessories {
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
             Msg::Go(link) => {
-                web_sys::window().unwrap().open_with_url(&link).unwrap();
+                web_sys::window().unwrap().open_with_url(link).unwrap();
             }
         };
         false
@@ -73,7 +73,7 @@ impl Component for Accessories {
         html! {
             <main>
                 <div id="item-list">
-                    { self.items.iter().map(|i| self.container_view(&i) ).collect::<Html>() }
+                    { self.items.iter().map(|i| self.container_view(i) ).collect::<Html>() }
                 </div>
             </main>
         }
