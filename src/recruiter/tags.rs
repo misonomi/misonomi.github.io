@@ -2,7 +2,7 @@ use yew::prelude::*;
 
 use super::{
     language::*,
-    tag_selector::TagSelector,
+    Recruiter,
 };
 
 #[derive(Clone, PartialEq, Eq, Hash)]
@@ -149,7 +149,7 @@ pub enum Msg {
 
 pub struct TagButton {
     link: ComponentLink<Self>,
-    parent_link: ComponentLink<TagSelector>,
+    parent_link: ComponentLink<Recruiter>,
     tag: Tag,
     language: Language,
     active: bool,
@@ -160,7 +160,7 @@ impl Component for TagButton {
     type Properties = Props;
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
-            parent_link: link.clone().get_parent().cloned().unwrap().downcast(),
+            parent_link: link.get_parent().cloned().unwrap().downcast::<super::tag_selector::TagSelector>().get_parent().cloned().unwrap().downcast(),
             link,
             tag: props.tag,
             language: props.language,
@@ -170,7 +170,7 @@ impl Component for TagButton {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::Toggle => self.parent_link.send_message(super::tag_selector::Msg::Toggle(self.tag.clone())),
+            Msg::Toggle => self.parent_link.send_message(super::Msg::Toggle(self.tag.clone())),
         };
         true
     }
