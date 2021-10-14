@@ -1,7 +1,7 @@
 use std::fmt;
 use yew::prelude::*;
 
-const ITEM_NUM: u8 = 5;
+const ITEM_NUM: usize = 5;
 
 #[derive(Clone)]
 enum IconType {
@@ -37,11 +37,11 @@ impl IconType {
 #[derive(Clone)]
 struct MenuIcon {
     itype: IconType,
-    id: u8,
+    id: usize,
 }
 
 impl MenuIcon {
-    fn compute_pos(&self, current_focus: u8) -> &str {
+    fn compute_pos(&self, current_focus: usize) -> &str {
         match (self.id - current_focus + ITEM_NUM) % ITEM_NUM {
             0 => "front",
             1 => "left-front",
@@ -72,13 +72,13 @@ impl fmt::Display for MenuIcon {
 pub enum Msg {
     Right,
     Left,
-    Jump(u8),
+    Jump(usize),
 }
 
 pub struct RollingMenu {
     link: ComponentLink<Self>,
-    icons: [MenuIcon; ITEM_NUM as usize],
-    current: u8,
+    icons: [MenuIcon; ITEM_NUM],
+    current: usize,
 }
 
 impl Component for RollingMenu {
@@ -134,7 +134,7 @@ impl Component for RollingMenu {
         if target == self.current {
             web_sys::window()
                 .unwrap()
-                .open_with_url(self.icons[target as usize].itype.link())
+                .open_with_url(self.icons[target].itype.link())
                 .unwrap();
             false
         } else {
@@ -157,7 +157,7 @@ impl Component for RollingMenu {
                         <img src=format!("./images/icon-{}.png", e.itype.name()) onclick=self.link.callback(move |_| Msg::Jump(e.id))/>
                     </div>
                 }).collect::<Html>() }
-                <h2 id="menu-title">{ format!("{}", self.icons[self.current as usize]) }</h2>
+                <h2 id="menu-title">{ format!("{}", self.icons[self.current]) }</h2>
             </main>
         }
     }
