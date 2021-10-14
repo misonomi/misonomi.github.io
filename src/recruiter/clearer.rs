@@ -1,7 +1,7 @@
 use yew::prelude::*;
 
 use super::language::{Language, Multilingual};
-use super::{Recruiter, Msg};
+use super::{Msg, Recruiter};
 
 #[derive(Properties, Clone)]
 pub struct Props {

@@ -1,9 +1,6 @@
 use yew::prelude::*;
 
-use super::{
-    language::*,
-    Recruiter,
-};
+use super::{language::*, Recruiter};
 
 #[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Tag {
@@ -160,7 +157,15 @@ impl Component for TagButton {
     type Properties = Props;
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
-            parent_link: link.get_parent().cloned().unwrap().downcast::<super::tag_selector::TagSelector>().get_parent().cloned().unwrap().downcast(),
+            parent_link: link
+                .get_parent()
+                .cloned()
+                .unwrap()
+                .downcast::<super::tag_selector::TagSelector>()
+                .get_parent()
+                .cloned()
+                .unwrap()
+                .downcast(),
             link,
             tag: props.tag,
             language: props.language,
@@ -170,7 +175,9 @@ impl Component for TagButton {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::Toggle => self.parent_link.send_message(super::Msg::Toggle(self.tag.clone())),
+            Msg::Toggle => self
+                .parent_link
+                .send_message(super::Msg::Toggle(self.tag.clone())),
         };
         true
     }
