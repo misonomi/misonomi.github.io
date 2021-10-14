@@ -76,28 +76,23 @@ impl Component for Recruiter {
     }
 
     fn view(&self) -> Html {
-        let Self {
-            ref language,
-            ref candidates,
-            ..
-        } = *self;
         html! {
             <main>
-                <Clearer class="left" language=self.language.clone()></Clearer>
+                <Clearer class="left" language=self.language.clone()/>
                 <div id="lng-button-area">
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Chinese))>{ "中文" }</button>
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::Japanese))>{ "日本語" }</button>
                     <button class="lng-button" onclick=self.link.callback(|_| Msg::ChangeLanguage(Language::English))>{ "English" }</button>
                 </div>
-                { TagSelector::view(&self.selected_tags, &self.language, &self.link) }
+                <TagSelector selected_tags=self.selected_tags.clone().into_iter().collect::<Vec<Tag>>() language=self.language.clone()/>
                 {
                     if self.selected_tags.is_empty() {
-                        html!{ <Instruction language=language.clone()></Instruction> }
+                        html!{ <Instruction language=self.language.clone()/> }
                     } else {
-                        html!{ <ResultDisplay candidates=candidates.clone() language=language.clone()></ResultDisplay> }
+                        html!{ <ResultDisplay candidates=self.candidates.clone() language=self.language.clone()/> }
                     }
                 }
-                <Clearer class="right" language=self.language.clone()></Clearer>
+                <Clearer class="right" language=self.language.clone()/>
             </main>
         }
     }

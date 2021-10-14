@@ -98,7 +98,7 @@ impl Component for Instruction {
                         <h2 class="inst-title">{ txs.title.select(&self.language) }</h2>
                         <hr />
                         <ul>
-                        { for txs.sequence.iter().map(|e| html! { <li>{ e.select(&self.language) }</li> }) }
+                            { for txs.sequence.iter().map(|e| html! { <li>{ e.select(&self.language) }</li> }) }
                         </ul>
                     </div>
                 })

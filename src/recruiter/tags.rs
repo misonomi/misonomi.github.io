@@ -2,11 +2,10 @@ use yew::prelude::*;
 
 use super::{
     language::*,
-    tag_selector::{Msg, TagSelector},
-    Recruiter,
+    tag_selector::TagSelector,
 };
 
-#[derive(Clone, Copy, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash)]
 pub enum Tag {
     Starter,
     Senior,
@@ -48,44 +47,6 @@ macro_rules! tags {
             hash
         }
     };
-}
-
-pub fn qualifications() -> Vec<Tag> {
-    vec![Tag::Starter, Tag::Senior, Tag::Top]
-}
-pub fn positions() -> Vec<Tag> {
-    vec![Tag::Melee, Tag::Ranged]
-}
-pub fn classes() -> Vec<Tag> {
-    vec![
-        Tag::Caster,
-        Tag::Defender,
-        Tag::Guard,
-        Tag::Medic,
-        Tag::Sniper,
-        Tag::Specialist,
-        Tag::Supporter,
-        Tag::Vanguard,
-    ]
-}
-pub fn affix() -> Vec<Tag> {
-    vec![
-        Tag::AoE,
-        Tag::CC,
-        Tag::DPS,
-        Tag::DPR,
-        Tag::Debuff,
-        Tag::FastRedeploy,
-        Tag::Defense,
-        Tag::Heal,
-        Tag::Nuker,
-        Tag::Robot,
-        Tag::Shift,
-        Tag::Slow,
-        Tag::Summon,
-        Tag::Support,
-        Tag::Survival,
-    ]
 }
 
 impl Tag {
@@ -135,32 +96,99 @@ impl Tag {
             _ => "none",
         }
     }
+}
 
-    pub fn button_view(
-        self,
-        lng: &Language,
-        checked: bool,
-        link: &ComponentLink<TagSelector>,
-    ) -> Html {
-        html! {
-            <button class=classes!("tag-button", match checked {
-                true => "checked",
-                _ => "",
-            }) onclick=link.callback(move |_| Msg::Toggle(self))>
-                <i class=classes!("tagico", self.iconname().to_string()) />
-                { self.name().select(lng) }
-            </button>
+pub fn qualifications() -> Vec<Tag> {
+    vec![Tag::Starter, Tag::Senior, Tag::Top]
+}
+pub fn positions() -> Vec<Tag> {
+    vec![Tag::Melee, Tag::Ranged]
+}
+pub fn classes() -> Vec<Tag> {
+    vec![
+        Tag::Caster,
+        Tag::Defender,
+        Tag::Guard,
+        Tag::Medic,
+        Tag::Sniper,
+        Tag::Specialist,
+        Tag::Supporter,
+        Tag::Vanguard,
+    ]
+}
+pub fn affix() -> Vec<Tag> {
+    vec![
+        Tag::AoE,
+        Tag::CC,
+        Tag::DPS,
+        Tag::DPR,
+        Tag::Debuff,
+        Tag::FastRedeploy,
+        Tag::Defense,
+        Tag::Heal,
+        Tag::Nuker,
+        Tag::Robot,
+        Tag::Shift,
+        Tag::Slow,
+        Tag::Summon,
+        Tag::Support,
+        Tag::Survival,
+    ]
+}
+
+#[derive(Properties, Clone)]
+pub struct Props {
+    pub tag: Tag,
+    pub language: Language,
+    pub active: bool,
+}
+
+pub enum Msg {
+    Toggle,
+}
+
+pub struct TagButton {
+    link: ComponentLink<Self>,
+    parent_link: ComponentLink<TagSelector>,
+    tag: Tag,
+    language: Language,
+    active: bool,
+}
+
+impl Component for TagButton {
+    type Message = Msg;
+    type Properties = Props;
+    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        Self {
+            parent_link: link.clone().get_parent().cloned().unwrap().downcast(),
+            link,
+            tag: props.tag,
+            language: props.language,
+            active: props.active,
         }
     }
 
-    pub fn view(self, lng: &Language, checked: bool, link: &ComponentLink<Recruiter>) -> Html {
+    fn update(&mut self, msg: Self::Message) -> ShouldRender {
+        match msg {
+            Msg::Toggle => self.parent_link.send_message(super::tag_selector::Msg::Toggle(self.tag.clone())),
+        };
+        true
+    }
+
+    fn change(&mut self, props: Self::Properties) -> ShouldRender {
+        self.language = props.language;
+        self.active = props.active;
+        true
+    }
+
+    fn view(&self) -> Html {
         html! {
-            <button class=classes!("tag-button", match checked {
+            <button class=classes!("tag-button", match self.active {
                 true => "checked",
                 _ => "",
-            }) onclick=link.callback(move |_| super::Msg::Toggle(self))>
-                <i class=classes!("tagico", self.iconname().to_string()) />
-                { self.name().select(lng) }
+            }) onclick=self.link.callback(|_| Msg::Toggle)>
+                <i class=classes!("tagico", self.tag.iconname().to_string()) />
+                { self.tag.name().select(&self.language) }
             </button>
         }
     }

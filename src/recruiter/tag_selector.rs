@@ -1,4 +1,3 @@
-use std::collections::HashSet;
 use yew::prelude::*;
 
 use super::{language::*, tags::*, Recruiter};
@@ -7,7 +6,6 @@ use super::{language::*, tags::*, Recruiter};
 pub struct Props {
     pub selected_tags: Vec<Tag>,
     pub language: Language,
-    pub ontoggle: Callback<Tag>,
 }
 
 pub enum Msg {
@@ -15,10 +13,9 @@ pub enum Msg {
 }
 
 pub struct TagSelector {
-    link: ComponentLink<Self>,
+    parent_link: ComponentLink<Recruiter>,
     selected_tags: Vec<Tag>,
     language: Language,
-    ontoggle: Callback<Tag>,
 }
 
 impl Component for TagSelector {
@@ -26,16 +23,15 @@ impl Component for TagSelector {
     type Properties = Props;
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
-            link,
+            parent_link: link.get_parent().cloned().unwrap().downcast(),
             selected_tags: props.selected_tags,
             language: props.language,
-            ontoggle: props.ontoggle,
         }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::Toggle(tag) => self.ontoggle.emit(tag),
+            Msg::Toggle(tag) => self.parent_link.send_message(super::Msg::Toggle(tag)),
         };
         true
     }
@@ -43,7 +39,6 @@ impl Component for TagSelector {
     fn change(&mut self, props: Self::Properties) -> ShouldRender {
         self.selected_tags = props.selected_tags;
         self.language = props.language;
-        self.ontoggle = props.ontoggle;
         true
     }
 
@@ -51,47 +46,19 @@ impl Component for TagSelector {
         html! {
             <div id="tag-area">
                 <div class="tag-container">
-                { for qualifications().into_iter().map(|t| t.button_view(&self.language, self.selected_tags.contains(&t), &self.link)) }
+                    { for qualifications().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for positions().into_iter().map(|t| t.button_view(&self.language, self.selected_tags.contains(&t), &self.link)) }
+                    { for positions().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for classes().into_iter().map(|t| t.button_view(&self.language, self.selected_tags.contains(&t), &self.link)) }
+                    { for classes().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
                 </div>
                 <hr />
                 <div class="tag-container">
-                { for affix().into_iter().map(|t| t.button_view(&self.language, self.selected_tags.contains(&t), &self.link)) }
-                </div>
-            </div>
-        }
-    }
-}
-
-impl TagSelector {
-    pub fn view(
-        selected_tags: &HashSet<Tag>,
-        lng: &Language,
-        link: &ComponentLink<Recruiter>,
-    ) -> Html {
-        html! {
-            <div id="tag-area">
-                <div class="tag-container">
-                { for classes().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
-                </div>
-                <hr />
-                <div class="tag-container">
-                { for positions().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
-                </div>
-                <hr />
-                <div class="tag-container">
-                { for qualifications().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
-                </div>
-                <hr />
-                <div class="tag-container">
-                { for affix().iter().map(|t| t.view(lng, selected_tags.contains(t), link)) }
+                    { for affix().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
                 </div>
             </div>
         }
