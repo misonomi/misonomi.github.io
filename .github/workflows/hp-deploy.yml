@@ -31,7 +31,6 @@ jobs:
       run: |
         wasm-pack build --release --target web --out-name wasm --out-dir static/top -- --features index
         wasm-pack build --release --target web --out-name wasm --out-dir static/anr -- --features an-recruiter
-        wasm-pack build --release --target web --out-name wasm --out-dir static/acc -- --features accessories
         wasm-pack build --release --target web --out-name wasm --out-dir static/asb -- --features assemble
         wasm-pack build --release --target web --out-name wasm --out-dir static/kdt -- --features key-detector
 

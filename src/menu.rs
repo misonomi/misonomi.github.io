@@ -1,5 +1,5 @@
+use seed::{prelude::*, *};
 use std::fmt;
-use yew::prelude::*;
 
 const ITEM_NUM: usize = 5;
 
@@ -75,72 +75,58 @@ pub enum Msg {
     Jump(usize),
 }
 
-pub struct RollingMenu {
-    link: ComponentLink<Self>,
+pub struct Model {
     icons: [MenuIcon; ITEM_NUM],
     current: usize,
 }
 
-impl Component for RollingMenu {
-    type Message = Msg;
-    type Properties = ();
-    fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self {
-            link,
-            icons: [
-                MenuIcon { itype: IconType::Accessories, id: 0 },
-                MenuIcon { itype: IconType::ANRecruit, id: 1 },
-                MenuIcon { itype: IconType::Assemble, id: 2 },
-                MenuIcon { itype: IconType::Kisekae, id: 3 },
-                MenuIcon { itype: IconType::Programs, id: 4 },
-            ],
-            current: 0,
-        }
+pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
+    Model {
+        icons: [
+            MenuIcon { itype: IconType::Accessories, id: 0 },
+            MenuIcon { itype: IconType::ANRecruit, id: 1 },
+            MenuIcon { itype: IconType::Assemble, id: 2 },
+            MenuIcon { itype: IconType::Kisekae, id: 3 },
+            MenuIcon { itype: IconType::Programs, id: 4 },
+        ],
+        current: 0,
     }
+}
 
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        let target = match msg {
-            Msg::Jump(n) => n,
-            Msg::Right => {
-                if self.current == 0 {
-                    ITEM_NUM - 1
-                } else {
-                    self.current - 1
-                }
+pub fn update(msg: Msg, model: &mut Model, _: &mut impl Orders<Msg>) {
+    let target = match msg {
+        Msg::Jump(n) => n,
+        Msg::Right => {
+            if model.current == 0 {
+                ITEM_NUM - 1
+            } else {
+                model.current - 1
             }
-            Msg::Left => {
-                if self.current == ITEM_NUM - 1 {
-                    0
-                } else {
-                    self.current + 1
-                }
+        }
+        Msg::Left => {
+            if model.current == ITEM_NUM - 1 {
+                0
+            } else {
+                model.current + 1
             }
-        };
-        if target == self.current {
-            web_sys::window().unwrap().open_with_url(self.icons[target].itype.link()).unwrap();
-            false
-        } else {
-            self.current = target;
-            true
         }
+    };
+    if target == model.current {
+        web_sys::window().unwrap().open_with_url(model.icons[target].itype.link()).unwrap();
+    } else {
+        model.current = target;
     }
+}
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        false
-    }
-
-    fn view(&self) -> Html {
-        html! {
-            <main>
-                <div id="menu-left" onclick=self.link.callback(|_| Msg::Left)/>
-                <div id="menu-right" onclick=self.link.callback(|_| Msg::Right)/>
-                { self.icons.iter().cloned().map(|e| html!{
-                    <div class="menu-icon" id=e.compute_pos(self.current).to_string()>
-                        <img src=format!("./images/icon-{}.png", e.itype.name()) onclick=self.link.callback(move |_| Msg::Jump(e.id))/>
-                    </div>
-                }).collect::<Html>() }
-                <h2 id="menu-title">{ format!("{}", self.icons[self.current]) }</h2>
-            </main>
-        }
-    }
+pub fn view(model: &Model) -> Node<Msg> {
+    main![
+        div![attrs! {At::Id => "menu-left"}, ev(Ev::Click, |_| Msg::Left)],
+        div![attrs! {At::Id => "menu-right"}, ev(Ev::Click, |_| Msg::Right)],
+        model.icons.iter().cloned().map(|e| div![
+            C!["menu-icon"],
+            attrs! {At::Id => e.compute_pos(model.current).to_string()},
+            img![attrs! {At::Src => format!("./images/icon-{}.png", e.itype.name())}, ev(Ev::Click, move |_| Msg::Jump(e.id))],
+        ]),
+        h2![attrs! {At::Id => "menu-title"}, format!("{}", model.icons[model.current])],
+    ]
 }

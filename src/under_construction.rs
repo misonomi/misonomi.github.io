@@ -1,27 +1,15 @@
-use yew::prelude::*;
+use seed::{prelude::*, *};
 
-pub struct UnderConstruction {}
+pub struct Model {}
 
-impl Component for UnderConstruction {
-    type Message = ();
-    type Properties = ();
-    fn create(_: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self {}
-    }
+pub enum Msg {}
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
-    }
+pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
+    Model {}
+}
 
-    fn change(&mut self, _props: Self::Properties) -> ShouldRender {
-        false
-    }
+pub fn update(_msg: Msg, _model: &mut Model, _: &mut impl Orders<Msg>) {}
 
-    fn view(&self) -> Html {
-        html! {
-            <main>
-                <div id="under-construction">{ "Koujichu~" }</div>
-            </main>
-        }
-    }
+pub fn view(model: &Model) -> Node<Msg> {
+    main![div!["koujichu~"],]
 }

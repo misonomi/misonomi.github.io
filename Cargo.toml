@@ -8,9 +8,10 @@ edition = "2018"
 crate-type = ["cdylib", "rlib"]
 
 [dependencies]
-wasm-bindgen = "^0.2.60"
-web-sys = { version = "^0.3", features = ["Window"] }
-yew = "0.18.0"
+wasm-bindgen = "0.2.78"
+web-sys = { version = "0.3.55", features = ["Window"] }
+yew = "0.19.3"
+seed = "0.8.0"
 
 [features]
 index = []
