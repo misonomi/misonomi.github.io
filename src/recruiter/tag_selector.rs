@@ -37,7 +37,7 @@ impl Component for TagSelector {
         html! {
             <div id="tag-area">
                 <div class="tag-container">
-                    { for qualifications().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
+                    { for classes().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
                 </div>
                 <hr />
                 <div class="tag-container">
@@ -45,7 +45,7 @@ impl Component for TagSelector {
                 </div>
                 <hr />
                 <div class="tag-container">
-                    { for classes().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
+                    { for qualifications().into_iter().map(|t| html!{ <TagButton tag=t language=self.language.clone() active=self.selected_tags.contains(&t)/> }) }
                 </div>
                 <hr />
                 <div class="tag-container">
