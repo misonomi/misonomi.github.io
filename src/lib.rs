@@ -8,6 +8,7 @@ mod accessories;
 mod menu;
 mod recruiter;
 mod under_construction;
+mod key_detector;
 
 #[wasm_bindgen(start)]
 pub fn run_app() {
@@ -19,4 +20,6 @@ pub fn run_app() {
     App::<accessories::Accessories>::new().mount_to_body();
     #[cfg(feature = "assemble")]
     App::<under_construction::UnderConstruction>::new().mount_to_body();
+    #[cfg(feature = "key-detector")]
+    App::<key_detector::KeyDetector>::new().mount_to_body();
 }

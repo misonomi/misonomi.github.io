@@ -29,7 +29,7 @@ impl IconType {
             IconType::ANRecruit => "recruitment-helper.html",
             IconType::Assemble => "assemble.html",
             IconType::Kisekae => "kisekae.html",
-            IconType::Programs => "https://github.com/misonomi",
+            IconType::Programs => "key-detector.html",
         }
     }
 }
@@ -63,7 +63,7 @@ impl fmt::Display for MenuIcon {
                 IconType::ANRecruit => "Arknights Recruitment Helper",
                 IconType::Assemble => "Assemble",
                 IconType::Kisekae => "Generic Kisekae Shichihenge",
-                IconType::Programs => "Programs",
+                IconType::Programs => "Music Key Detector",
             }
         )
     }
