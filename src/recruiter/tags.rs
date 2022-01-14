@@ -102,16 +102,7 @@ pub fn positions() -> Vec<Tag> {
     vec![Tag::Melee, Tag::Ranged]
 }
 pub fn classes() -> Vec<Tag> {
-    vec![
-        Tag::Caster,
-        Tag::Defender,
-        Tag::Guard,
-        Tag::Medic,
-        Tag::Sniper,
-        Tag::Specialist,
-        Tag::Supporter,
-        Tag::Vanguard,
-    ]
+    vec![Tag::Caster, Tag::Defender, Tag::Guard, Tag::Medic, Tag::Sniper, Tag::Specialist, Tag::Supporter, Tag::Vanguard]
 }
 pub fn affix() -> Vec<Tag> {
     vec![
@@ -157,15 +148,7 @@ impl Component for TagButton {
     type Properties = Props;
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
         Self {
-            parent_link: link
-                .get_parent()
-                .cloned()
-                .unwrap()
-                .downcast::<super::tag_selector::TagSelector>()
-                .get_parent()
-                .cloned()
-                .unwrap()
-                .downcast(),
+            parent_link: link.get_parent().cloned().unwrap().downcast::<super::tag_selector::TagSelector>().get_parent().cloned().unwrap().downcast(),
             link,
             tag: props.tag,
             language: props.language,
@@ -175,9 +158,7 @@ impl Component for TagButton {
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {
         match msg {
-            Msg::Toggle => self
-                .parent_link
-                .send_message(super::Msg::Toggle(self.tag.clone())),
+            Msg::Toggle => self.parent_link.send_message(super::Msg::Toggle(self.tag.clone())),
         };
         true
     }

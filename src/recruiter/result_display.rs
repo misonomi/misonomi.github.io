@@ -16,16 +16,8 @@ struct Text {
 impl Text {
     fn new() -> Text {
         Text {
-            good_candidates: Multilingual::new(
-                "有针对性的干员",
-                "出そうなオペーレーター",
-                "Good Candidates",
-            ),
-            challenging_candidates: Multilingual::new(
-                "有挑战性的干员",
-                "運が良くないと出なそうなオペレーター",
-                "Challenging Candidates",
-            ),
+            good_candidates: Multilingual::new("有针对性的干员", "出そうなオペーレーター", "Good Candidates"),
+            challenging_candidates: Multilingual::new("有挑战性的干员", "運が良くないと出なそうなオペレーター", "Challenging Candidates"),
         }
     }
 }

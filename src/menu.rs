@@ -88,26 +88,11 @@ impl Component for RollingMenu {
         Self {
             link,
             icons: [
-                MenuIcon {
-                    itype: IconType::Accessories,
-                    id: 0,
-                },
-                MenuIcon {
-                    itype: IconType::ANRecruit,
-                    id: 1,
-                },
-                MenuIcon {
-                    itype: IconType::Assemble,
-                    id: 2,
-                },
-                MenuIcon {
-                    itype: IconType::Kisekae,
-                    id: 3,
-                },
-                MenuIcon {
-                    itype: IconType::Programs,
-                    id: 4,
-                },
+                MenuIcon { itype: IconType::Accessories, id: 0 },
+                MenuIcon { itype: IconType::ANRecruit, id: 1 },
+                MenuIcon { itype: IconType::Assemble, id: 2 },
+                MenuIcon { itype: IconType::Kisekae, id: 3 },
+                MenuIcon { itype: IconType::Programs, id: 4 },
             ],
             current: 0,
         }
@@ -132,10 +117,7 @@ impl Component for RollingMenu {
             }
         };
         if target == self.current {
-            web_sys::window()
-                .unwrap()
-                .open_with_url(self.icons[target].itype.link())
-                .unwrap();
+            web_sys::window().unwrap().open_with_url(self.icons[target].itype.link()).unwrap();
             false
         } else {
             self.current = target;

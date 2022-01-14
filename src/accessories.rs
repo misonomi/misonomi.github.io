@@ -50,10 +50,7 @@ impl Component for Accessories {
     type Message = Msg<'static>;
     type Properties = ();
     fn create(_: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self {
-            link,
-            items: &ITEMS,
-        }
+        Self { link, items: &ITEMS }
     }
 
     fn update(&mut self, msg: Self::Message) -> ShouldRender {

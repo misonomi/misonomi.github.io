@@ -14,9 +14,7 @@ pub struct Multilingual {
 
 impl PartialEq for Multilingual {
     fn eq(&self, other: &Self) -> bool {
-        self.chinese == other.chinese
-            && self.japanese == other.japanese
-            && self.english == other.english
+        self.chinese == other.chinese && self.japanese == other.japanese && self.english == other.english
     }
 }
 
