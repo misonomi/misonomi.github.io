@@ -1,8 +1,7 @@
+use seed::{prelude::*, *};
 use std::collections::HashSet;
-use yew::prelude::*;
 
-use super::language::*;
-use super::tags::*;
+use super::{language::*, tags::Tag, Msg};
 
 #[derive(Clone)]
 pub struct Operator {
@@ -58,23 +57,20 @@ impl Operator {
         self.rarity > 5
     }
 
-    pub fn view(&self, lng: &Language, shine: bool) -> Html {
-        let googleurl = format!("https://google.com/search?q={}+アークナイツ+かわいい", self.name.select(&Language::Japanese),);
-        html! {
-            <div class="operator-container">
-                <div class=classes!("operator-card", format!("rarity-{}", self.rarity), if shine {"shine"} else {""}) onclick=Callback::from(move |_: MouseEvent| {
-                    web_sys::window()
-                        .unwrap()
-                        .open_with_url(&googleurl)
-                        .unwrap();
-                })>
-                    <span class="name">{ self.name.select(lng) }</span>
-                    <div class="tags">
-                        { for self.tags.iter().map(|t| html! { <div>{ t.name().select(lng) }</div> }) }
-                    </div>
-                </div>
-            </div>
-        }
+    pub fn view(&self, lng: &Language, shine: bool) -> Node<Msg> {
+        let googleurl = format!("https://google.com/search?q={}+アークナイツ+かわいい", self.name.select(&Language::Japanese));
+
+        div![
+            C!["operator-container"],
+            div![
+                C!["operator-card", format!("rarity-{}", self.rarity), if shine { "shine" } else { "" }],
+                ev(Ev::Click, move |_| {
+                    web_sys::window().unwrap().open_with_url(&googleurl).unwrap();
+                }),
+                span![C!["name"], self.name.select(lng)],
+                div![C!["tags"], self.tags.iter().map(|t| div![t.name().select(lng)])],
+            ],
+        ]
     }
 
     pub fn all() -> Vec<Operator> {

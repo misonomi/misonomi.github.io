@@ -1,12 +1,6 @@
-use yew::prelude::*;
+use seed::{prelude::*, *};
 
-use super::{language::*, operators::*};
-
-#[derive(Properties, Clone)]
-pub struct Props {
-    pub candidates: Vec<Operator>,
-    pub language: Language,
-}
+use super::{language::*, operators::*, Msg};
 
 struct Text {
     good_candidates: Multilingual,
@@ -18,53 +12,6 @@ impl Text {
         Text {
             good_candidates: Multilingual::new("有针对性的干员", "出そうなオペーレーター", "Good Candidates"),
             challenging_candidates: Multilingual::new("有挑战性的干员", "運が良くないと出なそうなオペレーター", "Challenging Candidates"),
-        }
-    }
-}
-
-pub struct ResultDisplay {
-    candidates: Vec<Operator>,
-    language: Language,
-    text: Text,
-}
-
-impl Component for ResultDisplay {
-    type Message = ();
-    type Properties = Props;
-    fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
-        Self {
-            candidates: props.candidates,
-            language: props.language,
-            text: Text::new(),
-        }
-    }
-
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
-    }
-
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.candidates = props.candidates;
-        self.language = props.language;
-        true
-    }
-
-    fn view(&self) -> Html {
-        let (good, challenging) = sort(&self.candidates);
-
-        html! {
-            <div id="result-area">
-                <h2 class="candidate-title">{ self.text.good_candidates.select(&self.language) }</h2>
-                <hr />
-                <div class="operator-pool">
-                { for good.iter().map(|c| c.view(&self.language, good.iter().all(|e| c == e || c.is_ahead(e)))) }
-                </div>
-                <h2 class="candidate-title">{ self.text.challenging_candidates.select(&self.language) }</h2>
-                <hr />
-                <div class="operator-pool">
-                { for challenging.iter().map(|c| c.view(&self.language, false)) }
-                </div>
-            </div>
         }
     }
 }
@@ -81,4 +28,17 @@ fn sort(candidates: &[Operator]) -> (Vec<Operator>, Vec<Operator>) {
     }
 
     (good, challenging)
+}
+
+pub fn view(candidates: &Vec<Operator>, lng: &Language) -> Node<Msg> {
+    let (good, challenging) = sort(candidates);
+    div![
+        attrs! {At::Id => "result-area"},
+        h2![C!["candidate-title"], Multilingual::new("有针对性的干员", "出そうなオペーレーター", "Good Candidates").select(lng)],
+        hr![],
+        div![C!["operator-pool"], good.iter().map(|c| c.view(lng, good.iter().all(|e| c == e || c.is_ahead(e))))],
+        h2![C!["candidate-title"], Multilingual::new("有挑战性的干员", "運が良くないと出なそうなオペレーター", "Challenging Candidates").select(lng)],
+        hr![],
+        div![C!["operator-pool"], challenging.iter().map(|c| c.view(lng, false))],
+    ]
 }

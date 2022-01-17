@@ -1,10 +1,6 @@
-use super::language::*;
-use yew::prelude::*;
+use seed::{prelude::*, *};
 
-#[derive(Properties, Clone)]
-pub struct Props {
-    pub language: Language,
-}
+use super::{language::*, Msg};
 
 struct Text {
     title: Multilingual,
@@ -41,42 +37,11 @@ impl Text {
     }
 }
 
-pub struct Instruction {
-    language: Language,
-    text: Vec<Text>,
-}
-
-impl Component for Instruction {
-    type Message = ();
-    type Properties = Props;
-    fn create(props: Self::Properties, _: ComponentLink<Self>) -> Self {
-        Self { language: props.language, text: Text::new() }
-    }
-
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
-    }
-
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.language = props.language;
-        true
-    }
-
-    fn view(&self) -> Html {
-        html! {
-            <div id="inst-area">
-            {
-                for self.text.iter().map(|txs| html!{
-                    <div class="inst">
-                        <h2 class="inst-title">{ txs.title.select(&self.language) }</h2>
-                        <hr />
-                        <ul>
-                            { for txs.sequence.iter().map(|e| html! { <li>{ e.select(&self.language) }</li> }) }
-                        </ul>
-                    </div>
-                })
-            }
-            </div>
-        }
-    }
+pub fn view(lng: &Language) -> Node<Msg> {
+    div![
+        attrs! {At::Id => "result-area"},
+        Text::new()
+            .iter()
+            .map(|t| div![C!["inst"], h2![C!["inst-title"], t.title.select(lng)], hr![], ul![t.sequence.iter().map(|i| li![i.select(lng)])],]),
+    ]
 }

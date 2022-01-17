@@ -1,8 +1,8 @@
-use yew::prelude::*;
+use seed::{prelude::*, *};
 
-use super::{language::*, Recruiter};
+use super::{language::*, Msg};
 
-#[derive(Clone, PartialEq, Eq, Hash)]
+#[derive(Clone, PartialEq, Eq, Hash, Copy)]
 pub enum Tag {
     Starter,
     Senior,
@@ -124,60 +124,17 @@ pub fn affix() -> Vec<Tag> {
     ]
 }
 
-#[derive(Properties, Clone)]
-pub struct Props {
-    pub tag: Tag,
-    pub language: Language,
-    pub active: bool,
-}
-
-pub enum Msg {
-    Toggle,
-}
-
-pub struct TagButton {
-    link: ComponentLink<Self>,
-    parent_link: ComponentLink<Recruiter>,
-    tag: Tag,
-    language: Language,
-    active: bool,
-}
-
-impl Component for TagButton {
-    type Message = Msg;
-    type Properties = Props;
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        Self {
-            parent_link: link.get_parent().cloned().unwrap().downcast::<super::tag_selector::TagSelector>().get_parent().cloned().unwrap().downcast(),
-            link,
-            tag: props.tag,
-            language: props.language,
-            active: props.active,
-        }
-    }
-
-    fn update(&mut self, msg: Self::Message) -> ShouldRender {
-        match msg {
-            Msg::Toggle => self.parent_link.send_message(super::Msg::Toggle(self.tag.clone())),
-        };
-        true
-    }
-
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        self.language = props.language;
-        self.active = props.active;
-        true
-    }
-
-    fn view(&self) -> Html {
-        html! {
-            <button class=classes!("tag-button", match self.active {
+pub fn view(tag: Tag, active: bool, lng: &Language) -> Node<Msg> {
+    button![
+        C![
+            "tag-button",
+            match active {
                 true => "checked",
                 _ => "",
-            }) onclick=self.link.callback(|_| Msg::Toggle)>
-                <i class=classes!("tagico", self.tag.iconname().to_string()) />
-                { self.tag.name().select(&self.language) }
-            </button>
-        }
-    }
+            }
+        ],
+        ev(Ev::Click, move |_| Msg::Toggle(tag)),
+        i![C!["tagico", tag.iconname()]],
+        tag.name().select(lng),
+    ]
 }

@@ -35,3 +35,15 @@ impl Multilingual {
         }
     }
 }
+
+macro_rules! mln {
+    ($($x:expr),+ $(,)?) => {
+        {
+            let mut hash = HashSet::new();
+            $(
+                hash.insert($x);
+            )*
+            hash
+        }
+    };
+}
