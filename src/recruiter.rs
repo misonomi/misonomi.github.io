@@ -10,13 +10,8 @@ mod operators;
 mod result_display;
 mod tag_selector;
 
-use clearer::*;
-use instruction::*;
 use language::*;
 use operators::*;
-use result_display::*;
-use tag_selector::*;
-use tags::*;
 
 const TAG_N: u8 = 6;
 

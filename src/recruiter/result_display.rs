@@ -2,20 +2,6 @@ use seed::{prelude::*, *};
 
 use super::{language::*, operators::*, Msg};
 
-struct Text {
-    good_candidates: Multilingual,
-    challenging_candidates: Multilingual,
-}
-
-impl Text {
-    fn new() -> Text {
-        Text {
-            good_candidates: Multilingual::new("有针对性的干员", "出そうなオペーレーター", "Good Candidates"),
-            challenging_candidates: Multilingual::new("有挑战性的干员", "運が良くないと出なそうなオペレーター", "Challenging Candidates"),
-        }
-    }
-}
-
 fn sort(candidates: &[Operator]) -> (Vec<Operator>, Vec<Operator>) {
     let mut good: Vec<Operator> = Vec::new();
     let mut challenging: Vec<Operator> = Vec::new();
