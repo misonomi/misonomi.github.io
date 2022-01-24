@@ -1,6 +1,7 @@
 use seed::{prelude::*, *};
 
-use super::{language::*, operators::*, Msg};
+use super::{operators::*, Msg};
+use crate::utils::*;
 
 fn sort(candidates: &[Operator]) -> (Vec<Operator>, Vec<Operator>) {
     let mut good: Vec<Operator> = Vec::new();

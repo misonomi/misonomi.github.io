@@ -1,9 +1,7 @@
 use seed::{prelude::*, *};
 
-use super::{
-    language::{Language, Multilingual},
-    Msg,
-};
+use super::Msg;
+use crate::utils::*;
 
 pub fn view(lng: &Language, class: &str) -> Node<Msg> {
     div![

@@ -1,6 +1,7 @@
 use seed::{prelude::*, *};
 
-use super::{language::*, tags, Msg};
+use super::{tags, Msg};
+use crate::utils::*;
 
 pub fn view(selected_tags: Vec<tags::Tag>, lng: &Language) -> Node<Msg> {
     div![

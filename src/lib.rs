@@ -4,6 +4,7 @@ mod key_detector;
 mod menu;
 mod recruiter;
 mod under_construction;
+mod utils;
 
 #[wasm_bindgen(start)]
 pub fn run_app() {

@@ -1,6 +1,7 @@
 use seed::{prelude::*, *};
 
-use super::{language::*, Msg};
+use super::Msg;
+use crate::utils::*;
 
 #[derive(Clone, PartialEq, Eq, Hash, Copy)]
 pub enum Tag {

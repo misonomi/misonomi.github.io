@@ -1,7 +1,8 @@
 use seed::{prelude::*, *};
 use std::collections::HashSet;
 
-use super::{language::*, tags::Tag, Msg};
+use super::{tags::Tag, Msg};
+use crate::utils::*;
 
 #[derive(Clone)]
 pub struct Operator {

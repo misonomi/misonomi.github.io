@@ -5,12 +5,11 @@ use std::collections::HashSet;
 mod tags;
 mod clearer;
 mod instruction;
-mod language;
 mod operators;
 mod result_display;
 mod tag_selector;
 
-use language::*;
+use super::utils::*;
 use operators::*;
 
 const TAG_N: u8 = 6;
