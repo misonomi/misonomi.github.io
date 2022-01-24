@@ -1,23 +1,47 @@
 use seed::{prelude::*, *};
+use std::collections::HashSet;
+
+mod notes;
+mod keyboard;
+mod clearer;
+
+use notes::*;
+use crate::utils::*;
 
 pub struct Model {
-    counter: i32,
+    selected_notes: HashSet<Note>,
 }
 
 pub enum Msg {
-    Increment,
+    Clear,
+    Toggle(Note),
 }
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
-    Model { counter: 0 }
+    Model {
+        selected_notes: HashSet::new(),
+    }
 }
 
 pub fn update(msg: Msg, model: &mut Model, _: &mut impl Orders<Msg>) {
     match msg {
-        Msg::Increment => model.counter += 1,
+        Msg::Clear => {
+            model.selected_notes.clear();
+        }
+        Msg::Toggle(n) => {
+            if model.selected_notes.contains(&n) {
+                model.selected_notes.remove(&n);
+            } else {
+                model.selected_notes.insert(n);
+            }
+        },
     }
 }
 
 pub fn view(model: &Model) -> Node<Msg> {
-    div![C!["counter"], "This is a counter: ", button![model.counter, ev(Ev::Click, |_| Msg::Increment),],]
+    main![
+        clearer::view(&Language::Japanese, "left"),
+        keyboard::view(&model.selected_notes),
+        clearer::view(&Language::Japanese, "right"),
+    ]
 }
