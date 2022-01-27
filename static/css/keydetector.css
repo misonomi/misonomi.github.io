@@ -1,21 +1,16 @@
-:root {
-    --gray: rgb(128, 128, 128);
-    --carbon: rgb(48, 64, 64);
-    --azure: rgb(56, 159, 255);
-    --card-flare: 0 0 3em;
-}
-
 main {
     font-size: 1rem;
     display: grid;
     width: 100%; height:100%;
     grid-template-columns: 2fr 1fr 50em 1fr 2fr;
-    grid-template-rows: 3em 30em auto;
+    grid-template-rows: 3em 30em 1em auto;
     grid-template-areas:
         "clear-l title title title clear-r"
         "clear-l . keyboard . clear-r"
-        "clear-l result result result clear-r";
+        "clear-l hr hr hr clear-r"
+        "clear-l . result . clear-r";
     gap: 1em;
+    user-select: none;
 }
 
 .clear-area {
@@ -45,7 +40,8 @@ button {
     border: none;
 }
 
-hr {
+main > hr {
+    grid-area: hr;
     margin: .5em;
 }
 
@@ -61,9 +57,10 @@ hr {
     padding: 1em;
     display: flex;
     justify-content: center;
-    border-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     border-width: 1px;
-    user-select: none;
+    border-style: solid;
     cursor: pointer;
     font-weight: 900;
 }
@@ -71,24 +68,24 @@ hr {
     align-self: flex-end;
 }
 #keyboard-area > .white {
+    z-index: 1;
     color: black;
     background-color: white;
     border-color: black;
-    border-style: solid;
     grid-row: 1 / 3;
 }
 #keyboard-area > .black {
-    z-index: 1;
+    z-index: 11;
     color: white;
-    background-color: black;
-    border-color: white;
-    grid-row: 1 / 2;
+    background-color: rgb(0, 12, 12);
+    border-color: rgb(64, 64, 64);
+    grid-row: 1 / 2; 
 }
 #keyboard-area > .active {
-    color: white;
-    background-color: rgb(255, 28, 96);
-    box-shadow: 0 0 2em rgb(255, 237, 241) inset;
-    border: 2px solid rgb(48, 64, 64);
+    color: black;
+    background-color: rgb(255, 79, 132);
+    box-shadow: 0 0 3em -0.5em white inset;
+    border-color: rgb(158, 40, 76);
 }
 
 #keyboard-area > .c { grid-column: 1 / 3; }
@@ -105,14 +102,43 @@ hr {
 #keyboard-area > .gs { grid-column: 10 / 12; }
 #keyboard-area > .as { grid-column: 12 / 14; }
 
-@media (max-width: 800px) {
+#inst-area {
+    grid-area: result;
+    text-align: center;
+}
+
+#result-area {
+    grid-area: result;
+}
+
+.key-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-size: 3rem;
+    margin: 8px;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 4px;
+
+    cursor: pointer;
+}
+
+.key-card > span {
+    align-self: flex-end;
+}
+
+@media (max-width: 1000px) {
     main {
         font-size: 0.7rem;
         grid-template-columns: 1fr;
-        grid-template-rows: 3em auto auto auto;
+        grid-template-rows: 6em 3em 40em 1em auto 6em;
         grid-template-areas:
             "clear-l"
-            "tag"
+            "title"
+            "keyboard"
+            "hr"
             "result"
             "clear-r";
     }
@@ -120,38 +146,38 @@ hr {
         padding-top: 0;
     }
 
-    .tag-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+    #keyboard-area {
+        grid-area: keyboard;
+        padding: 2em;
+    
+        display: grid;
+        grid-template-rows: repeat(14, 1fr);
+        grid-template-columns: 2fr 1fr;
     }
-    .tag-button {
-        font-size: inherit;
+    #keyboard-area > div {
+        flex-direction: column;
+        border-top-right-radius: 6px;
+        border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 0;
+    }
+    #keyboard-area > .white {
+        grid-column: 1 / 3;
+    }
+    #keyboard-area > .black {
+        grid-column: 1 / 2; 
     }
 
-    .operator-container {
-        width: 90vw;
-        padding: .3em;
-    }
+    #keyboard-area > .b { grid-row: 1 / 3; }
+    #keyboard-area > .a { grid-row: 3 / 5; }
+    #keyboard-area > .g { grid-row: 5 / 7; }
+    #keyboard-area > .f { grid-row: 7 / 9; }
+    #keyboard-area > .e { grid-row: 9 / 11; }
+    #keyboard-area > .d { grid-row: 11 / 13; }
+    #keyboard-area > .c { grid-row: 13 / 15; }
 
-    .operator-card {
-        width: auto;
-        height: 3em;
-    }
-    .operator-card:before {
-        width: 50%;
-    }
-    .operator-card:after {
-        left: 15em;
-    }
-    .tags {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 1em;
-    }
-    .tags > div {
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
+    #keyboard-area > .as { grid-row: 2 / 4; }
+    #keyboard-area > .gs { grid-row: 4 / 6; }
+    #keyboard-area > .fs { grid-row: 6 / 8; }
+    #keyboard-area > .ds { grid-row: 10 / 12; }
+    #keyboard-area > .cs { grid-row: 12 / 14; }
 }

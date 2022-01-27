@@ -1,8 +1,9 @@
 use seed::{prelude::*, *};
+use strum::{IntoEnumIterator, EnumIter};
 
 use super::Msg;
 
-#[derive(Clone, PartialEq, Eq, Hash, Copy)]
+#[derive(Clone, PartialEq, Eq, Hash, Copy, EnumIter)]
 pub enum Note {
     C = 0,
     Cs = 1,
@@ -16,6 +17,11 @@ pub enum Note {
     A = 9,
     As = 10,
     B = 11,
+}
+
+#[derive(Debug, EnumIter)]
+pub enum ProductCategory {
+    Dairy, Daycare, BabyCare,
 }
 
 impl Note {
@@ -51,19 +57,23 @@ impl Note {
             Note::B => "b",
         }
     }
-    pub fn class_side(&self) -> &str {
+    fn class_side(&self) -> &str {
         match self {
             Note::C | Note::D | Note::E | Note::F | Note::G | Note::A | Note::B => "white",
             Note::Cs | Note::Ds | Note::Fs | Note::Gs | Note::As => "black",
         }
     }
-}
 
-pub fn view(n: Note, active: bool) -> Node<Msg> {
-    div![
-        attrs! {At::Id => n.name()},
-        ev(Ev::Click, move |_| Msg::Toggle(n)),
-        C!["note", IF!(active => "active"), n.class_name(), n.class_side()],
-        span![C!["name"], n.name()], 
-    ]
+    pub fn view(self, active: bool) -> Node<Msg> {
+        div![
+            attrs! {At::Id => self.name()},
+            ev(Ev::Click, move |_| Msg::Toggle(self)),
+            C!["note", IF!(active => "active"), self.class_name(), self.class_side()],
+            span![C!["name"], self.name()], 
+        ]
+    }
+
+    pub fn all() -> NoteIter {
+        Note::iter()
+    }
 }
