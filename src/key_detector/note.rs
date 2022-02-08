@@ -5,18 +5,18 @@ use super::Msg;
 
 #[derive(Clone, PartialEq, Eq, Hash, Copy, EnumIter)]
 pub enum Note {
-    C = 0,
-    Cs = 1,
-    D = 2,
-    Ds = 3,
-    E = 4,
-    F = 5,
-    Fs = 6,
-    G = 7,
-    Gs = 8,
-    A = 9,
-    As = 10,
-    B = 11,
+    C = 0b000000000001,
+    Cs = 0b000000000010,
+    D = 0b000000000100,
+    Ds = 0b000000001000,
+    E = 0b000000010000,
+    F = 0b000000100000,
+    Fs = 0b000001000000,
+    G = 0b000010000000,
+    Gs = 0b000100000000,
+    A = 0b001000000000,
+    As = 0b010000000000,
+    B = 0b100000000000,
 }
 
 #[derive(Debug, EnumIter)]
