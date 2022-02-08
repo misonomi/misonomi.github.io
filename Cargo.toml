@@ -2,7 +2,11 @@
 name = "misonomi-hp"
 version = "0.1.1"
 authors = ["misonomi <misonomi0612@gmail.com>"]
-edition = "2018"
+description = "A jumble of barely usefull things"
+homepage = "https://misonomi.github.io/"
+repository = "https://github.com/misonomi/misonomi.github.io"
+edition = "2021"
+publish = false
 
 [lib]
 crate-type = ["cdylib", "rlib"]
@@ -10,14 +14,11 @@ crate-type = ["cdylib", "rlib"]
 [dependencies]
 wasm-bindgen = "0.2.78"
 web-sys = { version = "0.3.55", features = ["Window"] }
-yew = "0.19.3"
 seed = "0.8.0"
 strum = { version = "0.23", features = ["derive"] }
 
 [features]
 index = []
 an-recruiter = []
-kisekae = []
-accessories = []
 assemble = []
 key-detector = []
