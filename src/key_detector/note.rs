@@ -1,5 +1,5 @@
 use seed::{prelude::*, *};
-use strum::{IntoEnumIterator, EnumIter};
+use strum::{EnumIter, IntoEnumIterator};
 
 use super::Msg;
 
@@ -21,7 +21,9 @@ pub enum Note {
 
 #[derive(Debug, EnumIter)]
 pub enum ProductCategory {
-    Dairy, Daycare, BabyCare,
+    Dairy,
+    Daycare,
+    BabyCare,
 }
 
 impl Note {
@@ -69,7 +71,7 @@ impl Note {
             attrs! {At::Id => self.name()},
             ev(Ev::Click, move |_| Msg::Toggle(self)),
             C!["note", IF!(active => "active"), self.class_name(), self.class_side()],
-            span![C!["name"], self.name()], 
+            span![C!["name"], self.name()],
         ]
     }
 

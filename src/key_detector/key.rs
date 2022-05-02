@@ -1,7 +1,7 @@
-use std::collections::HashSet;
 use seed::{prelude::*, *};
+use std::collections::HashSet;
 
-use super::{Msg, note::*};
+use super::{note::*, Msg};
 
 #[derive(Clone, PartialEq, Eq, Hash, Copy)]
 pub enum Key {

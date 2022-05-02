@@ -1,6 +1,6 @@
 use seed::{prelude::*, *};
 
-use super::{Msg, key::*};
+use super::{key::*, Msg};
 use crate::utils::*;
 
 pub fn view(candidates: &Vec<Key>, lng: &Language) -> Node<Msg> {

@@ -1,16 +1,16 @@
 use seed::{prelude::*, *};
 use std::collections::HashSet;
 
-mod note;
-mod keyboard;
 mod clearer;
 mod instruction;
-mod result;
 mod key;
+mod keyboard;
+mod note;
+mod result;
 
-use note::*;
-use key::*;
 use crate::utils::*;
+use key::*;
+use note::*;
 
 pub struct Model {
     selected_notes: HashSet<Note>,
@@ -44,7 +44,7 @@ pub fn update(msg: Msg, model: &mut Model, _: &mut impl Orders<Msg>) {
             }
 
             model.candidate_keys = model.all_keys.clone().into_iter().filter(|k| k.contains(&model.selected_notes)).collect();
-        },
+        }
     }
 }
 
