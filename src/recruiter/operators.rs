@@ -91,7 +91,8 @@ impl Operator {
             Operator::new("麦哲伦", "マゼラン", "Magallan", 6, tags!(Tag::Top, Tag::Ranged, Tag::Support, Tag::Slow, Tag::DPS, Tag::Survival)),
             Operator::new("莫斯提马", "モスティマ", "Mostima", 6, tags!(Tag::Top, Tag::Ranged, Tag::Caster, Tag::AoE, Tag::Support, Tag::CC)),
             Operator::new("煌", "ブレイズ", "Blaze", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
-            Operator::new("", "ア", "Aak", 6, tags!(Tag::Top, Tag::Ranged, Tag::Specialist, Tag::DPS, Tag::Support)),
+            Operator::new("阿", "ア", "Aak", 6, tags!(Tag::Top, Tag::Ranged, Tag::Specialist, Tag::DPS, Tag::Support)),
+            Operator::new("刻俄柏", "ケオベ", "Ceobe", 6, tags!(Tag::Top, Tag::Ranged, Tag::Caster, Tag::DPS, Tag::CC)),
             /////////////////// 6-stars
             Operator::new("因陀罗", "インドラ", "Indra", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("火神", "ヴァルカン", "Vulcan", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS, Tag::Survival)),
@@ -126,8 +127,10 @@ impl Operator {
             Operator::new("苇草", "リード", "Reed", 5, tags!(Tag::Senior, Tag::Melee, Tag::Vanguard, Tag::DPS, Tag::DPR)),
             Operator::new("布洛卡", "ブローカ", "Broca", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("吽", "ウン", "Hung", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::Heal)),
+            Operator::new("惊蛰", "レイズ", "Leizi", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Caster, Tag::DPS)),
             /////////////////// 5-stars
             Operator::new("艾丝黛尔", "エステル", "Estelle", 4, tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
+            Operator::new("清流", "セイリュウ", "Purestream", 4, tags!(Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Support)),
             Operator::new("夜烟", "ヘイズ", "Haze", 4, tags!(Tag::Ranged, Tag::Caster, Tag::DPS, Tag::Debuff)),
             Operator::new("远山", "ギターノ", "Gitano", 4, tags!(Tag::Ranged, Tag::Caster, Tag::AoE)),
             Operator::new("杰西卡", "ジェシカ", "Jessica", 4, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::Survival)),
