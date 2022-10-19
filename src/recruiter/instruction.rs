@@ -15,7 +15,7 @@ impl Text {
                 title: Multilingual::new("使用方法", "つかいかた", "How to use"),
                 sequence: vec![
                     Multilingual::new(
-                        "选择上面的全部标签，在你的明日方舟招募中看到的地方",
+                        "选择上面的全部标签, 在你的明日方舟招募中看到的地方",
                         "アークナイツの求人画面に見えているタグを上からすべて選択します",
                         "Select *ALL* tags above, where you see in your arknights recruitment",
                     ),
@@ -33,6 +33,14 @@ impl Text {
                     Multilingual::new("想要★2：7:30:00", "★2狙い：7:30:00", "Want ★2: 7:30:00"),
                     Multilingual::new("想要★1：3:50:00", "★1狙い：3:50:00", "Want ★1: 3:50:00"),
                 ],
+            },
+            Text {
+                title: Multilingual::new("更新日志", "更新履歴", "Update Log"),
+                sequence: vec![Multilingual::new(
+                    "2022/10/19 - 添加了风笛, 慑砂, 宴",
+                    "2022/10/19 - バグパイプ、シェーシャ、ウタゲを追加",
+                    "2022/10/19 - Added Bagpipe, Sesa, Utage",
+                )],
             },
         ]
     }

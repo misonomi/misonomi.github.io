@@ -93,7 +93,8 @@ impl Operator {
             Operator::new("煌", "ブレイズ", "Blaze", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("阿", "ア", "Aak", 6, tags!(Tag::Top, Tag::Ranged, Tag::Specialist, Tag::DPS, Tag::Support)),
             Operator::new("刻俄柏", "ケオベ", "Ceobe", 6, tags!(Tag::Top, Tag::Ranged, Tag::Caster, Tag::DPS, Tag::CC)),
-            /////////////////// 6-stars
+            Operator::new("风笛", "バグパイプ", "Bagpipe", 6, tags!(Tag::Top, Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::DPS)),
+            /////////////////// add new 6-stars here
             Operator::new("因陀罗", "インドラ", "Indra", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("火神", "ヴァルカン", "Vulcan", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS, Tag::Survival)),
             Operator::new("白面鸮", "フィリオプシス", "Ptilopsis", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Support)),
@@ -128,7 +129,8 @@ impl Operator {
             Operator::new("布洛卡", "ブローカ", "Broca", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("吽", "ウン", "Hung", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::Heal)),
             Operator::new("惊蛰", "レイズ", "Leizi", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Caster, Tag::DPS)),
-            /////////////////// 5-stars
+            Operator::new("慑砂", "シェーシャ", "Sesa", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Sniper, Tag::AoE, Tag::Debuff)),
+            /////////////////// add new 5-stars here
             Operator::new("艾丝黛尔", "エステル", "Estelle", 4, tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("清流", "セイリュウ", "Purestream", 4, tags!(Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Support)),
             Operator::new("夜烟", "ヘイズ", "Haze", 4, tags!(Tag::Ranged, Tag::Caster, Tag::DPS, Tag::Debuff)),
@@ -158,7 +160,8 @@ impl Operator {
             Operator::new("红云", "ヴァーミル", "Vermeil", 4, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS)),
             Operator::new("梅", "メイ", "May", 4, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::Slow)),
             Operator::new("安比尔", "アンブリエル", "Ambriel", 4, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::Slow)),
-            /////////////////// 4-stars
+            Operator::new("宴", "ウタゲ", "Utage", 4, tags!(Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
+            /////////////////// add new 4-stars here
             Operator::new("安德切尔", "アドナキエル", "Adnachiel", 3, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS)),
             Operator::new("芬", "フェン", "Fang", 3, tags!(Tag::Melee, Tag::Vanguard, Tag::DPR)),
             Operator::new("香草", "バニラ", "Vanilla", 3, tags!(Tag::Melee, Tag::Vanguard, Tag::DPR)),
@@ -175,17 +178,18 @@ impl Operator {
             Operator::new("月见夜", "ミッドナイト", "Midnight", 3, tags!(Tag::Melee, Tag::Guard, Tag::DPS)),
             Operator::new("泡普卡", "ポプカル", "Popukar", 3, tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("斑点", "スポット", "Spot", 3, tags!(Tag::Melee, Tag::Defender, Tag::Defense, Tag::Heal)),
-            /////////////////// 3-stars
+            /////////////////// add new 3-stars here
             Operator::new("夜刀", "ヤトウ", "Yato", 2, tags!(Tag::Starter, Tag::Melee, Tag::Vanguard)),
             Operator::new("黑角", "ノイルホーン", "Noir Corne", 2, tags!(Tag::Starter, Tag::Melee, Tag::Defender)),
             Operator::new("巡林者", "レンジャー", "Rangers", 2, tags!(Tag::Starter, Tag::Ranged, Tag::Sniper)),
             Operator::new("杜林", "ドゥリン", "Durin", 2, tags!(Tag::Starter, Tag::Ranged, Tag::Caster)),
             Operator::new("12F", "12F", "12F", 2, tags!(Tag::Starter, Tag::Ranged, Tag::Caster)),
-            /////////////////// 2-stars
+            /////////////////// add new 2-stars here
             Operator::new("Lancet-2", "Lancet-2", "Lancet-2", 1, tags!(Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Robot)),
             Operator::new("Castle-3", "Castle-3", "Castle-3", 1, tags!(Tag::Melee, Tag::Guard, Tag::Support, Tag::Robot)),
             Operator::new("THRM-EX", "THRM-EX", "THRM-EX", 1, tags!(Tag::Melee, Tag::Specialist, Tag::Nuker, Tag::Robot)),
             Operator::new("正义骑士号", "ジャスティスナイト", "'Justice Knight'", 1, tags!(Tag::Ranged, Tag::Sniper, Tag::Support, Tag::Robot)),
+            /////////////////// add new 1-stars here
         ]
     }
 }
