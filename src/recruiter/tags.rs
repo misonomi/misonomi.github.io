@@ -81,7 +81,7 @@ impl Tag {
         }
     }
 
-    fn iconname(&self) -> &str {
+    pub fn iconname(&self) -> &str {
         match self {
             Tag::Caster => "caster",
             Tag::Defender => "defender",
@@ -93,6 +93,22 @@ impl Tag {
             Tag::Vanguard => "vanguard",
             _ => "none",
         }
+    }
+
+    pub fn view(&self, active: bool, lng: &Language) -> Node<Msg> {
+        let t = self.clone();
+        button![
+            C![
+                "tag-button",
+                match active {
+                    true => "checked",
+                    _ => "",
+                }
+            ],
+            ev(Ev::Click, move |_| Msg::Toggle(t)),
+            i![C!["tagico", self.iconname()]],
+            self.name().select(lng),
+        ]
     }
 }
 
@@ -122,20 +138,5 @@ pub fn affix() -> Vec<Tag> {
         Tag::Summon,
         Tag::Support,
         Tag::Survival,
-    ]
-}
-
-pub fn view(tag: Tag, active: bool, lng: &Language) -> Node<Msg> {
-    button![
-        C![
-            "tag-button",
-            match active {
-                true => "checked",
-                _ => "",
-            }
-        ],
-        ev(Ev::Click, move |_| Msg::Toggle(tag)),
-        i![C!["tagico", tag.iconname()]],
-        tag.name().select(lng),
     ]
 }
