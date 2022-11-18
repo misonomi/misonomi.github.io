@@ -33,6 +33,7 @@ jobs:
         wasm-pack build --release --target web --out-name wasm --out-dir static/anr -- --features an-recruiter
         wasm-pack build --release --target web --out-name wasm --out-dir static/asb -- --features assemble
         wasm-pack build --release --target web --out-name wasm --out-dir static/kdt -- --features key-detector
+        wasm-pack build --release --target web --out-name wasm --out-dir static/rbq -- --features an-recruite-buzzerquiz
 
     - name: Remove unnecessary files
       run: find static \( -name '.gitignore' -o -name 'README.md' -o -name 'package.json' \) -delete

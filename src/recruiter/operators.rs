@@ -74,6 +74,14 @@ impl Operator {
         ]
     }
 
+    pub fn tags(&self) -> &HashSet<Tag> {
+        &self.tags
+    }
+
+    pub fn set_tags(&mut self, new_tags: HashSet<Tag>) {
+        self.tags = new_tags
+    }
+
     pub fn all() -> Vec<Operator> {
         vec![
             Operator::new("能天使", "エクシア", "Exusiai", 6, tags!(Tag::Top, Tag::Melee, Tag::Sniper, Tag::DPS)),

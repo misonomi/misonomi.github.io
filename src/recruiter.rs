@@ -2,15 +2,17 @@ use seed::{prelude::*, *};
 use std::collections::HashSet;
 
 #[macro_use]
-mod tags;
+pub mod tags;
 mod clearer;
 mod instruction;
 mod operators;
 mod result_display;
 mod tag_selector;
 
-use super::utils::*;
+use crate::utils::*;
 use operators::*;
+
+use self::tags::TagSet;
 
 const TAG_N: u8 = 6;
 
@@ -24,7 +26,6 @@ pub struct Model {
     language: Language,
     selected_tags: HashSet<tags::Tag>,
     candidates: Vec<Operator>,
-    all_oeprators: Vec<Operator>,
 }
 
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
@@ -32,7 +33,6 @@ pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
         language: Language::Japanese,
         selected_tags: HashSet::with_capacity(TAG_N as usize),
         candidates: vec![],
-        all_oeprators: Operator::all(),
     }
 }
 
@@ -44,7 +44,7 @@ pub fn update(msg: Msg, model: &mut Model, _: &mut impl Orders<Msg>) {
                 false => model.selected_tags.insert(tag),
             };
             if render {
-                model.candidates = Operator::find(&model.all_oeprators, &model.selected_tags);
+                model.candidates = model.selected_tags.candidates();
             }
         }
         Msg::Clear => {

@@ -1,5 +1,6 @@
 use seed::prelude::*;
 
+mod buzzer;
 mod key_detector;
 mod menu;
 mod recruiter;
@@ -13,6 +14,9 @@ pub fn run_app() {
     }
     if cfg!(feature = "an-recruiter") {
         App::start("anr", recruiter::init, recruiter::update, recruiter::view);
+    }
+    if cfg!(feature = "an-recruite-buzzerquiz") {
+        App::start("rbq", buzzer::init, buzzer::update, buzzer::view);
     }
     if cfg!(feature = "assemble") {
         App::start("asb", under_construction::init, under_construction::update, under_construction::view);
