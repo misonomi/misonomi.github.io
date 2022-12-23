@@ -1,5 +1,3 @@
-#![feature(div_duration)]
-
 use seed::prelude::*;
 
 mod buzzer;

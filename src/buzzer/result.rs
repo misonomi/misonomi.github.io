@@ -57,7 +57,7 @@ pub fn view(lng: &Language, result: &Vec<Result>, time: Duration) -> Node<Msg> {
             _ => 0.0,
         })
         .fold(0.0, |acc, x| acc + x)
-        * Duration::from_secs(60).div_duration_f32(time);
+        * 60.0 / time.as_secs_f32();
 
     div![
         attrs! {At::Id => "result-area"},
