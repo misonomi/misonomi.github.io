@@ -31,6 +31,8 @@ button {
     padding: .5em 4em;
     border-radius: 2px;
     border-bottom: 4px solid var(--rhodes-blue);
+    background: white;
+    text-decoration: none;
 }
 
 hr {
@@ -40,6 +42,10 @@ hr {
 
 .spacer {
     margin: 2em;
+}
+
+.tweet-container {
+    margin: 1em;
 }
 
 #inst-area, #question-area, #result-area {
@@ -120,12 +126,13 @@ hr {
 .result-card {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 3em auto;
+    grid-template-rows: 3em 2em auto;
     grid-template-areas:
-        "my-ans headline correct-ans "
+        "my-ans headline correct-ans"
+        "sample sample sample"
         "tags tags tags";
     
-    margin: 2em;
+    margin: 4em 2em;
     align-items: center;
     justify-content: center;
 }
@@ -144,6 +151,11 @@ hr {
     grid-area: headline;
     font-size: 2rem;
     text-align: center;
+}
+.sample-op {
+    grid-area: sample;
+    text-align: center;
+    font-size: .8rem;
 }
 
 .result-headline.correct {
