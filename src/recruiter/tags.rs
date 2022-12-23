@@ -156,7 +156,7 @@ impl Distribution<Tag> for Standard {
 pub trait TagSet {
     fn random_tags(len: usize) -> Self;
 
-    fn max_rarity(&self) -> u8;
+    fn max_guaranteed(&self) -> (u8, Operator);
 
     fn candidates(&self) -> Vec<Operator>;
 }
@@ -174,9 +174,10 @@ impl TagSet for HashSet<Tag> {
         result
     }
 
-    fn max_rarity(&self) -> u8 {
+    fn max_guaranteed(&self) -> (u8, Operator) {
         let (candidates, _) = self.candidates().divide();
-        candidates.iter().fold(3, |acc, c| std::cmp::max(acc, c.rarity()))
+        let max = candidates.iter().fold(3, |acc, c| std::cmp::max(acc, c.rarity()));
+        (max, candidates.into_iter().find(|c| c.rarity() == max).unwrap())
     }
 
     fn candidates(&self) -> Vec<Operator> {
