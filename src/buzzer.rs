@@ -52,17 +52,17 @@ pub fn update(msg: Msg, model: &mut Model, _: &mut impl Orders<Msg>) {
                 model.time = Instant::now().duration_since(model.timer);
                 model.state = State::Result;
             }
-            let correct = model.tags.max_rarity();
-            let mut new_tags = HashSet::random_tags(TAG_N);
+            let (correct, example) = model.tags.max_guaranteed();
+            let mut new_tags = question::tag();
             mem::swap(&mut model.tags, &mut new_tags);
 
-            model.results.push(result::Result::new(ans, correct, new_tags));
+            model.results.push(result::Result::new(ans, correct, new_tags, example));
         }
         Msg::Start => {
             model.timer = Instant::now();
             model.state = State::InGame;
             model.results = vec![];
-            model.tags = HashSet::random_tags(TAG_N);
+            model.tags = question::tag();
         }
         Msg::Reset => {
             model.state = State::Standby;
