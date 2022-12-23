@@ -3,9 +3,9 @@ use std::collections::HashSet;
 
 #[macro_use]
 pub mod tags;
+pub mod operators;
 mod clearer;
 mod instruction;
-mod operators;
 mod result_display;
 mod tag_selector;
 

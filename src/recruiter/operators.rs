@@ -26,6 +26,10 @@ impl Operator {
         }
     }
 
+    pub fn name(&self) -> &Multilingual {
+        &self.name
+    }
+
     pub fn is_behind(&self, other: &Operator) -> bool {
         ((self.rarity > other.rarity && other.rarity > 2) || (self.rarity == 1 && other.rarity < 5 && other.rarity > 1)) && self.tags.is_subset(&other.tags)
     }
