@@ -88,7 +88,7 @@ impl Operator {
             Operator::new("陈", "チェン", "Ch'en", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Nuker)),
             Operator::new("黑", "シュヴァルツ", "Schwarz", 6, tags!(Tag::Top, Tag::Ranged, Tag::Sniper, Tag::DPS)),
             Operator::new("赫拉格", "ヘラグ", "Hellagur", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
-            Operator::new("麦哲伦", "マゼラン", "Magallan", 6, tags!(Tag::Top, Tag::Ranged, Tag::Support, Tag::Slow, Tag::DPS, Tag::Survival)),
+            Operator::new("麦哲伦", "マゼラン", "Magallan", 6, tags!(Tag::Top, Tag::Ranged, Tag::Supporter, Tag::Slow, Tag::DPS, Tag::Support)),
             Operator::new("莫斯提马", "モスティマ", "Mostima", 6, tags!(Tag::Top, Tag::Ranged, Tag::Caster, Tag::AoE, Tag::Support, Tag::CC)),
             Operator::new("煌", "ブレイズ", "Blaze", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("阿", "ア", "Aak", 6, tags!(Tag::Top, Tag::Ranged, Tag::Specialist, Tag::DPS, Tag::Support)),
