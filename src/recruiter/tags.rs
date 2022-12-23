@@ -1,4 +1,4 @@
-use std::{collections::{HashSet, hash_set::Iter}};
+use std::collections::HashSet;
 
 use rand::{
     distributions::{Distribution, Standard},
@@ -6,7 +6,10 @@ use rand::{
 };
 use seed::{prelude::*, *};
 
-use super::{Msg, operators::Operator};
+use super::{
+    operators::{Operator, OperatorVec},
+    Msg,
+};
 use crate::utils::*;
 
 #[derive(Clone, PartialEq, Eq, Hash, Copy, Debug)]
@@ -156,7 +159,7 @@ impl Distribution<Tag> for Standard {
 pub trait TagSet {
     fn random_tags(len: usize) -> Self;
 
-    fn max(&self) -> u8;
+    fn max_rarity(&self) -> u8;
 
     fn candidates(&self) -> Vec<Operator>;
 }
@@ -166,7 +169,7 @@ impl TagSet for HashSet<Tag> {
         let mut result: HashSet<Tag> = Default::default();
         loop {
             result.insert(rand::random());
-    
+
             if result.len() >= len {
                 break;
             }
@@ -174,8 +177,9 @@ impl TagSet for HashSet<Tag> {
         result
     }
 
-    fn max(&self) -> u8 {
-        todo!()
+    fn max_rarity(&self) -> u8 {
+        let (candidates, _) = self.candidates().divide();
+        candidates.iter().fold(3, |acc, c| std::cmp::max(acc, c.rarity()))
     }
 
     fn candidates(&self) -> Vec<Operator> {

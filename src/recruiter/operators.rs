@@ -26,22 +26,6 @@ impl Operator {
         }
     }
 
-    pub fn find(population: &[Operator], tags: &HashSet<Tag>) -> Vec<Operator> {
-        let find_top = tags.contains(&Tag::Top);
-        population
-            .iter()
-            .skip_while(|p| !find_top && p.is_top())
-            .filter_map(|p| match p.tags.intersection(tags).cloned().collect::<HashSet<Tag>>() {
-                i if i.is_empty() => None,
-                i => {
-                    let mut new = p.clone();
-                    new.tags = i;
-                    Some(new)
-                }
-            })
-            .collect()
-    }
-
     pub fn is_behind(&self, other: &Operator) -> bool {
         ((self.rarity > other.rarity && other.rarity > 2) || (self.rarity == 1 && other.rarity < 5 && other.rarity > 1)) && self.tags.is_subset(&other.tags)
     }
@@ -76,6 +60,10 @@ impl Operator {
 
     pub fn tags(&self) -> &HashSet<Tag> {
         &self.tags
+    }
+
+    pub fn rarity(&self) -> u8 {
+        self.rarity
     }
 
     pub fn set_tags(&mut self, new_tags: HashSet<Tag>) {
@@ -199,5 +187,25 @@ impl Operator {
             Operator::new("正义骑士号", "ジャスティスナイト", "'Justice Knight'", 1, tags!(Tag::Ranged, Tag::Sniper, Tag::Support, Tag::Robot)),
             /////////////////// add new 1-stars here
         ]
+    }
+}
+
+pub trait OperatorVec {
+    fn divide(&self) -> (Vec<Operator>, Vec<Operator>);
+}
+
+impl OperatorVec for Vec<Operator> {
+    fn divide(&self) -> (Vec<Operator>, Vec<Operator>) {
+        let mut good: Vec<Operator> = Vec::new();
+        let mut challenging: Vec<Operator> = Vec::new();
+        for candidate in self {
+            if candidate.is_rare() && self.iter().any(|c| candidate.is_behind(c)) {
+                challenging.push(candidate.clone())
+            } else {
+                good.push(candidate.clone())
+            }
+        }
+
+        (good, challenging)
     }
 }

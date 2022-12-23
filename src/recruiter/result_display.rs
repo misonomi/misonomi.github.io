@@ -3,22 +3,8 @@ use seed::{prelude::*, *};
 use super::{operators::*, Msg};
 use crate::utils::*;
 
-fn sort(candidates: &[Operator]) -> (Vec<Operator>, Vec<Operator>) {
-    let mut good: Vec<Operator> = Vec::new();
-    let mut challenging: Vec<Operator> = Vec::new();
-    for candidate in candidates {
-        if candidate.is_rare() && candidates.iter().any(|c| candidate.is_behind(c)) {
-            challenging.push(candidate.clone())
-        } else {
-            good.push(candidate.clone())
-        }
-    }
-
-    (good, challenging)
-}
-
 pub fn view(candidates: &Vec<Operator>, lng: &Language) -> Node<Msg> {
-    let (good, challenging) = sort(candidates);
+    let (good, challenging) = candidates.divide();
     div![
         attrs! {At::Id => "result-area"},
         h2![C!["candidate-title"], Multilingual::new("有针对性的干员", "出そうなオペーレーター", "Good Candidates").select(lng)],

@@ -14,7 +14,7 @@ use operators::*;
 
 use self::tags::TagSet;
 
-const TAG_N: u8 = 6;
+const TAG_N: usize = 6;
 
 pub enum Msg {
     Toggle(tags::Tag),
@@ -31,7 +31,7 @@ pub struct Model {
 pub fn init(_: Url, _: &mut impl Orders<Msg>) -> Model {
     Model {
         language: Language::Japanese,
-        selected_tags: HashSet::with_capacity(TAG_N as usize),
+        selected_tags: HashSet::with_capacity(TAG_N),
         candidates: vec![],
     }
 }
@@ -48,7 +48,7 @@ pub fn update(msg: Msg, model: &mut Model, _: &mut impl Orders<Msg>) {
             }
         }
         Msg::Clear => {
-            model.selected_tags = HashSet::with_capacity(TAG_N as usize);
+            model.selected_tags = HashSet::with_capacity(TAG_N);
             model.candidates = vec![];
         }
         Msg::ChangeLanguage(lng) => {
