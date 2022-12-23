@@ -109,10 +109,7 @@ impl Tag {
         button![
             C![
                 "tag-button",
-                match active {
-                    true => "checked",
-                    _ => "",
-                }
+                IF!(active => "checked"),
             ],
             ev(Ev::Click, move |_| Msg::Toggle(t)),
             i![C!["tagico", self.iconname()]],

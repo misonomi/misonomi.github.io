@@ -52,7 +52,7 @@ impl Operator {
         div![
             C!["operator-container"],
             div![
-                C!["operator-card", format!("rarity-{}", self.rarity), if shine { "shine" } else { "" }],
+                C!["operator-card", format!("rarity-{}", self.rarity), IF!(shine => "shine")],
                 ev(Ev::Click, move |_| {
                     web_sys::window().unwrap().open_with_url(&googleurl).unwrap();
                 }),
