@@ -6,7 +6,7 @@ use seed::{prelude::*, *};
 
 use super::recruiter_tags::tag_view;
 use super::{Msg, Q_N};
-use crate::recruiter::{tags, operators::Operator};
+use crate::recruiter::{operators::Operator, tags};
 use crate::utils::*;
 
 pub struct Result {
@@ -35,7 +35,10 @@ impl Result {
                 i![C!["material-icons", "result-headline", "wrong"], "close"]
             },
             p![C!["correct-ans"], format!("{}: {}", Multilingual::new("正", "正", "Correct").select(lng), self.correct),],
-            p![C!["sample-op"], format!("{} ({})", self.example.name().select(lng), self.example.tags().iter().map(|t| t.name().select(lng)).collect::<Vec<String>>().join(", ")),],
+            p![
+                C!["sample-op"],
+                format!("{} ({})", self.example.name().select(lng), self.example.tags().iter().map(|t| t.name().select(lng)).collect::<Vec<String>>().join(", ")),
+            ],
             div![C!["tag-pool"], self.tags.iter().map(|t| tag_view(t, lng))],
         ]
     }
@@ -58,7 +61,12 @@ pub fn view(lng: &Language, result: &Vec<Result>, time: Duration) -> Node<Msg> {
 
     div![
         attrs! {At::Id => "result-area"},
-        h2![format!("{}{} {}", Multilingual::new("所需时间: ", "所要時間: ", "Time: ").select(lng), t_sec, Multilingual::new("秒", "秒", "secs").select(lng))],
+        h2![format!(
+            "{}{} {}",
+            Multilingual::new("所需时间: ", "所要時間: ", "Time: ").select(lng),
+            t_sec,
+            Multilingual::new("秒", "秒", "secs").select(lng)
+        )],
         h2![format!("{}{} / {}", Multilingual::new("准确性: ", "正答数: ", "Accuracy: ").select(lng), correct_count, Q_N)],
         tweet_button(lng, t_sec, correct_count, cerificate),
         hr![],

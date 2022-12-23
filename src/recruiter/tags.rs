@@ -106,15 +106,7 @@ impl Tag {
 
     pub fn view(&self, active: bool, lng: &Language) -> Node<Msg> {
         let t = self.clone();
-        button![
-            C![
-                "tag-button",
-                IF!(active => "checked"),
-            ],
-            ev(Ev::Click, move |_| Msg::Toggle(t)),
-            i![C!["tagico", self.iconname()]],
-            self.name().select(lng),
-        ]
+        button![C!["tag-button", IF!(active => "checked"),], ev(Ev::Click, move |_| Msg::Toggle(t)), i![C!["tagico", self.iconname()]], self.name().select(lng),]
     }
 }
 

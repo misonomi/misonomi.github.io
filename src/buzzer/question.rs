@@ -11,7 +11,12 @@ use crate::utils::*;
 pub fn view(lng: &Language, tags: &HashSet<tags::Tag>, count: usize) -> Node<Msg> {
     div![
         attrs! {At::Id => "question-area"},
-        h2![Multilingual::new("Which is the highest guaranteeed rarity from these tags?", "このタグの確定レアリティは？", "Which is the highest guaranteeed rarity from these tags?").select(lng)],
+        h2![Multilingual::new(
+            "Which is the highest guaranteeed rarity from these tags?",
+            "このタグの確定レアリティは？",
+            "Which is the highest guaranteeed rarity from these tags?"
+        )
+        .select(lng)],
         div![
             attrs! {At::Id => "position-marker-area"},
             (0..Q_N).into_iter().map(|a| div![C![
