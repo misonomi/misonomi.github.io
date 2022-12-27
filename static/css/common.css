@@ -14,6 +14,7 @@
 	--normalRed: rgb(250, 20, 50);
 	--black: rgb(0, 0, 0);
 	--blackTrans: rgba(0, 0, 0, 0.5);
+    --rhodes-blue: rgb(34, 187, 255);
 } 
 
 * {
@@ -41,4 +42,25 @@ header {
 
 body {
 	background: rgb(203, 203, 203);
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+.primary-button {
+    font-size: 1rem;
+    margin: 2em;
+    padding: .5em 4em;
+    border-radius: 2px;
+    border-bottom: 4px solid var(--rhodes-blue);
+	color: black;
+    background: white;
+    text-decoration: none;
+}
+
+.twitter-share-button-error {
+	visibility: hidden;
 }

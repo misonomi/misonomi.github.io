@@ -47,9 +47,16 @@ impl Text {
 
 pub fn view(lng: &Language) -> Node<Msg> {
     div![
-        attrs! {At::Id => "result-area"},
+        attrs! {At::Id => "inst-area"},
         Text::new()
             .iter()
             .map(|t| div![C!["inst"], h2![C!["inst-title"], t.title.select(lng)], hr![], ul![t.sequence.iter().map(|i| li![i.select(lng)])],]),
+        a! {
+            C!["primary-button"],
+            attrs!{
+                At::Href => "buzzer-recruit.html",
+            },
+            Multilingual::new("玩", "あそぶ", "Have Fun").select(lng),
+        },
     ]
 }

@@ -81,9 +81,8 @@ pub fn view(lng: &Language, result: &Vec<Result>, time: Duration) -> Node<Msg> {
             C!["primary-button"],
             attrs!{
                 At::Href => "recruitment-helper.html",
-                At::Target => "_blank"
             },
-            Multilingual::new("Open Recruitment Helper", "公開求人ヘルパーを開く", "Open Recruitment Helper").select(lng),
+            Multilingual::new("返回", "もどる", "Back").select(lng),
         },
     ]
 }
