@@ -39,12 +39,6 @@ main {
 .clear-area.left { grid-area: clear-l; }
 .clear-area.right { grid-area: clear-r; }
 
-button {
-    font-family: inherit;
-    cursor: pointer;
-    border: none;
-}
-
 hr {
     margin: .5em;
 }
@@ -93,8 +87,17 @@ hr {
     grid-area: result;
 }
 
+#inst-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    margin: 2em;
+}
+
 .inst {
     margin: 2em;
+    align-self: stretch;
 }
 
 .operator-pool {
