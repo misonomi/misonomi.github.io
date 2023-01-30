@@ -37,6 +37,7 @@ impl Text {
             Text {
                 title: Multilingual::new("更新日志", "更新履歴", "Update Log"),
                 sequence: vec![
+                    Multilingual::new("2023/01/30 - 添加了傀影, 巫恋, 刻刀", "2022/10/19 - ファントム、シャマレ、カッターを追加", "2022/10/19 - Added Phantom, Shamare, Cutter"),
                     Multilingual::new("2022/10/19 - 添加了风笛, 慑砂, 宴", "2022/10/19 - バグパイプ、シェーシャ、ウタゲを追加", "2022/10/19 - Added Bagpipe, Sesa, Utage"),
                     Multilingual::new("2022/12/23 - 纠正了麦哲伦的标签", "2022/12/23 - マゼランのタグを修正", "2022/12/23 - Fixed Magallan's tag"),
                 ],
