@@ -95,6 +95,7 @@ impl Operator {
             Operator::new("刻俄柏", "ケオベ", "Ceobe", 6, tags!(Tag::Top, Tag::Ranged, Tag::Caster, Tag::DPS, Tag::CC)),
             Operator::new("风笛", "バグパイプ", "Bagpipe", 6, tags!(Tag::Top, Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::DPS)),
             Operator::new("傀影", "ファントム", "Phantom", 6, tags!(Tag::Top, Tag::Melee, Tag::Specialist, Tag::FastRedeploy, Tag::CC, Tag::DPS)),
+            Operator::new("温蒂", "ウィーディ", "Weedy", 6, tags!(Tag::Top, Tag::Melee, Tag::Specialist, Tag::Shift, Tag::CC, Tag::DPS)),
             /////////////////// add new 6-stars here
             Operator::new("因陀罗", "インドラ", "Indra", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("火神", "ヴァルカン", "Vulcan", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS, Tag::Survival)),
@@ -132,6 +133,9 @@ impl Operator {
             Operator::new("惊蛰", "レイズ", "Leizi", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Caster, Tag::DPS)),
             Operator::new("慑砂", "シェーシャ", "Sesa", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Sniper, Tag::AoE, Tag::Debuff)),
             Operator::new("巫恋", "シャマレ", "Shamare", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Supporter, Tag::Debuff)),
+            Operator::new("极境", "エリジウム", "Elysium", 5, tags!(Tag::Senior, Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::Support)),
+            Operator::new("石棉", "アスベストス", "Asbestos", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS)),
+            Operator::new("月禾", "ツキノギ", "Tsukinogi", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Supporter, Tag::Support, Tag::Survival)),
             /////////////////// add new 5-stars here
             Operator::new("艾丝黛尔", "エステル", "Estelle", 4, tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("清流", "セイリュウ", "Purestream", 4, tags!(Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Support)),
