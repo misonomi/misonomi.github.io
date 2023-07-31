@@ -96,6 +96,7 @@ impl Operator {
             Operator::new("风笛", "バグパイプ", "Bagpipe", 6, tags!(Tag::Top, Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::DPS)),
             Operator::new("傀影", "ファントム", "Phantom", 6, tags!(Tag::Top, Tag::Melee, Tag::Specialist, Tag::FastRedeploy, Tag::CC, Tag::DPS)),
             Operator::new("温蒂", "ウィーディ", "Weedy", 6, tags!(Tag::Top, Tag::Melee, Tag::Specialist, Tag::Shift, Tag::CC, Tag::DPS)),
+            Operator::new("早露", "ロサ", "Rosa", 6, tags!(Tag::Top, Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::CC)),
             /////////////////// add new 6-stars here
             Operator::new("因陀罗", "インドラ", "Indra", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("火神", "ヴァルカン", "Vulcan", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS, Tag::Survival)),
@@ -136,6 +137,7 @@ impl Operator {
             Operator::new("极境", "エリジウム", "Elysium", 5, tags!(Tag::Senior, Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::Support)),
             Operator::new("石棉", "アスベストス", "Asbestos", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS)),
             Operator::new("月禾", "ツキノギ", "Tsukinogi", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Supporter, Tag::Support, Tag::Survival)),
+            Operator::new("莱恩哈特", "レオンハルト", "Leonhardt", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Caster, Tag::AoE, Tag::Nuker)),
             /////////////////// add new 5-stars here
             Operator::new("艾丝黛尔", "エステル", "Estelle", 4, tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("清流", "セイリュウ", "Purestream", 4, tags!(Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Support)),
@@ -168,6 +170,7 @@ impl Operator {
             Operator::new("安比尔", "アンブリエル", "Ambriel", 4, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::Slow)),
             Operator::new("宴", "ウタゲ", "Utage", 4, tags!(Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("刻刀", "カッター", "Cutter", 4, tags!(Tag::Melee, Tag::Guard, Tag::DPS, Tag::Nuker)),
+            Operator::new("波登可", "ポデンコ", "Podenco", 4, tags!(Tag::Ranged, Tag::Supporter, Tag::Slow, Tag::Heal)),
             /////////////////// add new 4-stars here
             Operator::new("安德切尔", "アドナキエル", "Adnachiel", 3, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS)),
             Operator::new("芬", "フェン", "Fang", 3, tags!(Tag::Melee, Tag::Vanguard, Tag::DPR)),
