@@ -37,6 +37,7 @@ impl Text {
             Text {
                 title: Multilingual::new("更新日志", "更新履歴", "Update Log"),
                 sequence: vec![
+                    Multilingual::new("2023/11/28 - 添加了铃兰, 断崖, 卡达", "2023/11/28 - スズラン、エアースカーペ、カシャを追加", "2023/11/28 - Added Suzuran, Ayerscarpe, Click"),
                     Multilingual::new(
                         "2023/07/31 - 添加了温蒂, 早露, 极境, 石棉, 月禾, 莱恩哈特, 波登可",
                         "2023/07/31 - ウィーディ、ロサ、エリジウム、アスベストス、ツキノギ、レオンハルト、ポデンコを追加",
