@@ -37,6 +37,11 @@ impl Text {
             Text {
                 title: Multilingual::new("更新日志", "更新履歴", "Update Log"),
                 sequence: vec![
+                    Multilingual::new(
+                        "2024/03/29 - 添加了棘刺, 安哲拉, 贾维, 蜜蜡, 孑",
+                        "2024/03/29 - ソーンズ、アンドレアナ、キアーベ、ビーズワクス、ジェイを追加",
+                        "2024/03/29 - Added Thorns, Andreana, Chiave, Beeswax, Jaye",
+                    ),
                     Multilingual::new("2023/11/28 - 添加了铃兰, 断崖, 卡达", "2023/11/28 - スズラン、エアースカーペ、カシャを追加", "2023/11/28 - Added Suzuran, Ayerscarpe, Click"),
                     Multilingual::new(
                         "2023/07/31 - 添加了温蒂, 早露, 极境, 石棉, 月禾, 莱恩哈特, 波登可",
@@ -63,7 +68,7 @@ pub fn view(lng: &Language) -> Node<Msg> {
             attrs!{
                 At::Href => "buzzer-recruit.html",
             },
-            Multilingual::new("玩", "あそぶ", "Have Fun").select(lng),
+            Multilingual::new("玩", "あそぶ", "Play").select(lng),
         },
     ]
 }
