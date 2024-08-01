@@ -38,6 +38,11 @@ impl Text {
                 title: Multilingual::new("更新日志", "更新履歴", "Update Log"),
                 sequence: vec![
                     Multilingual::new(
+                        "2024/08/01 - 添加了森蚺, 史尔特尔, 燧石, 四月, 酸糖, 芳汀, Friston-3",
+                        "2024/08/01 - ユーネクテス、スルト、フリント、エイプリル、アシッドドロップ、アレーン、Friston-3を追加",
+                        "2024/08/01 - Added Eunectes, Surtr, Flint, April, Aciddrop, Arene, Friston-3",
+                    ),
+                    Multilingual::new(
                         "2024/03/29 - 添加了棘刺, 安哲拉, 贾维, 蜜蜡, 孑",
                         "2024/03/29 - ソーンズ、アンドレアナ、キアーベ、ビーズワクス、ジェイを追加",
                         "2024/03/29 - Added Thorns, Andreana, Chiave, Beeswax, Jaye",

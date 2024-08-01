@@ -99,6 +99,8 @@ impl Operator {
             Operator::new("早露", "ロサ", "Rosa", 6, tags!(Tag::Top, Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::CC)),
             Operator::new("铃兰", "スズラン", "Suzuran", 6, tags!(Tag::Top, Tag::Ranged, Tag::Supporter, Tag::DPS, Tag::Slow, Tag::Support)),
             Operator::new("棘刺", "ソーンズ", "Thorns", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Defense)),
+            Operator::new("森蚺", "ユーネクテス", "Eunectes", 6, tags!(Tag::Top, Tag::Melee, Tag::Defender, Tag::DPS, Tag::Survival, Tag::Defense)),
+            Operator::new("史尔特尔", "スルト", "Surtr", 6, tags!(Tag::Top, Tag::Melee, Tag::Guard, Tag::DPS)),
             /////////////////// add new 6-stars here
             Operator::new("因陀罗", "インドラ", "Indra", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS, Tag::Survival)),
             Operator::new("火神", "ヴァルカン", "Vulcan", 5, tags!(Tag::Senior, Tag::Melee, Tag::Defender, Tag::Defense, Tag::DPS, Tag::Survival)),
@@ -144,6 +146,8 @@ impl Operator {
             Operator::new("安哲拉", "アンドレアナ", "Andreana", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Sniper, Tag::DPS, Tag::Slow)),
             Operator::new("贾维", "キアーベ", "Chiave", 5, tags!(Tag::Senior, Tag::Melee, Tag::Vanguard, Tag::DPR, Tag::DPS)),
             Operator::new("蜜蜡", "ビーズワクス", "Beeswax", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Caster, Tag::AoE, Tag::Defense)),
+            Operator::new("燧石", "フリント", "Flint", 5, tags!(Tag::Senior, Tag::Melee, Tag::Guard, Tag::DPS)),
+            Operator::new("四月", "エイプリル", "April", 5, tags!(Tag::Senior, Tag::Ranged, Tag::Sniper, Tag::DPS)),
             /////////////////// add new 5-stars here
             Operator::new("艾丝黛尔", "エステル", "Estelle", 4, tags!(Tag::Melee, Tag::Guard, Tag::AoE, Tag::Survival)),
             Operator::new("清流", "セイリュウ", "Purestream", 4, tags!(Tag::Ranged, Tag::Medic, Tag::Heal, Tag::Support)),
@@ -179,6 +183,8 @@ impl Operator {
             Operator::new("波登可", "ポデンコ", "Podenco", 4, tags!(Tag::Ranged, Tag::Supporter, Tag::Slow, Tag::Heal)),
             Operator::new("卡达", "カシャ", "Click", 4, tags!(Tag::Ranged, Tag::Caster, Tag::DPS, Tag::CC)),
             Operator::new("孑", "ジェイ", "Jaye", 4, tags!(Tag::Melee, Tag::Specialist, Tag::DPS, Tag::FastRedeploy)),
+            Operator::new("酸糖", "アシッドドロップ", "Aciddrop", 4, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS)),
+            Operator::new("芳汀", "アレーン", "Arene", 4, tags!(Tag::Melee, Tag::Guard, Tag::DPS)),
             /////////////////// add new 4-stars here
             Operator::new("安德切尔", "アドナキエル", "Adnachiel", 3, tags!(Tag::Ranged, Tag::Sniper, Tag::DPS)),
             Operator::new("芬", "フェン", "Fang", 3, tags!(Tag::Melee, Tag::Vanguard, Tag::DPR)),
@@ -207,6 +213,7 @@ impl Operator {
             Operator::new("Castle-3", "Castle-3", "Castle-3", 1, tags!(Tag::Melee, Tag::Guard, Tag::Support, Tag::Robot)),
             Operator::new("THRM-EX", "THRM-EX", "THRM-EX", 1, tags!(Tag::Melee, Tag::Specialist, Tag::Nuker, Tag::Robot)),
             Operator::new("正义骑士号", "ジャスティスナイト", "'Justice Knight'", 1, tags!(Tag::Ranged, Tag::Sniper, Tag::Support, Tag::Robot)),
+            Operator::new("Friston-3", "Friston-3", "'Friston-3'", 1, tags!(Tag::Melee, Tag::Defender, Tag::Defense, Tag::Robot)),
             /////////////////// add new 1-stars here
         ]
     }
