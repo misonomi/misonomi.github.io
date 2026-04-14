@@ -17,7 +17,7 @@ wasm-timer = "0.2.5"
 web-sys = { version = "0.3.60", features = ["Window"] }
 seed = "0.10.0"
 strum = { version = "0.25.0", features = ["derive"] }
-rand = "0.8.5"
+rand = "0.9.3"
 
 [features]
 index = []
